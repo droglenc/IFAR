@@ -1,6 +1,5 @@
 ---
 layout: page
-title: IFAR
 ---
 
 This website provides support materials for the **Introductory Fisheries Analysis with R** book by Derek H. Ogle.  Access materials through the menu in the upper-right corner.
