@@ -7,4 +7,4 @@ Derek Ogle is a Professor of Mathematical Sciences and Natural Resources at [Nor
 
 Ogle maintains the [**fishR** website and blog](http://derekogle.com/fishR/), [Twitter account](https://twitter.com/fishR_ogle) (@fishr\_ogle), and [Facebook page](https://www.facebook.com/fishr00), which are dedicated to sharing information on how to perform fisheries analyses in [R](https://www.r-project.org/).
 
-More information about Ogle is at [derekogle.com](http://derekogle.com).
+More information about Ogle is at [derekogle.com](http://derekogle.com). You can contact Derek using the e-mail link below.
