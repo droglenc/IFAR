@@ -2,7 +2,7 @@
 layout: page
 ---
 
-This website provides support materials for the **Introductory Fisheries Analysis with R** book by Derek H. Ogle.  Access materials through the menu in the upper-right corner.
+This website provides support materials for the **Introductory Fisheries Analysis with R** book by [Derek H. Ogle](http://derekogle.com).  Access materials through the menu in the upper-right corner.
 
 See related material on the [**fishR**](http://derekogle.com/fishR/) website.
 
