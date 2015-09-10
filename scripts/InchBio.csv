@@ -1,0 +1,677 @@
+netID,fishID,species,tl,w,tag,scale
+12,16,Bluegill,61,2.9,,FALSE
+12,23,Bluegill,66,4.5,,FALSE
+12,30,Bluegill,70,5.2,,FALSE
+12,44,Bluegill,38,0.5,,FALSE
+12,50,Bluegill,42,1,,FALSE
+12,65,Bluegill,54,2.1,,FALSE
+12,66,Bluegill,27,,,FALSE
+13,68,Bluegill,36,0.5,,FALSE
+13,69,Bluegill,59,2,,FALSE
+13,70,Bluegill,39,0.5,,FALSE
+13,71,Bluegill,34,0.5,,FALSE
+13,73,Bluegill,40,1,,FALSE
+13,74,Bluegill,35,0.5,,FALSE
+13,75,Bluegill,32,1,,FALSE
+13,76,Bluegill,37,0.5,,FALSE
+13,77,Bluegill,38,1,,FALSE
+13,78,Bluegill,69,7,,FALSE
+13,80,Bluegill,39,1,,FALSE
+13,81,Bluegill,37,0.5,,FALSE
+13,82,Bluegill,38,1,,FALSE
+13,83,Bluegill,47,,,FALSE
+14,86,Bluegill,33,0.5,,FALSE
+14,87,Bluegill,31,1.5,,FALSE
+14,88,Bluegill,36,1.5,,FALSE
+4,118,Bluegill,150,60,,TRUE
+4,119,Bluegill,193,145,,TRUE
+4,120,Bluegill,185,123,,TRUE
+4,121,Bluegill,152,67,,TRUE
+4,122,Bluegill,160,75,,TRUE
+4,123,Bluegill,185,118,,TRUE
+4,124,Bluegill,170,100,,TRUE
+4,125,Bluegill,135,35,,TRUE
+4,126,Bluegill,183,120,,TRUE
+4,127,Bluegill,168,90,,TRUE
+4,128,Bluegill,165,85,,TRUE
+4,129,Bluegill,178,100,,TRUE
+4,130,Bluegill,193,155,,TRUE
+4,131,Bluegill,193,140,,TRUE
+4,132,Bluegill,201,180,,TRUE
+4,133,Bluegill,203,185,,TRUE
+4,134,Bluegill,99,15,,TRUE
+5,138,Bluegill,135,42,,TRUE
+5,139,Bluegill,38,2,,FALSE
+5,140,Bluegill,41,,,FALSE
+5,141,Bluegill,41,,,FALSE
+5,142,Bluegill,46,,,FALSE
+5,143,Bluegill,165,68,,TRUE
+5,144,Bluegill,43,,,FALSE
+5,145,Bluegill,51,4,,FALSE
+5,146,Bluegill,203,184,,TRUE
+5,147,Bluegill,168,98,,TRUE
+5,148,Bluegill,152,62,,TRUE
+5,149,Bluegill,64,,,FALSE
+5,150,Bluegill,157,76,,TRUE
+10,151,Bluegill,173,100,,TRUE
+10,152,Bluegill,173,95,,TRUE
+10,153,Bluegill,185,130,,TRUE
+10,154,Bluegill,218,250,,TRUE
+10,155,Bluegill,206,197,,TRUE
+10,156,Bluegill,165,78,,TRUE
+10,157,Bluegill,152,72,,TRUE
+10,158,Bluegill,170,98,,TRUE
+9,161,Bluegill,206,175,,TRUE
+9,162,Bluegill,191,144,,TRUE
+9,163,Bluegill,193,148,,TRUE
+9,164,Bluegill,183,130,,TRUE
+9,165,Bluegill,201,185,,TRUE
+9,166,Bluegill,221,225,,TRUE
+9,167,Bluegill,165,80,,FALSE
+9,168,Bluegill,206,180,,TRUE
+9,169,Bluegill,203,175,,TRUE
+9,170,Bluegill,165,,,TRUE
+9,171,Bluegill,193,160,,FALSE
+9,172,Bluegill,173,,,FALSE
+6,176,Bluegill,213,200,,TRUE
+6,177,Bluegill,155,74,,TRUE
+6,178,Bluegill,157,62,,TRUE
+6,179,Bluegill,211,220,,TRUE
+6,180,Bluegill,188,149,,TRUE
+6,181,Bluegill,188,139,,TRUE
+6,182,Bluegill,196,132,,TRUE
+6,183,Bluegill,188,139,,TRUE
+6,184,Bluegill,160,73,,TRUE
+6,185,Bluegill,196,120,,TRUE
+6,186,Bluegill,221,242,,TRUE
+6,187,Bluegill,180,130,,TRUE
+6,188,Bluegill,152,70,,TRUE
+6,189,Bluegill,140,40,,TRUE
+6,190,Bluegill,203,170,,TRUE
+6,191,Bluegill,145,52,,TRUE
+6,192,Bluegill,147,32,,TRUE
+11,193,Bluegill,211,218,,TRUE
+11,194,Bluegill,147,60,,TRUE
+11,195,Bluegill,152,70,,TRUE
+17,196,Bluegill,203,192,,TRUE
+17,197,Bluegill,132,31,,TRUE
+17,199,Bluegill,142,59,,TRUE
+20,201,Bluegill,140,54,,TRUE
+15,203,Bluegill,142,40,,TRUE
+15,206,Bluegill,147,30,,TRUE
+15,207,Bluegill,119,20,,TRUE
+16,210,Bluegill,229,280,,TRUE
+16,211,Bluegill,224,260,,TRUE
+16,212,Bluegill,224,260,,TRUE
+16,213,Bluegill,224,240,,TRUE
+16,214,Bluegill,150,60,,TRUE
+16,215,Bluegill,137,60,,TRUE
+21,217,Bluegill,94,14,,TRUE
+21,219,Bluegill,130,38,,TRUE
+26,220,Bluegill,132,49,,TRUE
+26,221,Bluegill,137,41,,TRUE
+23,224,Bluegill,114,20,,TRUE
+27,226,Bluegill,127,20,,TRUE
+27,228,Bluegill,122,20,,TRUE
+28,230,Bluegill,137,50,,TRUE
+28,231,Bluegill,234,280,,TRUE
+37,322,Bluegill,152,,,TRUE
+37,356,Bluegill,201,,,TRUE
+206,501,Bluegill,38,0.7,,FALSE
+205,502,Bluegill,43,1.4,,FALSE
+205,503,Bluegill,56,1.5,,FALSE
+205,504,Bluegill,53,1.4,,FALSE
+205,505,Bluegill,38,1,,FALSE
+205,506,Bluegill,48,1.8,,FALSE
+205,507,Bluegill,48,1.4,,FALSE
+205,508,Bluegill,36,0.6,,FALSE
+205,509,Bluegill,30,0.3,,FALSE
+205,510,Bluegill,36,0.8,,FALSE
+205,511,Bluegill,51,1.3,,FALSE
+205,512,Bluegill,58,2.4,,FALSE
+205,513,Bluegill,33,0.7,,FALSE
+205,514,Bluegill,38,1,,FALSE
+205,515,Bluegill,33,0.6,,FALSE
+205,516,Bluegill,56,2.8,,FALSE
+205,517,Bluegill,33,1.1,,FALSE
+205,518,Bluegill,53,2,,FALSE
+205,519,Bluegill,66,4.5,,FALSE
+205,520,Bluegill,71,4.9,,FALSE
+101,533,Bluegill,213,190,,TRUE
+101,538,Bluegill,216,198,1021,TRUE
+101,539,Bluegill,216,210,1022,TRUE
+101,540,Bluegill,231,258,1023,TRUE
+101,541,Bluegill,193,138,,TRUE
+101,542,Bluegill,226,236,1024,TRUE
+101,543,Bluegill,163,75,,TRUE
+101,544,Bluegill,224,229,1025,TRUE
+101,545,Bluegill,178,101,,TRUE
+101,546,Bluegill,180,110,,TRUE
+101,547,Bluegill,239,295,1015,TRUE
+101,548,Bluegill,183,113,,TRUE
+101,549,Bluegill,211,191,1018,TRUE
+101,550,Bluegill,191,139,,TRUE
+101,552,Bluegill,191,137,,TRUE
+101,553,Bluegill,201,165,,TRUE
+101,554,Bluegill,178,103,,TRUE
+101,555,Bluegill,201,166,,TRUE
+101,556,Bluegill,180,115,,TRUE
+101,557,Bluegill,165,89,,TRUE
+101,558,Bluegill,191,121,,TRUE
+101,559,Bluegill,157,78,,TRUE
+101,560,Bluegill,152,63,,TRUE
+101,561,Bluegill,206,181,1075,TRUE
+101,562,Bluegill,147,60,,TRUE
+101,563,Bluegill,163,74,,TRUE
+101,564,Bluegill,180,101,,TRUE
+101,565,Bluegill,193,141,,TRUE
+101,566,Bluegill,216,228,1074,TRUE
+101,567,Bluegill,229,266,1073,TRUE
+101,568,Bluegill,168,93,,TRUE
+101,569,Bluegill,163,74,,TRUE
+101,570,Bluegill,165,82,,TRUE
+101,571,Bluegill,231,274,1072,TRUE
+101,572,Bluegill,201,151,,TRUE
+101,573,Bluegill,188,129,,TRUE
+101,574,Bluegill,175,98,,TRUE
+101,575,Bluegill,145,57,,TRUE
+101,576,Bluegill,152,62,,TRUE
+101,577,Bluegill,175,107,,TRUE
+101,578,Bluegill,221,240,1071,TRUE
+101,580,Bluegill,178,110,,TRUE
+101,581,Bluegill,211,208,1069,TRUE
+101,583,Bluegill,140,48,,TRUE
+101,585,Bluegill,173,96,,TRUE
+101,586,Bluegill,152,73,,TRUE
+101,587,Bluegill,213,198,1066,TRUE
+107,621,Bluegill,203,156,1065,TRUE
+107,622,Bluegill,221,242,1064,TRUE
+107,623,Bluegill,203,187,1063,TRUE
+107,624,Bluegill,229,242,1062,TRUE
+107,625,Bluegill,170,83,,TRUE
+104,658,Bluegill,213,197,1099,TRUE
+104,659,Bluegill,229,255,1098,TRUE
+104,660,Bluegill,185,111,,TRUE
+103,689,Bluegill,206,,1107,TRUE
+103,695,Bluegill,137,45.3,,TRUE
+103,697,Bluegill,147,50.9,,TRUE
+103,699,Bluegill,66,3.4,,TRUE
+103,700,Bluegill,150,54.5,,TRUE
+103,701,Bluegill,142,48.8,,TRUE
+103,703,Bluegill,150,50.9,,TRUE
+111,717,Bluegill,130,35,,TRUE
+111,718,Bluegill,137,45,,TRUE
+111,719,Bluegill,132,39,,TRUE
+111,722,Bluegill,137,43,,TRUE
+111,726,Bluegill,137,50,,TRUE
+113,742,Bluegill,135,39,,TRUE
+114,755,Bluegill,66,3.1,,FALSE
+116,761,Bluegill,97,10.9,,FALSE
+116,762,Bluegill,91,10.6,,FALSE
+112,774,Bluegill,203,171,1045,TRUE
+112,780,Bluegill,76,6.1,,FALSE
+112,781,Bluegill,109,19,,FALSE
+120,802,Bluegill,94,10.7,,TRUE
+120,803,Bluegill,84,8.9,,TRUE
+120,804,Bluegill,91,10.6,,TRUE
+120,805,Bluegill,84,8.7,,TRUE
+120,806,Bluegill,86,9.3,,TRUE
+120,807,Bluegill,69,4,,TRUE
+119,824,Bluegill,119,25,,TRUE
+122,826,Bluegill,132,33,,TRUE
+12,7,Bluntnose Minnow,59,2,,FALSE
+12,8,Bluntnose Minnow,58,1.7,,FALSE
+12,10,Bluntnose Minnow,54,1.5,,FALSE
+12,11,Bluntnose Minnow,60,1.7,,FALSE
+12,12,Bluntnose Minnow,78,2.3,,FALSE
+12,14,Bluntnose Minnow,62,2.2,,FALSE
+12,17,Bluntnose Minnow,59,2,,FALSE
+12,18,Bluntnose Minnow,63,2.5,,FALSE
+12,19,Bluntnose Minnow,58,2,,FALSE
+12,21,Bluntnose Minnow,71,3.8,,FALSE
+12,22,Bluntnose Minnow,55,2.5,,FALSE
+12,24,Bluntnose Minnow,60,2.2,,FALSE
+12,25,Bluntnose Minnow,51,2,,FALSE
+12,26,Bluntnose Minnow,52,1.8,,FALSE
+12,27,Bluntnose Minnow,64,2.5,,FALSE
+12,28,Bluntnose Minnow,67,4,,FALSE
+12,29,Bluntnose Minnow,63,2,,FALSE
+12,31,Bluntnose Minnow,65,2,,FALSE
+12,32,Bluntnose Minnow,67,3,,FALSE
+12,33,Bluntnose Minnow,71,4.8,,FALSE
+12,34,Bluntnose Minnow,66,3,,FALSE
+12,35,Bluntnose Minnow,73,4,,FALSE
+12,36,Bluntnose Minnow,67,4,,FALSE
+12,37,Bluntnose Minnow,51,2.5,,FALSE
+12,38,Bluntnose Minnow,58,1.5,,FALSE
+12,39,Bluntnose Minnow,71,3.8,,FALSE
+12,40,Bluntnose Minnow,52,1.5,,FALSE
+12,41,Bluntnose Minnow,61,1.5,,FALSE
+12,42,Bluntnose Minnow,58,1.5,,FALSE
+12,43,Bluntnose Minnow,72,3,,FALSE
+12,45,Bluntnose Minnow,68,,,FALSE
+12,46,Bluntnose Minnow,57,1.5,,FALSE
+12,47,Bluntnose Minnow,58,1.5,,FALSE
+12,48,Bluntnose Minnow,58,2,,FALSE
+12,49,Bluntnose Minnow,58,2.5,,FALSE
+12,51,Bluntnose Minnow,61,3,,FALSE
+12,52,Bluntnose Minnow,57,1,,FALSE
+12,53,Bluntnose Minnow,70,2,,FALSE
+12,54,Bluntnose Minnow,64,2.5,,FALSE
+12,55,Bluntnose Minnow,61,1,,FALSE
+12,56,Bluntnose Minnow,56,1,,FALSE
+12,57,Bluntnose Minnow,58,,,FALSE
+12,58,Bluntnose Minnow,66,4,,FALSE
+12,59,Bluntnose Minnow,59,2,,FALSE
+12,60,Bluntnose Minnow,62,1.5,,FALSE
+12,61,Bluntnose Minnow,64,2.5,,FALSE
+12,62,Bluntnose Minnow,63,1.5,,FALSE
+12,63,Bluntnose Minnow,61,1.8,,FALSE
+12,64,Bluntnose Minnow,64,3,,FALSE
+13,79,Bluntnose Minnow,72,5,,FALSE
+13,84,Bluntnose Minnow,71,4,,FALSE
+205,522,Bluntnose Minnow,61,2.1,,FALSE
+201,523,Bluntnose Minnow,56,,,FALSE
+101,589,Bluntnose Minnow,64,1.4,,FALSE
+101,590,Bluntnose Minnow,46,0.5,,FALSE
+101,591,Bluntnose Minnow,53,1,,FALSE
+101,592,Bluntnose Minnow,58,1.7,,FALSE
+101,593,Bluntnose Minnow,56,1,,FALSE
+101,594,Bluntnose Minnow,58,1.1,,FALSE
+101,595,Bluntnose Minnow,58,1,,FALSE
+101,596,Bluntnose Minnow,56,1,,FALSE
+101,597,Bluntnose Minnow,53,1,,FALSE
+101,598,Bluntnose Minnow,51,0.8,,FALSE
+101,599,Bluntnose Minnow,56,0.8,,FALSE
+101,600,Bluntnose Minnow,56,1,,FALSE
+101,601,Bluntnose Minnow,58,1,,FALSE
+101,603,Bluntnose Minnow,64,1.4,,FALSE
+101,605,Bluntnose Minnow,58,1.2,,FALSE
+101,606,Bluntnose Minnow,61,1.3,,FALSE
+101,607,Bluntnose Minnow,69,1.8,,FALSE
+101,608,Bluntnose Minnow,64,1.4,,FALSE
+101,609,Bluntnose Minnow,53,0.8,,FALSE
+101,610,Bluntnose Minnow,64,1.4,,FALSE
+101,611,Bluntnose Minnow,61,1.2,,FALSE
+101,612,Bluntnose Minnow,51,0.7,,FALSE
+101,613,Bluntnose Minnow,56,1.1,,FALSE
+101,614,Bluntnose Minnow,56,1,,FALSE
+101,615,Bluntnose Minnow,53,0.9,,FALSE
+101,616,Bluntnose Minnow,58,1.2,,FALSE
+101,617,Bluntnose Minnow,53,0.8,,FALSE
+101,618,Bluntnose Minnow,53,0.9,,FALSE
+101,619,Bluntnose Minnow,66,1.5,,FALSE
+101,620,Bluntnose Minnow,61,1.3,,FALSE
+102,638,Bluntnose Minnow,74,3.9,,FALSE
+102,639,Bluntnose Minnow,61,2.2,,FALSE
+102,640,Bluntnose Minnow,84,1.3,,FALSE
+102,642,Bluntnose Minnow,53,1.3,,FALSE
+102,643,Bluntnose Minnow,56,2.1,,FALSE
+102,644,Bluntnose Minnow,56,1.4,,FALSE
+102,645,Bluntnose Minnow,61,2,,FALSE
+111,727,Bluntnose Minnow,79,3.8,,FALSE
+116,763,Bluntnose Minnow,74,3.4,,FALSE
+121,816,Bluntnose Minnow,51,1.2,,FALSE
+121,817,Bluntnose Minnow,79,3.9,,FALSE
+121,818,Bluntnose Minnow,74,3.8,,FALSE
+121,819,Bluntnose Minnow,64,1.9,,FALSE
+121,820,Bluntnose Minnow,51,1,,FALSE
+121,821,Bluntnose Minnow,51,1.1,,FALSE
+121,822,Bluntnose Minnow,64,2.1,,FALSE
+121,823,Bluntnose Minnow,51,1.2,,FALSE
+125,832,Bluntnose Minnow,81,2.8,,FALSE
+125,833,Bluntnose Minnow,81,3.2,,FALSE
+125,834,Bluntnose Minnow,79,4.1,,FALSE
+13,72,Iowa Darter,61,,,FALSE
+205,521,Iowa Darter,53,1.1,,FALSE
+203,524,Iowa Darter,46,0.6,,FALSE
+203,525,Iowa Darter,44,0.6,,FALSE
+203,526,Iowa Darter,46,0.6,,FALSE
+203,527,Iowa Darter,43,0.4,,FALSE
+101,602,Iowa Darter,56,0.9,,FALSE
+101,604,Iowa Darter,51,0.8,,FALSE
+102,641,Iowa Darter,48,1,,FALSE
+106,646,Iowa Darter,38,0.6,,FALSE
+106,647,Iowa Darter,46,0.9,,FALSE
+106,648,Iowa Darter,43,0.8,,FALSE
+106,649,Iowa Darter,48,1,,FALSE
+106,650,Iowa Darter,41,0.5,,FALSE
+106,651,Iowa Darter,41,0.7,,FALSE
+106,652,Iowa Darter,43,0.6,,FALSE
+106,653,Iowa Darter,43,0.6,,FALSE
+106,654,Iowa Darter,46,0.9,,FALSE
+105,711,Iowa Darter,48,0.7,,FALSE
+105,712,Iowa Darter,46,0.7,,FALSE
+115,730,Iowa Darter,48,0.8,,FALSE
+115,731,Iowa Darter,48,0.8,,FALSE
+115,732,Iowa Darter,51,1,,FALSE
+115,733,Iowa Darter,51,1.1,,FALSE
+116,764,Iowa Darter,51,1.2,,FALSE
+116,765,Iowa Darter,48,0.9,,FALSE
+116,766,Iowa Darter,51,0.9,,FALSE
+116,767,Iowa Darter,43,0.5,,FALSE
+116,768,Iowa Darter,51,1.2,,FALSE
+116,769,Iowa Darter,56,1.2,,FALSE
+116,770,Iowa Darter,53,1.1,,FALSE
+116,771,Iowa Darter,43,0.9,,FALSE
+14,85,Largemouth Bass,68,3.5,,TRUE
+3,89,Largemouth Bass,338,,g0996,TRUE
+1,90,Largemouth Bass,356,,y06073,TRUE
+1,91,Largemouth Bass,328,,o0449,TRUE
+1,92,Largemouth Bass,305,,o0448,TRUE
+1,93,Largemouth Bass,386,,o0447,TRUE
+1,94,Largemouth Bass,310,,g0985,TRUE
+1,95,Largemouth Bass,262,,,TRUE
+1,96,Largemouth Bass,305,,g0986,TRUE
+1,97,Largemouth Bass,315,,g0987,TRUE
+1,98,Largemouth Bass,371,,g1000,TRUE
+1,99,Largemouth Bass,338,,g0999,TRUE
+1,100,Largemouth Bass,239,,,TRUE
+1,101,Largemouth Bass,236,,,TRUE
+1,102,Largemouth Bass,348,,g0997,TRUE
+2,104,Largemouth Bass,307,,o0501,TRUE
+2,105,Largemouth Bass,323,,o0506,TRUE
+2,106,Largemouth Bass,231,,,TRUE
+2,107,Largemouth Bass,216,,,TRUE
+2,108,Largemouth Bass,325,,o0507,TRUE
+2,109,Largemouth Bass,399,,o0510,TRUE
+2,110,Largemouth Bass,333,,o0511,TRUE
+2,111,Largemouth Bass,356,,o0512,TRUE
+2,112,Largemouth Bass,274,,,TRUE
+17,198,Largemouth Bass,259,190,,TRUE
+27,227,Largemouth Bass,137,20,,TRUE
+29,232,Largemouth Bass,279,,o0516,TRUE
+29,233,Largemouth Bass,351,,o0517,TRUE
+29,234,Largemouth Bass,307,,o0518,TRUE
+29,235,Largemouth Bass,325,,o0520,TRUE
+29,237,Largemouth Bass,330,,o0521,TRUE
+29,239,Largemouth Bass,282,,o0523,TRUE
+29,240,Largemouth Bass,262,,,TRUE
+29,241,Largemouth Bass,391,,o0524,TRUE
+29,242,Largemouth Bass,262,,,TRUE
+29,243,Largemouth Bass,295,,o0525,TRUE
+30,244,Largemouth Bass,305,,o0550,TRUE
+30,245,Largemouth Bass,193,,,TRUE
+30,246,Largemouth Bass,254,,,TRUE
+30,247,Largemouth Bass,246,,,TRUE
+30,248,Largemouth Bass,330,,o0549,TRUE
+30,249,Largemouth Bass,300,,,TRUE
+30,250,Largemouth Bass,284,,,TRUE
+30,251,Largemouth Bass,371,,o0548,TRUE
+30,252,Largemouth Bass,335,,o0547,TRUE
+30,253,Largemouth Bass,305,,o0546,TRUE
+30,254,Largemouth Bass,254,,,TRUE
+30,255,Largemouth Bass,318,,o0545,TRUE
+30,256,Largemouth Bass,348,,o0544,TRUE
+30,257,Largemouth Bass,343,,o0543,TRUE
+30,258,Largemouth Bass,325,,o0542,TRUE
+30,259,Largemouth Bass,333,,o0541,TRUE
+30,260,Largemouth Bass,330,,o0540,TRUE
+30,261,Largemouth Bass,381,,o0539,TRUE
+30,262,Largemouth Bass,320,,o0538,TRUE
+30,263,Largemouth Bass,272,,,TRUE
+30,264,Largemouth Bass,312,,o0536,TRUE
+30,265,Largemouth Bass,310,,o0535,TRUE
+30,266,Largemouth Bass,297,,,TRUE
+31,270,Largemouth Bass,307,,o0533,TRUE
+31,271,Largemouth Bass,310,,o0532,TRUE
+31,272,Largemouth Bass,277,,,TRUE
+33,273,Largemouth Bass,130,,,TRUE
+32,274,Largemouth Bass,140,,,TRUE
+35,275,Largemouth Bass,239,,,TRUE
+35,276,Largemouth Bass,236,,,TRUE
+35,277,Largemouth Bass,320,,o0519,TRUE
+35,278,Largemouth Bass,241,,,TRUE
+35,279,Largemouth Bass,343,,g0988,TRUE
+35,280,Largemouth Bass,226,,,TRUE
+35,281,Largemouth Bass,211,,,TRUE
+35,282,Largemouth Bass,409,,g0990,TRUE
+35,284,Largemouth Bass,371,,o0991,TRUE
+35,285,Largemouth Bass,312,,o0989,TRUE
+35,286,Largemouth Bass,333,,y00003,TRUE
+35,287,Largemouth Bass,338,,y00228,TRUE
+35,288,Largemouth Bass,282,,,TRUE
+35,289,Largemouth Bass,302,,,TRUE
+35,290,Largemouth Bass,305,,y160016,TRUE
+35,291,Largemouth Bass,376,,o0534,TRUE
+35,292,Largemouth Bass,251,,,TRUE
+35,293,Largemouth Bass,338,,y2519,TRUE
+35,294,Largemouth Bass,318,,y00034,TRUE
+35,295,Largemouth Bass,312,,y00123,TRUE
+35,296,Largemouth Bass,272,,,TRUE
+35,297,Largemouth Bass,394,,o0531,TRUE
+35,298,Largemouth Bass,363,,o0530,TRUE
+35,299,Largemouth Bass,320,,y01525,FALSE
+36,300,Largemouth Bass,307,,o0529,TRUE
+36,301,Largemouth Bass,330,,o0528,TRUE
+36,302,Largemouth Bass,318,,o0527,TRUE
+36,303,Largemouth Bass,302,,,TRUE
+36,304,Largemouth Bass,277,,,TRUE
+36,305,Largemouth Bass,241,,,TRUE
+36,306,Largemouth Bass,318,,o0526,TRUE
+36,307,Largemouth Bass,297,,,TRUE
+36,308,Largemouth Bass,318,,y01598,TRUE
+36,309,Largemouth Bass,373,,y01600,TRUE
+36,310,Largemouth Bass,290,,,TRUE
+36,311,Largemouth Bass,300,,,TRUE
+36,312,Largemouth Bass,318,,y01603,TRUE
+36,313,Largemouth Bass,333,,y01604,TRUE
+36,314,Largemouth Bass,356,,y01605,TRUE
+36,315,Largemouth Bass,180,,,TRUE
+36,316,Largemouth Bass,305,,y01606,TRUE
+37,317,Largemouth Bass,211,,,TRUE
+37,318,Largemouth Bass,320,,y00385,TRUE
+37,320,Largemouth Bass,236,,,TRUE
+37,321,Largemouth Bass,193,,,TRUE
+37,323,Largemouth Bass,249,,,TRUE
+37,324,Largemouth Bass,318,,y01601,TRUE
+37,325,Largemouth Bass,211,,,TRUE
+37,326,Largemouth Bass,254,,,TRUE
+37,327,Largemouth Bass,318,,y00023,TRUE
+37,328,Largemouth Bass,427,,y00316,TRUE
+37,329,Largemouth Bass,345,,y00220,TRUE
+37,330,Largemouth Bass,330,,y00011,TRUE
+37,331,Largemouth Bass,320,,y01534,TRUE
+37,332,Largemouth Bass,356,,y00028,TRUE
+37,333,Largemouth Bass,325,,y00009,TRUE
+37,336,Largemouth Bass,297,,,TRUE
+37,337,Largemouth Bass,201,,,TRUE
+37,338,Largemouth Bass,257,,,TRUE
+37,339,Largemouth Bass,206,,,TRUE
+37,340,Largemouth Bass,201,,,TRUE
+37,341,Largemouth Bass,251,,,TRUE
+37,342,Largemouth Bass,239,,,TRUE
+37,343,Largemouth Bass,203,,,TRUE
+37,344,Largemouth Bass,262,,,TRUE
+37,345,Largemouth Bass,272,,,TRUE
+37,346,Largemouth Bass,353,,y00025,TRUE
+37,347,Largemouth Bass,318,,y00229,TRUE
+37,348,Largemouth Bass,330,,y00409,TRUE
+37,349,Largemouth Bass,292,,,TRUE
+37,352,Largemouth Bass,318,,y00006,TRUE
+37,353,Largemouth Bass,335,,y00015,TRUE
+37,354,Largemouth Bass,295,,,TRUE
+37,355,Largemouth Bass,323,,y00027,TRUE
+101,536,Largemouth Bass,318,407,1019,TRUE
+101,551,Largemouth Bass,178,60,,TRUE
+101,588,Largemouth Bass,221,117,,TRUE
+102,630,Largemouth Bass,429,1070,1058,TRUE
+102,631,Largemouth Bass,394,737,1057,TRUE
+102,632,Largemouth Bass,361,548,1056,TRUE
+104,656,Largemouth Bass,251,172,,TRUE
+104,657,Largemouth Bass,386,688,1100,TRUE
+103,702,Largemouth Bass,361,579,1115,TRUE
+111,713,Largemouth Bass,348,556,1117,TRUE
+114,759,Largemouth Bass,168,48,,TRUE
+116,760,Largemouth Bass,71,3.1,,FALSE
+112,801,Largemouth Bass,168,52,,FALSE
+109,836,Largemouth Bass,424,864,1518,TRUE
+109,837,Largemouth Bass,328,410,1519,TRUE
+109,838,Largemouth Bass,315,385,1520,TRUE
+109,839,Largemouth Bass,325,338,1521,TRUE
+109,840,Largemouth Bass,274,235,,TRUE
+109,841,Largemouth Bass,348,,1522,TRUE
+109,842,Largemouth Bass,318,386,o6860,TRUE
+109,843,Largemouth Bass,333,460,1523,TRUE
+109,844,Largemouth Bass,386,547,1524,TRUE
+109,845,Largemouth Bass,384,540,1525,TRUE
+109,846,Largemouth Bass,249,,,TRUE
+109,847,Largemouth Bass,307,320,1532,TRUE
+109,848,Largemouth Bass,323,420,1776,TRUE
+109,849,Largemouth Bass,315,406,1777,TRUE
+109,850,Largemouth Bass,351,486,1778,TRUE
+109,851,Largemouth Bass,249,274,,TRUE
+109,852,Largemouth Bass,287,265,,TRUE
+109,853,Largemouth Bass,307,338,1779,TRUE
+109,854,Largemouth Bass,302,358,,TRUE
+109,855,Largemouth Bass,297,333,,TRUE
+109,856,Largemouth Bass,320,386,o0526,TRUE
+109,857,Largemouth Bass,333,483,1780,TRUE
+109,858,Largemouth Bass,333,426,1781,TRUE
+109,859,Largemouth Bass,307,295,1782,TRUE
+109,860,Largemouth Bass,229,132,,TRUE
+109,861,Largemouth Bass,201,92,,TRUE
+109,862,Largemouth Bass,201,88,,TRUE
+110,864,Largemouth Bass,325,436,1784,TRUE
+110,865,Largemouth Bass,325,412,1785,TRUE
+110,866,Largemouth Bass,323,444,1786,TRUE
+110,867,Largemouth Bass,272,233,,TRUE
+129,868,Largemouth Bass,363,624,1787,TRUE
+129,869,Largemouth Bass,353,561,1788,TRUE
+129,871,Largemouth Bass,264,211,,TRUE
+129,872,Largemouth Bass,315,367,1790,TRUE
+129,873,Largemouth Bass,239,157,,TRUE
+129,874,Largemouth Bass,330,433,1791,TRUE
+129,875,Largemouth Bass,239,154,,TRUE
+129,876,Largemouth Bass,300,292,,TRUE
+129,877,Largemouth Bass,310,351,,TRUE
+129,878,Largemouth Bass,330,436,o0507,TRUE
+129,880,Largemouth Bass,267,244,,TRUE
+129,881,Largemouth Bass,330,437,1793,TRUE
+129,882,Largemouth Bass,234,133,,TRUE
+129,883,Largemouth Bass,315,409,1794,TRUE
+129,884,Largemouth Bass,310,330,1795,TRUE
+129,885,Largemouth Bass,251,187,,TRUE
+129,886,Largemouth Bass,226,132,,TRUE
+129,887,Largemouth Bass,254,168,,TRUE
+129,888,Largemouth Bass,320,385,1796,TRUE
+129,889,Largemouth Bass,305,324,1797,TRUE
+129,890,Largemouth Bass,333,461,1798,TRUE
+129,891,Largemouth Bass,224,110,,TRUE
+130,892,Largemouth Bass,310,346,1799,TRUE
+130,893,Largemouth Bass,345,450,1800,TRUE
+130,894,Largemouth Bass,333,443,1701,TRUE
+130,895,Largemouth Bass,348,537,1702,TRUE
+130,896,Largemouth Bass,305,306,1703,TRUE
+130,897,Largemouth Bass,343,485,o0997,TRUE
+130,898,Largemouth Bass,318,383,1019,FALSE
+130,899,Largemouth Bass,310,348,1704,TRUE
+130,900,Largemouth Bass,292,,,TRUE
+130,901,Largemouth Bass,272,242,,TRUE
+130,902,Largemouth Bass,257,173,,TRUE
+130,903,Largemouth Bass,312,371,y00229,TRUE
+130,904,Largemouth Bass,257,207,,TRUE
+130,905,Largemouth Bass,305,320,1705,TRUE
+130,906,Largemouth Bass,312,349,o0529,TRUE
+130,907,Largemouth Bass,378,723,1706,TRUE
+130,908,Largemouth Bass,348,571,1707,TRUE
+130,909,Largemouth Bass,295,315,,TRUE
+130,910,Largemouth Bass,338,462,1708,TRUE
+131,911,Largemouth Bass,300,342,,TRUE
+131,912,Largemouth Bass,264,215,,TRUE
+131,913,Largemouth Bass,251,180,,TRUE
+131,914,Largemouth Bass,378,646,1709,TRUE
+131,915,Largemouth Bass,325,377,1785,FALSE
+12,9,Pumpkinseed,75,6.5,,FALSE
+12,13,Pumpkinseed,53,2.2,,FALSE
+12,15,Pumpkinseed,28,1,,FALSE
+12,20,Pumpkinseed,51,1.5,,FALSE
+12,67,Pumpkinseed,61,4,,FALSE
+9,159,Pumpkinseed,188,120,,TRUE
+9,160,Pumpkinseed,191,185,,TRUE
+20,200,Pumpkinseed,191,200,,TRUE
+21,216,Pumpkinseed,152,80,,TRUE
+23,223,Pumpkinseed,201,210,,TRUE
+27,225,Pumpkinseed,130,20,,TRUE
+24,229,Pumpkinseed,229,320,,TRUE
+124,835,Pumpkinseed,175,130,,TRUE
+203,528,Tadpole Madtom,41,0.5,,FALSE
+203,529,Tadpole Madtom,33,0.2,,FALSE
+203,530,Tadpole Madtom,30,0.2,,FALSE
+203,531,Tadpole Madtom,30,0.3,,FALSE
+106,655,Tadpole Madtom,46,1.3,,FALSE
+115,734,Tadpole Madtom,38,1,,FALSE
+4,113,Yellow Perch,239,150,,TRUE
+4,114,Yellow Perch,267,170,,TRUE
+4,115,Yellow Perch,262,175,,TRUE
+4,116,Yellow Perch,257,157,,TRUE
+4,117,Yellow Perch,257,160,,TRUE
+9,173,Yellow Perch,221,105,,TRUE
+9,174,Yellow Perch,226,150,,TRUE
+9,175,Yellow Perch,282,230,,TRUE
+20,202,Yellow Perch,226,122,,TRUE
+15,204,Yellow Perch,244,130,,TRUE
+15,205,Yellow Perch,272,200,,TRUE
+23,222,Yellow Perch,229,110,,TRUE
+102,633,Yellow Perch,249,164,1055,TRUE
+102,634,Yellow Perch,264,208,1054,TRUE
+102,635,Yellow Perch,254,173,1053,TRUE
+102,636,Yellow Perch,249,158,1052,TRUE
+105,704,Yellow Perch,114,14.1,,TRUE
+105,705,Yellow Perch,102,9.7,,TRUE
+105,706,Yellow Perch,119,13.6,,TRUE
+105,707,Yellow Perch,79,4,,TRUE
+105,708,Yellow Perch,81,4.3,,TRUE
+105,709,Yellow Perch,79,4.1,,TRUE
+105,710,Yellow Perch,74,3.4,,TRUE
+111,714,Yellow Perch,307,340,1118,TRUE
+115,728,Yellow Perch,94,6.3,,FALSE
+115,729,Yellow Perch,79,4.2,,FALSE
+113,735,Yellow Perch,267,201,1026,TRUE
+114,756,Yellow Perch,297,327,1043,TRUE
+116,772,Yellow Perch,91,6.8,,TRUE
+116,773,Yellow Perch,84,4.5,,TRUE
+112,796,Yellow Perch,229,123,1046,TRUE
+112,797,Yellow Perch,239,135,1047,TRUE
+122,825,Yellow Perch,249,152,1156,TRUE
+125,827,Yellow Perch,221,113,1696,TRUE
+125,828,Yellow Perch,84,4.6,,TRUE
+125,829,Yellow Perch,91,7.1,,TRUE
+125,830,Yellow Perch,81,4.1,,TRUE
+125,831,Yellow Perch,71,2.1,,TRUE
+1,103,Black Crappie,284,,g0998,TRUE
+5,135,Black Crappie,305,,o0513,TRUE
+5,136,Black Crappie,305,,o0514,TRUE
+5,137,Black Crappie,267,275,o0515,TRUE
+16,208,Black Crappie,295,380,g0995,TRUE
+16,209,Black Crappie,274,260,g0994,TRUE
+21,218,Black Crappie,152,46,,TRUE
+29,238,Black Crappie,279,,o0522,TRUE
+30,267,Black Crappie,290,,o0537,TRUE
+24,268,Black Crappie,330,580,,TRUE
+24,269,Black Crappie,307,440,,TRUE
+35,283,Black Crappie,290,,o0408,TRUE
+37,319,Black Crappie,300,,y00384,TRUE
+37,334,Black Crappie,297,,y00020,TRUE
+37,335,Black Crappie,297,,y00318,TRUE
+37,350,Black Crappie,297,,yunknown,TRUE
+37,351,Black Crappie,290,,y09000,TRUE
+101,532,Black Crappie,320,508,1014,TRUE
+101,534,Black Crappie,305,443,1016,TRUE
+101,535,Black Crappie,307,440,1017,TRUE
+101,537,Black Crappie,287,379,1020,TRUE
+102,626,Black Crappie,307,461,y00318,TRUE
+102,627,Black Crappie,310,466,1061,TRUE
+102,628,Black Crappie,315,536,1060,TRUE
+102,629,Black Crappie,323,565,1059,TRUE
+113,753,Black Crappie,155,47,,TRUE
+113,754,Black Crappie,147,37,,TRUE
+112,798,Black Crappie,188,102,,FALSE
+112,799,Black Crappie,330,606,1048,TRUE
+112,800,Black Crappie,292,362,1049,TRUE
+121,808,Black Crappie,323,509,1050,TRUE
+121,809,Black Crappie,282,352,1700,TRUE
+121,812,Black Crappie,142,37,,TRUE
+110,863,Black Crappie,307,415,1783,TRUE
+129,870,Black Crappie,279,344,1789,TRUE
+129,879,Black Crappie,302,397,1792,TRUE
