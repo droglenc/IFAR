@@ -2,8 +2,10 @@
 layout: page
 ---
 
-This website provides support materials for the **Introductory Fisheries Analysis with R** book by [Derek H. Ogle](http://derekogle.com).  Access materials through the menu in the upper-right corner.
+<div class="main-explain-area jumbotron">
+<p>This website provides support materials for the <strong>Introductory Fisheries Analysis with R</strong> book by <a href="http://derekogle.com">Derek H. Ogle</a>.  Access materials through the menu in the upper-right corner.</p>
 
-See related material on the [**fishR**](http://derekogle.com/fishR/) website.
+<p>See related materials on the <strong><a href="http://derekogle.com/fishR/">fishR</a><strong> website.</p>
 
-[Contact the author](mailto:fishr@derekogle.com?subject=IFAR%20Question%20or%20Comment) with any comments, questions, or suggestions.
+<p><a href="mailto:fishr@derekogle.com?subject=IFAR%20Question%20or%20Comment">Contact the author</a> with any comments, questions, or suggestions.</p>
+</div>
