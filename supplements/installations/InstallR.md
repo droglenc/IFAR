@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Basic R (for Windows) Installation
-css: directions.css
+css: /supplements/installations/directions.css
 ---
 
 
