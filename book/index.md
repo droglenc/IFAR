@@ -1,10 +1,9 @@
 ---
 layout: page
+title: Table of Contents
 ---
 
 UNDER CONSTRUCTION
-
-## Table of Contents
 
 1. **(Very Brief) Introduction to R Basics**
     * The most bare fundamentals of R that are required for the remainder of the book.
