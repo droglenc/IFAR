@@ -84,16 +84,16 @@ lw[[1,2]]          # 1st row, 2nd column (no name for element)
 lw[c(1,3),2]       # 1st & 3rd rows, 2nd column
 lw[-c(1,3),2]      # exclude 1st & 3rd rows, 2nd column
 
-lw[1,]                       # 1st row
-lw[,1]                       # 1st column
-lw[,"wts"]                   # wts column
+lw[1,]                            # 1st row
+lw[,1]                            # 1st column
+lw[,"wts"]                        # wts column
 
 ( df <- data.frame(lens,wts,sex,mat) )
 
-df[1,2]                      # 1st row, 2nd column
-df[1,]                       # 1st row/individual
-df[,2]                       # 2nd column/variable
-df[,"wts"]                   # wts column/variable
+df[1,2]                           # 1st row, 2nd column
+df[1,]                            # 1st row/individual
+df[,2]                            # 2nd column/variable
+df[,"wts"]                        # wts column/variable
 
 df$lens
 df$sex
@@ -158,4 +158,4 @@ mean(df$lens)
 mean(df$wts)
 
 
-# Script created at 2015-09-09 22:16:07
+# Script created at 2015-09-16 10:22:33

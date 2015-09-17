@@ -104,4 +104,4 @@ tmp <- c("PaulyL","HoenigO","HoenigOF","tmax","PaulyLNoT")
 metaM(tmp,Linf=12.93,K=0.23,T=17,tmax=3)
 
 
-# Script created at 2015-09-09 22:16:12
+# Script created at 2015-09-16 10:22:36

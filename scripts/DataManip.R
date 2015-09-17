@@ -71,8 +71,8 @@ bg <- mutate(bg,lcat10=lencat(tl,w=10))
 headtail(bg)
 
 range(bg$tl,na.rm=TRUE)          # min & max length
-brks <- c(0,80,150,200,250,300)  # cutoffs for intervals
 
+brks <- c(0,80,150,200,250,300)  # cutoffs for intervals
 bg <- mutate(bg,lcatX=lencat(tl,breaks=brks))
 headtail(bg)
 
@@ -87,12 +87,11 @@ levels(bg$lcatX)
 bg <- mutate(bg,lcatX=lencat(tl,breaks=brks,use.names=TRUE))
 levels(bg$lcatX)
 
-bg <- select(bg,-c(netID,fishID,lcat10))
-
 old <- c("Z","S","Q","P","M","T")
 new <- c("Sub-Stock","Stock","Quality","Preferred",
          "Memorable","Trophy")
 
+bg <- select(bg,-c(netID,fishID,lcat10))
 bg <- mutate(bg,lcatY=mapvalues(lcatX,from=old,to=new))
 headtail(bg)
 
@@ -258,13 +257,13 @@ clrs <- c("white","gray85","gray70","gray40","gray25","black")
 tclrs <- c("black","white")
 
 plot(0,0,xlim=c(0,4),ylim=c(-5,0),col="white",xlab="",ylab="")
-mtext("Original Wide\255Format",line=0.5,cex=1.5)
+mtext("Original Wide Format",line=0.5,cex=1.5)
 puthdr(c("fish","code","rad1","rad2"),col=clrs[c(6,6,4,5)])
 addrow(c("1","BG",1.3,1.1),row=2,cellcol=clrs[c(1,1,2,2)])
 addrow(c("2","LMB",1.6,1.4),row=3,cellcol=clrs[c(1,1,3,3)])
 
 plot(0,0,xlim=c(0,4),ylim=c(-5,0),col="white",xlab="",ylab="")
-mtext("New Long\255Format",line=0.5,cex=1.5)
+mtext("New Long Format",line=0.5,cex=1.5)
 puthdr(c("fish","code","num","meas"),col="black")
 addrow(c("1","BG","rad1",1.3),row=2,cellcol=clrs[c(1,1,4,2)],txtcol=tclrs[c(1,1,2,1)])
 addrow(c("1","BG","rad2",1.1),row=3,cellcol=clrs[c(1,1,5,2)],txtcol=tclrs[c(1,1,2,1)])
@@ -279,7 +278,7 @@ addrow(c("2","LMB","rad2",1.4),row=5,cellcol=clrs[c(1,1,5,3)],txtcol=tclrs[c(1,1
 par(mfrow=c(1,2),mar=c(0.25,1.25,2,1.25),xaxs="i",yaxs="i",xaxt="n",yaxt="n",bty="n")
 
 plot(0,0,xlim=c(0,4),ylim=c(-5,0),col="white",xlab="",ylab="")
-mtext("Original Long\255Format",line=0.5,cex=1.5)
+mtext("Original Long Format",line=0.5,cex=1.5)
 puthdr(c("fish","code","num","meas"),col="black")
 addrow(c("1","BG","rad1",1.3),row=2,cellcol=clrs[c(1,1,4,2)],txtcol=tclrs[c(1,1,2,1)])
 addrow(c("1","BG","rad2",1.1),row=3,cellcol=clrs[c(1,1,5,2)],txtcol=tclrs[c(1,1,2,1)])
@@ -287,7 +286,7 @@ addrow(c("2","LMB","rad1",1.6),row=4,cellcol=clrs[c(1,1,4,3)],txtcol=tclrs[c(1,1
 addrow(c("2","LMB","rad2",1.4),row=5,cellcol=clrs[c(1,1,5,3)],txtcol=tclrs[c(1,1,2,1)])
 
 plot(0,0,xlim=c(0,4),ylim=c(-5,0),col="white",xlab="",ylab="")
-mtext("New Wide\255Format",line=0.5,cex=1.5)
+mtext("New Wide Format",line=0.5,cex=1.5)
 puthdr(c("fish","code","rad1","rad2"),col=clrs[c(6,6,4,5)])
 addrow(c("1","BG",1.3,1.1),row=2,cellcol=clrs[c(1,1,2,2)])
 addrow(c("2","LMB",1.6,1.4),row=3,cellcol=clrs[c(1,1,3,3)])
@@ -393,4 +392,4 @@ cpeSum <- catch %>% group_by(spec) %>%
 cpeSum
 
 
-# Script created at 2015-09-09 22:16:08
+# Script created at 2015-09-16 10:22:34

@@ -39,8 +39,8 @@ alk.sm <- predict(cc.mlr,data.frame(lcat10=lens),type="probs")
 row.names(alk.sm) <- lens   # for clarity
 round(alk.sm,3)             # round for display purposes only
 
-alkPlot(alk,type="area",pal="gray",showLegend=TRUE,leg.cex=0.7,
-        xlab="Total Length (mm)")
+alkPlot(alk,type="area",pal="gray",showLegend=TRUE,
+        leg.cex=0.7,xlab="Total Length (mm)")
 
 alkPlot(alk,type="bubble",xlab="Total Length (mm)")
 
@@ -92,6 +92,12 @@ mod2 <- multinom(age~lcat*sex,data=sis,maxit=500)
 
 anova(mod1,mod2)
 
+# ############################################################
+# == BEGIN -- NOT SHOWN IN BOOK, FOR BOOK PRINTING ONLY ======
+print(anova(mod1,mod2),digits=6)
+# == END -- NOT SHOWN IN BOOK, FOR BOOK PRINTING ONLY ========
+# ############################################################
+
 lens <- seq(350,675,25)
 dfF <- data.frame(lcat=lens,sex="F")
 dfM <- data.frame(lcat=lens,sex="M")
@@ -107,4 +113,4 @@ alkPlot(alkM,type="area",pal="gray",xlab="Total Length (mm)",
         showLegend=TRUE,leg.cex=0.7)
 
 
-# Script created at 2015-09-09 22:16:09
+# Script created at 2015-09-16 10:22:34

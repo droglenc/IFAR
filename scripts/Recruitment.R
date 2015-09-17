@@ -139,7 +139,7 @@ ylmts <- range(c(pR,LCI,UCI,pinks$ret))
 xlmts <- range(c(x,pinks$esc))
 
 plot(ret~esc,data=pinks,xlim=xlmts,ylim=ylmts,col="white",
-     ylab="Returns (millions)",
+     ylab="Returners (millions)",
      xlab="Escapement (millions)")
 polygon(c(x,rev(x)),c(LCI,rev(UCI)),col="gray80",border=NA)
 points(ret~esc,data=pinks,pch=19,col=rgb(0,0,0,1/2))
@@ -306,4 +306,4 @@ with(yce,lines(fact2num(yrclass),lsmean))
 residPlot(lm1,bp=FALSE)
 
 
-# Script created at 2015-09-09 22:16:23
+# Script created at 2015-09-16 10:22:37

@@ -30,7 +30,6 @@ group <- c("305-380","381+")
 M <- c(1929,626)
 n <- c( 222, 52)
 m <- c(  77, 15)
-
 sl2 <- mrClosed(M,n,m,labels=group,method="Chapman")
 cbind(summary(sl2,incl.SE=TRUE),confint(sl2,incl.all=TRUE))
 
@@ -71,7 +70,6 @@ cat("\n")
 # ############################################################
 
 gs.cp$parameters$M0
-
 gs.cp$parameters$Mt
 
 # ############################################################
@@ -131,4 +129,4 @@ pCI <- with(cut.op,cbind(p.LCI=capture.prob[,"estimate"]-z*capture.prob[,"stderr
 plot(cut.op,main="",pch=19,col=rgb(0,0,0,1/6))
 
 
-# Script created at 2015-09-09 22:16:11
+# Script created at 2015-09-16 10:22:36

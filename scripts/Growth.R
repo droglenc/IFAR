@@ -18,8 +18,8 @@ library(dplyr)
 library(nlstools)
 
 bdmf <- read.csv("BlackDrum2001.csv") %>%
-  select(-c(spname,day,weight)) %>%
-  filterD(sex %in% c("male","female"),otoage<50)
+  filterD(otoage<50,sex %in% c("male","female")) %>%
+  select(-c(spname,day,weight))
 headtail(bdmf,n=2)
 bdm <- filterD(bdmf,sex=="male")
 
@@ -142,7 +142,7 @@ coef(fitTyp)
 confint(fitTyp)
 
 bootTyp <- nlsBoot(fitTyp)
-headtail(bootTyp$coefboot)
+headtail(bootTyp$coefboot,n=2)
 
 confint(bootTyp,plot=TRUE)
 
@@ -287,6 +287,7 @@ bdf <- filterD(bdmf,sex=="female")
 fitf <- nls(tl~vbTyp(otoage,Linf,K,t0),data=bdf,start=svO)
 bcf <- nlsBoot(fitf)
 cbind(coef(fitf),confint(bcf))
+
 bdm <- filterD(bdmf,sex=="male")
 fitm <- nls(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svO)
 bcm <- nlsBoot(fitm)
@@ -326,4 +327,4 @@ fitTypP <- nls(tl~vbTyp(otoage,Linf,K,t0),data=bdm,
                upper=list(Linf=1400,K=0.30,t0=1))
 
 
-# Script created at 2015-09-09 22:16:12
+# Script created at 2015-09-16 10:22:36

@@ -6,8 +6,8 @@ library(magrittr)
 library(dplyr)
 
 ruf <- read.csv("RuffeSLRH.csv") %>%
-  mutate(logW=log10(wt),logL=log10(tl)) %>%
   filter(month==7) %>%
+  mutate(logW=log10(wt),logL=log10(tl)) %>%
   select(-fishID,-day)
 headtail(ruf)
 
@@ -158,9 +158,9 @@ legend("topleft",c("1990","2000"),col=c("black",col2),lwd=2,cex=0.75,bty="n")
 fit2 <- lm(logW~logL*fYear,data=ruf9000)
 
 # ############################################################
-# == BEGIN -- NOT SHOWN IN BOOK, BOOK PRINTING ONLY ==========
+# == BEGIN -- NOT SHOWN IN BOOK ==============================
 residPlot(fit2)
-# == END -- NOT SHOWN IN BOOK, BOOK PRINTING ONLY ============
+# == END -- NOT SHOWN IN BOOK ================================
 # ############################################################
 
 Anova(fit2)
@@ -207,4 +207,4 @@ lwCompPreds(fit3,base=10,xlab="Year",main.pre="TL=")
 # ############################################################
 
 
-# Script created at 2015-09-09 22:16:10
+# Script created at 2015-09-16 10:22:35
