@@ -4,16 +4,19 @@ title: Basic R (for Windows) Installation
 css: directions.css
 ---
 ```{r echo=FALSE, eval=FALSE}
-## Get knitr
+##############################################################
+## Must manually run all of this once ..
+##############################################################
 require(knitr, quietly=TRUE, warn.conflicts=FALSE)
-## Set the rendering engine
 render_jekyll(highlight = "pygments")
-## Set the output format to markdown
 opts_knit$set(out.format='markdown')
-## Set the directory for the figures
 opts_knit$set(base.url = "../",base.dir=path_site)
 opts_chunk$set(fig.path = "figures/")
-## Actually knit the RMD file
+```
+```{r echo=FALSE, eval=FALSE}
+##############################################################
+## ... and this each time before committing and pushing
+##############################################################
 knit("InstallR.Rmd","InstallR.md")
 ```
 
@@ -21,9 +24,7 @@ knit("InstallR.Rmd","InstallR.md")
 
 1. Select the appropriate operating system for your computer.  The remainder of these steps will illustrate the installation of R for the WINDOWS environment.
 
-<div style="text-align: center; padding-top: 1em; padding-bottom: 1.5em;">
-  \includegraphics[width=3.5in]{figures/R_Install_ChooseOS.PNG}
-</div>
+![Install Download](figures/R_Install_ChooseOS.PNG)
 
 1. Select the "base" option.
 
