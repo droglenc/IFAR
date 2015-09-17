@@ -17,15 +17,20 @@ opts_chunk$set(fig.path = "figures/")
 knit("InstallR.Rmd","InstallR.md")
 ```
 
-1. Go to the RStudio Comprehensive R Archive Network (CRAN) mirror at https://cran.rstudio.com.  [You can select a different mirror by going to http://www.r-project.org, selecting the "download R" link in the "Getting Started" box and selecting a mirror location from the ensuing page.]
+1. Go to the RStudio Comprehensive R Archive Network (CRAN) mirror at [https://cran.rstudio.com](https://cran.rstudio.com).  [You can select a different mirror by going to [http://www.r-project.org](http://www.r-project.org), selecting the "download R" link in the "Getting Started" box and selecting a mirror location from the ensuing page.]
+
 1. Select the appropriate operating system for your computer.  The remainder of these steps will illustrate the installation of R for the WINDOWS environment.
+
 <div class="ctrstaticimg">
 ![Install Download](figures/R_Install_ChooseOS.PNG)
 </div>
+
 1. Select the "base" option.
+
 <div class="ctrstaticimg">
 ![Install Download](figures/R_Install_ChooseBase.PNG)
 </div>
+
 1. Select the "Download R 3.2.2 for Windows" option (or similar if the version number has changed).  Either run the program or note where you saved this executable program on your computer.
 <div class="ctrstaticimg">
 ![Install Download](figures/R_Install_Download.PNG)
