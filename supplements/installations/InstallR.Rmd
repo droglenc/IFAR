@@ -29,7 +29,7 @@ knit("InstallR.Rmd","InstallR.md")
 1. Select the "base" option.
 
 <div class="ctrstaticimg">
-![Install Download](figures/R_Install_ChooseBase.PNG)
+  \includegraphics{figures/R_Install_ChooseBase.PNG}
 </div>
 
 1. Select the "Download R 3.2.2 for Windows" option (or similar if the version number has changed).  Either run the program or note where you saved this executable program on your computer.
