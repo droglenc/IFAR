@@ -12,7 +12,7 @@ css: /supplements/installations/directions.css
 1. Select the appropriate operating system for your computer.  The remainder of these steps will illustrate the installation of R for the WINDOWS environment.
 
     <div class="ctrstaticimg">
-    <img src="figures/R_Install_ChooseOS.PNG" width="100%">
+    <img src="figures/R_Install_ChooseOS.PNG">
     </div>
 
 1. Select the "base" option.
