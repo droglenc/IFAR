@@ -1,6 +1,7 @@
 ---
 layout: page
-title: Basic R (for Windows) Installation
+title: Basic R Installation
+subtitle: For Windows
 css: /supplements/installations/directions.css
 ---
 ```{r echo=FALSE, eval=FALSE}
