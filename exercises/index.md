@@ -4,6 +4,7 @@ title: Exercises
 ---
 
 UNDER CONSTRUCTION (links are not yet live)
+
 Exercises for each chapter are listed below.  Instructors can contact me for answer keys.
 
 Also send me ideas for exercises to include here.
