@@ -1,5 +1,6 @@
 ---
 layout: page
+title: Scripts
 ---
 
 Scripts and data files used to produce each chapter are linked to below.  All scripts and data files are in these ZIP files -- [scripts.zip](scripts.zip) and [datafiles.zip](datafiles.zip).
