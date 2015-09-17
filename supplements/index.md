@@ -6,8 +6,10 @@ title: Supplements
 UNDER CONSTRUCTION (none of the links are live yet)
 
 1. **(Very Brief) Introduction to R Basics**
-    * [Download and Install R]()
-    * [Download and Install RStudio]()
+    * [Basic R (for Windows) Install](installations/InstallR.html)
+    * [Install Packages in R] (installations/.html)
+    * [Install RStudio (for Windows)](installations/InstallRStudio.html)
+    * [Install Packages in RStudio] (installations/.html)
     
 1. **Loading Data and Basic Manipulations**
     * [Backcalculation of Previous Length](.pdf) -- [script](.R)
