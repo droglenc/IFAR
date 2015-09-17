@@ -3,19 +3,7 @@ layout: page
 title: Basic R (for Windows) Installation
 css: directions.css
 ---
-```{r echo=FALSE, eval=FALSE}
-## Get knitr
-require(knitr, quietly=TRUE, warn.conflicts=FALSE)
-## Set the rendering engine
-render_jekyll(highlight = "pygments")
-## Set the output format to markdown
-opts_knit$set(out.format='markdown')
-## Set the directory for the figures
-opts_knit$set(base.url = "../",base.dir=path_site)
-opts_chunk$set(fig.path = "figures/")
-## Actually knit the RMD file
-knit("InstallR.Rmd","InstallR.md")
-```
+
 
 1. Go to the RStudio Comprehensive R Archive Network (CRAN) mirror at https://cran.rstudio.com.  [You can select a different mirror by going to http://www.r-project.org, selecting the "download R" link in the "Getting Started" box and selecting a mirror location from the ensuing page.]
 1. Select the appropriate operating system for your computer.  The remainder of these steps will illustrate the installation of R for the WINDOWS environment.
