@@ -7,11 +7,19 @@ bibliography: ../IFARSupplement.bib
 output: 
   html_document: 
     fig_width: 5
+    highlight: pygments
     self_contained: no
 ---
 ```{r echo=FALSE, eval=FALSE}
-source("../modHTML.R")
-modHTML("index")
+##############################################################
+# == BEGIN -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
+# Run this render an appropriate HTML file for the webpage
+source("../modHTML.R"); modHTML("index")
+# Run this to make the script file
+if (require(FSA)) purl2("index.Rmd",topnotes="User must set working directory appropriately.")
+file.rename("index.R","backcalculation.R")
+# == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
+##############################################################
 ```
 
 
@@ -41,6 +49,7 @@ eqncaps("BackCalcDahlLea")
 eqncaps("BackCalcFraserLee")
 eqncaps("BackCalcSPHLinear")
 eqncaps("BackCalcBPHLinear")
+##############################################################
 ```
 ```{r cache=FALSE, results='hide', message=FALSE}
 library(FSA)
@@ -81,7 +90,7 @@ The Dahl-Lea model describes a family of straight lines that pass through the **
 
 ```{r BackCalcEx704, echo=FALSE, fig.width=2*figsz, fig.height=2*figsz, par1=TRUE}
 # ############################################################
-# == BEGIN -- NOT SHOWN IN BOOK, BOOK PRINTING ONLY ==========
+# == BEGIN -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 par(mfrow=c(2,2),mar=c(3.05,3.05,1.15,0.65),mgp=c(1.5,0.3,0))
 # ------------------------------------------------------------
 # Helper functions
@@ -159,6 +168,8 @@ lines(c(0,Sc701),c(int,Lc701),lwd=2,col="grey")
 int <- (c*Lc)/(c+d*Sc)
 Li <- Lc*(c+d*Si)/(c+d*Sc)
 addCalc(Si,Li,Sc,Lc,int)
+# == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =======
+##############################################################
 ```
 
 `r figcaps("BackCalcEx704")`

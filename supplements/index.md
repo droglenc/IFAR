@@ -12,7 +12,7 @@ UNDER CONSTRUCTION (none of the links are live yet)
     * [Install Packages in RStudio](installations/.html)
     
 1. **Loading Data and Basic Manipulations**
-    * [Backcalculation of Previous Length](backcalculation/) -- [script](.R)
+    * [Backcalculation of Previous Length](backcalculation/) -- [script](backcalculation/backcalculation.R)
     
 1. **Plotting Fundamentals**
     * [Common Axis Labels on a Grid of Subplots](.pdf) -- [script](.R)

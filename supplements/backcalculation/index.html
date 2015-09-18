@@ -9,18 +9,18 @@ author: Derek H. Ogle
 <div id="required-packages-for-this-supplement" class="section level3">
 <h3>Required Packages for this Supplement</h3>
 <p>Functions used in this supplement require the packages shown below.</p>
-<pre class="r"><code>&gt; library(FSA)
-&gt; library(magrittr)
-&gt; library(dplyr)
-&gt; library(tidyr)
-&gt; library(stringr)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">library</span>(FSA)
+&gt;<span class="st"> </span><span class="kw">library</span>(magrittr)
+&gt;<span class="st"> </span><span class="kw">library</span>(dplyr)
+&gt;<span class="st"> </span><span class="kw">library</span>(tidyr)
+&gt;<span class="st"> </span><span class="kw">library</span>(stringr)</code></pre>
 </div>
 <div id="data-used-in-this-supplement" class="section level3">
 <h3>Data Used in this Supplement</h3>
 <p>All analyses in this supplement use the West Bearskin Lake Smallmouth Bass (<em>Micropterus dolomieu</em>) data from <span class="citation">Weisberg (1993)</span> in <code>SMBassWB</code> of <code>FSA</code>. The analysis in this supplement will focus on those fish captured in 1990. Three variables that were constant and not used in this analysis and three measurement variables that corresponded to ages that did not exist after reducing to only 1990 were removed to save space.</p>
-<pre class="r"><code>&gt; data(SMBassWB)
-&gt; wb90 &lt;- filterD(SMBassWB,yearcap==1990) %&gt;%
-    select(-(species:gear),-(anu10:anu12))</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">data</span>(SMBassWB)
+&gt;<span class="st"> </span>wb90 &lt;-<span class="st"> </span><span class="kw">filterD</span>(SMBassWB,yearcap==<span class="dv">1990</span>) %&gt;%
+<span class="st">    </span><span class="kw">select</span>(-(species:gear),-(anu10:anu12))</code></pre>
 </div>
 <div id="background" class="section level2">
 <h2>Background</h2>
@@ -62,7 +62,7 @@ author: Derek H. Ogle
 <div id="data-organization-manipulation" class="section level2">
 <h2>Data Organization &amp; Manipulation</h2>
 <p>In <em>wide</em> or <em>one-fish-per-line</em> format, all information about a single fish, including all of the measurements from the calcified structure, is in one row of the data.frame. The <code>wb90</code> data.frame contains radial measurments in the wide format (note that the portion shown below has four rows with columns that wrapped).</p>
-<pre class="r"><code>&gt; headtail(wb90,n=2)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">headtail</span>(wb90,<span class="dt">n=</span><span class="dv">2</span>)</code></pre>
 <pre><code>    yearcap fish agecap lencap    anu1    anu2    anu3    anu4
 1      1990  482      1     75 1.51076      NA      NA      NA
 2      1990  768      1     75 1.57989      NA      NA      NA
@@ -74,11 +74,11 @@ author: Derek H. Ogle
 180 5.53355 6.53174 7.27807 8.08080  9.38096  9.38096
 181 5.78634 7.58178 8.32094 9.46362 10.43491 10.43491</code></pre>
 <p>As mentioned previously, for the back-calculation of fish length, these data must be radial, and not incremental, measurements. If the <code>wb90</code> data.frame had contained incremental measurements, then it could be converted to radial measurements with <code>gConvert()</code> from <code>FSA</code>. The <code>gConvert()</code> function requires the data frame with the incremental measurements as the first argument, the prefix (in quotes) for the columns that contain the incremental measurements in <code>in.pre=</code>, and the type of measurement to <strong>convert to</strong> in <code>out.type=</code> (the options are <code>&quot;rad&quot;</code> (the default) or <code>&quot;inc&quot;</code>). For example, the code below would create a new data.frame from <code>wb90</code> with radial measurements (IF <code>wb90</code> had incremental measurements).</p>
-<pre class="r"><code>&gt; wb90A &lt;- gConvert(wb90,in.pre=&quot;anu&quot;,out.type=&quot;rad&quot;)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span>wb90A &lt;-<span class="st"> </span><span class="kw">gConvert</span>(wb90,<span class="dt">in.pre=</span><span class="st">&quot;anu&quot;</span>,<span class="dt">out.type=</span><span class="st">&quot;rad&quot;</span>)</code></pre>
 <p>For efficient back-calculation, the data must also be converted to <em>long</em> or <em>one-measurement-per-line</em> format. As demonstrated in the main chapter, wide data may be converted to long data with <code>gather()</code> from <code>tidyr</code>. As a reminder, the arguments to <code>gather()</code> are the wide data.frame, a name for the new variable in the long format that will identify the individual (which radial measurement), a name for the new variable in the long format that will be the value for the individual (radial measurement), and the variables in the wide format that contain the measurements.</p>
-<pre class="r"><code>&gt; wb90r &lt;- gather(wb90,agei,radi,anu1:anu9) %&gt;%
-    arrange(fish,agei)
-&gt; headtail(wb90r)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span>wb90r &lt;-<span class="st"> </span><span class="kw">gather</span>(wb90,agei,radi,anu1:anu9) %&gt;%
+<span class="st">    </span><span class="kw">arrange</span>(fish,agei)
+&gt;<span class="st"> </span><span class="kw">headtail</span>(wb90r)</code></pre>
 <pre><code>     yearcap fish agecap lencap  radcap agei    radi
 1       1990    0      7    278 9.06803 anu1 1.50631
 2       1990    0      7    278 9.06803 anu2 3.11450
@@ -90,11 +90,11 @@ author: Derek H. Ogle
 <p>The second problem is that several of the radial measurements contain <code>NA</code> values. The non-<code>NA</code> values are found and retained by using <code>!is.na()</code> within <code>filterD()</code>.</p>
 <p>The third problem, while not an issue with these particular data, is that “plus growth” may have been recorded. “Plus growth” is growth on the margin of the calcified structure that is not complete and does not represent a full year of growth. If “plus growth” is present, then the new `agei} variable will have a value greater than the age-at-capture value. These instances should be removed from the new long format data.frame.</p>
 <p>The following code adjusts for these three issues.</p>
-<pre class="r"><code>&gt; str_sub(wb90r$agei,start=1,end=3) &lt;- &quot;&quot;
-&gt; wb90r %&lt;&gt;% mutate(agei=as.numeric(agei)) %&gt;%
-    filterD(!is.na(radi)) %&gt;%
-    filterD(agei&lt;=agecap)
-&gt; headtail(wb90r)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">str_sub</span>(wb90r$agei,<span class="dt">start=</span><span class="dv">1</span>,<span class="dt">end=</span><span class="dv">3</span>) &lt;-<span class="st"> &quot;&quot;</span>
+&gt;<span class="st"> </span>wb90r %&lt;&gt;%<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">agei=</span><span class="kw">as.numeric</span>(agei)) %&gt;%
+<span class="st">    </span><span class="kw">filterD</span>(!<span class="kw">is.na</span>(radi)) %&gt;%
+<span class="st">    </span><span class="kw">filterD</span>(agei&lt;=agecap)
+&gt;<span class="st"> </span><span class="kw">headtail</span>(wb90r)</code></pre>
 <pre><code>    yearcap fish agecap lencap  radcap agei    radi
 1      1990    0      7    278 9.06803    1 1.50631
 2      1990    0      7    278 9.06803    2 3.11450
@@ -108,25 +108,25 @@ author: Derek H. Ogle
 <div id="scale-length-relationships" class="section level3">
 <h3>Scale-Length Relationships</h3>
 <p>The scale-length (Equation 1: ) and length-scale (Equation 2: ) relationships required for all but the Dahl-Lea method are computed with the wide format data. Thus, the wide data must contain the length of the fish (e.g., <code>lencap</code>) and the total radius of the calcified structure (e.g., <code>radcap</code>) at the time of capture. Both linear relationships are fit with <code>lm()</code> and the coefficients are extracted with <code>coef()</code> and saved into objects.</p>
-<pre class="r"><code>&gt; lm.sl &lt;- lm(radcap~lencap,data=wb90)
-&gt; ( a &lt;- coef(lm.sl)[[1]] )</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span>lm.sl &lt;-<span class="st"> </span><span class="kw">lm</span>(radcap~lencap,<span class="dt">data=</span>wb90)
+&gt;<span class="st"> </span>( a &lt;-<span class="st"> </span><span class="kw">coef</span>(lm.sl)[[<span class="dv">1</span>]] )</code></pre>
 <pre><code>[1] -1.304391</code></pre>
-<pre class="r"><code>&gt; ( b &lt;- coef(lm.sl)[[2]] )</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span>( b &lt;-<span class="st"> </span><span class="kw">coef</span>(lm.sl)[[<span class="dv">2</span>]] )</code></pre>
 <pre><code>[1] 0.03537477</code></pre>
-<pre class="r"><code>&gt; lm.ls &lt;- lm(lencap~radcap,data=wb90)
-&gt; ( c &lt;- coef(lm.ls)[[1]] )</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span>lm.ls &lt;-<span class="st"> </span><span class="kw">lm</span>(lencap~radcap,<span class="dt">data=</span>wb90)
+&gt;<span class="st"> </span>( c &lt;-<span class="st"> </span><span class="kw">coef</span>(lm.ls)[[<span class="dv">1</span>]] )</code></pre>
 <pre><code>[1] 41.65166</code></pre>
-<pre class="r"><code>&gt; ( d &lt;- coef(lm.ls)[[2]] )</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span>( d &lt;-<span class="st"> </span><span class="kw">coef</span>(lm.ls)[[<span class="dv">2</span>]] )</code></pre>
 <pre><code>[1] 27.35597</code></pre>
 </div>
 <div id="applying-the-back-calculation-models" class="section level3">
 <h3>Applying the Back-Calculation Models</h3>
 <p>The <span class="math">\(L_{i}\)</span> estimated with a back-calculation model are most easily added to the long format data. This is largely an exercise of adding a variable to the data.frame with <code>mutate()</code> from <code>dplyr</code>. For example, <span class="math">\(L_{i}\)</span> computed with all four back-calculation models are added to <code>wb90r</code> below.</p>
-<pre class="r"><code>&gt; wb90r %&lt;&gt;% mutate(DL.len=(radi/radcap)*lencap,
-                    FL.len=(radi/radcap)*(lencap-c)+c,
-                    SPH.len=(-a/b)+(lencap+a/b)*(radi/radcap),
-                    BPH.len=lencap*(c+d*radi)/(c+d*radcap))
-&gt; headtail(wb90r,n=2)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span>wb90r %&lt;&gt;%<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">DL.len=</span>(radi/radcap)*lencap,
+                    <span class="dt">FL.len=</span>(radi/radcap)*(lencap-c)+c,
+                    <span class="dt">SPH.len=</span>(-a/b)+(lencap+a/b)*(radi/radcap),
+                    <span class="dt">BPH.len=</span>lencap*(c+d*radi)/(c+d*radcap))
+&gt;<span class="st"> </span><span class="kw">headtail</span>(wb90r,<span class="dt">n=</span><span class="dv">2</span>)</code></pre>
 <pre><code>    yearcap fish agecap lencap  radcap agei    radi    DL.len
 1      1990    0      7    278 9.06803    1 1.50631  46.17918
 2      1990    0      7    278 9.06803    2 3.11450  95.48171
@@ -138,10 +138,10 @@ author: Derek H. Ogle
 766 240.25149 239.17509 241.01809
 767 298.00000 298.00000 298.00000</code></pre>
 <p>For example, the mean length-at-age may be computed from the back-calculated lengths (shown below for the Fraser-Lee results).</p>
-<pre class="r"><code>&gt; tmp &lt;- wb90r %&gt;% group_by(agei) %&gt;%
-    summarize(n=validn(FL.len),mn=mean(FL.len),sd=sd(FL.len)) %&gt;%
-    as.data.frame()
-&gt; tmp</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span>tmp &lt;-<span class="st"> </span>wb90r %&gt;%<span class="st"> </span><span class="kw">group_by</span>(agei) %&gt;%
+<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">n=</span><span class="kw">validn</span>(FL.len),<span class="dt">mn=</span><span class="kw">mean</span>(FL.len),<span class="dt">sd=</span><span class="kw">sd</span>(FL.len)) %&gt;%
+<span class="st">    </span><span class="kw">as.data.frame</span>()
+&gt;<span class="st"> </span>tmp</code></pre>
 <pre><code>  agei   n       mn        sd
 1    1 181  78.5663  6.472692
 2    2 178 114.1527 10.453632
@@ -153,7 +153,7 @@ author: Derek H. Ogle
 8    8   2 283.2237 26.912010
 9    9   2 314.5000 20.506097</code></pre>
 <p>Additionally, the mean length at each back-calculated age computed separately for each age-at-capture may be computed with <code>sumTable()</code> from <code>FSA</code>.</p>
-<pre class="r"><code>&gt; sumTable(FL.len~agecap*agei,data=wb90r,digits=1)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">sumTable</span>(FL.len~agecap*agei,<span class="dt">data=</span>wb90r,<span class="dt">digits=</span><span class="dv">1</span>)</code></pre>
 <pre><code>     1     2     3     4     5     6     7     8     9
 1 73.7    NA    NA    NA    NA    NA    NA    NA    NA
 2 79.7 113.3    NA    NA    NA    NA    NA    NA    NA
@@ -165,7 +165,7 @@ author: Derek H. Ogle
 <hr />
 <pre><code>Reproducibility Information
   Compiled Date: Fri Sep 18 2015
-  Compiled Time: 9:52:21 AM
+  Compiled Time: 10:12:21 AM
 
   R Version: R version 3.2.2 (2015-08-14)
   System: Windows, i386-w64-mingw32/i386 (32-bit)
