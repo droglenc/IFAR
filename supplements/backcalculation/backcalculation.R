@@ -1,7 +1,7 @@
 # User must set working directory appropriately.
 
 ##############################################################
-# This code not shown, only needed to produce the supplement
+# == BEGIN -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 # 
 # Setup of knitr
 source("../knitr_setup.R")
@@ -21,6 +21,7 @@ eqncaps("BackCalcDahlLea")
 eqncaps("BackCalcFraserLee")
 eqncaps("BackCalcSPHLinear")
 eqncaps("BackCalcBPHLinear")
+# == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 ##############################################################
 
 library(FSA)
@@ -146,4 +147,4 @@ tmp
 sumTable(FL.len~agecap*agei,data=wb90r,digits=1)
 
 
-# Script created at 2015-09-18 10:51:37
+# Script created at 2015-09-18 12:16:48

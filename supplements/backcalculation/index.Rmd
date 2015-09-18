@@ -16,8 +16,7 @@ output:
 # Run this render an appropriate HTML file for the webpage
 source("../modHTML.R"); modHTML("index")
 # Run this to make the script file
-if (require(FSA)) purl2("index.Rmd",topnotes="User must set working directory appropriately.")
-file.rename("index.R","backcalculation.R")
+if (require(FSA)) purl2("index.Rmd",newname="backcalculation",topnotes="User must set working directory appropriately.")
 # == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 ##############################################################
 ```
@@ -29,7 +28,7 @@ file.rename("index.R","backcalculation.R")
 Functions used in this supplement require the packages shown below.
 ```{r echo=FALSE, results='hide', message=FALSE, warnings=FALSE}
 ##############################################################
-# This code not shown, only needed to produce the supplement
+# == BEGIN -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 # 
 # Setup of knitr
 source("../knitr_setup.R")
@@ -49,6 +48,7 @@ eqncaps("BackCalcDahlLea")
 eqncaps("BackCalcFraserLee")
 eqncaps("BackCalcSPHLinear")
 eqncaps("BackCalcBPHLinear")
+# == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 ##############################################################
 ```
 ```{r cache=FALSE, results='hide', message=FALSE}
@@ -286,10 +286,8 @@ sumTable(FL.len~agecap*agei,data=wb90r,digits=1)
 --------------------------------------------------------------
 
 ```{r echo=FALSE, results='asis'}
-reproInfo(rqrdPkgs=rqrd,out="markdown")
+reproInfo(rqrdPkgs=rqrd,out="markdown",links=c(Script="backcalculation.R",RMarkdown="index.Rmd"))
 ```
-
-* Files: [R Script](backcalculation.R) / [RMarkdown](index.Rmd)
 
 --------------------------------------------------------------
 
