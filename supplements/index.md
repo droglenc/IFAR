@@ -6,9 +6,9 @@ title: Supplements
 UNDER CONSTRUCTION (none of the links are live yet)
 
 1. **(Very Brief) Introduction to R Basics**
-    * [Basic R (for Windows) Install](installations/InstallR.html)
-    * [Install Packages in R](installations/.html)
-    * [Install RStudio (for Windows)](installations/InstallRStudio.html)
+    * Basic R Install -- [Windows](installations/InstallRWin.html) / [Mac](installations/InstallRMac.html)
+    * Install Packages in R -- [Windows](installations/InstallPkgsRWin.html) /  [Windows](installations/InstallPkgsRMac.html)
+    * Install RStudio -- [Windows](installations/InstallRStudioWin.html) /  [Mac](installations/InstallRStudioMac.html)
     * [Install Packages in RStudio](installations/.html)
     
 1. **Loading Data and Basic Manipulations**
