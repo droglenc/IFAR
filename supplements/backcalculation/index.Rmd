@@ -285,8 +285,8 @@ sumTable(FL.len~agecap*agei,data=wb90r,digits=1)
 
 --------------------------------------------------------------
 
-```{r echo=FALSE}
-reproInfo(rqrdPkgs=rqrd)
+```{r echo=FALSE, results='asis'}
+reproInfo(rqrdPkgs=rqrd,out="markdown")
 ```
 
 --------------------------------------------------------------
