@@ -147,4 +147,4 @@ tmp
 sumTable(FL.len~agecap*agei,data=wb90r,digits=1)
 
 
-# Script created at 2015-09-18 12:16:48
+# Script created at 2015-09-18 12:20:24
