@@ -83,15 +83,15 @@ Using RStudio is easy to learn.  This document is a very brief introduction to R
 
 RStudio is organized around a four-panel layout.
 
-    <div class="ctrstaticimg">
-    <img src="figures/RStudio_Intro_Layout.PNG" width="100%">
-    </div>
+<div class="ctrstaticimg">
+<img src="figures/RStudio_Intro_Layout.PNG" width="100%">
+</div>
 
 The upper-left panel is the R *Script Editor*.  R commands are typed into this panel and submitted to the R *Console* in the lower-left panel.  For most applications, you will type R commands into the *Script Editor* and submit them to the *Console*; you will not type commands directly into the *Console*.  The *Script Editor* is a high-level text editor, whereas the *Console* is the R program.
 
 The upper-right panel contains at least two tabs --- *Environment* and *History*.  Many items listed under the *Environment* tab can be double-clicked to open them for viewing as a tab in the *Script Editor*.  The *History* tab simply shows all of the commands that you have submitted to the *Console* during the current session.
 
-The lower-right panel contains at least five tabs -- *Files*, *Plots*, *Packages*, *Help*, and *Viewer*.  The *Plots* tab will show the high-level plots produced by commands submitted to the *Console*.  One can cycle through the history of constructed plots with the arrows on the left side of the plot toolbar and plots can be saved to external files using the "Export" tab on the plot toolbar \figrefp{fig:RStudioLayout}.  A list of all installed packaged is seen by selecting the *Packages* tab (packages can also be installed through this tab as described in a separate document).  Help for each package can be obtained by clicking on the name of package.  The help will then appear in the *Help* tab.
+The lower-right panel contains at least five tabs -- *Files*, *Plots*, *Packages*, *Help*, and *Viewer*.  The *Plots* tab will show the high-level plots produced by commands submitted to the *Console*.  One can cycle through the history of constructed plots with the arrows on the left side of the plot toolbar and plots can be saved to external files using the "Export" tab on the plot toolbar (see figure above).  A list of all installed packaged is seen by selecting the *Packages* tab (packages can also be installed through this tab as described in a separate document).  Help for each package can be obtained by clicking on the name of package.  The help will then appear in the *Help* tab.
 
 
 ### Basic Usage
