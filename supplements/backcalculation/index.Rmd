@@ -7,8 +7,8 @@ bibliography: ../IFARSupplement.bib
 output: 
   html_document: 
     fig_width: 5
-    highlight: pygments
     self_contained: no
+    theme: readable
 ---
 ```{r echo=FALSE, eval=FALSE}
 ##############################################################
