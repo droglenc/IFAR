@@ -19,7 +19,7 @@ css: /supplements/installations/directions.css
     <img src="figures/RStudio_Install_ChooseOS.PNG" width="100%">
     </div>
 
-1. If you did not run the program, then locate and run the downloaded file (called "RStudio-0.99.484.exe"" or similar if the version number has changed).
+1. If you did not run the program, then locate and run the downloaded file (called "RStudio-0.99.484.exe" or similar if the version number has changed).
 
 1. Press `Next` on the first "Welcome" dialog box (depending on your version of Windows you may have received security warnings before this dialog box appears).
 
