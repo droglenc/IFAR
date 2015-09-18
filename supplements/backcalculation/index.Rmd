@@ -9,32 +9,13 @@ output:
     css: C:/aaaWork/Web/GitHub/IFAR/css/main.css
     fig_width: 5
     self_contained: no
-  pdf_document: 
-    fig_height: 3
-    fig_width: 3
 ---
-```{r echo=FALSE, eval=FALSE}
-##############################################################
-## Must manually run all of this once ..
-##############################################################
-require(knitr, quietly=TRUE, warn.conflicts=FALSE)
-render_jekyll(highlight = "pygments")
-#opts_knit$set(base.url = "../",base.dir="derekogle.com/IFAR/")
-opts_chunk$set(fig.path = "figures/")
-opts_knit$set(out.format='markdown')
-```
-```{r echo=FALSE, eval=FALSE}
-##############################################################
-## ... and this each time before committing and pushing
-##############################################################
-knit("index.Rmd","index.md")
-```
 
 @Francis1990 defined *back-calculation* as "... a technique that uses a set of measurements made on a fish at one time to infer its length at an earlier time or times.  Specifically, the dimensions of one or more marks in some hard part of the fish, together with its current body length, are used to estimate its length at the time of formation of each of the marks. ... The marks are generally annual rings associated with growth checks, ... ."  Thus, backcalculation is the reconstruction of the length of a fish at previous ages from measurements made on calcified structures.
 
 ### Required Packages for this Supplement
 Functions used in this supplement require the packages shown below.
-```{r echo=FALSE, results='hide', messages=FALSE, warnings=FALSE}
+```{r echo=FALSE, results='hide', message=FALSE, warnings=FALSE}
 ##############################################################
 # This code not shown, only needed to produce the supplement
 # 
@@ -248,8 +229,9 @@ wb90r %<>% mutate(agei=as.numeric(agei)) %>%
 headtail(wb90r)
 ```
 
-##{Computing Back-Calculated Lengths}
-###{Scale-Length Relationships}
+## Computing Back-Calculated Lengths
+
+### Scale-Length Relationships
 The scale-length (`r eqncaps("BackCalcESL")`) and length-scale (`r eqncaps("BackCalcELS")`) relationships required for all but the Dahl-Lea method are computed with the wide format data.  Thus, the wide data must contain the length of the fish (e.g., `lencap`) and the total radius of the calcified structure (e.g., `radcap`) at the time of capture.  Both linear relationships are fit with `lm()` and the coefficients are extracted with `coef()` and saved into objects.
 ```{r }
 lm.sl <- lm(radcap~lencap,data=wb90)
@@ -261,7 +243,8 @@ lm.ls <- lm(lencap~radcap,data=wb90)
 ( d <- coef(lm.ls)[[2]] )
 ```
 
-###{Applying the Back-Calculation Models}
+### Applying the Back-Calculation Models
+
 The $L_{i}$ estimated with a back-calculation model are most easily added to the long format data.  This is largely an exercise of adding a variable to the data.frame with `mutate()` from `dplyr`.  For example, $L_{i}$ computed with all four back-calculation models are added to `wb90r` below.
 ```{r }
 wb90r %<>% mutate(DL.len=(radi/radcap)*lencap,

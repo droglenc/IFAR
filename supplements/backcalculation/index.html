@@ -4,11 +4,11 @@ title: Backcalculation of Previous Lengths
 author: Derek H. Ogle
 ---
 
+
 <p><span class="citation">Francis (1990)</span> defined <em>back-calculation</em> as “… a technique that uses a set of measurements made on a fish at one time to infer its length at an earlier time or times. Specifically, the dimensions of one or more marks in some hard part of the fish, together with its current body length, are used to estimate its length at the time of formation of each of the marks. … The marks are generally annual rings associated with growth checks, … .” Thus, backcalculation is the reconstruction of the length of a fish at previous ages from measurements made on calcified structures.</p>
 <div id="required-packages-for-this-supplement" class="section level3">
 <h3>Required Packages for this Supplement</h3>
 <p>Functions used in this supplement require the packages shown below.</p>
-<pre><code>## Registering fonts with R</code></pre>
 <pre class="r"><code>&gt; library(FSA)
 &gt; library(magrittr)
 &gt; library(dplyr)
@@ -104,9 +104,9 @@ author: Derek H. Ogle
 767    1990  998      7    298 8.54805    7 8.54805</code></pre>
 </div>
 <div id="computing-back-calculated-lengths" class="section level2">
-<h2>{Computing Back-Calculated Lengths}</h2>
+<h2>Computing Back-Calculated Lengths</h2>
 <div id="scale-length-relationships" class="section level3">
-<h3>{Scale-Length Relationships}</h3>
+<h3>Scale-Length Relationships</h3>
 <p>The scale-length (Equation 1: ) and length-scale (Equation 2: ) relationships required for all but the Dahl-Lea method are computed with the wide format data. Thus, the wide data must contain the length of the fish (e.g., <code>lencap</code>) and the total radius of the calcified structure (e.g., <code>radcap</code>) at the time of capture. Both linear relationships are fit with <code>lm()</code> and the coefficients are extracted with <code>coef()</code> and saved into objects.</p>
 <pre class="r"><code>&gt; lm.sl &lt;- lm(radcap~lencap,data=wb90)
 &gt; ( a &lt;- coef(lm.sl)[[1]] )</code></pre>
@@ -120,7 +120,7 @@ author: Derek H. Ogle
 <pre><code>[1] 27.35597</code></pre>
 </div>
 <div id="applying-the-back-calculation-models" class="section level3">
-<h3>{Applying the Back-Calculation Models}</h3>
+<h3>Applying the Back-Calculation Models</h3>
 <p>The <span class="math">\(L_{i}\)</span> estimated with a back-calculation model are most easily added to the long format data. This is largely an exercise of adding a variable to the data.frame with <code>mutate()</code> from <code>dplyr</code>. For example, <span class="math">\(L_{i}\)</span> computed with all four back-calculation models are added to <code>wb90r</code> below.</p>
 <pre class="r"><code>&gt; wb90r %&lt;&gt;% mutate(DL.len=(radi/radcap)*lencap,
                     FL.len=(radi/radcap)*(lencap-c)+c,
@@ -165,7 +165,7 @@ author: Derek H. Ogle
 <hr />
 <pre><code>Reproducibility Information
   Compiled Date: Fri Sep 18 2015
-  Compiled Time: 8:34:11 AM
+  Compiled Time: 9:15:22 AM
 
   R Version: R version 3.2.2 (2015-08-14)
   System: Windows, i386-w64-mingw32/i386 (32-bit)
