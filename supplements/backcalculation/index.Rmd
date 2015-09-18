@@ -6,10 +6,14 @@ csl: ../american-fisheries-society.csl
 bibliography: ../IFARSupplement.bib
 output: 
   html_document: 
-    css: C:/aaaWork/Web/GitHub/IFAR/css/main.css
     fig_width: 5
     self_contained: no
 ---
+```{r echo=FALSE, eval=FALSE}
+source("../modHTML.R")
+modHTML("index")
+```
+
 
 @Francis1990 defined *back-calculation* as "... a technique that uses a set of measurements made on a fish at one time to infer its length at an earlier time or times.  Specifically, the dimensions of one or more marks in some hard part of the fish, together with its current body length, are used to estimate its length at the time of formation of each of the marks. ... The marks are generally annual rings associated with growth checks, ... ."  Thus, backcalculation is the reconstruction of the length of a fish at previous ages from measurements made on calcified structures.
 
