@@ -41,17 +41,17 @@ author: Derek H. Ogle
 <p>Figure 1: Plot of length-at-capture versus scale radius for West Bearskin Lake Smallmouth Bass in 1990. All four methods of backcalculation are shown for fish 704 (<span class="math">\(S_{2}=3.49804\)</span>, <span class="math">\(L_{C}=218\)</span>, and <span class="math">\(S_{C}=7.44389\)</span>; black point and line) with calculational steps shown with the arrows. Fish 701 is shown as the gray point and line for comparative purposes.</p>
 <p><span class="citation">Fraser (1916)</span> was the first to describe, but <span class="citation">Lee (1920)</span> was the first to formally derive, the back-calculation model from the concept that ``the growth <em>increment</em> of the scale is, on the average …, a constant proportion of the growth <em>increment</em> of the fish&quot; (<span class="citation">Francis (1990)</span>). In practice, the <em>Fraser-Lee model</em> modified the Dahl-Lea model by adjusting for the length of the fish when the calcified structure forms (i.e., <span class="math">\(L=c\)</span> when <span class="math">\(S=0\)</span>), that is,</p>
 <p><span class="math">\[ L_{i}=\frac{S_{i}}{S_{C}}(L_{C}-c)+c \quad \quad \text{(4)} \]</span></p>
-<p>where <span class="math">\(c\)</span> comes from the length of the fish at the time of scale formation, the intercept of the length-scale relationship regression (e.g., from Equation 2: ), or from published “standards” for a species (e.g., <span class="citation">Carlander (1982)</span>). The Fraser-Lee model describes a family of lines with an intercept of <span class="math">\(c\)</span> that pass through the (<span class="math">\(S_{C},L_{C}\)</span>) point (<span class="citation">Francis (1990)</span>; Figure 1).</p>
+<p>where <span class="math">\(c\)</span> comes from the length of the fish at the time of scale formation, the intercept of the length-scale relationship regression (e.g., from Equation 2), or from published “standards” for a species (e.g., <span class="citation">Carlander (1982)</span>). The Fraser-Lee model describes a family of lines with an intercept of <span class="math">\(c\)</span> that pass through the (<span class="math">\(S_{C},L_{C}\)</span>) point (<span class="citation">Francis (1990)</span>; Figure 1).</p>
 <p>The <em>scale proportional hypothesis</em> (SPH) model was named by <span class="citation">Francis (1990)</span>}, but was first recognized by <span class="citation">Whitney and Carlander (1956)</span> when they said “{i}f the scale was 10 per cent larger when the fish was caught than the average scale for that size of fish, [then] the scale would be 10 per cent larger than normal throughout the life.” If “average” and “normal” are considered to be expected values, then this hypothesis can be written as</p>
 <p><span class="math">\[ \frac{S_{i}}{E[S|L_{i}]}=\frac{S_{C}}{E[S|L_{C}]} \]</span></p>
-<p>If it is assumed that the scale-length relationship is linear, then the two expected values in these ratios are computed by plugging <span class="math">\(L_{i}\)</span> and <span class="math">\(L_{C}\)</span>, respectively, into the scale-length relationship (i.e., Equation 1: ) to produce</p>
+<p>If it is assumed that the scale-length relationship is linear, then the two expected values in these ratios are computed by plugging <span class="math">\(L_{i}\)</span> and <span class="math">\(L_{C}\)</span>, respectively, into the scale-length relationship (i.e., Equation 1) to produce</p>
 <p><span class="math">\[ \frac{S_{i}}{a+bL_{i}}=\frac{S_{C}}{a+bL_{C}} \]</span></p>
 <p>which can be solved for <span class="math">\(L_{i}\)</span> to yield the general SPH back-calculation model</p>
 <p><span class="math">\[ L_{i} = \frac{S_{i}}{S_{C}}\left(L_{C}+\frac{a}{b}\right) - \frac{a}{b} \quad \quad \text{(5)} \]</span></p>
-<p>The linear SPH model produces a family of lines that all have an intercept of <span class="math">\(-\frac{a}{b}\)</span> and pass through each observed (<span class="math">\(S_{C},L_{C}\)</span>) point (Figure 1). The SPH model is the same as the Fraser-Lee model except that the intercept from Equation 2: is replaced with <span class="math">\(-\frac{a}{b}\)</span>. Further note that the SPH model is the same as the Dahl-Lea model if <span class="math">\(a=0\)</span>.</p>
+<p>The linear SPH model produces a family of lines that all have an intercept of <span class="math">\(-\frac{a}{b}\)</span> and pass through each observed (<span class="math">\(S_{C},L_{C}\)</span>) point (Figure 1). The SPH model is the same as the Fraser-Lee model except that the intercept from Equation 2 is replaced with <span class="math">\(-\frac{a}{b}\)</span>. Further note that the SPH model is the same as the Dahl-Lea model if <span class="math">\(a=0\)</span>.</p>
 <p>The <em>body proportional hypothesis</em> (BPH) model was also named by <span class="citation">Francis (1990)</span> and was also first recognized by <span class="citation">Whitney and Carlander (1956)</span> when they said “{i}f a fish at time of capture were 10 per cent smaller than the average fish with that size of scale, [then] the fish would be 10 per cent smaller than the expected length for the size of that scale throughout life.” This hypothesis can be written as</p>
 <p><span class="math">\[ \frac{L_{i}}{E[L|S_{i}]}=\frac{L_{C}}{E[L|S_{C}]} \]</span></p>
-<p>If the length-scale relationship is linear then the expected values can be found by plugging <span class="math">\(S_{i}\)</span> and <span class="math">\(S_{c}\)</span> into Equation 2: to get</p>
+<p>If the length-scale relationship is linear then the expected values can be found by plugging <span class="math">\(S_{i}\)</span> and <span class="math">\(S_{c}\)</span> into Equation 2 to get</p>
 <p><span class="math">\[ \frac{L_{i}}{c+dS_{i}}=\frac{L_{C}}{c+dS_{C}} \]</span></p>
 <p>which can be solved for <span class="math">\(L_{i}\)</span> to yield the general BPH back-calculation model</p>
 <p><span class="math">\[ L_{i}=L_{C}\frac{c+dS_{i}}{c+dS_{c}} \quad \quad \text{(6)} \]</span></p>
@@ -107,7 +107,7 @@ author: Derek H. Ogle
 <h2>Computing Back-Calculated Lengths</h2>
 <div id="scale-length-relationships" class="section level3">
 <h3>Scale-Length Relationships</h3>
-<p>The scale-length (Equation 1: ) and length-scale (Equation 2: ) relationships required for all but the Dahl-Lea method are computed with the wide format data. Thus, the wide data must contain the length of the fish (e.g., <code>lencap</code>) and the total radius of the calcified structure (e.g., <code>radcap</code>) at the time of capture. Both linear relationships are fit with <code>lm()</code> and the coefficients are extracted with <code>coef()</code> and saved into objects.</p>
+<p>The scale-length (Equation 1) and length-scale (Equation 2) relationships required for all but the Dahl-Lea method are computed with the wide format data. Thus, the wide data must contain the length of the fish (e.g., <code>lencap</code>) and the total radius of the calcified structure (e.g., <code>radcap</code>) at the time of capture. Both linear relationships are fit with <code>lm()</code> and the coefficients are extracted with <code>coef()</code> and saved into objects.</p>
 <pre class="r"><code>&gt; lm.sl &lt;- lm(radcap~lencap,data=wb90)
 &gt; ( a &lt;- coef(lm.sl)[[1]] )</code></pre>
 <pre><code>[1] -1.304391</code></pre>
@@ -168,8 +168,8 @@ author: Derek H. Ogle
 <div id="reproducibility-information" class="section level2">
 <h2>Reproducibility Information</h2>
 <ul>
-<li><strong>Compiled Date:</strong> Fri Sep 18 2015</li>
-<li><strong>Compiled Time:</strong> 12:24:50 PM</li>
+<li><strong>Compiled Date:</strong> Sat Sep 19 2015</li>
+<li><strong>Compiled Time:</strong> 9:41:45 AM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>

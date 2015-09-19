@@ -177,13 +177,13 @@ addCalc(Si,Li,Sc,Lc,int)
 
 $$ L_{i}=\frac{S_{i}}{S_{C}}(L_{C}-c)+c \quad \quad \text{`r paste0("(",eqncaps("BackCalcFraserLee",display="num"),")")`} $$
 
-\noindent where $c$ comes from the length of the fish at the time of scale formation, the intercept of the length-scale relationship regression (e.g., from `r eqncaps("BackCalcELS")`), or from published "standards" for a species (e.g., @Carlander1982).  The Fraser-Lee model describes a family of lines with an intercept of $c$ that pass through the ($S_{C},L_{C}$) point (@Francis1990; `r figcaps("BackCalcEx704",display="cite")`).
+\noindent where $c$ comes from the length of the fish at the time of scale formation, the intercept of the length-scale relationship regression (e.g., from `r eqncaps("BackCalcELS",display="cite")`), or from published "standards" for a species (e.g., @Carlander1982).  The Fraser-Lee model describes a family of lines with an intercept of $c$ that pass through the ($S_{C},L_{C}$) point (@Francis1990; `r figcaps("BackCalcEx704",display="cite")`).
 
 The *scale proportional hypothesis* (SPH) model was named by @Francis1990}, but was first recognized by @WhitneyCarlander1956 when they said "{i}f the scale was 10 per cent larger when the fish was caught than the average scale for that size of fish, [then] the scale would be 10 per cent larger than normal throughout the life."  If "average" and "normal" are considered to be expected values, then this hypothesis can be written as
 
 $$ \frac{S_{i}}{E[S|L_{i}]}=\frac{S_{C}}{E[S|L_{C}]} $$
 
-If it is assumed that the scale-length relationship is linear, then the two expected values in these ratios are computed by plugging $L_{i}$ and $L_{C}$, respectively, into the scale-length relationship (i.e., `r eqncaps("BackCalcESL")`) to produce
+If it is assumed that the scale-length relationship is linear, then the two expected values in these ratios are computed by plugging $L_{i}$ and $L_{C}$, respectively, into the scale-length relationship (i.e., `r eqncaps("BackCalcESL",display="cite")`) to produce
 
 $$ \frac{S_{i}}{a+bL_{i}}=\frac{S_{C}}{a+bL_{C}} $$
 
@@ -191,13 +191,13 @@ $$ \frac{S_{i}}{a+bL_{i}}=\frac{S_{C}}{a+bL_{C}} $$
 
 $$ L_{i} = \frac{S_{i}}{S_{C}}\left(L_{C}+\frac{a}{b}\right) - \frac{a}{b} \quad \quad \text{`r paste0("(",eqncaps("BackCalcSPHLinear",display="num"),")")`} $$
 
-\noindent The linear SPH model produces a family of lines that all have an intercept of $-\frac{a}{b}$ and pass through each observed ($S_{C},L_{C}$) point (`r figcaps("BackCalcEx704",display="cite")`).  The SPH model is the same as the Fraser-Lee model except that the intercept from `r eqncaps("BackCalcELS")` is replaced with $-\frac{a}{b}$.  Further note that the SPH model is the same as the Dahl-Lea model if $a=0$.
+\noindent The linear SPH model produces a family of lines that all have an intercept of $-\frac{a}{b}$ and pass through each observed ($S_{C},L_{C}$) point (`r figcaps("BackCalcEx704",display="cite")`).  The SPH model is the same as the Fraser-Lee model except that the intercept from `r eqncaps("BackCalcELS",display="cite")` is replaced with $-\frac{a}{b}$.  Further note that the SPH model is the same as the Dahl-Lea model if $a=0$.
 
 The *body proportional hypothesis* (BPH) model was also named by @Francis1990 and was also first recognized by @WhitneyCarlander1956 when they said "{i}f a fish at time of capture were 10 per cent smaller than the average fish with that size of scale, [then] the fish would be 10 per cent smaller than the expected length for the size of that scale throughout life."  This hypothesis can be written as
 
 $$ \frac{L_{i}}{E[L|S_{i}]}=\frac{L_{C}}{E[L|S_{C}]} $$
 
-\noindent If the length-scale relationship is linear then the expected values can be found by plugging $S_{i}$ and $S_{c}$ into `r eqncaps("BackCalcELS")` to get
+\noindent If the length-scale relationship is linear then the expected values can be found by plugging $S_{i}$ and $S_{c}$ into `r eqncaps("BackCalcELS",display="cite")` to get
 
 $$ \frac{L_{i}}{c+dS_{i}}=\frac{L_{C}}{c+dS_{C}} $$
 
@@ -246,7 +246,7 @@ headtail(wb90r)
 ## Computing Back-Calculated Lengths
 
 ### Scale-Length Relationships
-The scale-length (`r eqncaps("BackCalcESL")`) and length-scale (`r eqncaps("BackCalcELS")`) relationships required for all but the Dahl-Lea method are computed with the wide format data.  Thus, the wide data must contain the length of the fish (e.g., `lencap`) and the total radius of the calcified structure (e.g., `radcap`) at the time of capture.  Both linear relationships are fit with `lm()` and the coefficients are extracted with `coef()` and saved into objects.
+The scale-length (`r eqncaps("BackCalcESL",display="cite")`) and length-scale (`r eqncaps("BackCalcELS",display="cite")`) relationships required for all but the Dahl-Lea method are computed with the wide format data.  Thus, the wide data must contain the length of the fish (e.g., `lencap`) and the total radius of the calcified structure (e.g., `radcap`) at the time of capture.  Both linear relationships are fit with `lm()` and the coefficients are extracted with `coef()` and saved into objects.
 ```{r }
 lm.sl <- lm(radcap~lencap,data=wb90)
 ( a <- coef(lm.sl)[[1]] )
