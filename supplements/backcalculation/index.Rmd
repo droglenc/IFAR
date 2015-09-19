@@ -21,7 +21,7 @@ if (require(FSA)) purl2("index.Rmd",newname="backcalculation",topnotes="User mus
 ```
 
 
-@Francis1990 defined *back-calculation* as "... a technique that uses a set of measurements made on a fish at one time to infer its length at an earlier time or times.  Specifically, the dimensions of one or more marks in some hard part of the fish, together with its current body length, are used to estimate its length at the time of formation of each of the marks. ... The marks are generally annual rings associated with growth checks, ... ."  Thus, backcalculation is the reconstruction of the length of a fish at previous ages from measurements made on calcified structures.
+@Francis1990 defined *back-calculation* as "*... a technique that uses a set of measurements made on a fish at one time to infer its length at an earlier time or times.  Specifically, the dimensions of one or more marks in some hard part of the fish, together with its current body length, are used to estimate its length at the time of formation of each of the marks. ... The marks are generally annual rings associated with growth checks, ... .*"  Thus, backcalculation is the reconstruction of the length of a fish at previous ages from measurements made on calcified structures.
 
 ### Required Packages for this Supplement
 Functions used in this supplement require the packages shown below.
@@ -179,7 +179,7 @@ $$ L_{i}=\frac{S_{i}}{S_{C}}(L_{C}-c)+c \quad \quad \text{`r paste0("(",eqncaps(
 
 \noindent where $c$ comes from the length of the fish at the time of scale formation, the intercept of the length-scale relationship regression (e.g., from `r eqncaps("BackCalcELS",display="cite")`), or from published "standards" for a species (e.g., @Carlander1982).  The Fraser-Lee model describes a family of lines with an intercept of $c$ that pass through the ($S_{C},L_{C}$) point (@Francis1990; `r figcaps("BackCalcEx704",display="cite")`).
 
-The *scale proportional hypothesis* (SPH) model was named by @Francis1990}, but was first recognized by @WhitneyCarlander1956 when they said "{i}f the scale was 10 per cent larger when the fish was caught than the average scale for that size of fish, [then] the scale would be 10 per cent larger than normal throughout the life."  If "average" and "normal" are considered to be expected values, then this hypothesis can be written as
+The *scale proportional hypothesis* (SPH) model was named by @Francis1990}, but was first recognized by @WhitneyCarlander1956 when they said "*{i}f the scale was 10 per cent larger when the fish was caught than the average scale for that size of fish, [then] the scale would be 10 per cent larger than normal throughout the life.*"  If "average" and "normal" are considered to be expected values, then this hypothesis can be written as
 
 $$ \frac{S_{i}}{E[S|L_{i}]}=\frac{S_{C}}{E[S|L_{C}]} $$
 
@@ -193,7 +193,7 @@ $$ L_{i} = \frac{S_{i}}{S_{C}}\left(L_{C}+\frac{a}{b}\right) - \frac{a}{b} \quad
 
 \noindent The linear SPH model produces a family of lines that all have an intercept of $-\frac{a}{b}$ and pass through each observed ($S_{C},L_{C}$) point (`r figcaps("BackCalcEx704",display="cite")`).  The SPH model is the same as the Fraser-Lee model except that the intercept from `r eqncaps("BackCalcELS",display="cite")` is replaced with $-\frac{a}{b}$.  Further note that the SPH model is the same as the Dahl-Lea model if $a=0$.
 
-The *body proportional hypothesis* (BPH) model was also named by @Francis1990 and was also first recognized by @WhitneyCarlander1956 when they said "{i}f a fish at time of capture were 10 per cent smaller than the average fish with that size of scale, [then] the fish would be 10 per cent smaller than the expected length for the size of that scale throughout life."  This hypothesis can be written as
+The *body proportional hypothesis* (BPH) model was also named by @Francis1990 and was also first recognized by @WhitneyCarlander1956 when they said "*{i}f a fish at time of capture were 10 per cent smaller than the average fish with that size of scale, [then] the fish would be 10 per cent smaller than the expected length for the size of that scale throughout life.*"  This hypothesis can be written as
 
 $$ \frac{L_{i}}{E[L|S_{i}]}=\frac{L_{C}}{E[L|S_{C}]} $$
 
