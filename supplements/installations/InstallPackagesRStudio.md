@@ -14,18 +14,18 @@ Packages distributed via the Comprehensive R Archive Network (CRAN) extend the f
 1. In the lower-right pane of RStudio, select the `Packages` tab and the `Install` button.
 
     <div class="ctrstaticimg">
-    <img src="figures/InstallPkgs_RStudio_Icons.PNG" width="100%">
+    <img src="figures/InstallPkgs_RStudio_Icons.PNG" width="70%">
     </div>
 
 1. Type the name of the packages to be installed in the "Packages (separate multiple packages with a space or comma):" box.  Make sure the "Install dependencies" option is checked.  The example below illustrates installing the `dplyr`, `nnet`, `nlstools`, and `AICcmodavg` packages.
 
     <div class="ctrstaticimg">
-    <img src="figures/InstallPkgs_RStudio_Choose.PNG" width="100%">
+    <img src="figures/InstallPkgs_RStudio_Choose.PNG" width="70%">
     </div>
 
-1. Press `Install`.  RStudio should now install these packages plus all packages that these depend on.  This may take several minutes and you should see several `package 'xxx' successfully unpacked and MD5 sums checked` messages.
+1. Press `Install`.  RStudio should now install these packages plus all packages that these depend on.  This may take several minutes and you should see several "package 'xxx' successfully unpacked and MD5 sums checked" messages.
 
-    * Depending on your priveleges on your machine, you may get a warning at this point about a library that "is not writable"" and then be prompted with a dialog box asking you "Would you like to use a personal library instead?""  You can select `Yes` on this dialog box.  A second dialog box will appear with a question that starts with `Would you like to create a personal library.`  You can also select `Yes` on this dialog box.
+    * Depending on your priveleges on your machine, you may get a warning at this point about a library that "is not writable"" and then be prompted with a dialog box asking you "Would you like to use a personal library instead?""  You can select `Yes` on this dialog box.  A second dialog box will appear with a question that starts with "Would you like to create a personal library."  You can also select `Yes` on this dialog box.
 
 
 ## Installing FSA and FSAdata
@@ -61,7 +61,7 @@ The `FSA` and `FSAdata` packages are special purpose packages for fisheries anal
 The `FSA` package is not yet an official R package and, thus, the installation is non-standard.  My experience suggests that about 10% of installations on Windows machines will result in some sort of error that will cause the `FSA` package to not be installed properly.  For example, two typical errors that may be shown in the R console after submitting the `source()` line from above are shown below.
 
     <div class="ctrstaticimg">
-    <img src="figures/InstallPkgs_RStudio_FSA.PNG" width="100%">
+    <img src="figures/InstallPkgs_RStudio_FSAErrors.PNG" width="100%">
     </div>
 
 The first error above indicates that the `gtools` package was not installed and the second error shows that the `multcomp` package was not installed.
