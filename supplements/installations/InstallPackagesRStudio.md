@@ -1,7 +1,7 @@
 ---
 layout: page
-title: RStudio Setup
-subtitle: For Windows
+title: Installing Packages
+subtitle: In RStudio
 css: /supplements/installations/directions.css
 ---
 
@@ -25,7 +25,7 @@ Packages distributed via the Comprehensive R Archive Network (CRAN) extend the f
 
 1. Press `Install`.  RStudio should now install these packages plus all packages that these depend on.  This may take several minutes and you should see several `package 'xxx' successfully unpacked and MD5 sums checked` messages.
 
-    * Depending on your priveleges on your machine, you may get a warning at this point about a library that `is not writable` and then be prompted with a dialog box asking you `Would you like to use a personal library instead?`  You can select `Yes` on this dialog box.  A second dialog box will appear with a question that starts with `Would you like to create a personal library.`  You can also select `Yes` on this dialog box.
+    * Depending on your priveleges on your machine, you may get a warning at this point about a library that "is not writable"" and then be prompted with a dialog box asking you "Would you like to use a personal library instead?""  You can select `Yes` on this dialog box.  A second dialog box will appear with a question that starts with `Would you like to create a personal library.`  You can also select `Yes` on this dialog box.
 
 
 ## Installing FSA and FSAdata
@@ -42,16 +42,16 @@ The `FSA` and `FSAdata` packages are special purpose packages for fisheries anal
 
 In the R script pane, type the following two lines exactly.
 
-    {% highlight r %}
-    source("http://www.rforge.net/FSA/InstallFSA.R")
-    utils::install.packages("FSAdata",repos="http://www.rforge.net/",type="source")
-    {% endhighlight %}
+{% highlight r %}
+source("http://www.rforge.net/FSA/InstallFSA.R")
+utils::install.packages("FSAdata",repos="http://www.rforge.net/",type="source")
+{% endhighlight %}
 
 
-1. Select both lines in the script window and press the `Run` button near the far right of the "R Script" pane toolbar (alternatively press `<CTRL>+<Enter>`).  This submits these R commands to the Console pane where the `FSA` and `FSAdata` packages and all associated dependencies should be installed.  This may take several minutes with a finish noted by an R prompt (a "greater than") symbol in the Console pane.
+3. Select both lines in the script window and press the `Run` button near the far right of the "R Script" pane toolbar (alternatively press `<CTRL>+<Enter>`).  This submits these R commands to the Console pane where the `FSA` and `FSAdata` packages and all associated dependencies should be installed.  This may take several minutes with a finish noted by an R prompt (a "greater than") symbol in the Console pane.
     * Depending on your priveleges on your machine, you may get a warning at this point about a library that "is not writable.  See the note in the previous section for how to handle this.
     
-1. On separate lines in the R script pane type `library(FSAdata)` and `library(FSA)`.  Highlight both lines and press the `Run` button.  The end of your Console pane should look like that below (the version number may be different).  If you received an error after running `library(FSA)`, then see the next section.
+4. On separate lines in the R script pane type `library(FSAdata)` and `library(FSA)`.  Highlight both lines and press the `Run` button.  The end of your Console pane should look like that below (the version number may be different).  If you received an error after running `library(FSA)`, then see the next section.
 
     <div class="ctrstaticimg">
     <img src="figures/InstallPkgs_RStudio_FSA.PNG" width="100%">
