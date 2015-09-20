@@ -34,22 +34,22 @@ The `FSA` and `FSAdata` packages are special purpose packages for fisheries anal
 
 1. Open RStudio (if not already open).
 
-1. Open a new R script pane by selecting the `New` icon to the far left on the RStudio toolbar and choosing `R script` in the ensuing list (alternatively, use the `<CTRL>+<Shift>+N` keystrokes or select the `File+New Fiel+R Script` menu items).  This will open a blank script in the upper-left pane of the RStudio window (below the toolbar, above the ``Console'' pane).
+1. Open a new Script pane by selecting the `New` icon to the far left on the RStudio toolbar and choosing `R script` in the ensuing list (alternatively, use the `<CTRL>+<Shift>+N` keystrokes or select the `File+New File+R Script` menu items).  This will open a blank script in the upper-left pane of RStudio (below the toolbar, above the Console pane).
 
     <div class="ctrstaticimg">
     <img src="figures/InstallPkgs_RStudio_NewScript.PNG" width="100%">
     </div>
 
-1. In the R script pane, type the following two lines exactly.
+1. In the Script pane, type the following two lines exactly.
 
     <div class="ctrstaticimg">
     <img src="figures/InstallPkgs_RStudio_InstallScript.PNG" width="100%">
     </div>
 
-1. Select both lines in the script window and press the `Run` button near the far right of the "R Script" pane toolbar (alternatively press `<CTRL>+<Enter>`).  This submits these R commands to the Console pane where the `FSA` and `FSAdata` packages and all associated dependencies should be installed.  This may take several minutes with a finish noted by an R prompt (a "greater than") symbol in the Console pane.
+1. Select both lines in the Script pane and press the `Run` button near the far right of the toolbar (alternatively press `<CTRL>+<Enter>`).  This submits these R commands to the Console pane where the `FSA` and `FSAdata` packages and all associated dependencies should be installed.  This may take several minutes with a finish noted by an R prompt (a "greater than") symbol in the Console pane.
     * Depending on your priveleges on your machine, you may get a warning at this point about a library that "is not writable.  See the note in the previous section for how to handle this.
     
-1. On separate lines in the R script pane type `library(FSAdata)` and `library(FSA)`.  Highlight both lines and press the `Run` button.  The end of your Console pane should look like that below (the version number may be different).  If you received an error after running `library(FSA)`, then see the next section.
+1. On separate lines in the Script pane type `library(FSAdata)` and `library(FSA)`.  Highlight both lines and press the `Run` button.  The end of your Console pane should look like that below (the version number may be different).  If you received an error after running `library(FSA)`, then see the next section.
 
     <div class="ctrstaticimg">
     <img src="figures/InstallPkgs_RStudio_FSA.PNG" width="70%">
@@ -67,7 +67,7 @@ The `FSA` and `FSAdata` packages are special purpose packages for fisheries anal
     </div>
 
 
-The `FSA` package is not yet an official R package and, thus, the installation is non-standard.  My experience suggests that about 10% of installations on Windows machines will result in some sort of error that will cause the `FSA` package to not be installed properly.  For example, two typical errors that may be shown in the R console after submitting the `source()` line from above are shown below.
+The `FSA` package is not yet an official R package and, thus, the installation is non-standard.  My experience suggests that about 10% of installations on Windows machines will result in some sort of error that will cause the `FSA` package to not be installed properly.  For example, two typical errors that may be shown in the Console pane after submitting the `source()` line from above are shown below.
 
     <div class="ctrstaticimg">
     <img src="figures/InstallPkgs_RStudio_FSAErrors.PNG" width="100%">
