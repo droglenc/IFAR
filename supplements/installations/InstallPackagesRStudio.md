@@ -61,7 +61,7 @@ The `FSA` and `FSAdata` packages are special purpose packages for fisheries anal
 The `FSA` package is not yet an official R package and, thus, the installation is non-standard.  My experience suggests that about 10% of installations on Windows machines will result in some sort of error that will cause the `FSA` package to not be installed properly.  For example, two typical errors that may be shown in the R console after submitting the `source()` line from above are shown below.
 
     <div class="ctrstaticimg">
-    <img src="figures/InstallPkgs_RStudio_FSAErrors.PNG" width="100%">
+    <img src="figures/InstallPkgs_RStudio_FSA.PNG" width="100%">
     </div>
 
 The first error above indicates that the `gtools` package was not installed and the second error shows that the `multcomp` package was not installed.
