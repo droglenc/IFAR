@@ -5,7 +5,7 @@ subtitle: In RStudio
 css: /supplements/installations/directions.css
 ---
 
-## Installing Packages from CRAN in RStudio
+## Installing Packages from CRAN
 
 Packages distributed via the Comprehensive R Archive Network (CRAN) extend the functionality of R.  If you have chosen to interact with R through RStudio, then these directions explain how to install package from within RStudio.  If you have not chosen to use RStudio, then goto the directions for installing packages within R for [Windows]() or the [Mac]().
 
@@ -52,11 +52,21 @@ The `FSA` and `FSAdata` packages are special purpose packages for fisheries anal
 1. On separate lines in the R script pane type `library(FSAdata)` and `library(FSA)`.  Highlight both lines and press the `Run` button.  The end of your Console pane should look like that below (the version number may be different).  If you received an error after running `library(FSA)`, then see the next section.
 
     <div class="ctrstaticimg">
-    <img src="figures/InstallPkgs_RStudio_FSA.PNG" width="100%">
+    <img src="figures/InstallPkgs_RStudio_FSA.PNG" width="70%">
     </div>
 
 
 ## Troubleshooting the Installation of the FSA Package
+
+    <div class="ctrstaticimg">
+    <img src="figures/InstallPkgs_RStudio_FSAErrors.PNG" width="100%">
+    </div>
+
+
+    <div class="ctrstaticimg">
+    <img src="figures/InstallPkgs_RStudio_FSA.PNG" width="100%">
+    </div>
+
 
 The `FSA` package is not yet an official R package and, thus, the installation is non-standard.  My experience suggests that about 10% of installations on Windows machines will result in some sort of error that will cause the `FSA` package to not be installed properly.  For example, two typical errors that may be shown in the R console after submitting the `source()` line from above are shown below.
 
