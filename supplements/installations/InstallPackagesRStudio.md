@@ -56,7 +56,6 @@ The `FSA` and `FSAdata` packages are special purpose packages for fisheries anal
     </div>
 
 
-
 ## Troubleshooting the Installation of the FSA Package
 
 The `FSA` package is not yet an official R package and, thus, the installation is non-standard.  My experience suggests that about 10% of installations on Windows machines will result in some sort of error that will cause the `FSA` package to not be installed properly.  For example, two typical errors that may be shown in the R console after submitting the `source()` line from above are shown below.
