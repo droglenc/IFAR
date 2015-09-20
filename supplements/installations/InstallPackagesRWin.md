@@ -25,10 +25,10 @@ The `FSA` and `FSAdata` packages are special purpose packages for fisheries anal
 1. Open R (if not already open).
 
 1. In the Console, type (and run) the following two lines exactly.  This may take several minutes with a finish noted by an R prompt (a "greater than") symbol in the Console pane.
-    <pre><code>
+    <code>
     source("http://www.rforge.net/FSA/InstallFSA.R")
     utils::install.packages("FSAdata",repos="http://www.rforge.net/",type="source")
-    </code></pre>
+    </code>
 
     * Depending on your priveleges on your machine, you may get a warning at this point about a library that "is not writable.  See the note in the previous section for how to handle this.
     
