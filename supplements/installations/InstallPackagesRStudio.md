@@ -55,6 +55,10 @@ The `FSA` and `FSAdata` packages are special purpose packages for fisheries anal
     <img src="figures/InstallPkgs_RStudio_FSA.PNG" width="70%">
     </div>
 
+    <div class="ctrstaticimg">
+    <img src="figures/InstallPkgs_RStudio_FSAErrors.PNG" width="70%">
+    </div>
+
 
 ## Troubleshooting the FSA Installation
 
