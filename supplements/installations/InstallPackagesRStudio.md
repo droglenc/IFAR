@@ -42,10 +42,10 @@ The `FSA` and `FSAdata` packages are special purpose packages for fisheries anal
 
 1. In the R script pane, type the following two lines exactly.
 
-{% highlight r %}
-source("http://www.rforge.net/FSA/InstallFSA.R")
-utils::install.packages("FSAdata",repos="http://www.rforge.net/",type="source")
-{% endhighlight %}
+    {% highlight r %}
+    source("http://www.rforge.net/FSA/InstallFSA.R")
+    utils::install.packages("FSAdata",repos="http://www.rforge.net/",type="source")
+    {% endhighlight %}
 
 
 1. Select both lines in the script window and press the `Run` button near the far right of the "R Script" pane toolbar (alternatively press `<CTRL>+<Enter>`).  This submits these R commands to the Console pane where the `FSA` and `FSAdata` packages and all associated dependencies should be installed.  This may take several minutes with a finish noted by an R prompt (a "greater than") symbol in the Console pane.
@@ -64,7 +64,7 @@ utils::install.packages("FSAdata",repos="http://www.rforge.net/",type="source")
 The `FSA` package is not yet an official R package and, thus, the installation is non-standard.  My experience suggests that about 10% of installations on Windows machines will result in some sort of error that will cause the `FSA` package to not be installed properly.  For example, two typical errors that may be shown in the R console after submitting the `source()` line from above are shown below.
 
     <div class="ctrstaticimg">
-    <img src="figures/RStudio_Prep_FSAInstallErrors.PNG" width="100%">
+    <img src="figures/InstallPkgs_RStudio_FSAErrors.PNG" width="100%">
     </div>
 
 The first error above indicates that the `gtools` package was not installed and the second error shows that the `multcomp` package was not installed.
