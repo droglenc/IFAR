@@ -4,10 +4,10 @@ title: Supplements
 ---
 
 1. **(Very Brief) Introduction to R Basics**
-    * R Install -- [Windows](installations/InstallRWin.html) / [Mac](installations/InstallRMac.html)
-    * RStudio Install & Setup -- [Windows](installations/InstallRStudioWin.html) /  [Mac](installations/InstallRStudioMac.html)
-    * [Install Packages in RStudio](installations/.html)
-    * Install Packages in R -- [Windows](installations/InstallPkgsRWin.html) /  [Mac](installations/InstallPkgsRMac.html)
+    * R Install -- [Windows](installations/InstallRWin.html) / [Mac]
+    * RStudio Install & Setup -- [Windows](installations/InstallRStudioWin.html) /  [Mac]
+    * [Install Packages in RStudio](installations/InstallPackagesRStudio.html)
+    * Install Packages in R -- [Windows](installations/InstallPkgsRWin.html) /  [Mac]
     
 1. **Loading Data and Basic Manipulations**
     * [Backcalculation of Previous Length](backcalculation/) -- [script](backcalculation/backcalculation.R)
