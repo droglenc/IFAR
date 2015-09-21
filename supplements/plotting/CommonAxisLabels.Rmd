@@ -11,15 +11,16 @@ output:
 ```{r echo=FALSE, eval=FALSE}
 ##############################################################
 # == BEGIN -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
-# Run this render an appropriate HTML file for the webpage
+# First line renders an appropriate HTML file for the webpage
+# Second line makes the script file
+# RUN BOTH MANUALLY
 source("../modHTML.R"); modHTML("CommonAxisLabels")
-# Run this to make the script file
 if (require(FSA)) purl2("CommonAxisLabels.Rmd",topnotes="User must set working directory appropriately.")
 # == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 ##############################################################
 ```
 
-Several methods for modifying base graphics were shown in the book, including simple layouts (side-by-side, one-over-the-other) of multiple plots.  Creating common x- and y-axis labels for a grid of plots is described here.  More complex layouts (e.g., plot in first row spans two columns or unequal sized plots) are [described in a separate supplement](ComplexLayouts).
+Several methods for modifying base graphics were shown in the book, including simple layouts (side-by-side, one-over-the-other) of multiple plots.  Creating common x- and y-axis labels for a grid of plots is described here.  More complex layouts (e.g., plot in first row spans two columns or unequal sized plots) are [described in a separate supplement](ComplexLayouts.html).
 
 ### Required Packages for this Supplement
 
@@ -36,7 +37,7 @@ rqrd <- c("FSAdata","dplyr","captioner","knitr")
 # setup figure, table, and equation captioning
 library(captioner)
 figcaps <- captioner(prefix="Figure")
-figcaps("parEx1","Schematic plot that illustrates the plotting area (inside the dark black box), the figure area (inside the dark gray box), and the outer margin area (between the dark and light gray boxes).")
+figcaps("parEx1","Schematic plot that illustrates the plotting area (inside the blue box), the figure area (inside the red box), and the outer margin area (between the dark gray and red boxes).")
 figcaps("LayoutPar","Grid of plots that uses the outer margin area to provide common axis labels.")
 # == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 ##############################################################
@@ -46,10 +47,7 @@ library(FSAdata)
 library(dplyr)
 ```
 
-
-### Data Used in this Supplement
-
-Several data frames available in `FSAdata` are used in this supplement.
+The `BullTroutRML2` data from `FSAdata` are used in this supplement.
 
 ```{r warning=FALSE, message=FALSE}
 data(BullTroutRML2)
@@ -63,7 +61,7 @@ One common graphical desire is to plot multiple graphics in a grid-like format w
 
 Each plot consists of three regions -- the plot area, the figure area, and the outer margin area `r figcaps("parEx1",display="cite")`.  The plot area is where the points or bars will be graphed.  The area between the plot area and the figure area is where the axis ticks, labels, and title will appear.  The area outside of the figure area is the outer margin area and is generally used to proivde extra space around the graphic or to place text.  In most instances (and the default), the width of the outer margin area is 0 on all sides of the figure area such that no outer margin area exists.  The size of the outer margin area is set with `oma=` in `par()`, which takes a vector of four values to serve as widths of the four sides of the outer margin area, beginning with the bottom and moving counter-clockwise.  The default is `par(oma=c(0,0,0,0))`, but margins that are two "lines" wide on the top and bottom and one "line" wide on the left and right are set with `par(oma=c(2,1,2,1))`.
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.width=figsz, fig.height=figsz}
 # ############################################################
 # This code is not shown in the supplement, but is used to
 # construct the plot that demonstrates the three areas in a
@@ -72,11 +70,11 @@ par(mar=c(1.5,1.5,0.5,0.5),mgp=c(3,1,0),oma=c(2,2,2,2))
 X <- Y <- 0:10
 plot(Y~X,type="n",xaxt="n",yaxt="n",xlab="",ylab="")
 
-box("plot",col="black")
-text(5,5,"Plot Area",col="black",cex=1.25)
+box("plot",col="blue")
+text(5,5,"Plot Area",col="blue",cex=1.25)
 box("figure",lwd=2,col="gray25")
-mtext("Figure Area",side=1,line=0.2,adj=0.0,cex=1.25,col="gray25")
-box("outer",lwd=3,col="gray50")
+mtext("Figure Area",side=1,line=0.2,adj=0.0,cex=1.25,col="red")
+box("outer",lwd=3,col="red")
 mtext("Outer Margin Area",side=3,line=0.4,adj=0.0,cex=1.25,col="gray50",outer=TRUE)
 # ############################################################
 ```
@@ -112,7 +110,7 @@ The common x- and y-axis labels are then placed in the outer margin areas with `
 
 The code below adds common x- and y-axis labels to the plots constructed above.  The final plot is shown in `r figcaps("LayoutPar",display="cite")`.
 
-```{r echo=-c(1:16), fig.width=2*figsz, fig.height=2*figsz}
+```{r echo=-c(1:16), fig.width=2*figsz, fig.height=2*figsz, par1}
 # ############################################################
 # This code is a repeat of the code immediately above and is
 # only used to efficiently produce the plot for the supplement.

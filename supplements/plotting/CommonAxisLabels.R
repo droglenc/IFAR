@@ -10,7 +10,7 @@ rqrd <- c("FSAdata","dplyr","captioner","knitr")
 # setup figure, table, and equation captioning
 library(captioner)
 figcaps <- captioner(prefix="Figure")
-figcaps("parEx1","Schematic plot that illustrates the plotting area (inside the dark black box), the figure area (inside the dark gray box), and the outer margin area (between the dark and light gray boxes).")
+figcaps("parEx1","Schematic plot that illustrates the plotting area (inside the blue box), the figure area (inside the red box), and the outer margin area (between the dark gray and red boxes).")
 figcaps("LayoutPar","Grid of plots that uses the outer margin area to provide common axis labels.")
 # == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 ##############################################################
@@ -30,11 +30,11 @@ par(mar=c(1.5,1.5,0.5,0.5),mgp=c(3,1,0),oma=c(2,2,2,2))
 X <- Y <- 0:10
 plot(Y~X,type="n",xaxt="n",yaxt="n",xlab="",ylab="")
 
-box("plot",col="black")
-text(5,5,"Plot Area",col="black",cex=1.25)
+box("plot",col="blue")
+text(5,5,"Plot Area",col="blue",cex=1.25)
 box("figure",lwd=2,col="gray25")
-mtext("Figure Area",side=1,line=0.2,adj=0.0,cex=1.25,col="gray25")
-box("outer",lwd=3,col="gray50")
+mtext("Figure Area",side=1,line=0.2,adj=0.0,cex=1.25,col="red")
+box("outer",lwd=3,col="red")
 mtext("Outer Margin Area",side=3,line=0.4,adj=0.0,cex=1.25,col="gray50",outer=TRUE)
 # ############################################################
 
@@ -79,4 +79,4 @@ mtext("Age (years)",side=1,line=0,outer=TRUE,cex=1.3)
 mtext("Fork Length (mm)",side=2,line=0,outer=TRUE,cex=1.3,las=0)
 
 
-# Script created at 2015-09-21 08:52:15
+# Script created at 2015-09-21 09:00:01
