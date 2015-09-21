@@ -6,7 +6,7 @@
 # Setup of knitr
 source("../knitr_setup.R")
 # declare packages used
-rqrd <- c("FSAdata","dplyr","captioner","knitr")
+rqrd <- c("FSAdata","FSA","dplyr","captioner","knitr")
 # setup figure, table, and equation captioning
 library(captioner)
 figcaps <- captioner(prefix="Figure")
@@ -16,6 +16,7 @@ figcaps("LayoutPar","Grid of plots that uses the outer margin area to provide co
 ##############################################################
 
 library(FSAdata)
+library(FSA)
 library(dplyr)
 
 data(BullTroutRML2)
@@ -59,7 +60,7 @@ plot(fl~age,data=BTO2,main="Osprey, 1997-01",
 # This code is a repeat of the code immediately above and is
 # only used to efficiently produce the plot for the supplement.
 par(mfrow=c(2,2),oma=c(2,2,0,0))
-par(mar=c(3.05,3.05,0.65,0.65),mgp=c(1.9,0.3,0),tcl=-0.2,
+par(mar=c(3.05,3.05,1,1),mgp=c(1.9,0.3,0),tcl=-0.2,
     las=1,cex.lab=0.95,cex.axis=0.9,cex.main=0.9)
 xlmts <- c(-0.5,14.5)
 ylmts <- c(0,700)
@@ -80,4 +81,4 @@ mtext("Age (years)",side=1,line=0,outer=TRUE,cex=1.3)
 mtext("Fork Length (mm)",side=2,line=0,outer=TRUE,cex=1.3,las=0)
 
 
-# Script created at 2015-09-21 09:03:36
+# Script created at 2015-09-21 09:09:22

@@ -14,13 +14,14 @@ output:
 # First line renders an appropriate HTML file for the webpage
 # Second line makes the script file
 # RUN BOTH MANUALLY
+setwd("C:/aaaWork/Web/GitHub/IFAR/supplements/plotting")
 source("../modHTML.R"); modHTML("CommonAxisLabels")
 if (require(FSA)) purl2("CommonAxisLabels.Rmd",topnotes="User must set working directory appropriately.")
 # == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 ##############################################################
 ```
 
-Several methods for modifying base graphics were shown in the book, including simple layouts (side-by-side, one-over-the-other) of multiple plots.  Creating common x- and y-axis labels for a grid of plots is described here.  More complex layouts (e.g., plot in first row spans two columns or unequal sized plots) are [described in a separate supplement](ComplexLayouts.html).
+Several methods for modifying base graphics were shown in the book, including simple layouts (side-by-side, one-over-the-other) of multiple plots.  Creating common x- and y-axis labels for a grid of plots is described in this supplement.  More complex layouts (e.g., plot in first row spans two columns or unequal sized plots) are [described in a separate supplement](ComplexLayouts.html).
 
 ### Required Packages for this Supplement
 
@@ -33,7 +34,7 @@ Functions used in this supplement require the packages shown below.
 # Setup of knitr
 source("../knitr_setup.R")
 # declare packages used
-rqrd <- c("FSAdata","dplyr","captioner","knitr")
+rqrd <- c("FSAdata","FSA","dplyr","captioner","knitr")
 # setup figure, table, and equation captioning
 library(captioner)
 figcaps <- captioner(prefix="Figure")
@@ -44,6 +45,7 @@ figcaps("LayoutPar","Grid of plots that uses the outer margin area to provide co
 ```
 ```{r cache=FALSE, results='hide', message=FALSE}
 library(FSAdata)
+library(FSA)
 library(dplyr)
 ```
 
@@ -115,7 +117,7 @@ The code below adds common x- and y-axis labels to the plots constructed above. 
 # This code is a repeat of the code immediately above and is
 # only used to efficiently produce the plot for the supplement.
 <<SetPar>>
-par(mar=c(3.05,3.05,0.65,0.65),mgp=c(1.9,0.3,0),tcl=-0.2,
+par(mar=c(3.05,3.05,1,1),mgp=c(1.9,0.3,0),tcl=-0.2,
     las=1,cex.lab=0.95,cex.axis=0.9,cex.main=0.9)
 <<FillSubPlots>>
 # ############################################################

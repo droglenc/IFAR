@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Loading Data and Basic Manipulations
+title: Basic Data Manipulations
 subtitle: Backcalculation of Previous Lengths
 author: Derek H. Ogle
 csl: ../american-fisheries-society.csl
@@ -16,6 +16,7 @@ output:
 # First line renders an appropriate HTML file for the webpage
 # Second line makes the script file
 # RUN BOTH MANUALLY
+setwd("C:/aaaWork/Web/GitHub/IFAR/supplements/backcalculation")
 source("../modHTML.R"); modHTML("index")
 if (require(FSA)) purl2("index.Rmd",newname="backcalculation",topnotes="User must set working directory appropriately.")
 # == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
