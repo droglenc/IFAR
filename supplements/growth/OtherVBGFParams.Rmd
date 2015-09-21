@@ -1,0 +1,226 @@
+---
+layout: page
+title: Individual Growth
+subtitle: Other VBGF Parameterizations
+author: Derek H. Ogle
+csl: ../american-fisheries-society.csl
+bibliography: ../IFARSupplement.bib
+output: 
+  html_document: 
+    fig_width: 5
+    self_contained: no
+---
+```{r echo=FALSE, eval=FALSE}
+##############################################################
+# == BEGIN -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
+# First line renders an appropriate HTML file for the webpage
+# Second line makes the script file
+# RUN BOTH MANUALLY (following using Knit HTML button)
+setwd("C:/aaaWork/Web/GitHub/IFAR/supplements/growth")
+source("../modHTML.R"); modHTML2("OtherVBGFParams")
+if (require(FSA)) purl2("OtherVBGFParams.Rmd",topnotes="User must set working directory appropriately.")
+# == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
+##############################################################
+```
+
+
+### Required Packages for this Supplement
+Functions used in this supplement require the packages shown below.
+
+```{r echo=FALSE, results='hide', message=FALSE, warnings=FALSE}
+##############################################################
+# == BEGIN -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
+# 
+# Setup of knitr
+source("../knitr_setup.R")
+# declare packages used
+rqrd <- c("FSA","magrittr","dplyr","nlstools","AICcmodavg","(minpack.lm","captioner","knitr")
+# setup figure, table, and equation captioning
+library(captioner)
+figcaps <- captioner(prefix="Figure")
+figcaps("","")
+
+tabcaps <- captioner(prefix="Table")
+
+eqncaps <- captioner(prefix="Equation")
+eqncaps("BackCalcESL")
+eqncaps("BackCalcELS")
+eqncaps("BackCalcDahlLea")
+eqncaps("BackCalcFraserLee")
+eqncaps("BackCalcSPHLinear")
+eqncaps("BackCalcBPHLinear")
+# == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
+##############################################################
+```
+```{r cache=FALSE, results='hide', message=FALSE}
+library(FSA)
+library(magrittr)
+library(dplyr)
+library(nlstools)
+library(AICcmodavg)
+library(minpack.lm)
+```
+
+### Data Used in this Supplement
+  
+The male Black Drum data used in the book will also be used here.
+```{r}
+bdmf <- read.csv("BlackDrum2001.csv") %>%
+  select(-c(spname,day,weight)) %>%
+  filterD(sex %in% c("male","female"),otoage<50)
+bdm <- filterD(bdmf,sex=="male")
+headtail(bdm)
+```
+
+
+## Fitting Other VBGF Parameterizations
+Fitting the most common "Typical" parameterization of the von Bertalanffy growth function (VBGF) was demonstrated in the main chapter.  However, the VBGF has been expressed in a variety of parameterizations.  The most common alternative parameterizations of the VBGF may be seen with `vbModels()` from `FSA`.
+
+Different parameterizations do not fit the data differently (i.e., the same number of parameters are used, predictions will be identical, and fitted model plots will look the same).  However, different parameterizations may be used if the fisheries scientist is interesting in estimating different parameters.  For example, one might use the "Original" (@vonBertalanffy1938) or "Mooij" (@Mooijetal1999) parameterizations if interests is in $L_{0}$ the mean length at time 0 (i.e., at "hatch").  Two of the parameterizations, "Schnute" (@Schnute1981) and "Francis" (@Francis1988) are either largely or whole based on expected values.  The parameters in expected value parameterizations are generally less correlated and, thus, the problems related to correlated parameters discussed in the main chapter may be ameliorated with these parameterizations.  These two parameterizations are, however, slightly more work to fit because the scientists must choose two ages that will define two of the model parameters.  Fitting the "Francis" parameterization of the VBGF to the Black Drum data will be demonstrated below.
+
+An R function for predicting length from a given age may be created by the user.  However, similar to what was demonstrated in the main chapter for the "Typical" VBGF,  `vbFuns()` from `FSA` may be used to create such a function for each parameterization displayed in `vbModels()`.  A brief explanation of the parameters is given if `msg=TRUE` is included in `vbFuns()`.  A function for the "Francis" parameterization is defined with `vbFuns()` below.  Note that values for the three parameters may be included as a vector in `L1=` and that the youngest and oldest ages may be included as a vector in `t1=`.
+
+```{r}
+( vbF <- vbFuns("Francis") )
+```
+
+The three parameters in the "Francis" parameterizations are the expected (i.e., mean) lengths at three ages.  Two of the ages are generally the youngest and oldest (or very close to those) ages in the data.  The third age is, by definitition, halfway between these two ages.  Thus, the parameters will be the expected lengths at a young, old, and intermediate age.  In this example, I have chosen to estimate expected lengths for the youngest and oldest ages in the data.
+```{r}
+( ages <- range(bdm$otoage) )
+```
+
+Starting values are obtained with `vbStarts()` as described in the main chapter.  However, with the "Francis" parameterization, the ages that define the youngest and oldest age must also be provided in `ages2use=`.
+
+```{r}
+( svF <- vbStarts(tl~otoage,data=bdm,type="Francis",ages2use=ages) )
+```
+
+The model is fit and parameter estimates with likelihood profile are obtained as described in the book, with the exception that the vector that defines the youngest and oldest ages must be supplied when `vbF()` is used.  Bootstrapped confidence intervals and predictions may also be obtained as described in the book.
+```{r}
+nlsF <- nls(tl~vbF(otoage,L1,L2,L3,t1=ages),data=bdm,start=svF)
+cbind(Ests=coef(nlsF),confint(nlsF))
+bootF <- nlsBoot(nlsF)
+cbind(Ests=coef(nlsF),confint(bootF))
+predict(bootF,vbF,t=3,t1=ages)
+```
+
+Note that the intra-parameter correlations are relatively low for this parameterization.  Additionally, the scale of the parameters in the "Francis" parameterization are usually similar.  Both of these characteristics may aid model convergence.
+```{r}
+summary(nlsF,correlation=TRUE)
+```
+
+
+## Fitting Other Growth Functions
+
+Mean length-at-age has been modeled by functions other than the VBGF.  Common other functions are the exponential, logistic, and polynomial (@Ricker1975), as well as the specific functions of @Gompertz1825, @Richards1959, @Schnute1981, and @SchnuteRichards1990.  The "Schnute" model and several parameterizations of the logistic, Gompertz, and Richards models have been coded in convenience functions in `FSA`.  For example, the default parameterizations of the logistic, Gompertz, and Richards models are defined below.  Again, include `msg=TRUE` for definitions of the parameters.  Further note that the Richards model has four parameters.
+```{r}
+l1 <- logisticFuns()
+g1 <- GompertzFuns()
+r1 <- RichardsFuns()
+```
+
+Unfortunately, convenience functions for finding starting values for each of these functions do not exist.  Starting values can be obtained by iteratively superimposing a curve of the function at chosen values for the parameters onto a scatterplot of the raw data.  This is demonstrated below for the Richards function.  [Note that this may take considerable trial-and-error to find parameter values that provide a curve in the "neighborhood" of the data.  Starting values likely only need to provide a rough fit to the data.  However, I had considerable difficult finding starting values that would work with the Richards function for these data.]
+
+```{r RichardsStarts, fig.cap="Richards growth function evaluated at potential starting values superimposed on the length-at-age data for male Black Drum."}
+plot(tl~otoage,data=bdm,pch=19,col=rgb(0,0,0,1/4))
+svR1 <- list(Linf=1200,k=0.1,a=1.1,b=0.4)
+curve(r1(x,unlist(svR1)),from=3,to=42,add=TRUE,lwd=2)
+```
+
+A similar process (not shown) was followed for the logistic and Gompertz models.
+
+```{r echo=FALSE, results="hide", fig.show="hide"}
+# ############################################################
+# == BEGIN -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
+plot(tl~otoage,data=bdm,pch=19,col=rgb(0,0,0,1/4))
+svG1 <- list(Linf=1250,gi=0.15,ti=2)
+curve(g1(x,unlist(svG1)),from=3,to=42,add=TRUE,lwd=2)
+plot(tl~otoage,data=bdm,pch=19,col=rgb(0,0,0,1/4))
+svL1 <- list(Linf=1250,gninf=0.15,ti=4)
+curve(l1(x,unlist(svL1)),from=3,to=42,add=TRUE,lwd=2)
+# == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =======
+# ############################################################
+```
+```{r}
+svG1 <- list(Linf=1250,gi=0.15,ti=2)
+svL1 <- list(Linf=1250,gninf=0.15,ti=4)
+```
+
+These models can be fit and summarized as illustrated above and in the book.
+
+```{r}
+nlsR1 <- nls(tl~r1(otoage,Linf,k,a,b),data=bdm,start=svR1)
+bootR1 <- nlsBoot(nlsR1)
+cbind(Ests=coef(nlsR1),confint(bootR1))
+predict(bootR1,r1,t=3)
+```
+
+Information criterion can be used to identify which of these models best fits the male Black Drum data.  First, the Gompertz and logistic functions are fit to the data.
+
+```{r}
+nlsG1 <- nls(tl~g1(otoage,Linf,gi,ti),data=bdm,start=svG1)
+nlsL1 <- nls(tl~l1(otoage,Linf,gninf,ti),data=bdm,start=svL1)
+```
+
+These objects are then submitted to `AICctab` to provide a summary table.  From this, the Richards models is most supported followed by the VBGF.  The logistic and Gompertz models had little support, likely because they force an inflection point in the model which is not apparent in the data.
+
+```{r}
+aictab(list(nlsF,nlsL1,nlsG1,nlsR1),c("VBGF","logistic","Gompertz","Richards"))
+```
+
+A plot of the best-fit model for each growth functions shows, however, that there is likely very little difference in predicted values among the four models.
+
+```{r}
+plot(tl~otoage,data=bdm,pch=19,col=rgb(0,0,0,1/4))
+curve(r1(x,coef(nlsR1)),from=3,to=42,add=TRUE,lwd=4)
+curve(vbF(x,coef(nlsF),t1=ages),from=3,to=42,add=TRUE,lwd=2,
+      col="blue")
+curve(g1(x,coef(nlsG1)),from=3,to=42,add=TRUE,col="red")
+curve(l1(x,coef(nlsL1)),from=3,to=42,add=TRUE,col="orange")
+```
+
+
+## Additional Nonlinear Regression Algorithms
+
+The `nls()` function uses the Gauss-Newton algorithm by default.  However, there are many other algorithms for fitting nonlinear functions.  Several of these algorithms are coded in R.  Two of these algorithms are highlighted here.
+
+The Levenberg-Marquardt (L-M) is a powerful and common algorithm that is implemented in `nlsLM()` from `minpack.lm`.  The L-M algorithm is a hybrid that switches between two other algorithms depending on when those algorithms perform optimally.  Most practically, the L-M algorithm appears to be quite robust to "poor" starting values  The main arguments to `nlsLM()` are the same as those to `nls()`.  For example, the Richards model is fit to the Black Drum data below using the L-M algorithm.
+
+```{r warning=FALSE}
+lmR1 <- nlsLM(tl~r1(otoage,Linf,k,a,b),data=bdm,start=svR1)
+bootlmR1 <- nlsBoot(lmR1)
+cbind(Ests=coef(lmR1),confint(bootlmR1))
+predict(bootlmR1,r1,t=3)
+```
+
+One may also put constraints on the parameters when using `nlsLM()`.  The lower and upper bounds are entered into separate named **vectors** with the same structure as the list used for starting values.  These lists are then provided to `lower=} and `upper=}, respectively.  Infinite bounds are the default but may be specifically defined for some parameters with `Inf} and `-Inf} (where `Inf} represents infinity).  For example, $L_\infty$, $k$, $a$, and $b$ are constrained to be positive values in the model fitting below.  In this instance, these bound had no noticeable effect until bootstapping (fewer lack of convergences).  In other instances, the constraints may substantively impact the parameter estimates.  Bounds should be set as widely (as conservatively) as possible.
+```{r warning=FALSE}
+lmR1b <- nlsLM(tl~r1(otoage,Linf,k,a,b),data=bdm,start=svR1,
+               lower=c(Linf=1,K=0.0001,a=0.0001,b=0.0001),
+               upper=c(Linf=Inf,K=Inf,a=Inf,b=Inf))
+bootlmR1b <- nlsBoot(lmR1b)
+cbind(Ests=coef(lmR1b),confint(bootlmR1b))
+```
+
+Parameter constrains may also be used with `nls()` but the optimization algorithm must be changed to "Port" with `algorithm="port"`.  With this argument the constraints are added as shown above for `nlsLM()`.
+```{r warning=FALSE}
+nlsR1c <- nls(tl~r1(otoage,Linf,k,a,b),data=bdm,start=svR1,
+              algorithm="port",
+              lower=c(Linf=1,K=0.0001,a=0.0001,b=0.0001),
+              upper=c(Linf=Inf,K=Inf,a=Inf,b=Inf))
+bootnlsR1c <- nlsBoot(nlsR1c)
+cbind(Ests=coef(nlsR1c),confint(bootnlsR1c))
+```
+
+Still other algorithms are found in `nlxb()` from `nlmrt` and `nls2()` from `nls2`.
+
+--------------------------------------------------------------
+
+```{r echo=FALSE, results='asis'}
+reproInfo(rqrdPkgs=rqrd,out="markdown",links=c(Script="backcalculation.R",RMarkdown="index.Rmd"))
+```
+
+--------------------------------------------------------------
+
+
+## References
