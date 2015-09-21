@@ -13,7 +13,7 @@ title: Supplements
     * [Backcalculation of Previous Length](backcalculation/) -- [script](backcalculation/backcalculation.R)
     
 1. **Plotting Fundamentals**
-    * [Common Axis Labels on a Grid of Subplots] -- [script]
+    * [Common Axis Labels on a Grid of Subplots](plotting/CommonAxisLabels.html) -- [script](CommonAxisLabels.R)
     * [Complex Grid Layouts] -- [script]
     
 1. **Age Comparisons**
