@@ -4,7 +4,7 @@ title: Supplements
 ---
 
 1. **(Very Brief) Introduction to R Basics**
-    * R Install -- [Windows](installations/InstallRWin.html) / [Mac]
+    * R Install -- [Windows](installations/InstallRWin.html) / [Mac](installations/InstallRMac.html)
     * RStudio Install & Setup -- [Windows](installations/InstallRStudioWin.html) /  [Mac]
     * [Install Packages in RStudio](installations/InstallPackagesRStudio.html)
     * Install Packages in R -- [Windows](installations/InstallPackagesRWin.html) /  [Mac]
