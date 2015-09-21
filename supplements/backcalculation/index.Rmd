@@ -1,6 +1,7 @@
 ---
 layout: page
-title: Backcalculation of Previous Lengths
+title: Loading Data and Basic Manipulations
+subtitle: Backcalculation of Previous Lengths
 author: Derek H. Ogle
 csl: ../american-fisheries-society.csl
 bibliography: ../IFARSupplement.bib

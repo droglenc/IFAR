@@ -9,8 +9,8 @@ modHTML <- function(f) {
   # Derek H. Ogle in the HTML file
   tmp <- which(grepl("Derek H. Ogle",h))
   h <- h[-(1:(tmp[length(tmp)]+1))]
-  # Get the layout, title and author from RMD file
-  r <- r[1:4]
+  # Get the layout, title, subtitle, and author from RMD file
+  r <- r[1:5]
   # Put it all together as a new html file
   h <- c(r,"---",h)
   writeLines(h,paste0(f,".html"))
