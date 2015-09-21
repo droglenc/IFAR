@@ -10,26 +10,26 @@ title: Supplements
     * Install Packages in R -- [Windows](installations/InstallPackagesRWin.html) /  [Mac]
     
 1. **Loading Data and Basic Manipulations**
-    * [Backcalculation of Previous Length](backcalculation/) -- [script](backcalculation/backcalculation.R)
+    * [Backcalculation of Previous Length](backcalculation/)
     
 1. **Plotting Fundamentals**
-    * [Common Axis Labels on a Grid of Subplots](plotting/CommonAxisLabels.html) -- [script](CommonAxisLabels.R)
-    * [Complex Grid Layouts] -- [script]
+    * [Common Axis Labels on a Grid of Subplots](plotting/CommonAxisLabels.html)
+    * [Complex Grid Layouts]
     
 1. **Age Comparisons**
 1. **Age-Length Keys**
 1. **Size Structure**
 1. **Weight-Length Relationships**
-    * [DVR with More than Two Groups] -- [script]
+    * [DVR with More than Two Groups]
     
 1. **Condition**
 1. **Abundance from Capture-Recapture Data**
 1. **Abundance from Depletion Data**
 1. **Mortality Rates**
 1. **Individual Growth**
-    * [Fitting Other VBGF Parameterizations] -- [script], [BlackDrum2001.csv](BlackDrum2001.csv)
-    * [Fitting Other Growth Functions] -- [script]
-    * [Additional Nonlinear Regression Algorithms] -- [script]
+    * [Fitting Other VBGF Parameterizations], [BlackDrum2001.csv](BlackDrum2001.csv)
+    * [Fitting Other Growth Functions]
+    * [Additional Nonlinear Regression Algorithms]
     
 1. **Recruitment**
-    * [Maturity Schedules] -- [script]
+    * [Maturity Schedules]
