@@ -1,0 +1,117 @@
+---
+layout: page
+title: Individual Growth
+subtitle: Other Nonlinear Model Fitting Algorithms
+author: Derek H. Ogle
+---
+
+
+<p>The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the model were illustrated in the book. That description used one common nonlinear model fitting algorithm. Alternative algorithms for fitting nonlinear models are introduced here. Methods for <a href="OtherVBGFParams.html">fitting other parameterizations of the VBGF are here</a> and <a href="OtherNLAlgorithms.html">alternative nonlinear model fitting algorithms are illustrated here</a>.</p>
+<div id="required-packages-for-this-supplement" class="section level3">
+<h3>Required Packages for this Supplement</h3>
+<p>Functions used in this supplement require the packages shown below.</p>
+<pre class="r"><code>&gt; library(FSA)
+&gt; library(dplyr)
+&gt; library(nlstools)
+&gt; library(minpack.lm)</code></pre>
+</div>
+<div id="data-used-in-this-supplement" class="section level3">
+<h3>Data Used in this Supplement</h3>
+<p>The male Black Drum data used in the book will also be used here.</p>
+<pre class="r"><code>&gt; bdmf &lt;- read.csv(&quot;BlackDrum2001.csv&quot;) %&gt;%
+    select(-c(spname,day,weight)) %&gt;%
+    filterD(sex %in% c(&quot;male&quot;,&quot;female&quot;),otoage&lt;50)</code></pre>
+<pre><code>Loading required namespace: gdata</code></pre>
+<pre class="r"><code>&gt; bdm &lt;- filterD(bdmf,sex==&quot;male&quot;)
+&gt; headtail(bdm)</code></pre>
+<pre><code>   year agid month     tl  sex otoage
+1  2001    1     4  787.5 male      6
+2  2001    2     5  700.0 male      5
+3  2001    8     5 1140.0 male     23
+72 2001  122     5 1175.0 male     39
+73 2001  125     6  590.0 male      4
+74 2001  127     6  530.0 male      3</code></pre>
+</div>
+<div id="additional-nonlinear-regression-algorithms" class="section level2">
+<h2>Additional Nonlinear Regression Algorithms</h2>
+<p>The <code>nls()</code> function uses the Gauss-Newton algorithm by default. However, there are many other algorithms for fitting nonlinear functions. Several of these algorithms are coded in R. Two of these algorithms are highlighted here.</p>
+<p>The Levenberg-Marquardt (L-M) is a powerful and common algorithm that is implemented in <code>nlsLM()</code> from <code>minpack.lm</code>. The L-M algorithm is a hybrid that switches between two other algorithms depending on when those algorithms perform optimally. Most practically, the L-M algorithm appears to be quite robust to “poor” starting values The main arguments to <code>nlsLM()</code> are the same as those to <code>nls()</code>. For example, the “Typical” VBGF is fit to the male Black Drum data below using the L-M algorithm.</p>
+<pre class="r"><code>&gt; vbTyp &lt;- vbFuns()
+&gt; svTyp &lt;- list(Linf=1193,K=0.13,t0=-2.0)
+&gt; fitLM &lt;- nlsLM(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp)
+&gt; bootLM &lt;- nlsBoot(fitLM)
+&gt; cbind(Ests=coef(fitLM),confint(bootLM))</code></pre>
+<pre><code>             Ests      95% LCI      95% UCI
+Linf 1196.7193456 1180.1552614 1214.7261545
+K       0.1418266    0.1233187    0.1616368
+t0     -1.5943403   -2.5867832   -0.8740731</code></pre>
+<pre class="r"><code>&gt; predict(bootLM,vbTyp,t=3)</code></pre>
+<pre><code>prediction    95% LCI    95% UCI 
+  574.0225   535.9007   610.3355 </code></pre>
+<p>One may also put constraints on the parameters when using <code>nlsLM()</code>. The lower and upper bounds are entered into separate named <strong>vectors</strong> with the same structure as the list used for starting values. These lists are then provided to <code>lower=</code> and <code>upper=</code>, respectively. Infinite bounds are the default but may be specifically defined for some parameters with <code>Inf</code> and <code>-Inf</code> (where <code>Inf</code> represents infinity). For example, <span class="math">\(L_\infty\)</span> and <span class="math">\(K\)</span> are constrained to be positive values in the model fitting below. In this instance, these bounds had no noticeable effect until bootstapping (fewer lack of convergences). In other instances, the constraints may substantively impact the parameter estimates. Bounds should be set as widely (as conservatively) as possible.</p>
+<pre class="r"><code>&gt; fitLM1 &lt;- nlsLM(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp,
+                 lower=c(Linf=1,K=0.0001,t0=-Inf),
+                 upper=c(Linf=Inf,K=Inf,t0=Inf))
+&gt; bootLM1 &lt;- nlsBoot(fitLM1)
+&gt; cbind(Ests=coef(fitLM1),confint(bootLM1))</code></pre>
+<pre><code>             Ests      95% LCI      95% UCI
+Linf 1196.7193456 1178.2227501 1216.8337507
+K       0.1418266    0.1225231    0.1606979
+t0     -1.5943403   -2.5834312   -0.8393424</code></pre>
+<p>Parameter constraints may also be used with <code>nls()</code> but the optimization algorithm must be changed to “Port” with <code>algorithm=&quot;port&quot;</code>. With this argument the constraints are added as shown above for <code>nlsLM()</code>.</p>
+<pre class="r"><code>&gt; fitP &lt;- nls(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp,
+              algorithm=&quot;port&quot;,
+              lower=c(Linf=1,K=0.0001,t0=-Inf),
+              upper=c(Linf=Inf,K=Inf,t0=Inf))
+&gt; bootP &lt;- nlsBoot(fitP)
+&gt; cbind(Ests=coef(fitP),confint(bootP))</code></pre>
+<pre><code>             Ests      95% LCI      95% UCI
+Linf 1196.7188609 1180.3172141 1215.2540700
+K       0.1418273    0.1229652    0.1620931
+t0     -1.5943118   -2.5164748   -0.7951072</code></pre>
+<p>Still other algorithms are found in <code>nlxb()</code> from <code>nlmrt</code> and <code>nls2()</code> from <code>nls2</code>.</p>
+<hr />
+</div>
+<div id="reproducibility-information" class="section level2">
+<h2>Reproducibility Information</h2>
+<ul>
+<li><strong>Compiled Date:</strong> Mon Sep 21 2015</li>
+<li><strong>Compiled Time:</strong> 6:25:44 PM</li>
+<li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
+<li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
+<li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>
+<li><strong>Required Packages:</strong> FSA, dplyr, nlstools, minpack.lm, captioner, knitr and their dependencies (assertthat, DBI, digest, evaluate, formatR, graphics, grDevices, highr, lazyeval, magrittr, markdown, methods, plotrix, plyr, R6, Rcpp, stats, stringr, tools, utils, yaml)</li>
+<li><strong>Other Packages:</strong> captioner_2.2.3, dplyr_0.4.3, extrafont_0.17, FSA_0.7.10, knitr_1.11, minpack.lm_1.1-9, nlstools_1.0-2</li>
+<li><strong>Loaded-Only Packages:</strong> assertthat_0.1, DBI_0.3.1, digest_0.6.8, evaluate_0.7.2, extrafontdb_1.0, formatR_1.2, gdata_2.17.0, gtools_3.5.0, htmltools_0.2.6, lazyeval_0.1.10, magrittr_1.5, parallel_3.2.2, plyr_1.8.3, R6_2.1.1, Rcpp_0.12.1, rmarkdown_0.8, Rttf2pt1_1.3.3, stringi_0.5-5, stringr_1.0.0, tools_3.2.2, yaml_2.1.13</li>
+<li><strong>Links:</strong> <a href="OtherNLAlgorithms.R">Script</a> / <a href="OtherNLAlgorithms.Rmd">RMarkdown</a></li>
+</ul>
+<hr />
+<div class="references">
+<h2>References</h2>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

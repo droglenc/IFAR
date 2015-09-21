@@ -1,0 +1,108 @@
+---
+layout: page
+title: Individual Growth
+subtitle: Other Nonlinear Model Fitting Algorithms
+author: Derek H. Ogle
+csl: ../american-fisheries-society.csl
+bibliography: ../IFARSupplement.bib
+output: 
+  html_document: 
+    fig_width: 5
+    self_contained: no
+---
+```{r echo=FALSE, eval=FALSE}
+##############################################################
+# == BEGIN -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
+# First line renders an appropriate HTML file for the webpage
+# Second line makes the script file
+# RUN BOTH MANUALLY (following using Knit HTML button)
+setwd("C:/aaaWork/Web/GitHub/IFAR/supplements/growth")
+source("../modHTML.R"); modHTML2("OtherNLAlgorithms")
+if (require(FSA)) purl2("OtherNLAlgorithms.Rmd",topnotes="User must set working directory appropriately.")
+# == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
+##############################################################
+```
+
+The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the model were illustrated in the book.  That description used one common nonlinear model fitting algorithm.  Alternative algorithms for fitting nonlinear models are introduced here.  Methods for [fitting other parameterizations of the VBGF are here](OtherVBGFParams.html) and [alternative nonlinear model fitting algorithms are illustrated here](OtherNLAlgorithms.html).
+
+### Required Packages for this Supplement
+Functions used in this supplement require the packages shown below.
+
+```{r echo=FALSE, results='hide', message=FALSE, warnings=FALSE}
+##############################################################
+# == BEGIN -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
+# 
+# Setup of knitr
+source("../knitr_setup.R")
+# declare packages used
+rqrd <- c("FSA","dplyr","nlstools","minpack.lm","captioner","knitr")
+# setup figure, table, and equation captioning
+library(captioner)
+figcaps <- captioner(prefix="Figure")
+figcaps("","")
+# == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
+##############################################################
+```
+```{r cache=FALSE, results='hide', message=FALSE}
+library(FSA)
+library(dplyr)
+library(nlstools)
+library(minpack.lm)
+```
+
+### Data Used in this Supplement
+  
+The male Black Drum data used in the book will also be used here.
+```{r}
+bdmf <- read.csv("BlackDrum2001.csv") %>%
+  select(-c(spname,day,weight)) %>%
+  filterD(sex %in% c("male","female"),otoage<50)
+bdm <- filterD(bdmf,sex=="male")
+headtail(bdm)
+```
+
+## Additional Nonlinear Regression Algorithms
+
+The `nls()` function uses the Gauss-Newton algorithm by default.  However, there are many other algorithms for fitting nonlinear functions.  Several of these algorithms are coded in R.  Two of these algorithms are highlighted here.
+
+The Levenberg-Marquardt (L-M) is a powerful and common algorithm that is implemented in `nlsLM()` from `minpack.lm`.  The L-M algorithm is a hybrid that switches between two other algorithms depending on when those algorithms perform optimally.  Most practically, the L-M algorithm appears to be quite robust to "poor" starting values  The main arguments to `nlsLM()` are the same as those to `nls()`.  For example, the "Typical" VBGF is fit to the male Black Drum data below using the L-M algorithm.
+
+```{r warning=FALSE}
+vbTyp <- vbFuns()
+svTyp <- list(Linf=1193,K=0.13,t0=-2.0)
+fitLM <- nlsLM(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp)
+bootLM <- nlsBoot(fitLM)
+cbind(Ests=coef(fitLM),confint(bootLM))
+predict(bootLM,vbTyp,t=3)
+```
+
+One may also put constraints on the parameters when using `nlsLM()`.  The lower and upper bounds are entered into separate named **vectors** with the same structure as the list used for starting values.  These lists are then provided to `lower=` and `upper=`, respectively.  Infinite bounds are the default but may be specifically defined for some parameters with `Inf` and `-Inf` (where `Inf` represents infinity).  For example, $L_\infty$ and $K$ are constrained to be positive values in the model fitting below.  In this instance, these bounds had no noticeable effect until bootstapping (fewer lack of convergences).  In other instances, the constraints may substantively impact the parameter estimates.  Bounds should be set as widely (as conservatively) as possible.
+```{r warning=FALSE}
+fitLM1 <- nlsLM(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp,
+               lower=c(Linf=1,K=0.0001,t0=-Inf),
+               upper=c(Linf=Inf,K=Inf,t0=Inf))
+bootLM1 <- nlsBoot(fitLM1)
+cbind(Ests=coef(fitLM1),confint(bootLM1))
+```
+
+Parameter constraints may also be used with `nls()` but the optimization algorithm must be changed to "Port" with `algorithm="port"`.  With this argument the constraints are added as shown above for `nlsLM()`.
+```{r warning=FALSE}
+fitP <- nls(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp,
+            algorithm="port",
+            lower=c(Linf=1,K=0.0001,t0=-Inf),
+            upper=c(Linf=Inf,K=Inf,t0=Inf))
+bootP <- nlsBoot(fitP)
+cbind(Ests=coef(fitP),confint(bootP))
+```
+
+Still other algorithms are found in `nlxb()` from `nlmrt` and `nls2()` from `nls2`.
+
+--------------------------------------------------------------
+
+```{r echo=FALSE, results='asis'}
+reproInfo(rqrdPkgs=rqrd,out="markdown",links=c(Script="OtherNLAlgorithms.R",RMarkdown="OtherNLAlgorithms.Rmd"))
+```
+
+--------------------------------------------------------------
+
+## References

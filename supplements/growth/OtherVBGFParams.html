@@ -6,15 +6,13 @@ author: Derek H. Ogle
 ---
 
 
+<p>The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the model were illustrated in the book. The VBGF used there is from <span class="citation">Beverton and Holt (1957)</span> and is called the “Typical” parameterizatin of the VBGF. Other parameterizations exist and this supplement illustrates how to fit one of the other parameterizations of the VBGF. Methods for <a href="OtherGrowthFuns.html">fitting other growth functions are here</a> and <a href="OtherNLAlgorithms.html">alternative nonlinear model fitting algorithms are illustrated here</a>.</p>
 <div id="required-packages-for-this-supplement" class="section level3">
 <h3>Required Packages for this Supplement</h3>
 <p>Functions used in this supplement require the packages shown below.</p>
 <pre class="r"><code>&gt; library(FSA)
-&gt; library(magrittr)
 &gt; library(dplyr)
-&gt; library(nlstools)
-&gt; library(AICcmodavg)
-&gt; library(minpack.lm)</code></pre>
+&gt; library(nlstools)</code></pre>
 </div>
 <div id="data-used-in-this-supplement" class="section level3">
 <h3>Data Used in this Supplement</h3>
@@ -45,7 +43,7 @@ author: Derek H. Ogle
   r &lt;- (L3-L2)/(L2-L1)
   L1+(L3-L1)*((1-r^(2*((t-t1)/(t3-t1))))/(1-r^2))
 }
-&lt;environment: 0x0a5eba94&gt;</code></pre>
+&lt;environment: 0x0764c514&gt;</code></pre>
 <p>The three parameters in the “Francis” parameterizations are the expected (i.e., mean) lengths at three ages. Two of the ages are generally the youngest and oldest (or very close to those) ages in the data. The third age is, by definitition, halfway between these two ages. Thus, the parameters will be the expected lengths at a young, old, and intermediate age. In this example, I have chosen to estimate expected lengths for the youngest and oldest ages in the data.</p>
 <pre class="r"><code>&gt; ( ages &lt;- range(bdm$otoage) )</code></pre>
 <pre><code>[1]  3 42</code></pre>
@@ -70,12 +68,12 @@ L3 1194.248 1176.6756 1212.7376</code></pre>
 <pre class="r"><code>&gt; bootF &lt;- nlsBoot(nlsF)
 &gt; cbind(Ests=coef(nlsF),confint(bootF))</code></pre>
 <pre><code>       Ests   95% LCI   95% UCI
-L1  572.975  536.8158  610.6547
-L2 1157.463 1146.0757 1168.0821
-L3 1194.248 1178.7002 1212.1070</code></pre>
+L1  572.975  533.6261  609.1013
+L2 1157.463 1145.5265 1169.1728
+L3 1194.248 1177.7492 1213.2164</code></pre>
 <pre class="r"><code>&gt; predict(bootF,vbF,t=3,t1=ages)</code></pre>
 <pre><code>prediction    95% LCI    95% UCI 
-  572.4929   536.8158   610.6547 </code></pre>
+  572.3848   533.6261   609.1013 </code></pre>
 <p>Note that the intra-parameter correlations are relatively low for this parameterization. Additionally, the scale of the parameters in the “Francis” parameterization are usually similar. Both of these characteristics may aid model convergence.</p>
 <pre class="r"><code>&gt; summary(nlsF,correlation=TRUE)</code></pre>
 <pre><code>
@@ -96,121 +94,28 @@ L3  0.17  0.65
 
 Number of iterations to convergence: 5 
 Achieved convergence tolerance: 3.023e-06</code></pre>
-</div>
-<div id="fitting-other-growth-functions" class="section level2">
-<h2>Fitting Other Growth Functions</h2>
-<p>Mean length-at-age has been modeled by functions other than the VBGF. Common other functions are the exponential, logistic, and polynomial (<span class="citation">Ricker (1975)</span>), as well as the specific functions of <span class="citation">Gompertz (1825)</span>, <span class="citation">Richards (1959)</span>, <span class="citation">Schnute (1981)</span>, and <span class="citation">Schnute and Richards (1990)</span>. The “Schnute” model and several parameterizations of the logistic, Gompertz, and Richards models have been coded in convenience functions in <code>FSA</code>. For example, the default parameterizations of the logistic, Gompertz, and Richards models are defined below. Again, include <code>msg=TRUE</code> for definitions of the parameters. Further note that the Richards model has four parameters.</p>
-<pre class="r"><code>&gt; l1 &lt;- logisticFuns()
-&gt; g1 &lt;- GompertzFuns()
-&gt; r1 &lt;- RichardsFuns()</code></pre>
-<p>Unfortunately, convenience functions for finding starting values for each of these functions do not exist. Starting values can be obtained by iteratively superimposing a curve of the function at chosen values for the parameters onto a scatterplot of the raw data. This is demonstrated below for the Richards function. [Note that this may take considerable trial-and-error to find parameter values that provide a curve in the “neighborhood” of the data. Starting values likely only need to provide a rough fit to the data. However, I had considerable difficult finding starting values that would work with the Richards function for these data.]</p>
-<pre class="r"><code>&gt; plot(tl~otoage,data=bdm,pch=19,col=rgb(0,0,0,1/4))
-&gt; svR1 &lt;- list(Linf=1200,k=0.1,a=1.1,b=0.4)
-&gt; curve(r1(x,unlist(svR1)),from=3,to=42,add=TRUE,lwd=2)</code></pre>
-<p><img src="OtherVBGFParams_files/figure-html/RichardsStarts-1.png" title="Richards growth function evaluated at potential starting values superimposed on the length-at-age data for male Black Drum." alt="Richards growth function evaluated at potential starting values superimposed on the length-at-age data for male Black Drum." width="480" /></p>
-<p>A similar process (not shown) was followed for the logistic and Gompertz models.</p>
-<pre class="r"><code>&gt; svG1 &lt;- list(Linf=1250,gi=0.15,ti=2)
-&gt; svL1 &lt;- list(Linf=1250,gninf=0.15,ti=4)</code></pre>
-<p>These models can be fit and summarized as illustrated above and in the book.</p>
-<pre class="r"><code>&gt; nlsR1 &lt;- nls(tl~r1(otoage,Linf,k,a,b),data=bdm,start=svR1)
-&gt; bootR1 &lt;- nlsBoot(nlsR1)</code></pre>
-<pre><code>Warning in nlsBoot(nlsR1): The fit did not converge 99 times
-during bootstrapping</code></pre>
-<pre class="r"><code>&gt; cbind(Ests=coef(nlsR1),confint(bootR1))</code></pre>
-<pre><code>             Ests      95% LCI      95% UCI
-Linf 1.216988e+03 1.188552e+03 1248.8911551
-k    9.419418e-02 6.607613e-02    0.1469104
-a    1.155605e+00 6.871519e-01    1.2211790
-b    3.793338e-01 2.755152e-01    1.1601620</code></pre>
-<pre class="r"><code>&gt; predict(bootR1,r1,t=3)</code></pre>
-<pre><code>prediction    95% LCI    95% UCI 
-  560.3240   521.6165   599.8454 </code></pre>
-<p>Information criterion can be used to identify which of these models best fits the male Black Drum data. First, the Gompertz and logistic functions are fit to the data.</p>
-<pre class="r"><code>&gt; nlsG1 &lt;- nls(tl~g1(otoage,Linf,gi,ti),data=bdm,start=svG1)
-&gt; nlsL1 &lt;- nls(tl~l1(otoage,Linf,gninf,ti),data=bdm,start=svL1)</code></pre>
-<p>These objects are then submitted to <code>AICctab</code> to provide a summary table. From this, the Richards models is most supported followed by the VBGF. The logistic and Gompertz models had little support, likely because they force an inflection point in the model which is not apparent in the data.</p>
-<pre class="r"><code>&gt; aictab(list(nlsF,nlsL1,nlsG1,nlsR1),c(&quot;VBGF&quot;,&quot;logistic&quot;,&quot;Gompertz&quot;,&quot;Richards&quot;))</code></pre>
-<pre><code>
-Model selection based on AICc :
-
-         K   AICc Delta_AICc AICcWt Cum.Wt      LL
-Richards 5 779.60       0.00   0.63   0.63 -384.36
-VBGF     4 780.85       1.25   0.34   0.96 -386.14
-Gompertz 4 785.34       5.74   0.04   1.00 -388.38
-logistic 4 790.33      10.73   0.00   1.00 -390.88</code></pre>
-<p>A plot of the best-fit model for each growth functions shows, however, that there is likely very little difference in predicted values among the four models.</p>
-<pre class="r"><code>&gt; plot(tl~otoage,data=bdm,pch=19,col=rgb(0,0,0,1/4))
-&gt; curve(r1(x,coef(nlsR1)),from=3,to=42,add=TRUE,lwd=4)
-&gt; curve(vbF(x,coef(nlsF),t1=ages),from=3,to=42,add=TRUE,lwd=2,
-        col=&quot;blue&quot;)
-&gt; curve(g1(x,coef(nlsG1)),from=3,to=42,add=TRUE,col=&quot;red&quot;)
-&gt; curve(l1(x,coef(nlsL1)),from=3,to=42,add=TRUE,col=&quot;orange&quot;)</code></pre>
-<p><img src="OtherVBGFParams_files/figure-html/unnamed-chunk-16-1.png" title="" alt="" width="480" /></p>
-</div>
-<div id="additional-nonlinear-regression-algorithms" class="section level2">
-<h2>Additional Nonlinear Regression Algorithms</h2>
-<p>The <code>nls()</code> function uses the Gauss-Newton algorithm by default. However, there are many other algorithms for fitting nonlinear functions. Several of these algorithms are coded in R. Two of these algorithms are highlighted here.</p>
-<p>The Levenberg-Marquardt (L-M) is a powerful and common algorithm that is implemented in <code>nlsLM()</code> from <code>minpack.lm</code>. The L-M algorithm is a hybrid that switches between two other algorithms depending on when those algorithms perform optimally. Most practically, the L-M algorithm appears to be quite robust to “poor” starting values The main arguments to <code>nlsLM()</code> are the same as those to <code>nls()</code>. For example, the Richards model is fit to the Black Drum data below using the L-M algorithm.</p>
-<pre class="r"><code>&gt; lmR1 &lt;- nlsLM(tl~r1(otoage,Linf,k,a,b),data=bdm,start=svR1)
-&gt; bootlmR1 &lt;- nlsBoot(lmR1)
-&gt; cbind(Ests=coef(lmR1),confint(bootlmR1))</code></pre>
-<pre><code>             Ests      95% LCI      95% UCI
-Linf 1.216987e+03 1.191151e+03 1264.5659363
-k    9.419671e-02 5.398911e-02    0.1476226
-a    1.155596e+00 6.800272e-01    1.2220145
-b    3.793506e-01 2.377583e-01    1.2988192</code></pre>
-<pre class="r"><code>&gt; predict(bootlmR1,r1,t=3)</code></pre>
-<pre><code>prediction    95% LCI    95% UCI 
-  559.8447   515.9111   601.7432 </code></pre>
-<p>One may also put constraints on the parameters when using <code>nlsLM()</code>. The lower and upper bounds are entered into separate named <strong>vectors</strong> with the same structure as the list used for starting values. These lists are then provided to <code>lower=} and</code>upper=}, respectively. Infinite bounds are the default but may be specifically defined for some parameters with <code>Inf} and</code>-Inf} (where `Inf} represents infinity). For example, <span class="math">\(L_\infty\)</span>, <span class="math">\(k\)</span>, <span class="math">\(a\)</span>, and <span class="math">\(b\)</span> are constrained to be positive values in the model fitting below. In this instance, these bound had no noticeable effect until bootstapping (fewer lack of convergences). In other instances, the constraints may substantively impact the parameter estimates. Bounds should be set as widely (as conservatively) as possible.</p>
-<pre class="r"><code>&gt; lmR1b &lt;- nlsLM(tl~r1(otoage,Linf,k,a,b),data=bdm,start=svR1,
-                 lower=c(Linf=1,K=0.0001,a=0.0001,b=0.0001),
-                 upper=c(Linf=Inf,K=Inf,a=Inf,b=Inf))
-&gt; bootlmR1b &lt;- nlsBoot(lmR1b)
-&gt; cbind(Ests=coef(lmR1b),confint(bootlmR1b))</code></pre>
-<pre><code>             Ests      95% LCI      95% UCI
-Linf 1.216987e+03 1189.1792462 1263.1975748
-k    9.419671e-02    0.0532662    0.1458469
-a    1.155596e+00    0.7047226    1.2168230
-b    3.793506e-01    0.2335897    1.2349995</code></pre>
-<p>Parameter constrains may also be used with <code>nls()</code> but the optimization algorithm must be changed to “Port” with <code>algorithm=&quot;port&quot;</code>. With this argument the constraints are added as shown above for <code>nlsLM()</code>.</p>
-<pre class="r"><code>&gt; nlsR1c &lt;- nls(tl~r1(otoage,Linf,k,a,b),data=bdm,start=svR1,
-                algorithm=&quot;port&quot;,
-                lower=c(Linf=1,K=0.0001,a=0.0001,b=0.0001),
-                upper=c(Linf=Inf,K=Inf,a=Inf,b=Inf))
-&gt; bootnlsR1c &lt;- nlsBoot(nlsR1c)
-&gt; cbind(Ests=coef(nlsR1c),confint(bootnlsR1c))</code></pre>
-<pre><code>             Ests      95% LCI      95% UCI
-Linf 1.216988e+03 1.189351e+03 1266.2577571
-k    9.419474e-02 5.350288e-02    0.1454362
-a    1.155603e+00 7.163542e-01    1.2297301
-b    3.793374e-01 2.435951e-01    1.1309667</code></pre>
-<p>Still other algorithms are found in <code>nlxb()</code> from <code>nlmrt</code> and <code>nls2()</code> from <code>nls2</code>.</p>
 <hr />
 </div>
 <div id="reproducibility-information" class="section level2">
 <h2>Reproducibility Information</h2>
 <ul>
 <li><strong>Compiled Date:</strong> Mon Sep 21 2015</li>
-<li><strong>Compiled Time:</strong> 5:04:07 PM</li>
+<li><strong>Compiled Time:</strong> 6:24:59 PM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>
-<li><strong>Required Packages:</strong> FSA, magrittr, dplyr, nlstools, AICcmodavg, (minpack.lm, captioner, knitr and their dependencies (assertthat, DBI, digest, evaluate, formatR, graphics, grDevices, highr, lattice, lazyeval, markdown, MASS, Matrix, methods, nlme, plotrix, plyr, R6, Rcpp, stats, stats4, stringr, tools, unmarked, utils, VGAM, xtable, yaml)</li>
-<li><strong>Other Packages:</strong> AICcmodavg_2.0-3, captioner_2.2.3, dplyr_0.4.3, extrafont_0.17, FSA_0.7.10, knitr_1.11, magrittr_1.5, minpack.lm_1.1-9, nlstools_1.0-2</li>
-<li><strong>Loaded-Only Packages:</strong> assertthat_0.1, DBI_0.3.1, digest_0.6.8, evaluate_0.7.2, extrafontdb_1.0, formatR_1.2, gdata_2.17.0, grid_3.2.2, gtools_3.5.0, htmltools_0.2.6, lattice_0.20-33, lazyeval_0.1.10, MASS_7.3-44, Matrix_1.2-2, nlme_3.1-122, parallel_3.2.2, plyr_1.8.3, R6_2.1.1, raster_2.4-20, Rcpp_0.12.1, reshape_0.8.5, rmarkdown_0.8, Rttf2pt1_1.3.3, sp_1.2-0, splines_3.2.2, stats4_3.2.2, stringi_0.5-5, stringr_1.0.0, tools_3.2.2, unmarked_0.11-0, VGAM_0.9-8, xtable_1.7-4, yaml_2.1.13</li>
-<li><strong>Links:</strong> <a href="backcalculation.R">Script</a> / <a href="index.Rmd">RMarkdown</a></li>
+<li><strong>Required Packages:</strong> FSA, dplyr, nlstools, captioner, knitr and their dependencies (assertthat, DBI, digest, evaluate, formatR, graphics, grDevices, highr, lazyeval, magrittr, markdown, methods, plotrix, plyr, R6, Rcpp, stats, stringr, tools, utils, yaml)</li>
+<li><strong>Other Packages:</strong> captioner_2.2.3, dplyr_0.4.3, extrafont_0.17, FSA_0.7.10, knitr_1.11, nlstools_1.0-2</li>
+<li><strong>Loaded-Only Packages:</strong> assertthat_0.1, DBI_0.3.1, digest_0.6.8, evaluate_0.7.2, extrafontdb_1.0, formatR_1.2, gdata_2.17.0, gtools_3.5.0, htmltools_0.2.6, lazyeval_0.1.10, magrittr_1.5, MASS_7.3-44, parallel_3.2.2, plyr_1.8.3, R6_2.1.1, Rcpp_0.12.1, rmarkdown_0.8, Rttf2pt1_1.3.3, stringi_0.5-5, stringr_1.0.0, tools_3.2.2, yaml_2.1.13</li>
+<li><strong>Links:</strong> <a href="OtherVBGFParams.R">Script</a> / <a href="OtherVBGFParams.Rmd">RMarkdown</a></li>
 </ul>
 <hr />
 <div class="references">
 <h2>References</h2>
+<p>Beverton, R. J. H., and S. J. Holt. 1957. On the dynamics of exploited fish populations. Page 533. United Kingdom Ministry of Agriculture; Fisheries.</p>
 <p>Francis, R. I. C. C. 1988. Are growth parameters estimated from tagging and age-length data comparable? Canadian Journal of Fisheries and Aquatic Sciences 45:936–942.</p>
-<p>Gompertz, B. 1825. On the nature of the function expressive of the law of human mortality and on a new mode of determining the value of life contingencies. Philosophical Transactions of the Royal Society of London 115:515–585.</p>
 <p>Mooij, W. M., J. M. V. Rooij, and S. Wijnhoven. 1999. Analysis and comparison of fish growth from small samples of length-at-age data: Detection of sexual dimorphism in Eurasian Perch as an example. Transactions of the American Fisheries Society 128:483–490.</p>
-<p>Richards, F. J. 1959. A flexible growth function for empirical use. Journal of Experimental Botany 10:290–300.</p>
-<p>Ricker, W. E. 1975. Computation and interpretation of biological statistics of fish populations. Bulletin of the Fisheries Research Board of Canada.</p>
 <p>Schnute, J. T. 1981. A versatile growth model with statistically stable parameters. Canadian Journal of Fisheries and Aquatic Sciences 38:1128–1140.</p>
-<p>Schnute, J. T., and L. J. Richards. 1990. A unified approach to the analysis of fish growth, maturity, and survivorship data. Canadian Journal of Fisheries and Aquatic Sciences 47:24–40.</p>
 <p><span>von <span>B</span>ertalanffy</span>, L. 1938. A quantitative theory of organic growth (inquiries on growth laws II). Human Biology 10:181–213.</p>
 </div>
 </div>

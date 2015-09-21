@@ -3,6 +3,10 @@ layout: page
 title: Supplements
 ---
 
+<div style="width=auto; max-width:200px; margin-left:auto; margin-right:auto;text-align:center">
+  <img src="../img/work-in-progress.png" alt="fishR logo" width="100%">
+</div>
+
 1. **(Very Brief) Introduction to R Basics**
     * R Install -- [Windows](installations/InstallRWin.html) / [Mac](installations/InstallRMac.html)
     * RStudio Install & Setup -- [Windows](installations/InstallRStudioWin.html) /  [Mac]
@@ -27,9 +31,9 @@ title: Supplements
 1. **Abundance from Depletion Data**
 1. **Mortality Rates**
 1. **Individual Growth**
-    * [Fitting Other VBGF Parameterizations], [BlackDrum2001.csv](BlackDrum2001.csv)
-    * [Fitting Other Growth Functions]
-    * [Additional Nonlinear Regression Algorithms]
+    * [Fitting Other VBGF Parameterizations](OtherVBGFParams.html), [BlackDrum2001.csv](BlackDrum2001.csv)
+    * [Fitting Other Growth Functions](OtherGrowthFuns.html)
+    * [Additional Nonlinear Regression Algorithms](OtherNLAlgorithms.html)
     
 1. **Recruitment**
     * [Maturity Schedules]
