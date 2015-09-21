@@ -11,8 +11,8 @@ title: Supplements
 <ol>
   <li><strong>(Very Brief) Introduction to R Basics</strong>
     <ul>
-      <li>R Install – <a href="installations/InstallRWin.html">Windows</a> / <a href="installations/InstallRMac.html">Mac</a></li>
-      <li>RStudio Install &amp; Setup – <a href="installations/InstallRStudioWin.html">Windows</a> /  <a href="installations/InstallRStudioMac.html">Mac</a></li>
+      <li>R Install – <a href="installations/InstallRWin.html">Windows</a> / <a href="installations/InstallRMac.html">Mac OS</a></li>
+      <li>RStudio Install &amp; Setup – <a href="installations/InstallRStudioWin.html">Windows</a> /  <a href="installations/InstallRStudioMac.html">Mac OS</a></li>
       <li><a href="installations/InstallPackagesRStudio.html">Install Packages in RStudio</a></li>
       <li>Install Packages in R – <a href="installations/InstallPackagesRWin.html">Windows</a> /  Mac</li>
     </ul>
@@ -39,9 +39,10 @@ title: Supplements
 <ol start="12">
   <li><strong>Individual Growth</strong>
     <ul>
-      <li><a href="OtherVBGFParams.html">Fitting Other VBGF Parameterizations</a>, <a href="BlackDrum2001.csv">BlackDrum2001.csv</a></li>
+      <li><a href="OtherVBGFParams.html">Fitting Other VBGF Parameterizations</a></li>
       <li><a href="OtherGrowthFuns.html">Fitting Other Growth Functions</a></li>
       <li><a href="OtherNLAlgorithms.html">Additional Nonlinear Regression Algorithms</a></li>
+      <li>Data -- <a href="BlackDrum2001.csv">BlackDrum2001.csv</a></li>
     </ul>
   </li>
   <li><strong>Recruitment</strong>
