@@ -5,18 +5,20 @@ subtitle: For Windows
 css: /supplements/installations/directions.css
 ---
 
+The following steps may be used to install and configure RStudio on Windows operating systems.  [See these directions](InstallRStudioMac.html) for installing RStudio on a Macintosh operating system.
+
 ## RStudio Installation
 
 1. Go to the R Studio download page at [https://www.rstudio.com/products/rstudio/#Desktop](https://www.rstudio.com/products/rstudio/#Desktop).  Press the `DOWNLOAD RSTUDIO DESKTOP` button/graphic (near bottom-left of the image below).
 
     <div class="ctrstaticimg">
-    <img src="figures/RStudio_Install_Home.PNG" width="100%">
+    <img src="figures/RStudio_WinInstall_Home.PNG" width="100%">
     </div>
 
 1. Select the link from the "Installers for Supported Platforms" list that corresponds to the operating system appropriate for your computer.  In the remainder of these directions I will demonstrate the installation for a WINDOWS operating system.  Either run the program or note where this executable program is saved on your computer.
 
     <div class="ctrstaticimg">
-    <img src="figures/RStudio_Install_ChooseOS.PNG" width="100%">
+    <img src="figures/RStudio_WinInstall_ChooseOS.PNG" width="100%">
     </div>
 
 1. If you did not run the program, then locate and run the downloaded file (called "RStudio-0.99.484.exe" or similar if the version number has changed).
