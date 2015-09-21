@@ -120,7 +120,7 @@ plot.new(); text(0.5,0.5,"Osprey",cex=1.5)
 plot.new(); text(0.5,0.5,"Era = 1977-1980",cex=1.5,srt=90)
 plot.new(); text(0.5,0.5,"Era = 1997-2001",cex=1.5,srt=90)
 
-par(mar=c(3.05,3.05,0.65,0.65))
+par(mar=c(3.05,3.05,0.65,0.65),mgp=c(1.7,0.5,0))
 xlmt <- c(-0.5,14.5)
 ylmt <- c(0,700)
 plot(fl~age,data=BTH1,xlab="",ylab="Fork Length",
@@ -133,4 +133,4 @@ plot(fl~age,data=BTO2,xlab="Age",ylab="",
      pch=19,xlim=xlmt,ylim=ylmt)
 
 
-# Script created at 2015-09-21 09:48:47
+# Script created at 2015-09-21 09:55:10
