@@ -44,7 +44,8 @@ author: Derek H. Ogle
 [2,]    2    1</code></pre>
 <pre class="r"><code>&gt; layout(m)</code></pre>
 <p>The <code>layout.show()</code> function is used to show the layout grid. Its only argument is the number of positions to show.</p>
-<p><img src="ComplexLayouts_files/figure-html/Layout1-1.png" title="" alt="" width="240" /><img src="ComplexLayouts_files/figure-html/Layout1-2.png" title="" alt="" width="240" /><img src="ComplexLayouts_files/figure-html/Layout1-3.png" title="" alt="" width="240" /><img src="ComplexLayouts_files/figure-html/Layout1-4.png" title="" alt="" width="240" /></p>
+<pre class="r"><code>&gt; layout.show(4)</code></pre>
+<p><img src="ComplexLayouts_files/figure-html/Layout1-1.png" title="" alt="" width="240" /></p>
 <p>Figure 1: Illustration of 2x2 layout grid for graphics.</p>
 <p>The 2x2 grid in Figure 1 is not that interesting because that layout is just as easily constructed with <code>mfrow=</code> in <code>par()</code> (as shown in the book). Layouts, however, can also be constructed that are not “grids.” For example, the entire first row may be one graphic with a second row of two graphics. This layout grid is constructed by including a “1” in the first two positions of the layout matrix Figure 2.</p>
 <pre class="r"><code>&gt; ( m &lt;- matrix(c(1,1,2,3),nrow=2,byrow=TRUE) )</code></pre>
@@ -70,7 +71,7 @@ author: Derek H. Ogle
 <pre class="r"><code>&gt; layout(m,height=c(1,4),width=c(4,1),respect=TRUE)
 &gt; layout.show(3)</code></pre>
 <p><img src="ComplexLayouts_files/figure-html/unnamed-chunk-6-1.png" title="" alt="" width="480" /></p>
-<p>Figure 4</p>
+<p>Figure 4: Illustration of layout grid for graphics with differing row heights and column widths.</p>
 <p>Figure 5 is an example that fills the layout shown in Figure 4.</p>
 <pre class="r"><code>&gt; par(mar=c(4,4,0,0))
 &gt; plot(age3~eggs,data=BLH,xlim=c(0,2.4),ylim=c(0,240),pch=19,
@@ -81,10 +82,9 @@ author: Derek H. Ogle
 &gt; par(mar=c(4,0,0,0))
 &gt; boxplot(BLH$age3,axes=FALSE,ylim=c(0,240))</code></pre>
 <p><img src="ComplexLayouts_files/figure-html/unnamed-chunk-7-1.png" title="" alt="" width="480" /></p>
-<p>Figure 5</p>
+<p>Figure 5: Illustration of layout grid with differing heights and widths such that a scatterplot appears in the ‘middle’ with corresponding boxplots on the ‘sides.’</p>
 <p>Finally, <code>layout()</code> can be used to make quite complex grids, as illustrated with the code below that produced Figure 6. Note that <code>plot.new()</code> creates a new blank plot in which the subsequent <code>text()</code> commands will place text (in this case marginal labels).</p>
-<pre class="r"><code>&gt; ## Get data subsets
-&gt; BTH1 &lt;- BT %&gt;% filterD(lake==&quot;Harrison&quot;,era==&quot;1977-80&quot;)
+<pre class="r"><code>&gt; BTH1 &lt;- BT %&gt;% filterD(lake==&quot;Harrison&quot;,era==&quot;1977-80&quot;)
 &gt; BTO1 &lt;- BT %&gt;% filterD(lake==&quot;Osprey&quot;,era==&quot;1977-80&quot;)
 &gt; BTH2 &lt;- BT %&gt;% filterD(lake==&quot;Harrison&quot;,era==&quot;1997-01&quot;)
 &gt; BTO2 &lt;- BT %&gt;% filterD(lake==&quot;Osprey&quot;,era==&quot;1997-01&quot;)
@@ -122,7 +122,7 @@ author: Derek H. Ogle
 <h2>Reproducibility Information</h2>
 <ul>
 <li><strong>Compiled Date:</strong> Mon Sep 21 2015</li>
-<li><strong>Compiled Time:</strong> 9:42:08 AM</li>
+<li><strong>Compiled Time:</strong> 9:48:46 AM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>

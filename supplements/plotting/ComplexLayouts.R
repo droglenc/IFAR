@@ -36,7 +36,8 @@ layout(m)
 # ############################################################
 # This code is a repeat of the code immediately above and is
 # only used to efficiently produce the plot for the supplement.
-
+( m <- matrix(4:1,nrow=2,byrow=TRUE) )
+layout(m)
 # ############################################################
 layout.show(4)
 
@@ -64,6 +65,7 @@ layout.show(3)
 ( m <- matrix(c(1,1,2,3),nrow=2,byrow=TRUE) )
 layout(m)
 # ############################################################
+par(mar=c(3.05,3.05,0.65,0.65),mgp=c(1.9,0.3,0),tcl=-0.2,las=1,cex.lab=0.95,cex.axis=0.9)
 # ############################################################
 plot(age3~eggs,data=BLH,pch=19,xlab="Millions of Eggs",
      ylab="Relative Abundance of Age-3 Fish")
@@ -131,4 +133,4 @@ plot(fl~age,data=BTO2,xlab="Age",ylab="",
      pch=19,xlim=xlmt,ylim=ylmt)
 
 
-# Script created at 2015-09-21 09:42:18
+# Script created at 2015-09-21 09:48:47

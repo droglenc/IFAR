@@ -67,7 +67,7 @@ headtail(BLH)
 ## Complex Grid Layouts with `layout()`
 The `layout()` function allows for more complicated organizations of graphics.  The only required argument to `layout()` is a matrix that specifies the positions, as a grid, for a series of plots.  The numbers in the matrix describe which graphic will appear in that position.  For example, the following code constructs a 2x2 grid for four plots where the first plot will appear in the lower-right corner and the last plot will appear in the upper-left corner.
 
-```{r Layout1pre>}
+```{r Layout1pre}
 ( m <- matrix(4:1,nrow=2,byrow=TRUE) )
 layout(m)
 ```
@@ -105,11 +105,12 @@ layout.show(3)
 
 The following code fills this layout grid to produce `r figcaps("Layout3",display="cite")`.
 
-```{r echo=-c(1:10), results='hide', fig.width=2*figsz, fig.height=2*figsz}
+```{r echo=-c(1:11), results='hide', fig.width=2*figsz, fig.height=2*figsz}
 # ############################################################
 # This code is a repeat of the code immediately above and is
 # only used to efficiently produce the plot for the supplement.
 <<Layout2pre>>
+par(mar=c(3.05,3.05,0.65,0.65),mgp=c(1.9,0.3,0),tcl=-0.2,las=1,cex.lab=0.95,cex.axis=0.9)
 # ############################################################
 plot(age3~eggs,data=BLH,pch=19,xlab="Millions of Eggs",
      ylab="Relative Abundance of Age-3 Fish")
@@ -135,7 +136,7 @@ layout(m,height=c(1,4),width=c(4,1),respect=TRUE)
 layout.show(3)
 ```
 
-`r figcaps("Layout4",display="cite")`
+`r figcaps("Layout4")`
 
 `r figcaps("Layout5",display="cite")` is an example that fills the layout shown in `r figcaps("Layout4",display="cite")`.
 
@@ -155,12 +156,11 @@ par(mar=c(4,0,0,0))
 boxplot(BLH$age3,axes=FALSE,ylim=c(0,240))
 ```
 
-`r figcaps("Layout5",display="cite")`
+`r figcaps("Layout5")`
 
 Finally, `layout()` can be used to make quite complex grids, as illustrated with the code below that produced `r figcaps("Layout6",display="cite")`.  Note that `plot.new()` creates a new blank plot in which the subsequent `text()` commands will place text (in this case marginal labels).
 
 ```{r fig.width=2*figsz, fig.height=2*figsz}
-## Get data subsets
 BTH1 <- BT %>% filterD(lake=="Harrison",era=="1977-80")
 BTO1 <- BT %>% filterD(lake=="Osprey",era=="1977-80")
 BTH2 <- BT %>% filterD(lake=="Harrison",era=="1997-01")
