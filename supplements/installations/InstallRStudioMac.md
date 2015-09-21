@@ -1,41 +1,39 @@
 ---
 layout: page
 title: RStudio Setup
-subtitle: For Windows
+subtitle: For Mac OS
 css: /supplements/installations/directions.css
 ---
 
-The following steps may be used to install and configure RStudio on Windows operating systems.  [See these directions](InstallRStudioMac.html) for installing RStudio on a Macintosh operating system.
+The following steps may be used to install and configure RStudio on Macintosh operating systems.  [See these directions](InstallRStudioWin.html) for installing RStudio on a Windows operating system.
 
 ## RStudio Installation
 
 1. Go to the R Studio download page at [https://www.rstudio.com/products/rstudio/#Desktop](https://www.rstudio.com/products/rstudio/#Desktop).  Press the `DOWNLOAD RSTUDIO DESKTOP` button/graphic (near bottom-left of the image below).
 
     <div class="ctrstaticimg">
-    <img src="figures/RStudio_WinInstall_Home.PNG" width="100%">
+    <img src="figures/RStudio_MacInstall_Home.png" width="100%">
     </div>
 
-1. Select the link from the "Installers for Supported Platforms" list that corresponds to the operating system appropriate for your computer.  In the remainder of these directions I will demonstrate the installation for a WINDOWS operating system.  Either run the program or note where this executable program is saved on your computer.
+1. Select the link from the "Installers for Supported Platforms" list that corresponds to the operating system appropriate for your computer.  In the remainder of these directions I will demonstrate the installation for Mac OS.
 
     <div class="ctrstaticimg">
-    <img src="figures/RStudio_WinInstall_ChooseOS.PNG" width="100%">
+    <img src="figures/RStudio_MacInstall_ChooseOS.png" width="100%">
     </div>
 
-1. If you did not run the program, then locate and run the downloaded file (called "RStudio-0.99.484.exe" or similar if the version number has changed).
-
-1. Press `Next` on the first "Welcome" dialog box (depending on your version of Windows you may have received security warnings before this dialog box appears).
-
-1. Select a location to install RStudio (simply use the default location if the location is not important to you -- in the dialog box below I installed in a custom directory).  Press `Next`.
+1. Locate and open the downloaded disk image (called "RStudio-0.99.484.dmg" or similar if the version number has changed).
 
     <div class="ctrstaticimg">
-    <img src="figures/RStudio_WinInstall_Directory.PNG" width="100%">
+    <img src="figures/RStudio_MacInstall_DiskImage.png" width="100%">
     </div>
 
-1. Decide whether or not to create a shortcut in the Start Menu folder (I suggest you DO).  Press `Install.`
+1. Drag the RStudio.app icon into the Applications folder.  If you are installing RStudio for the first time it will copy the contents into the Applications folder, but if an older version of Rstudio exists, then you will need to select `Replace` to update the contents with the newer version of RStudio.
 
-1. RStudio should then begin installing files into the directory you chose previously.  If everything goes well then you should get one last dialog box noting such.  Press `Finish.`
+    <div class="ctrstaticimg">
+    <img src="figures/RStudio_MacInstall_AppReplace.png" width="100%">
+    </div>
 
-1. If you did not create a shortcut above then you will need to locate the "rstudio.exe" file inside the "RStudio/bin" folders inside the folder you chose to install RStudio in.  On my computer, for example this file is inside of "C:/apps/RStudio/bin".
+1. Close the folder and eject disk image.
 
 
 ## Preparing RStudio
@@ -45,23 +43,17 @@ The following steps may be used to install and configure RStudio on Windows oper
 1. Select the `Tools` menu and `Global Options` submenu.  In the ensuing dialog box select the `General` icon on the left (this should already be selected).
 
     <div class="ctrstaticimg">
-    <img src="figures/RStudio_PrepWin_OptionsGeneral.PNG" width="100%">
+    <img src="figures/RStudio_PrepMac_OptionsGeneral.png" width="100%">
     </div>
 
-    * Depending on your installation, the R version should read "[Default][32-bit]" followed by the path to the R program (as shown in the dialog box above).  If you installed the 64-bit version of R, then select the `Change...` button and then "use your machine's default version of R64 (64-bit)".
-    
     * You can either leave the other selections at their defaults or change them as you see fit (my preferences are shown in the dialog box above).  However, I strongly urge you to deselect "Restore .RData into workspace at startup" and make sure "Save workspace to .RData on exit:" is set to "Never."
 
 1. Select the `Packages` icon in the Global Options dialog box opened above.  It is useful to set a CRAN mirror in this dialog box.  I prefer the "Global (CDN) - Rstudio ..." option but you may want to choose a location nearer to you (through the `Change...` button).  All other options can remain at their defaults.
 
-    <div class="ctrstaticimg">
-    <img src="figures/RStudio_PrepWin_OptionsCRAN.PNG" width="100%">
-    </div>
-
 1. Select the `Code` icon in the Global Options dialog box opened above and the `Display` tab.  I suggest, in addition to the default selections, selecting the "Highlight selected line," "Show margin," and "Show syntax highlighting in console input."
 
     <div class="ctrstaticimg">
-    <img src="figures/RStudio_PrepWin_OptionsCodeEditing.PNG" width="100%">
+    <img src="figures/RStudio_PrepMac_OptionsCodeEditing.png" width="100%">
     </div>
 
 1. At times I find the code completion options in RStudio irritating.  If you do as well, you can either turn this option off or tweak its settings within the `Completion` tab under the `Code` icon in the Global Options` dialog box opened above.
@@ -86,7 +78,7 @@ Using RStudio is easy to learn.  This document is a very brief introduction to R
 RStudio is organized around a four-panel layout.
 
 <div class="ctrstaticimg">
-<img src="figures/RStudio_Intro_Layout.PNG" width="100%">
+<img src="figures/RStudio_Intro_Layout.png" width="100%">
 </div>
 
 The upper-left panel is the R *Script Editor*.  R commands are typed into this panel and submitted to the R *Console* in the lower-left panel.  For most applications, you will type R commands into the *Script Editor* and submit them to the *Console*; you will not type commands directly into the *Console*.  The *Script Editor* is a high-level text editor, whereas the *Console* is the R program.
@@ -116,3 +108,7 @@ These commands must be submitted to the *Console* to perform the requested calcu
 The RStudio layout after using the first method is shown in the figure above.
 
 The R Script in the *Script Editor* should now be saved by selecting the `File` menu and the `Save` item (alternatively, pressing `<CTRL>+S`).  RStudio can now be closed (do NOT save the workspace).  When RStudio is restarted later, the script can be reopened (choose the `File` menu and the `Open file ...` submenu if the file is not already in the *Script Editor*) and resubmitted to the *Console* to exactly repeat the analyses (Note that the results of commands are not saved in R or RStudio; rather the commands are saved and resubmitted to reperform the analysis).
+
+-----
+
+Thanks to Taylor Stewart for help with these directions.
