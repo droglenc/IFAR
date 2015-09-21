@@ -3,8 +3,6 @@ layout: page
 title: Table of Contents
 ---
 
-UNDER CONSTRUCTION
-
 1. **(Very Brief) Introduction to R Basics**
     * The most bare fundamentals of R that are required for the remainder of the book.
 1. **Loading Data and Basic Manipulations**
