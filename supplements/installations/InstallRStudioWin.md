@@ -86,7 +86,7 @@ Using RStudio is easy to learn.  This document is a very brief introduction to R
 RStudio is organized around a four-panel layout.
 
 <div class="ctrstaticimg">
-<img src="figures/RStudio_Intro_Layout.PNG" width="100%">
+<img src="figures/RStudio_Intro_Layout.PNG" width="120%">
 </div>
 
 The upper-left panel is the R *Script Editor*.  R commands are typed into this panel and submitted to the R *Console* in the lower-left panel.  For most applications, you will type R commands into the *Script Editor* and submit them to the *Console*; you will not type commands directly into the *Console*.  The *Script Editor* is a high-level text editor, whereas the *Console* is the R program.
