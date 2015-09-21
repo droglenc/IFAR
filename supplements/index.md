@@ -12,9 +12,9 @@ title: Supplements
   <li><strong>(Very Brief) Introduction to R Basics</strong>
     <ul>
       <li>R Install – <a href="installations/InstallRWin.html">Windows</a> / <a href="installations/InstallRMac.html">Mac</a></li>
-      <li>RStudio Install &amp; Setup – <a href="installations/InstallRStudioWin.html">Windows</a> /  [Mac]</li>
+      <li>RStudio Install &amp; Setup – <a href="installations/InstallRStudioWin.html">Windows</a> /  <a href="installations/InstallRStudioMac.html">Mac</a></li>
       <li><a href="installations/InstallPackagesRStudio.html">Install Packages in RStudio</a></li>
-      <li>Install Packages in R – <a href="installations/InstallPackagesRWin.html">Windows</a> /  [Mac]</li>
+      <li>Install Packages in R – <a href="installations/InstallPackagesRWin.html">Windows</a> /  Mac</li>
     </ul>
   </li>
   <li><strong>Loading Data and Basic Manipulations</strong>
@@ -46,7 +46,7 @@ title: Supplements
   </li>
   <li><strong>Recruitment</strong>
     <ul>
-      <li>[Maturity Schedules]</li>
+      <li>Maturity Schedules</li>
     </ul>
   </li>
 </ol>
