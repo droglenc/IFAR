@@ -14,7 +14,7 @@ title: Supplements
     
 1. **Plotting Fundamentals**
     * [Common Axis Labels on a Grid of Subplots](plotting/CommonAxisLabels.html)
-    * [Complex Grid Layouts]
+    * [Complex Grid Layouts](plotting/ComplexLayouts.html)
     
 1. **Age Comparisons**
 1. **Age-Length Keys**

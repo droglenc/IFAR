@@ -1,0 +1,160 @@
+---
+layout: page
+title: Plotting Fundamentals
+subtitle: Complex Grid Layouts
+author: Derek H. Ogle
+---
+
+
+<p>Several methods for modifying base graphics were shown in the book, including simple layouts (side-by-side, one-over-the-other) of multiple plots. More complex layouts (e.g., plot in first row spans two columns or unequal sized plots) are described in this supplement. Creating common x- and y-axis labels for a grid of plots is <a href="CommonAxisLabels.html">described in a separate supplement</a>.</p>
+<div id="required-packages-for-this-supplement" class="section level3">
+<h3>Required Packages for this Supplement</h3>
+<p>Functions used in this supplement require the packages shown below.</p>
+<pre class="r"><code>&gt; library(FSAdata)
+&gt; library(FSA)
+&gt; library(dplyr)</code></pre>
+<p>The <code>BullTroutRML2</code> and <code>BloaterLH</code> data from <code>FSAdata</code> are used in this supplement.</p>
+<pre class="r"><code>&gt; data(BullTroutRML2)
+&gt; BT &lt;- BullTroutRML2
+&gt; headtail(BT)</code></pre>
+<pre><code>   age  fl     lake     era
+1   14 459 Harrison 1977-80
+2   12 449 Harrison 1977-80
+3   10 471 Harrison 1977-80
+94   4 298   Osprey 1997-01
+95   3 279   Osprey 1997-01
+96   3 273   Osprey 1997-01</code></pre>
+<pre class="r"><code>&gt; data(BloaterLH)
+&gt; BLH &lt;- BloaterLH
+&gt; headtail(BLH)</code></pre>
+<pre><code>   year   eggs    age3
+1  1981 0.0402   5.143
+2  1982 0.0602 154.286
+3  1983 0.1205  65.143
+14 1994 0.8434  13.714
+15 1995 1.0141   0.000
+16 1996 1.0241   3.429</code></pre>
+</div>
+<div id="complex-grid-layouts-with-layout" class="section level2">
+<h2>Complex Grid Layouts with <code>layout()</code></h2>
+<p>The <code>layout()</code> function allows for more complicated organizations of graphics. The only required argument to <code>layout()</code> is a matrix that specifies the positions, as a grid, for a series of plots. The numbers in the matrix describe which graphic will appear in that position. For example, the following code constructs a 2x2 grid for four plots where the first plot will appear in the lower-right corner and the last plot will appear in the upper-left corner.</p>
+<pre class="r"><code>&gt; ( m &lt;- matrix(4:1,nrow=2,byrow=TRUE) )</code></pre>
+<pre><code>     [,1] [,2]
+[1,]    4    3
+[2,]    2    1</code></pre>
+<pre class="r"><code>&gt; layout(m)</code></pre>
+<p>The <code>layout.show()</code> function is used to show the layout grid. Its only argument is the number of positions to show.</p>
+<p><img src="ComplexLayouts_files/figure-html/Layout1-1.png" title="" alt="" width="240" /><img src="ComplexLayouts_files/figure-html/Layout1-2.png" title="" alt="" width="240" /><img src="ComplexLayouts_files/figure-html/Layout1-3.png" title="" alt="" width="240" /><img src="ComplexLayouts_files/figure-html/Layout1-4.png" title="" alt="" width="240" /></p>
+<p>Figure 1: Illustration of 2x2 layout grid for graphics.</p>
+<p>The 2x2 grid in Figure 1 is not that interesting because that layout is just as easily constructed with <code>mfrow=</code> in <code>par()</code> (as shown in the book). Layouts, however, can also be constructed that are not “grids.” For example, the entire first row may be one graphic with a second row of two graphics. This layout grid is constructed by including a “1” in the first two positions of the layout matrix Figure 2.</p>
+<pre class="r"><code>&gt; ( m &lt;- matrix(c(1,1,2,3),nrow=2,byrow=TRUE) )</code></pre>
+<pre><code>     [,1] [,2]
+[1,]    1    1
+[2,]    2    3</code></pre>
+<pre class="r"><code>&gt; layout(m)
+&gt; layout.show(3)</code></pre>
+<p><img src="ComplexLayouts_files/figure-html/Layout2-1.png" title="" alt="" width="480" /></p>
+<p>Figure 2: Illustration of layout grid for graphics with one graph in first row and two in the second row.</p>
+<p>The following code fills this layout grid to produce Figure 3.</p>
+<pre class="r"><code>&gt; plot(age3~eggs,data=BLH,pch=19,xlab=&quot;Millions of Eggs&quot;,
+       ylab=&quot;Relative Abundance of Age-3 Fish&quot;)
+&gt; hist(~eggs,data=BLH,xlab=&quot;Millions of Eggs&quot;)
+&gt; hist(~age3,data=BLH,xlab=&quot;Age-3 Relative Abundance&quot;)</code></pre>
+<p><img src="ComplexLayouts_files/figure-html/unnamed-chunk-5-1.png" title="" alt="" width="480" /></p>
+<p>Figure 3: Illustration of layout grid for graphics with one graph in first row and two in the second row.</p>
+<p>The size of the grids in the layout may be controlled with <code>height=</code> and <code>width=</code>. These arguments accept vectors that represent the <strong>relative</strong> heights and widths of the rows and columns in the layout grid, respectively. For example, <code>height=c(3,1)</code> sets the height of the first row to be three times larger than the height of the second row. Including the <code>respect=TRUE</code> argument will assure that “unit distances” in the horizontal and vertical directions are treated the same. An example layout with different cell sizes is constructed below and shown in Figure 4. Also note in this example, that a zero in a cell means that that cell will not receive a plot.</p>
+<pre class="r"><code>&gt; ( m &lt;- matrix(c(2,0,1,3),nrow=2,byrow=TRUE) )</code></pre>
+<pre><code>     [,1] [,2]
+[1,]    2    0
+[2,]    1    3</code></pre>
+<pre class="r"><code>&gt; layout(m,height=c(1,4),width=c(4,1),respect=TRUE)
+&gt; layout.show(3)</code></pre>
+<p><img src="ComplexLayouts_files/figure-html/unnamed-chunk-6-1.png" title="" alt="" width="480" /></p>
+<p>Figure 4</p>
+<p>Figure 5 is an example that fills the layout shown in Figure 4.</p>
+<pre class="r"><code>&gt; par(mar=c(4,4,0,0))
+&gt; plot(age3~eggs,data=BLH,xlim=c(0,2.4),ylim=c(0,240),pch=19,
+       ylab=&quot;Relative Abundance of Age-3 Fish&quot;,
+       xlab=&quot;Millions of Eggs&quot;)
+&gt; par(mar=c(0,4,0,0))
+&gt; boxplot(BLH$eggs,axes=FALSE,ylim=c(0,2.4),horizontal=TRUE)
+&gt; par(mar=c(4,0,0,0))
+&gt; boxplot(BLH$age3,axes=FALSE,ylim=c(0,240))</code></pre>
+<p><img src="ComplexLayouts_files/figure-html/unnamed-chunk-7-1.png" title="" alt="" width="480" /></p>
+<p>Figure 5</p>
+<p>Finally, <code>layout()</code> can be used to make quite complex grids, as illustrated with the code below that produced Figure 6. Note that <code>plot.new()</code> creates a new blank plot in which the subsequent <code>text()</code> commands will place text (in this case marginal labels).</p>
+<pre class="r"><code>&gt; ## Get data subsets
+&gt; BTH1 &lt;- BT %&gt;% filterD(lake==&quot;Harrison&quot;,era==&quot;1977-80&quot;)
+&gt; BTO1 &lt;- BT %&gt;% filterD(lake==&quot;Osprey&quot;,era==&quot;1977-80&quot;)
+&gt; BTH2 &lt;- BT %&gt;% filterD(lake==&quot;Harrison&quot;,era==&quot;1997-01&quot;)
+&gt; BTO2 &lt;- BT %&gt;% filterD(lake==&quot;Osprey&quot;,era==&quot;1997-01&quot;)
+&gt; 
+&gt; ( m &lt;- matrix(c(0,1,2,3,5,6,4,7,8),nrow=3,byrow=TRUE) )</code></pre>
+<pre><code>     [,1] [,2] [,3]
+[1,]    0    1    2
+[2,]    3    5    6
+[3,]    4    7    8</code></pre>
+<pre class="r"><code>&gt; layout(m,height=c(1,8,8),width=c(1,8,8),respect=TRUE)
+&gt; 
+&gt; par(mar=c(0,0,0,0))
+&gt; plot.new(); text(0.5,0.5,&quot;Harrison&quot;,cex=1.5)
+&gt; plot.new(); text(0.5,0.5,&quot;Osprey&quot;,cex=1.5)
+&gt; plot.new(); text(0.5,0.5,&quot;Era = 1977-1980&quot;,cex=1.5,srt=90)
+&gt; plot.new(); text(0.5,0.5,&quot;Era = 1997-2001&quot;,cex=1.5,srt=90)
+&gt; 
+&gt; par(mar=c(3.05,3.05,0.65,0.65))
+&gt; xlmt &lt;- c(-0.5,14.5)
+&gt; ylmt &lt;- c(0,700)
+&gt; plot(fl~age,data=BTH1,xlab=&quot;&quot;,ylab=&quot;Fork Length&quot;,
+       pch=19,xlim=xlmt,ylim=ylmt)
+&gt; plot(fl~age,data=BTO1,xlab=&quot;&quot;,ylab=&quot;&quot;,
+       pch=19,xlim=xlmt,ylim=ylmt)
+&gt; plot(fl~age,data=BTH2,xlab=&quot;Age&quot;,ylab=&quot;Fork Length&quot;,
+       pch=19,xlim=xlmt,ylim=ylmt)
+&gt; plot(fl~age,data=BTO2,xlab=&quot;Age&quot;,ylab=&quot;&quot;,
+       pch=19,xlim=xlmt,ylim=ylmt)</code></pre>
+<p><img src="ComplexLayouts_files/figure-html/unnamed-chunk-8-1.png" title="" alt="" width="480" /></p>
+</div>
+<div id="figure-6-illustration-of-layout-grid-with-differing-heights-and-widths-such-that-labels-can-be-placed-on-the-sides." class="section level2">
+<h2>Figure 6: Illustration of layout grid with differing heights and widths such that labels can be placed on the sides.</h2>
+</div>
+<div id="reproducibility-information" class="section level2">
+<h2>Reproducibility Information</h2>
+<ul>
+<li><strong>Compiled Date:</strong> Mon Sep 21 2015</li>
+<li><strong>Compiled Time:</strong> 9:42:08 AM</li>
+<li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
+<li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
+<li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>
+<li><strong>Required Packages:</strong> FSAdata, FSA, dplyr, captioner, knitr and their dependencies (assertthat, DBI, digest, evaluate, formatR, graphics, grDevices, highr, lazyeval, magrittr, markdown, methods, plotrix, plyr, R6, Rcpp, stats, stringr, tools, utils, yaml)</li>
+<li><strong>Other Packages:</strong> captioner_2.2.3, dplyr_0.4.3, extrafont_0.17, FSA_0.7.10, FSAdata_0.2.1, knitr_1.11, magrittr_1.5, rmarkdown_0.8, stringr_1.0.0, tidyr_0.3.1</li>
+<li><strong>Loaded-Only Packages:</strong> assertthat_0.1, DBI_0.3.1, digest_0.6.8, evaluate_0.7.2, extrafontdb_1.0, formatR_1.2, gdata_2.17.0, gtools_3.5.0, highr_0.5, htmltools_0.2.6, lazyeval_0.1.10, parallel_3.2.2, plyr_1.8.3, R6_2.1.1, Rcpp_0.12.1, Rttf2pt1_1.3.3, stringi_0.5-5, tools_3.2.2, yaml_2.1.13</li>
+<li><strong>Links:</strong> <a href="ComplexLayouts.R">Script</a> / <a href="ComplexLayouts.Rmd">RMarkdown</a></li>
+</ul>
+<hr />
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

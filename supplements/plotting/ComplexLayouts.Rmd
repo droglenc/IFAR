@@ -1,0 +1,198 @@
+---
+layout: page
+title: Plotting Fundamentals
+subtitle: Complex Grid Layouts
+author: Derek H. Ogle
+output: 
+  html_document: 
+    fig_width: 5
+    self_contained: no
+---
+```{r echo=FALSE, eval=FALSE}
+##############################################################
+# == BEGIN -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
+# First line renders an appropriate HTML file for the webpage
+# Second line makes the script file
+# RUN BOTH MANUALLY
+setwd("C:/aaaWork/Web/GitHub/IFAR/supplements/plotting")
+source("../modHTML.R"); modHTML("ComplexLayouts")
+if (require(FSA)) purl2("ComplexLayouts.Rmd",topnotes="User must set working directory appropriately.")
+# == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
+##############################################################
+```
+
+Several methods for modifying base graphics were shown in the book, including simple layouts (side-by-side, one-over-the-other) of multiple plots.  More complex layouts (e.g., plot in first row spans two columns or unequal sized plots) are described in this supplement.  Creating common x- and y-axis labels for a grid of plots is [described in a separate supplement](CommonAxisLabels.html).
+
+### Required Packages for this Supplement
+
+Functions used in this supplement require the packages shown below.
+
+```{r echo=FALSE, results='hide', message=FALSE, warnings=FALSE}
+##############################################################
+# == BEGIN -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
+# 
+# Setup of knitr
+source("../knitr_setup.R")
+# declare packages used
+rqrd <- c("FSAdata","FSA","dplyr","captioner","knitr")
+# setup figure, table, and equation captioning
+library(captioner)
+figcaps <- captioner(prefix="Figure")
+figcaps("Layout1","Illustration of 2x2 layout grid for graphics.")
+figcaps("Layout2","Illustration of layout grid for graphics with one graph in first row and two in the second row.")
+figcaps("Layout3","Illustration of layout grid for graphics with one graph in first row and two in the second row.")
+figcaps("Layout4","Illustration of layout grid for graphics with differing row heights and column widths.")
+figcaps("Layout5","Illustration of layout grid with differing heights and widths such that a scatterplot appears in the 'middle' with corresponding boxplots on the 'sides.'")
+figcaps("Layout6","Illustration of layout grid with differing heights and widths such that labels can be placed on the sides.")
+# == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
+##############################################################
+```
+```{r cache=FALSE, results='hide', message=FALSE}
+library(FSAdata)
+library(FSA)
+library(dplyr)
+```
+
+The `BullTroutRML2` and `BloaterLH` data from `FSAdata` are used in this supplement.
+
+```{r warning=FALSE, message=FALSE}
+data(BullTroutRML2)
+BT <- BullTroutRML2
+headtail(BT)
+data(BloaterLH)
+BLH <- BloaterLH
+headtail(BLH)
+```
+
+## Complex Grid Layouts with `layout()`
+The `layout()` function allows for more complicated organizations of graphics.  The only required argument to `layout()` is a matrix that specifies the positions, as a grid, for a series of plots.  The numbers in the matrix describe which graphic will appear in that position.  For example, the following code constructs a 2x2 grid for four plots where the first plot will appear in the lower-right corner and the last plot will appear in the upper-left corner.
+
+```{r Layout1pre>}
+( m <- matrix(4:1,nrow=2,byrow=TRUE) )
+layout(m)
+```
+
+The `layout.show()` function is used to show the layout grid.  Its only argument is the number of positions to show.
+
+```{r Layout1, echo=-c(1:6), results='hide', fig.width=figsz, fig.height=figsz}
+# ############################################################
+# This code is a repeat of the code immediately above and is
+# only used to efficiently produce the plot for the supplement.
+<<Layout1pre>>
+# ############################################################
+layout.show(4)
+```
+
+`r figcaps("Layout1")`
+
+The 2x2 grid in `r figcaps("Layout1",display="cite")` is not that interesting because that layout is just as easily constructed with `mfrow=` in `par()` (as shown in the book).  Layouts, however, can also be constructed that are not "grids."  For example, the entire first row may be one graphic with a second row of two graphics.  This layout grid is constructed by including a "1" in the first two positions of the layout matrix `r figcaps("Layout2",display="cite")`.
+
+```{r Layout2pre, echo=FALSE, results='hide'}
+# ############################################################
+# This code is a repeat of the code immediately below and is
+# only used to efficiently produce the plot for the supplement.
+( m <- matrix(c(1,1,2,3),nrow=2,byrow=TRUE) )
+layout(m)
+# ############################################################
+```
+
+```{r Layout2, echo=-c(1:3,6)}
+<<Layout2pre>>
+layout.show(3)
+```
+
+`r figcaps("Layout2")`
+
+The following code fills this layout grid to produce `r figcaps("Layout3",display="cite")`.
+
+```{r echo=-c(1:10), results='hide', fig.width=2*figsz, fig.height=2*figsz}
+# ############################################################
+# This code is a repeat of the code immediately above and is
+# only used to efficiently produce the plot for the supplement.
+<<Layout2pre>>
+# ############################################################
+plot(age3~eggs,data=BLH,pch=19,xlab="Millions of Eggs",
+     ylab="Relative Abundance of Age-3 Fish")
+hist(~eggs,data=BLH,xlab="Millions of Eggs")
+hist(~age3,data=BLH,xlab="Age-3 Relative Abundance")
+```
+
+`r figcaps("Layout3")`
+
+The size of the grids in the layout may be controlled with `height=` and `width=`.  These arguments accept vectors that represent the **relative** heights and widths of the rows and columns in the layout grid, respectively.  For example, `height=c(3,1)` sets the height of the first row to be three times larger than the height of the second row.  Including the `respect=TRUE` argument will assure that "unit distances" in the horizontal and vertical directions are treated the same.  An example layout with different cell sizes is constructed below and shown in `r figcaps("Layout4",display="cite")`.  Also note in this example, that a zero in a cell means that that cell will not receive a plot.
+
+```{r Layout4pre, echo=FALSE, results='hide'}
+# ############################################################
+# This code is a repeat of the code immediately below and is
+# only used to efficiently produce the plot for the supplement.
+( m <- matrix(c(2,0,1,3),nrow=2,byrow=TRUE) )
+layout(m,height=c(1,4),width=c(4,1),respect=TRUE)
+# ############################################################
+```
+
+```{r echo=-c(1:3,6)}
+<<Layout4pre>>
+layout.show(3)
+```
+
+`r figcaps("Layout4",display="cite")`
+
+`r figcaps("Layout5",display="cite")` is an example that fills the layout shown in `r figcaps("Layout4",display="cite")`.
+
+```{r echo=-c(1:10), results='hide'}
+# ############################################################
+# This code is a repeat of the code immediately above and is
+# only used to efficiently produce the plot for the supplement.
+<<Layout4pre>>
+# ############################################################
+par(mar=c(4,4,0,0))
+plot(age3~eggs,data=BLH,xlim=c(0,2.4),ylim=c(0,240),pch=19,
+     ylab="Relative Abundance of Age-3 Fish",
+     xlab="Millions of Eggs")
+par(mar=c(0,4,0,0))
+boxplot(BLH$eggs,axes=FALSE,ylim=c(0,2.4),horizontal=TRUE)
+par(mar=c(4,0,0,0))
+boxplot(BLH$age3,axes=FALSE,ylim=c(0,240))
+```
+
+`r figcaps("Layout5",display="cite")`
+
+Finally, `layout()` can be used to make quite complex grids, as illustrated with the code below that produced `r figcaps("Layout6",display="cite")`.  Note that `plot.new()` creates a new blank plot in which the subsequent `text()` commands will place text (in this case marginal labels).
+
+```{r fig.width=2*figsz, fig.height=2*figsz}
+## Get data subsets
+BTH1 <- BT %>% filterD(lake=="Harrison",era=="1977-80")
+BTO1 <- BT %>% filterD(lake=="Osprey",era=="1977-80")
+BTH2 <- BT %>% filterD(lake=="Harrison",era=="1997-01")
+BTO2 <- BT %>% filterD(lake=="Osprey",era=="1997-01")
+
+( m <- matrix(c(0,1,2,3,5,6,4,7,8),nrow=3,byrow=TRUE) )
+layout(m,height=c(1,8,8),width=c(1,8,8),respect=TRUE)
+
+par(mar=c(0,0,0,0))
+plot.new(); text(0.5,0.5,"Harrison",cex=1.5)
+plot.new(); text(0.5,0.5,"Osprey",cex=1.5)
+plot.new(); text(0.5,0.5,"Era = 1977-1980",cex=1.5,srt=90)
+plot.new(); text(0.5,0.5,"Era = 1997-2001",cex=1.5,srt=90)
+
+par(mar=c(3.05,3.05,0.65,0.65))
+xlmt <- c(-0.5,14.5)
+ylmt <- c(0,700)
+plot(fl~age,data=BTH1,xlab="",ylab="Fork Length",
+     pch=19,xlim=xlmt,ylim=ylmt)
+plot(fl~age,data=BTO1,xlab="",ylab="",
+     pch=19,xlim=xlmt,ylim=ylmt)
+plot(fl~age,data=BTH2,xlab="Age",ylab="Fork Length",
+     pch=19,xlim=xlmt,ylim=ylmt)
+plot(fl~age,data=BTO2,xlab="Age",ylab="",
+     pch=19,xlim=xlmt,ylim=ylmt)
+```
+
+`r figcaps("Layout6")`
+--------------------------------------------------------------
+
+```{r echo=FALSE, results='asis'}
+reproInfo(rqrdPkgs=rqrd,out="markdown",links=c(Script="ComplexLayouts.R",RMarkdown="ComplexLayouts.Rmd"))
+```
+
+--------------------------------------------------------------
