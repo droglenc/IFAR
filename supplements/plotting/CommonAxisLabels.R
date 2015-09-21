@@ -32,9 +32,9 @@ plot(Y~X,type="n",xaxt="n",yaxt="n",xlab="",ylab="")
 
 box("plot",col="blue")
 text(5,5,"Plot Area",col="blue",cex=1.25)
-box("figure",lwd=2,col="gray25")
+box("figure",lwd=2,col="red")
 mtext("Figure Area",side=1,line=0.2,adj=0.0,cex=1.25,col="red")
-box("outer",lwd=3,col="red")
+box("outer",lwd=3,col="gray50")
 mtext("Outer Margin Area",side=3,line=0.4,adj=0.0,cex=1.25,col="gray50",outer=TRUE)
 # ############################################################
 
@@ -59,7 +59,8 @@ plot(fl~age,data=BTO2,main="Osprey, 1997-01",
 # This code is a repeat of the code immediately above and is
 # only used to efficiently produce the plot for the supplement.
 par(mfrow=c(2,2),oma=c(2,2,0,0))
-par(cex.main=0.9)
+par(mar=c(3.05,3.05,0.65,0.65),mgp=c(1.9,0.3,0),tcl=-0.2,
+    las=1,cex.lab=0.95,cex.axis=0.9,cex.main=0.9)
 xlmts <- c(-0.5,14.5)
 ylmts <- c(0,700)
 BTH1 <- BT %>% filterD(lake=="Harrison",era=="1977-80")
@@ -79,4 +80,4 @@ mtext("Age (years)",side=1,line=0,outer=TRUE,cex=1.3)
 mtext("Fork Length (mm)",side=2,line=0,outer=TRUE,cex=1.3,las=0)
 
 
-# Script created at 2015-09-21 09:00:01
+# Script created at 2015-09-21 09:03:36
