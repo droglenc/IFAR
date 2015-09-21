@@ -3,7 +3,7 @@ layout: page
 title: Supplements
 ---
 
-<div style="width=auto; max-width:200px; margin-left:auto; margin-right:auto;text-align:center">
+<div style="width=auto; max-width:300px; margin-left:auto; margin-right:auto;text-align:center">
   <img src="../img/work-in-progress.png" alt="fishR logo" width="100%">
 </div>
 
