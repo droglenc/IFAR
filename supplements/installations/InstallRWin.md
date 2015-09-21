@@ -5,12 +5,14 @@ subtitle: For Windows
 css: /supplements/installations/directions.css
 ---
 
+The following steps may be used to install R on Windows operating systems.  [See these directions](InstallRMac.html) for installing R on a Macintosh operating system.
+
 1. Go to the RStudio Comprehensive R Archive Network (CRAN) mirror at [https://cran.rstudio.com](https://cran.rstudio.com).  [*You can select a different mirror by going to [http://www.r-project.org](http://www.r-project.org), selecting the "download R" link in the "Getting Started" box and selecting a mirror location from the ensuing page.*]
 
 1. Select the appropriate operating system for your computer.  The remainder of these steps will illustrate the installation of R for the WINDOWS environment.
 
     <div class="ctrstaticimg">
-    <img src="figures/R_Install_ChooseOS.PNG" width="100%">
+    <img src="figures/R_WinInstall_ChooseOS.PNG" width="100%">
     </div>
 
 1. Select the "base" option.
