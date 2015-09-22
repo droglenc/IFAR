@@ -50,10 +50,14 @@ The following steps may be used to install and configure RStudio on Macintosh op
 
 1. Select the `Packages` icon in the Global Options dialog box opened above.  It is useful to set a CRAN mirror in this dialog box.  I prefer the "Global (CDN) - Rstudio ..." option but you may want to choose a location nearer to you (through the `Change...` button).  All other options can remain at their defaults.
 
+    <div class="ctrstaticimg">
+    <img src="figures/RStudio_PrepMac_OptionsCodeEditing.png" width="100%">
+    </div>
+
 1. Select the `Code` icon in the Global Options dialog box opened above and the `Display` tab.  I suggest, in addition to the default selections, selecting the "Highlight selected line," "Show margin," and "Show syntax highlighting in console input."
 
     <div class="ctrstaticimg">
-    <img src="figures/RStudio_PrepMac_OptionsCodeEditing.png" width="100%">
+    <img src="figures/RStudio_PrepMac_OptionsCRAN.png" width="100%">
     </div>
 
 1. At times I find the code completion options in RStudio irritating.  If you do as well, you can either turn this option off or tweak its settings within the `Completion` tab under the `Code` icon in the Global Options` dialog box opened above.
