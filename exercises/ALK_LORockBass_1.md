@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Age-Length Keys
-subtitle: Lake Ontario Rock Bass
+subtitle: Lake Ontario Rock Bass I
 ---
 
 <style type="text/css">
@@ -23,14 +23,8 @@ Wolfert (1980) measured the total length (TL) of 1288 Rock Bass (*Ambloplites ru
 1. Construct a **smoothed** age-length key.  From these results answer the following questions.
     1. What proportion of Rock Bass in the 210 mm length category should be assigned age 5?
     1. How many of thirty Rock Bass in the 180 mm length category should be assigned age 5?
-1. Continue with the **observed** age-length key generated for Lake Ontario Rock Bass in the previous question.  Use the semi-random age assignment technique from Isermann and Knight (2005) to assign ages to the unaged fish in the length-sample.  Combine the age-sample and the age-assigned length-sample into a single data frame.  Add a variable to this data.frame that contains the 10 mm TL categories.  Use the combined data frame to answer the following questions.
-    1. How many fish are estimated to be age 5?  [Hint: use `xtabs()` or `Summarize()`.]
-    1. How many fish are estimated to be age 11?
-    1. Plot the age distribution for all fish.
-    1. How many fish are in the 150 mm TL interval? [Hint: use `xtabs()`.]
-    1. What is the mean TL of age-5 fish?
-    1. Plot the length-at-age with the mean length-at-age superimposed for all fish.
-    1. Compare your results to someone else's results.  Did you both get the *exact* same results? Why or why not?  If not, how different were they?
+
+[Continue with this data set here](ALK_LORockBass_1.html).
 
 ---
 <p style="font-size: 0.75em; color: c6c6c6;">from <a href="http://derekogle.com">Derek H. Ogle</a>, 23-Sep-15, updated 23-Sep15</p>

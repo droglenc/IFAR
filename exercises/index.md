@@ -15,7 +15,8 @@ Also send me ideas for exercises to include here.
 1. **Age Comparisons**
     * [Lake Champlain Lake Whitefish](AgeComp_LCLWhitefish.html)
 1. **Age-Length Keys**
-    * [Lake Ontario Rock Bass](ALK_LORockBass.html)
+    * [Lake Ontario Rock Bass I](ALK_LORockBass_1.html)
+    * [Lake Ontario Rock Bass II](ALK_LORockBass_2.html)
 1. **Size Structure**
 1. **Weight-Length Relationships**
 1. **Condition**
