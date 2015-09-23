@@ -2,8 +2,11 @@
 layout: page
 title: Age-Length Keys
 subtitle: Lake Ontario Rock Bass
-css: "exercises.css""
 ---
+
+<style type="text/css">
+ol ol { list-style-type: lower-alpha; }
+</style>
 
 Wolfert (1980) measured the total length (TL) of 1288 Rock Bass (*Ambloplites rupestris*) from Eastern Lake Ontario in the late 1970s.  In addition, scales were removed for age estimation from as many as 10 specimens from each 10-mm length interval.  All data are recorded in `data(RockBassLO2)` from `FSAdata` [Note: the filename contains an "oh" not a "zero."].
 
@@ -37,8 +40,5 @@ Wolfert (1980) measured the total length (TL) of 1288 Rock Bass (*Ambloplites ru
     1. Compare your results to someone else's results.  Did you both get the *exact* same results? Why or why not?  If not, how different were they?
 
 ---
-<div class="ExAuthor">
-<p>from <a href="http://derekogle.com">Derek H. Ogle</a>, 23-Sep-15, updated 23-Sep15</p>
-</div>
-
+<p style="font-size: 6px; color: c6c6c6;">from <a href="http://derekogle.com">Derek H. Ogle</a>, 23-Sep-15, updated 23-Sep15</p>
 
