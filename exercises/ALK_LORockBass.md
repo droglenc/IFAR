@@ -40,5 +40,5 @@ Wolfert (1980) measured the total length (TL) of 1288 Rock Bass (*Ambloplites ru
     1. Compare your results to someone else's results.  Did you both get the *exact* same results? Why or why not?  If not, how different were they?
 
 ---
-<p style="font-size: 6px; color: c6c6c6;">from <a href="http://derekogle.com">Derek H. Ogle</a>, 23-Sep-15, updated 23-Sep15</p>
+<p style="font-size: 0.75em; color: c6c6c6;">from <a href="http://derekogle.com">Derek H. Ogle</a>, 23-Sep-15, updated 23-Sep15</p>
 
