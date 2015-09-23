@@ -8,6 +8,7 @@ Wolfert (1980) measured the total length (TL) of 1288 Rock Bass (*Ambloplites ru
 
 1. Separate the observed data into age- and length-samples.  How many fish are in each sample?
 1. Add a variable to the age-sample that contains the 10-mm TL categories.  Construct a table of the **number** (not proportion) of fish in each age and 10-mm TL category in the age-sample.  From these results, compute each of the following *BY HAND* (i.e., not using R).
+
     1. How many Rock Bass in the age-sample are in the 180-mm TL category?
     1. How many age-7 Rock Bass are in the age-sample?
     1. What proportion of Rock Bass in the 140-mm TL category are age-4?
@@ -36,3 +37,5 @@ Wolfert (1980) measured the total length (TL) of 1288 Rock Bass (*Ambloplites ru
 
 ---
 <p style="font-size:0.75em; color:c6c6c6">from <a href="http://derekogle.com">Derek H. Ogle</a>, 23-Sep-15, updated 23-Sep15</p>
+
+ol ol { list-style-type: lower-alpha; }
