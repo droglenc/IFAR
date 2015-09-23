@@ -1,0 +1,8 @@
+.ExAuthor {
+  font-size: 0.75em;
+  color: c6c6c6;
+}
+
+ol ol {
+  list-style-type: lower-alpha;
+}
