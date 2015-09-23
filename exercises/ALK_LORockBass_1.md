@@ -24,7 +24,7 @@ Wolfert (1980) measured the total length (TL) of 1288 Rock Bass (*Ambloplites ru
     1. What proportion of Rock Bass in the 210 mm length category should be assigned age 5?
     1. How many of thirty Rock Bass in the 180 mm length category should be assigned age 5?
 
-[Continue with this data set here](ALK_LORockBass_1.html).
+[Continue with this data set here](ALK_LORockBass_2.html).
 
 ---
 <p style="font-size: 0.75em; color: c6c6c6;">from <a href="http://derekogle.com">Derek H. Ogle</a>, 23-Sep-15, updated 23-Sep15</p>
