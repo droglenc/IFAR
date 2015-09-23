@@ -2,7 +2,7 @@
 layout: page
 title: Age-Length Keys
 subtitle: Lake Ontario Rock Bass
-css: exercises.css
+css: "exercises.css""
 ---
 
 Wolfert (1980) measured the total length (TL) of 1288 Rock Bass (*Ambloplites rupestris*) from Eastern Lake Ontario in the late 1970s.  In addition, scales were removed for age estimation from as many as 10 specimens from each 10-mm length interval.  All data are recorded in `data(RockBassLO2)` from `FSAdata` [Note: the filename contains an "oh" not a "zero."].
@@ -19,9 +19,9 @@ Wolfert (1980) measured the total length (TL) of 1288 Rock Bass (*Ambloplites ru
 
     1. What proportion of Rock Bass in the 210-mm TL category should be assigned age-5?
     1. How many of thirty Rock Bass in the 180-mm TL category should be assigned age-5?
-    1. Construct a plot of the \textbf{observed} age-length key.  Are there any potential anomalies in the plot that would suggest that a smoothed age-length key could be appropriate?
+    1. Construct a plot of the **observed** age-length key.  Are there any potential anomalies in the plot that would suggest that a smoothed age-length key could be appropriate?
 
-1. Construct a \textbf{smoothed} age-length key.  From these results answer the following questions.
+1. Construct a **smoothed** age-length key.  From these results answer the following questions.
 
     1. What proportion of Rock Bass in the 210-mm length category should be assigned age-5?
     1. How many of thirty Rock Bass in the 180-mm length category should be assigned age-5?
