@@ -2,12 +2,6 @@
 layout: page
 title: Age Comparisons
 subtitle: Lake Champlain Lake Whitefish
-author: Derek H. Ogle
-output: 
-  html_document: 
-    fig_width: 5
-    self_contained: no
-css: ../css/exercises.css
 ---
 ```{r echo=FALSE, eval=FALSE}
 ##############################################################
@@ -37,4 +31,4 @@ Herbst and Marsden (2011) compared the precision, bias, and reader uncertainty o
 1. Describe precision of fin ray age estimates between the two readers.
 
 ---
-<p style="font-size:0.75em; color:c6c6c6">from <a href="http://derekogle.com">Derek H. Ogle</a>, 23-Sep-15, updated 23-Sep15</p>
+<p style="font-size:0.75em; color:c6c6c6">from <a href="http://derekogle.com">Derek H. Ogle</a>, 23-Sep-15, updated 23-Sep-15</p>
