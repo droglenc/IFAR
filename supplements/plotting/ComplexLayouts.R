@@ -4,7 +4,7 @@
 # == BEGIN -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 # 
 # Setup of knitr
-source("../knitr_setup.R")
+source("../../rhelpers/knitr_setup.R")
 # declare packages used
 rqrd <- c("FSAdata","FSA","dplyr","captioner","knitr")
 # setup figure, table, and equation captioning
@@ -133,4 +133,4 @@ plot(fl~age,data=BTO2,xlab="Age",ylab="",
      pch=19,xlim=xlmt,ylim=ylmt)
 
 
-# Script created at 2015-09-21 09:55:10
+# Script created at 2015-09-25 10:13:13

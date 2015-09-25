@@ -4,7 +4,7 @@
 # == BEGIN -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 # 
 # Setup of knitr
-source("../knitr_setup.R")
+source("../../rhelpers/knitr_setup.R")
 # declare packages used
 rqrd <- c("FSA","dplyr","nlstools","captioner","knitr")
 # setup figure, table, and equation captioning
@@ -39,4 +39,4 @@ predict(bootF,vbF,t=3,t1=ages)
 summary(nlsF,correlation=TRUE)
 
 
-# Script created at 2015-09-21 18:25:06
+# Script created at 2015-09-25 10:10:49

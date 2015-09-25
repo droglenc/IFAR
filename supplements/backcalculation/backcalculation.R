@@ -4,7 +4,7 @@
 # == BEGIN -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 # 
 # Setup of knitr
-source("../knitr_setup.R")
+source("../../rhelpers/knitr_setup.R")
 # declare packages used
 rqrd <- c("FSA","magrittr","dplyr","tidyr","stringr","captioner","knitr")
 # setup figure, table, and equation captioning
@@ -147,4 +147,4 @@ tmp
 sumTable(FL.len~agecap*agei,data=wb90r,digits=1)
 
 
-# Script created at 2015-09-21 09:08:58
+# Script created at 2015-09-25 10:06:47

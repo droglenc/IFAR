@@ -4,7 +4,7 @@
 # == BEGIN -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 # 
 # Setup of knitr
-source("../knitr_setup.R")
+source("../../rhelpers/knitr_setup.R")
 # declare packages used
 rqrd <- c("FSA","dplyr","nlstools","AICcmodavg","captioner","knitr")
 # setup figure, table, and equation captioning
@@ -70,4 +70,4 @@ curve(g1(x,coef(fitG1)),from=3,to=42,add=TRUE,lwd=2,col="red")
 curve(l1(x,coef(fitL1)),from=3,to=42,add=TRUE,col="orange")
 
 
-# Script created at 2015-09-21 18:25:27
+# Script created at 2015-09-25 10:11:47

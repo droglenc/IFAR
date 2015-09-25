@@ -17,7 +17,7 @@ output:
 # Second line makes the script file
 # RUN BOTH MANUALLY (following using Knit HTML button)
 setwd("C:/aaaWork/Web/GitHub/IFAR/supplements/growth")
-source("../modHTML.R"); modHTML2("OtherGrowthFuns")
+source("../../rhelpers/modHTML.R"); modHTML2("OtherGrowthFuns")
 if (require(FSA)) purl2("OtherGrowthFuns.Rmd",topnotes="User must set working directory appropriately.")
 # == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 ##############################################################
@@ -33,7 +33,7 @@ Functions used in this supplement require the packages shown below.
 # == BEGIN -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 # 
 # Setup of knitr
-source("../knitr_setup.R")
+source("../../rhelpers/knitr_setup.R")
 # declare packages used
 rqrd <- c("FSA","dplyr","nlstools","AICcmodavg","captioner","knitr")
 # setup figure, table, and equation captioning

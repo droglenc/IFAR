@@ -42,22 +42,22 @@ author: Derek H. Ogle
 &gt; bootLM &lt;- nlsBoot(fitLM)
 &gt; cbind(Ests=coef(fitLM),confint(bootLM))</code></pre>
 <pre><code>             Ests      95% LCI      95% UCI
-Linf 1196.7193456 1180.1552614 1214.7261545
-K       0.1418266    0.1233187    0.1616368
-t0     -1.5943403   -2.5867832   -0.8740731</code></pre>
+Linf 1196.7193456 1180.6481774 1215.8905847
+K       0.1418266    0.1228007    0.1614786
+t0     -1.5943403   -2.5351519   -0.7859536</code></pre>
 <pre class="r"><code>&gt; predict(bootLM,vbTyp,t=3)</code></pre>
 <pre><code>prediction    95% LCI    95% UCI 
-  574.0225   535.9007   610.3355 </code></pre>
+  572.6517   535.2594   611.3955 </code></pre>
 <p>One may also put constraints on the parameters when using <code>nlsLM()</code>. The lower and upper bounds are entered into separate named <strong>vectors</strong> with the same structure as the list used for starting values. These lists are then provided to <code>lower=</code> and <code>upper=</code>, respectively. Infinite bounds are the default but may be specifically defined for some parameters with <code>Inf</code> and <code>-Inf</code> (where <code>Inf</code> represents infinity). For example, <span class="math">\(L_\infty\)</span> and <span class="math">\(K\)</span> are constrained to be positive values in the model fitting below. In this instance, these bounds had no noticeable effect until bootstapping (fewer lack of convergences). In other instances, the constraints may substantively impact the parameter estimates. Bounds should be set as widely (as conservatively) as possible.</p>
 <pre class="r"><code>&gt; fitLM1 &lt;- nlsLM(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp,
                  lower=c(Linf=1,K=0.0001,t0=-Inf),
                  upper=c(Linf=Inf,K=Inf,t0=Inf))
 &gt; bootLM1 &lt;- nlsBoot(fitLM1)
 &gt; cbind(Ests=coef(fitLM1),confint(bootLM1))</code></pre>
-<pre><code>             Ests      95% LCI      95% UCI
-Linf 1196.7193456 1178.2227501 1216.8337507
-K       0.1418266    0.1225231    0.1606979
-t0     -1.5943403   -2.5834312   -0.8393424</code></pre>
+<pre><code>             Ests     95% LCI      95% UCI
+Linf 1196.7193456 1179.435939 1216.8494977
+K       0.1418266    0.122899    0.1624593
+t0     -1.5943403   -2.536239   -0.7803832</code></pre>
 <p>Parameter constraints may also be used with <code>nls()</code> but the optimization algorithm must be changed to “Port” with <code>algorithm=&quot;port&quot;</code>. With this argument the constraints are added as shown above for <code>nlsLM()</code>.</p>
 <pre class="r"><code>&gt; fitP &lt;- nls(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp,
               algorithm=&quot;port&quot;,
@@ -66,17 +66,17 @@ t0     -1.5943403   -2.5834312   -0.8393424</code></pre>
 &gt; bootP &lt;- nlsBoot(fitP)
 &gt; cbind(Ests=coef(fitP),confint(bootP))</code></pre>
 <pre><code>             Ests      95% LCI      95% UCI
-Linf 1196.7188609 1180.3172141 1215.2540700
-K       0.1418273    0.1229652    0.1620931
-t0     -1.5943118   -2.5164748   -0.7951072</code></pre>
+Linf 1196.7188609 1179.1083872 1215.8926734
+K       0.1418273    0.1242673    0.1633108
+t0     -1.5943118   -2.4821964   -0.7572834</code></pre>
 <p>Still other algorithms are found in <code>nlxb()</code> from <code>nlmrt</code> and <code>nls2()</code> from <code>nls2</code>.</p>
 <hr />
 </div>
 <div id="reproducibility-information" class="section level2">
 <h2>Reproducibility Information</h2>
 <ul>
-<li><strong>Compiled Date:</strong> Mon Sep 21 2015</li>
-<li><strong>Compiled Time:</strong> 6:25:44 PM</li>
+<li><strong>Compiled Date:</strong> Fri Sep 25 2015</li>
+<li><strong>Compiled Time:</strong> 10:11:10 AM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>

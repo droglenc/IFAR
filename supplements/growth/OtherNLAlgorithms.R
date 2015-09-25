@@ -4,7 +4,7 @@
 # == BEGIN -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 # 
 # Setup of knitr
-source("../knitr_setup.R")
+source("../../rhelpers/knitr_setup.R")
 # declare packages used
 rqrd <- c("FSA","dplyr","nlstools","minpack.lm","captioner","knitr")
 # setup figure, table, and equation captioning
@@ -46,4 +46,4 @@ bootP <- nlsBoot(fitP)
 cbind(Ests=coef(fitP),confint(bootP))
 
 
-# Script created at 2015-09-21 18:25:53
+# Script created at 2015-09-25 10:11:17

@@ -4,7 +4,7 @@
 # == BEGIN -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 # 
 # Setup of knitr
-source("../knitr_setup.R")
+source("../../rhelpers/knitr_setup.R")
 # declare packages used
 rqrd <- c("FSAdata","FSA","dplyr","captioner","knitr")
 # setup figure, table, and equation captioning
@@ -81,4 +81,4 @@ mtext("Age (years)",side=1,line=0,outer=TRUE,cex=1.3)
 mtext("Fork Length (mm)",side=2,line=0,outer=TRUE,cex=1.3,las=0)
 
 
-# Script created at 2015-09-21 09:09:22
+# Script created at 2015-09-25 10:12:58

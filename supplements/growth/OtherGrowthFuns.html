@@ -51,17 +51,17 @@ author: Derek H. Ogle
 <p>These models can be fit and summarized as illustrated above and in the book.</p>
 <pre class="r"><code>&gt; fitR1 &lt;- nls(tl~r1(otoage,Linf,k,a,b),data=bdm,start=svR1)
 &gt; bootR1 &lt;- nlsBoot(fitR1)</code></pre>
-<pre><code>Warning in nlsBoot(fitR1): The fit did not converge 105 times
+<pre><code>Warning in nlsBoot(fitR1): The fit did not converge 92 times
 during bootstrapping</code></pre>
 <pre class="r"><code>&gt; cbind(Ests=coef(fitR1),confint(bootR1))</code></pre>
-<pre><code>             Ests      95% LCI      95% UCI
-Linf 1.216988e+03 1.189323e+03 1249.7316178
-k    9.419418e-02 6.771121e-02    0.1468426
-a    1.155605e+00 7.094192e-01    1.2180785
-b    3.793338e-01 2.783955e-01    1.1987346</code></pre>
+<pre><code>             Ests      95% LCI     95% UCI
+Linf 1.216988e+03 1.188303e+03 1249.722052
+k    9.419418e-02 6.653094e-02    0.149628
+a    1.155605e+00 6.625881e-01    1.218971
+b    3.793338e-01 2.756068e-01    1.306229</code></pre>
 <pre class="r"><code>&gt; predict(bootR1,r1,t=3)</code></pre>
 <pre><code>prediction    95% LCI    95% UCI 
-  559.5462   518.9456   598.5791 </code></pre>
+  561.7760   520.8561   604.6470 </code></pre>
 <p>Information criterion can be used to identify which of these models best fits the male Black Drum data. First, the von Bertalanffy (as fit in the book), Gompertz, and logistic functions are fit to the data.</p>
 <pre class="r"><code>&gt; vbTyp &lt;- vbFuns()
 &gt; svTyp &lt;- list(Linf=1193,K=0.13,t0=-2.0)
@@ -92,8 +92,8 @@ logistic 4 790.33      10.73   0.00   1.00 -390.88</code></pre>
 <div id="reproducibility-information" class="section level2">
 <h2>Reproducibility Information</h2>
 <ul>
-<li><strong>Compiled Date:</strong> Mon Sep 21 2015</li>
-<li><strong>Compiled Time:</strong> 6:25:20 PM</li>
+<li><strong>Compiled Date:</strong> Fri Sep 25 2015</li>
+<li><strong>Compiled Time:</strong> 10:11:40 AM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>

@@ -15,7 +15,7 @@ output:
 # Second line makes the script file
 # RUN BOTH MANUALLY
 setwd("C:/aaaWork/Web/GitHub/IFAR/supplements/plotting")
-source("../modHTML.R"); modHTML("CommonAxisLabels")
+source("../../rhelpers/modHTML.R"); modHTML("CommonAxisLabels")
 if (require(FSA)) purl2("CommonAxisLabels.Rmd",topnotes="User must set working directory appropriately.")
 # == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 ##############################################################
@@ -32,7 +32,7 @@ Functions used in this supplement require the packages shown below.
 # == BEGIN -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 # 
 # Setup of knitr
-source("../knitr_setup.R")
+source("../../rhelpers/knitr_setup.R")
 # declare packages used
 rqrd <- c("FSAdata","FSA","dplyr","captioner","knitr")
 # setup figure, table, and equation captioning
