@@ -15,7 +15,7 @@ output:
 # Second line makes the script file
 # RUN BOTH MANUALLY
 setwd("C:/aaaWork/Web/GitHub/IFAR/exercises")
-source("../rhelpers/modHTML.R"); modHTML("Growth_LORockBass_1")
+source("../rhelpers/modHTML.R"); modHTML2("Growth_LORockBass_1")
 # == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 ##############################################################
 ```

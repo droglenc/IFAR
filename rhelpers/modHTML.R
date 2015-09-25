@@ -23,7 +23,7 @@ modHTML2 <- function(f) {
   r <- readLines(paste0(f,".Rmd"))
   # Remove everything before the line after the last mention of
   # Derek H. Ogle in the HTML file
-  tmp <- which(grepl("Derek H. Ogle",h))
+  tmp <- which(grepl("<em>Derek H. Ogle</em>",h))
   h <- h[-(1:(tmp[length(tmp)]+1))]
   # Get the layout, title, subtitle, and author from RMD file
   r <- r[1:5]
