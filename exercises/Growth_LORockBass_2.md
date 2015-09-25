@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Individual Growth
-subtitle: Lake Ontario Rock Bass I
+subtitle: Lake Ontario Rock Bass II
 ---
 
 <style type="text/css">
