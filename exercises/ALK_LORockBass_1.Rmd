@@ -16,7 +16,6 @@ output:
 # RUN BOTH MANUALLY
 setwd("C:/aaaWork/Web/GitHub/IFAR/exercises")
 source("../rhelpers/modHTML.R"); modHTML("ALK_LORockBass_1")
-if (require(FSA)) purl2("ALK_LORockBass_1.Rmd",topnotes="User must set working directory appropriately.")
 # == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 ##############################################################
 ```
