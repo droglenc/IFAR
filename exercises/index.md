@@ -17,6 +17,7 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
 1. **Condition**
 1. **Abundance from Capture-Recapture Data**
 1. **Abundance from Depletion Data**
+    * [Lake Guntersville Largemouth Bass](Depletion_LKLargemouth.html)
 1. **Mortality Rates**
 1. **Individual Growth**
     * Alaskan Slimy Sculpin -- [I](Growth_AKSculpin_1.html) / [II](Growth_AKSculpin_2.html)
