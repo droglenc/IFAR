@@ -14,7 +14,7 @@ In an [Age-Length Key exercise](ALK_LORockBass_2.html), a data.frame was produce
 
 1. Plot TL versus age.  Observe the "shape" of the data (do the results look linear or like a von Bertalanffy growth curve, is there an obvious asymptote, are young fish well represented, how variable are lengths within ages).
 
-1. Compute point estimates of $L\_{\infty}$, $K$, and $t\_{0}$ for the typical von Bertalanffy parameterization.  How realistic do these values seem?
+1. Compute point estimates of \\( L_{\infty} \\), \\( K \\), and \\( t_{0} \\) for the typical von Bertalanffy parameterization.  How realistic do these values seem?
 
 1. Construct 95% bootstrapped confidence intervals for each parameter.  Comment on the widths of these confidence intervals.  What explains this?
 
