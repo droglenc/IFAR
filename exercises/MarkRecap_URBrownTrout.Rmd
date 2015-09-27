@@ -14,18 +14,16 @@ setwd("C:/aaaWork/Web/GitHub/IFAR/exercises")
 source("../rhelpers/modHTML.R"); modHTML("MarkRecap_URBrownTrout")
 ```
 
-<style type="text/css">
-ol ol { list-style-type: lower-alpha; }
-</style>
-
 Young and Hayes (2001) described a study where Brown Trout (*Salmo trutta*) in several rivers were captured by experienced fly fishers, tagged at the base of the dorsal fin with a colored dart tag, and then observed by divers drifting through the sample area two days later.  In this study, 43 trout were marked, 123 fish were observed by the divers, and 16 fish observed by the divers were tagged.
 
 1. Assign one of these symbols ($N$, $M$, $n$, $m$) to each of the numerical results from this study.
-
 1. Construct a population estimate, with 95% confidence interval, for the Brown Trout in this section of the Ugly River.  Carefully interpret the results.
-
 1. Which method did you use to construct the confidence interval?  Explain why you chose that method.
 
 ---
-<p style="font-size: 0.75em; color: c6c6c6;">from <a href="http://derekogle.com">Derek H. Ogle</a>, 29-Sep-15, updated 29-Sep-15</p>
+<p style="font-size: 0.75em; color: c6c6c6;">from <a href="http://derekogle.com">Derek H. Ogle</a>, 27-Sep-15, updated 27-Sep-15</p>
+
+<style type="text/css">
+ol ol { list-style-type: lower-alpha; }
+</style>
 

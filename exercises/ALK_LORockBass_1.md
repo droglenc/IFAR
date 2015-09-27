@@ -4,10 +4,6 @@ title: Age-Length Keys
 subtitle: Lake Ontario Rock Bass I
 ---
 
-<style type="text/css">
-ol ol { list-style-type: lower-alpha; }
-</style>
-
 Wolfert (1980) measured the total length (TL) of 1288 Rock Bass (*Ambloplites rupestris*) from Eastern Lake Ontario in the late 1970s.  In addition, scales were removed for age estimation from as many as 10 specimens from each 10 mm length interval.  All data are recorded in `data(RockBassLO2)` from `FSAdata` [Note: the filename contains an "oh" not a "zero."].
 
 1. Separate the observed data into age- and length-samples.  How many fish are in each sample?
@@ -29,3 +25,6 @@ Wolfert (1980) measured the total length (TL) of 1288 Rock Bass (*Ambloplites ru
 ---
 <p style="font-size: 0.75em; color: c6c6c6;">from <a href="http://derekogle.com">Derek H. Ogle</a>, 23-Sep-15, updated 23-Sep-15</p>
 
+<style type="text/css">
+ol ol { list-style-type: lower-alpha; }
+</style>
