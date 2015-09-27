@@ -16,6 +16,7 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
 1. **Weight-Length Relationships**
 1. **Condition**
 1. **Abundance from Capture-Recapture Data**
+    * [Ugly River Brown Trout](MarkRecap_URBrownTrout.html)
 1. **Abundance from Depletion Data**
     * [Lake Guntersville Largemouth Bass](Depletion_LKLargemouth.html)
 1. **Mortality Rates**
