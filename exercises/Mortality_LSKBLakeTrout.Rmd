@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Mortality
-subtitle: Lake Superior Lake Trout
+subtitle: Keewenaw Bay (Lake Superior) Lake Trout
 author: Derek H. Ogle
 output: 
   html_document: 
