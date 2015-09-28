@@ -24,6 +24,8 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
 1. **Abundance from Depletion Data**
     * [Lake Guntersville Largemouth Bass](Depletion_LKLargemouth.html)
 1. **Mortality Rates**
+    * [Keewenaw Bay Lake Trout](Mortality_LSKBLakeTrout.html)
+    * [Stannard Rock Lake Trout](Mortality_LSSRLakeTrout.html)
 1. **Individual Growth**
     * Alaskan Slimy Sculpin -- [I](Growth_AKSculpin_1.html) / [II](Growth_AKSculpin_2.html)
     * Lake Ontario Rock Bass -- [I](Growth_LORockBass_1.html) / [II](Growth_LORockBass_2.html)
