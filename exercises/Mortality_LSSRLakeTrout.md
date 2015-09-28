@@ -6,7 +6,7 @@ subtitle: Stannard Rock (Lake Superior) Lake Trout
 
 [Curtis (1990)](http://www.glsc.usgs.gov/publications/1990/688) examined the population dynamics related to the recovery of an offshore Lake Trout population near Stannard Rock, Lake Superior.  As part of this study, mortality rates were estimated from the relative abundance of Lake Trout longer than 43.2 cm.  Relative abundance was recorded as the catch-per-unit-effort (CPE) of each age group in each year expressed as the number of fish caught per 50,000 m of 114.3 mm mesh gillnet.  The results are shown in the table below.  [Note: (1) the values in the table have been rounded to integers; (2) values recorded as "tr" in the original paper were recorded as "0.5" in this table; and (3) the years of capture are not contiguous (there is a break between 1959 and 1963 and again between 1969 and 1973).]  Use these results to answer the following questions.
 
-|:----:|
+
 | Year | &nbsp;&nbsp;&nbsp;VI&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;VII&nbsp;&nbsp; | &nbsp;&nbsp;VIII&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;IX&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;X&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;XI&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;XII&nbsp;&nbsp; | &nbsp;&nbsp;XIII&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;XIV&nbsp;&nbsp; |
 |:----:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | 1959 | 64 | 219 | 241 | 121 | 33 | 9 | 1 | 0.5 | 1 |
@@ -24,10 +24,6 @@ subtitle: Stannard Rock (Lake Superior) Lake Trout
 | 1977 | 157 | 867 | 1343 | 1410 | 1031 | 417 | 192 | 17 | 7 |
 | 1978 | 89 | 735 | 1307 | 1623 | 1150 | 445 | 198 | 18 | 14 |
 | 1979 | 29 | 299 | 718 | 1268 | 1195 | 585 | 300 | 36 | 14 |
-\hline\hline
-  \end{tabular}
-\end{center}
-
 
 1. What year-class of fish is represented by the 339 age-VII fish caught in 1963?
 1. Identify the vectors of catches and ages that would be used to estimate the instantaneous total mortality rates for the following situations.
