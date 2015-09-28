@@ -6,7 +6,7 @@ subtitle: Wisconsin YOY Walleye
 
 [Mraz (1968)](http://digicoll.library.wisc.edu/cgi-bin/EcoNatRes/EcoNatRes-idx?type=header;pview=hide;id=EcoNatRes.DNRBull40) examined the population dynamics of young-of-the-year (YOY) walleye (*Sander vitreus*) in Pine Lake, an inland lake in Wisconsin.  In fall 1962, YOY walleye were captured, marked, and returned to the lake on five sampling dates.  On each date, the number of fish caught, the number of caught fish that were previously marked, and the number of marked fish returned to the lake were recorded.  The results from these sampling efforts are shown in the table below.
 
-| Sample |  &nbsp;Caught&nbsp;  | Recaptured | Returned |
+| Sample |  &nbsp;&nbsp;&nbsp;Caught&nbsp;&nbsp;&nbsp;  | &nbsp;&nbsp;&nbsp;Recaptured&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;Returned&nbsp;&nbsp;&nbsp; |
 |:------:|:--------:|:----------:|:--------:|
 |    1   |    321   |     --     |    321   |
 |    2   |    412   |     45     |    412   |
