@@ -14,6 +14,7 @@ subtitle: Wisconsin YOY Walleye
 |    4   |    415   |     93     |    415   |
 |    5   |    367   |    113     |     --   |
 
+
 1. Estimate the initial population size, with 95% confidence interval, of YOY Walleye in Pine Lake.  Carefully interpret the result.
 1. Comment on the validity of the assumptions for the model you used to estimate the size of the population.
 
