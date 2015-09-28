@@ -1,0 +1,30 @@
+---
+layout: page
+title: Abundance from Mark-Recapture Data
+subtitle: Wisconsin YOY Walleye
+author: Derek H. Ogle
+output: 
+  html_document: 
+    fig_width: 5
+    self_contained: no
+---
+```{r echo=FALSE, eval=FALSE}
+# Renders an appropriate HTML file for the webpage
+setwd("C:/aaaWork/Web/GitHub/IFAR/exercises")
+source("../rhelpers/modHTML.R"); modHTML("MarkRecap_HypotheticalCapHist")
+```
+
+The following is a summary of the capture histories for a hypothetical collection of 100 fish.  Use these results to find $n_{i}$, $m_{i}$, $R_{i}$, and $M_{i}$ for each sample to be used in the Schnabel multiple census method [Hint: Find $n_{i}$ and $m_{i}$ and then $R_{i}$ and $M_{i}$.]
+
+```{r echo=FALSE}
+tmp <- c(11,12,5,14,5,2,1,15,2,2,1,2,1,1,4,4,7,6,1,1,1,1,1)
+names(tmp) <- c("00001;","00010;","00011;","00100;","00101;",
+                "00110;","00111;","01000;","01001;","01010;",
+                "01011;","01100;","01101;","01110;","10000;",
+                "10001;","10010;","10100;","10110;","11000;",
+                "11010;","11011;","11111;")
+tmp
+```
+
+---
+<p style="font-size: 0.75em; color: c6c6c6;">from <a href="http://derekogle.com">Derek H. Ogle</a>, 27-Sep-15, updated 27-Sep-15</p>

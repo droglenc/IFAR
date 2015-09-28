@@ -17,6 +17,10 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
 1. **Condition**
 1. **Abundance from Capture-Recapture Data**
     * [Ugly River Brown Trout](MarkRecap_URBrownTrout.html)
+    * [Upper Niagara Springs Pond Rainbow Trout](MarkRecap_UNSPRainbowTrout.html)
+    * [Indian Creek Tan Riffleshell](MarkRecap_TanRiffleshell.html)
+    * [Wisconsin YOY Walleye](MarkRecap_WIYOYWalleye.html)
+    * [Hypothetical Capture Histories](MarkRecap_HypotheticalCapHist.html)
 1. **Abundance from Depletion Data**
     * [Lake Guntersville Largemouth Bass](Depletion_LKLargemouth.html)
 1. **Mortality Rates**
