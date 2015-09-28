@@ -14,7 +14,7 @@ setwd("C:/aaaWork/Web/GitHub/IFAR/exercises")
 source("../rhelpers/modHTML.R"); modHTML("MarkRecap_UNSPRainbowTrout")
 ```
 
-Warren *et al.* (2004) examined the population of Rainbow Trout (*Oncorhynchus mykiss*) in the Upper Niagara Springs Pond in 2000.  Fish were captured at two times by using an electrofishing unit attached to a driftboat. The capture history of all fish examined in the two samples is in `RBTroutUNSP` in the `FSAdata` package.  Analyze these capture histories to answer the following questions.
+[Warren *et al.* (2004)](https://collaboration.idfg.idaho.gov/FisheriesTechnicalReports/Mgt04-04Warren2001%20Regional%20Fisheries%20Management%20Investigations%20Magic%20Valley%20Region.pdf) examined the population of Rainbow Trout (*Oncorhynchus mykiss*) in the Upper Niagara Springs Pond in 2000.  Fish were captured at two times by using an electrofishing unit attached to a driftboat. The capture history of all fish examined in the two samples that were 100 mm and longer is in `RBTroutUNSP` in the `FSAdata` package.  Analyze these capture histories to answer the following questions.
 
 1. Create a summary of the capture histories.
 1. From your capture history summary assign values to each of $M$, $n$, and $m$.
