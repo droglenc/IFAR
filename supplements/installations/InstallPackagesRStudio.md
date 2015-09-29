@@ -5,6 +5,13 @@ subtitle: In RStudio
 css: /supplements/installations/directions.css
 ---
 
+------
+
+1. [Installing Packages from CRAN](#installing-packages-from-cran)
+1. [Installing FSA and FSAdata](#installing-fsa-and-fsadata)
+1. [Troubleshooting the FSA Installation](#troubleshooting-the-fsa-installation)
+------
+
 ## Installing Packages from CRAN
 
 Packages distributed via the Comprehensive R Archive Network (CRAN) extend the functionality of R.  If you have chosen to interact with R through RStudio, then these directions explain how to install package from within RStudio.  If you have not chosen to use RStudio, then goto the directions for installing packages within R for [Windows](InstallPackagesRWin) or the [Mac]().
