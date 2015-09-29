@@ -5,6 +5,14 @@ subtitle: For Windows
 css: /supplements/installations/directions.css
 ---
 
+------
+
+1. [RStudio Installation](#rstudio-installation)
+1. [Preparing RStudio](#preparing-rstudio)
+1. [Introducing RStudio](#introducing-rstudio)
+
+------
+
 The following steps may be used to install and configure RStudio on Windows operating systems.  [See these directions](InstallRStudioMac.html) for installing RStudio on a Macintosh operating system.
 
 ## RStudio Installation
