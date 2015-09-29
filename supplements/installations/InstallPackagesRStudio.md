@@ -10,6 +10,7 @@ css: /supplements/installations/directions.css
 1. [Installing Packages from CRAN](#installing-packages-from-cran)
 1. [Installing FSA and FSAdata](#installing-fsa-and-fsadata)
 1. [Troubleshooting the FSA Installation](#troubleshooting-the-fsa-installation)
+
 ------
 
 ## Installing Packages from CRAN
