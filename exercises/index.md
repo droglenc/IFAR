@@ -14,7 +14,11 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
     * Lake Ontario Rock Bass -- [I](ALK_LORockBass_1.html) / [II](ALK_LORockBass_2.html)
 1. **Size Structure**
 1. **Weight-Length Relationships**
+    * Inch Lake Bluegill - [I](WeightLength_ILBluegill_1.html) / [II](WeightLength_ILBluegill_2.html)
+    * Inch Lake Largemouth Bass - [I](WeightLength_ILLargemouthBass_1.html) / [II](WeightLength_ILLargemouthBass_2.html)
 1. **Condition**
+    * [Inch Lake Bluegill](Condition_ILBluegill.html)
+    * [Inch Lake Largemouth Bass](Condition_ILLargemouthBass.html)
 1. **Abundance from Capture-Recapture Data**
     * [Ugly River Brown Trout](MarkRecap_URBrownTrout.html)
     * [Upper Niagara Springs Pond Rainbow Trout](MarkRecap_UNSPRainbowTrout.html)
