@@ -15,7 +15,7 @@ subtitle: Inch Lake
 1. Create two new variables that are the common logarithms of the lengths (in mm) and weights.
 
 
-Save the script from this exercise as these data will be used in [this plotting](Inch_Plotting.html), these weight-length relationhip (A and B), and these condition (A and B) exercises.
+Save the script from this exercise as these data will be used in [this plotting](Inch_Plotting.html), these weight-length relationhip ([A](Inch_WLBluegill_A.html) and [B](Inch_WLLargemouthBass_A.html)), and these condition ([A](Inch_ConditionBluegill_A.html) and [B](Inch_ConditionLargemouthBass_A.html)) exercises.
 
 ---
 <p style="font-size: 0.75em; color: c6c6c6;">from <a href="http://derekogle.com">Derek H. Ogle</a>, 29-Sep-15, updated 29-Sep-15</p>
