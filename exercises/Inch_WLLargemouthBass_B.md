@@ -13,7 +13,7 @@ Load these data, isolate Largemouth Bass, and answer the following questions.  [
 1. Use the results from above (and without fitting separate regressions for the two sample years) to express the weight-length relationships on the raw scale for both years.
 1. Construct a plot that illustrates your findings.
 
-Continue with this data set for this [condition](Condition_ILLargemouthBass.html) exercise.
+Continue with this data set for this [condition](Inch_ConditionLargemouthBass.html) exercise.
 
 ---
 <p style="font-size: 0.75em; color: c6c6c6;">from <a href="http://derekogle.com">Derek H. Ogle</a>, 29-Sep-15, updated 30-Sep-15, <a href="mailto:fishr@derekogle.com?subject=Inch Lake Largemouth Bass Weight-Length (B) Exercise">Comments/Suggestions</a></p>

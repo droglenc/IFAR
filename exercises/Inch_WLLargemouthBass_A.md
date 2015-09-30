@@ -19,7 +19,7 @@ Load these data, isolate Largemouth Bass, and answer the following questions.
     1. Is there statistical evidence for isometric or allometric growth?
 1. Recompute the weight-length relationship using the original length in inches.  How do the slope and y-intercept from this model fitting compare to the results from above?
 
-Continue with this data set for [weight-length comparisons](IL_WLLargemouthBass_B.html) and [condition](IL_ConditionLargemouthBass.html) exercises.
+Continue with this data set for [weight-length comparisons](Inch_WLLargemouthBass_B.html) and [condition](Inch_ConditionLargemouthBass.html) exercises.
 
 ---
 <p style="font-size: 0.75em; color: c6c6c6;">from <a href="http://derekogle.com">Derek H. Ogle</a>, 29-Sep-15, updated 30-Sep-15, <a href="mailto:fishr@derekogle.com?subject=Inch Lake Largemouth Bass Weight-Length (A) Exercise">Comments/Suggestions</a></p>
