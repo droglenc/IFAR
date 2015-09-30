@@ -15,6 +15,7 @@ subtitle: Inch Lake
 1. Sort the nongame species only data.frame by length within species within year.
 1. Change the names of the `weight` variable to `wt` and the length in millimeters variable to `tl` (if you did not call it that above).
 1. Create two new variables that are the common logarithms of the lengths (in mm) and weights.
+1. Add appropriate five-cell Gabelhouse length categories to the Bluegill and Largemouth Bass only data.frames.
 
 Save the script from this exercise as these data will be used in [this plotting](Inch_Plotting.html), these weight-length relationhip ([A](Inch_WLBluegill_A.html) and [B](Inch_WLLargemouthBass_A.html)), and these condition ([A](Inch_ConditionBluegill.html) and [B](Inch_ConditionLargemouthBass.html)) exercises.
 
