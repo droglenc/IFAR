@@ -20,7 +20,6 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
     * Inch Lake Largemouth Bass - [A](Inch_WLLargemouthBass_A.html) / [B](Inch_WLLargemouthBass_B.html)
 1. **Condition**
     * [Inch Lake Bluegill](Inch_ConditionBluegill.html)
-    * [Inch Lake Largemouth Bass](Inch_ConditionLargemouthBass.html)
 1. **Abundance from Capture-Recapture Data**
     * [Ugly River Brown Trout](MarkRecap_URBrownTrout.html)
     * [Upper Niagara Springs Pond Rainbow Trout](MarkRecap_UNSPRainbowTrout.html)
