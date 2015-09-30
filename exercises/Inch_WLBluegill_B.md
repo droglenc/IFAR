@@ -6,7 +6,7 @@ subtitle: Inch Lake Bluegill B
 
 [Inch Lake](http://dnr.wi.gov/lakes/lakepages/LakeDetail.aspx?wbic=2764300&page=facts) is a 12.5 ha inland lake in northern Wisconsin that has been managed as catch-and-release for all species since 2006.  Researchers at Northland College have monitored fish populations in Inch Lake since 2007.  The total lengths (inches) and weights (g) for subsamples of several species of fish collected from Inch Lake in May of 2007 and 2008 are recorded in [this CSV file](data/InchLake2.csv) (these data are also available in `InchLake2` from `FSAdata`).
 
-Load these data, isolate Bluegill (*Lepomis macrochirus*), and answer the following questions.  [Note that this is a continuation of [this exercise](Inch_WLBluegill_A.html).]
+Load these data, isolate Bluegill, and answer the following questions.  [Note that this is a continuation of [this exercise](Inch_WLBluegill_A.html).]
 
 1. Complete [this Plotting exercise](Inch_Plotting.html).  Qualitatively assess if the weight-length (in mm here and throughout) relationship differs between the two years.
 1. Determine if there is a statistically signficant difference in the weight-length relationship between the two years.  Provide evidence for your findings and carefully interpret the final result.
