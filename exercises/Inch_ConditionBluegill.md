@@ -8,6 +8,15 @@ subtitle: Inch Lake Bluegill
 
 Load these data, isolate Bluegill, and answer the following questions.  [Note that this an extension of this [weight-length exercise](Inch_WLBluegill_A.html).]
 
+1. Complete [this Data Manipulation exercise](Inch_DataManip.html).
+1. Further prepare the data.frame for computation of relative weights (i.e., add a variable of relative weights and filter the data.frame to only those lengths for which the relative weights should be computed).
+1. Create a data.frame of Bluegills captured only in 2007.
+    1. Compute the mean relative weight for each Gabelhouse length category.
+    1. Determine if the mean relative weight differs among Gabelhouse length categories.
+    1. Construct a plot, with confidence intervals and appropriate significance letters, that depict your results.
+1. Repeat the above for Bluegills captured only in 2008.
+1. Empirically compare your results between years.  Provide at least three observations from your findings and at least two plausible explanations for what you observed.
+
 ---
 <p style="font-size: 0.75em; color: c6c6c6;">from <a href="http://derekogle.com">Derek H. Ogle</a>, 29-Sep-15, updated 30-Sep-15, <a href="mailto:fishr@derekogle.com?subject=Inch Lake Bluegill Condition Exercise">Comments/Suggestions</a></p>
 
