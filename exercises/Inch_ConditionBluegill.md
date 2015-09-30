@@ -13,7 +13,7 @@ subtitle: Inch Lake Bluegill
     1. Determine if the mean relative weight differs among Gabelhouse length categories.
     1. Construct a plot, with confidence intervals and appropriate significance letters, that depict your results.
 1. Repeat the above for Bluegills captured only in 2008.
-1. Empirically compare your results between years.  Provide at least three observations from your findings and at least two plausible explanations for what you observed.
+1. [*Extension*] Empirically compare your results between years.  Provide at least three observations from your findings and at least two plausible explanations for what you observed.
 
 ---
 <p style="font-size: 0.75em; color: c6c6c6;">from <a href="http://derekogle.com">Derek H. Ogle</a>, 30-Sep-15, updated 30-Sep-15, <a href="mailto:fishr@derekogle.com?subject=Inch Lake Bluegill Condition Exercise">Comments/Suggestions</a></p>
