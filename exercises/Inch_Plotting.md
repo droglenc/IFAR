@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Data Manipulation
+title: Basic Plotting
 subtitle: Inch Lake
 ---
 
