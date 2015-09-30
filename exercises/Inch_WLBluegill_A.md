@@ -14,12 +14,12 @@ Load these data, isolate Bluegill (*Lepomis macrochirus*), and answer the follow
 1. Compute the weight-length relationship with an appropriate linear regression.
     1. Express your results as an equation on the transformed scale.
     1. Express your results as an equation on the raw scale.
-1. Plot the results of the weight-length relationship on both the transformed and raw scales.
-1. Carefully interpret the meaning of the slope of the weight-length relationship.
-1. Is there statistical evidence for isometric or allometric growth?
+    1. Plot the results (data and the fitted relationship) on both the transformed and raw scales.
+    1. Carefully interpret the meaning of the slope of the weight-length relationship.
+    1. Is there statistical evidence for isometric or allometric growth?
 1. Recompute the weight-length relationship using the original length in inches.  How do the slope and y-intercept from this model fitting compare to the results from above?
 
-Continue with this data set for [weight-length comparisons](WeightLength_ILBluegill_2.html) and [condition](Condition_ILBluegill.html) exercises.
+Continue with this data set for [weight-length comparisons](Inch_WLBluegill_B.html) and [condition](Inch_ConditionBluegill.html) exercises.
 
 ---
 <p style="font-size: 0.75em; color: c6c6c6;">from <a href="http://derekogle.com">Derek H. Ogle</a>, 29-Sep-15, updated 30-Sep-15, <a href="mailto:fishr@derekogle.com?subject=Inch Lake Bluegill Weight-Length (A) Exercise">Comments/Suggestions</a></p>

@@ -16,7 +16,7 @@ subtitle: Inch Lake
 1. Change the names of the `weight` variable to `wt` and the length in millimeters variable to `tl` (if you did not call it that above).
 1. Create two new variables that are the common logarithms of the lengths (in mm) and weights.
 
-Save the script from this exercise as these data will be used in [this plotting](Inch_Plotting.html), these weight-length relationhip ([A](Inch_WLBluegill_A.html) and [B](Inch_WLLargemouthBass_A.html)), and these condition ([A](Inch_ConditionBluegill_A.html) and [B](Inch_ConditionLargemouthBass_A.html)) exercises.
+Save the script from this exercise as these data will be used in [this plotting](Inch_Plotting.html), these weight-length relationhip ([A](Inch_WLBluegill_A.html) and [B](Inch_WLLargemouthBass_A.html)), and these condition ([A](Inch_ConditionBluegill.html) and [B](Inch_ConditionLargemouthBass.html)) exercises.
 
 ---
 <p style="font-size: 0.75em; color: c6c6c6;">from <a href="http://derekogle.com">Derek H. Ogle</a>, 29-Sep-15, updated 30-Sep-15, <a href="mailto:fishr@derekogle.com?subject=Inch Lake DataManip Exercise">Comments/Suggestions</a></p>

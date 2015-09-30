@@ -18,7 +18,7 @@ subtitle: Inch Lake
 1. Repeat the above for Largemouth Bass.
 1. Describe the species distribution of (only) non-game species.
 
-Save the script from this exercise as these data will be used in these weight-length relationhip ([A](Inch_WLBluegill_A.html) and [B](Inch_WLLargemouthBass_A.html)) and these condition ([A](Inch_ConditionBluegill_A.html) and [B](Inch_ConditionLargemouthBass_A.html)) exercises.
+Save the script from this exercise as these data will be used in these weight-length relationhip ([A](Inch_WLBluegill_A.html) and [B](Inch_WLLargemouthBass_A.html)) and these condition ([A](Inch_ConditionBluegill.html) and [B](Inch_ConditionLargemouthBass.html)) exercises.
 
 ---
 <p style="font-size: 0.75em; color: c6c6c6;">from <a href="http://derekogle.com">Derek H. Ogle</a>, 29-Sep-15, updated 30-Sep-15, <a href="mailto:fishr@derekogle.com?subject=Inch Lake Plotting Exercise">Comments/Suggestions</a></p>
