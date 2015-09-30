@@ -9,15 +9,15 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
 1. **Loading Data and Basic Manipulations**
     * [Inch Lake](Inch_DataManip.html)
 1. **Plotting Fundamentals**
-    * [Inch Lake](Inch_DataManip.html)
+    * [Inch Lake](Inch_Plotting.html)
 1. **Age Comparisons**
     * [Lake Champlain Lake Whitefish](AgeComp_LCLWhitefish.html)
 1. **Age-Length Keys**
-    * Lake Ontario Rock Bass -- [I](ALK_LORockBass_1.html) / [II](ALK_LORockBass_2.html)
+    * Lake Ontario Rock Bass -- [A](ALK_LORockBass_A.html) / [B](ALK_LORockBass_B.html)
 1. **Size Structure**
 1. **Weight-Length Relationships**
-    * Inch Lake Bluegill - [I](Inch_WLBluegill_1.html) / [II](Inch_WLBluegill_2.html)
-    * Inch Lake Largemouth Bass - [I](Inch_WLLargemouthBass_1.html) / [II](Inch_WLLargemouthBass_2.html)
+    * Inch Lake Bluegill - [A](Inch_WLBluegill_A.html) / [B](Inch_WLBluegill_B.html)
+    * Inch Lake Largemouth Bass - [A](Inch_WLLargemouthBass_A.html) / [B](Inch_WLLargemouthBass_B.html)
 1. **Condition**
     * [Inch Lake Bluegill](Inch_ConditionBluegill.html)
     * [Inch Lake Largemouth Bass](Inch_ConditionLargemouthBass.html)
@@ -33,8 +33,7 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
     * [Keewenaw Bay Lake Trout](Mortality_LSKBLakeTrout.html)
     * [Stannard Rock Lake Trout](Mortality_LSSRLakeTrout.html)
 1. **Individual Growth**
-    * Alaskan Slimy Sculpin -- [I](Growth_AKSculpin_1.html) / [II](Growth_AKSculpin_2.html)
-    * Lake Ontario Rock Bass -- [I](Growth_LORockBass_1.html) / [II](Growth_LORockBass_2.html)
-    * Alaskan Slimy Sculpin -- [I](Growth_EuroPerch_1.html) / [II](Growth_EuroPerch_2.html)
-
+    * Alaskan Slimy Sculpin -- [A](Growth_AKSculpin_A.html) / [B](Growth_AKSculpin_B.html)
+    * Lake Ontario Rock Bass -- [A](Growth_LORockBass_A.html) / [B](Growth_LORockBass_B.html)
+    * Alaskan Slimy Sculpin -- [A](Growth_EuroPerch_A.html) / [B](Growth_EuroPerch_B.html)
 1. **Recruitment**

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Weight-Length
-subtitle: Inch Lake Bluegill II
+subtitle: Inch Lake Bluegill B
 ---
 
 The total lengths (inches) and weights (g) for subsamples of several species of fish collected from Inch Lake (Wisconsin) in May of 2007 and 2008 are recorded in `InchLake2` in `FSAdata`.  Load these data, isolate Bluegill (*Lepomis macrochirus*), and answer the following questions.  [Note that this is a continuation of [this exercise](WeightLength_ILBluegill_1.html).]
