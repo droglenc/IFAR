@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Individual Growth
-subtitle: European Perch A
+subtitle: European Perch B
 author: Derek H. Ogle
 output: 
   html_document: 
@@ -11,17 +11,17 @@ output:
 ```{r echo=FALSE, eval=FALSE}
 # Renders an appropriate HTML file for the webpage
 setwd("C:/aaaWork/Web/GitHub/IFAR/exercises")
-source("../rhelpers/modHTML.R"); modHTML("EuroPerch_Growth_A")
+source("../rhelpers/modHTML.R"); modHTML("EuroPerch_Growth_B")
 ```
 
 [Mooij et al. (1999)](http://www.tandfonline.com/doi/abs/10.1577/1548-8659%281999%29128%3C0483%3AAACOFG%3E2.0.CO%3B2) examined length-at-age data of [European Perch](https://en.wikipedia.org/wiki/European_perch) (*Perca fluviatilis*) from [Lake Tjeukemeer](http://wldb.ilec.or.jp/data/databook_html/eur/eur-01.html) (The Netherlands) to identify possible sexual dimorphism in growth trajectories.  Their data consisted of fork length (FL; cm), ages (yrs) from otoliths, and sex from 69 fish and are recorded in [this CSV file](data/EuroPerchTJ.csv) (these data are also available in `EuroPerchTJ` from `FSAdata`).
 
-Use these data, and results from [this exercise](EuroPerch_Growth_A.html), to answer the following questions.
+Use these data, and results from [this exercise](EuroPerch_Growth_B.html), to answer the following questions.
 
 1. Plot FL versus age with different symbols for each sex.
     1. Do you foresee any model fitting problems with these data?
     1. Do you observe any possible differences in growth between the sexes?
-1. Fit the additive errors typical VBGF where all parameters differ by sex.
+1. Mooij et al. (1999) actually fit an alternative paramaterization of the von Bertalanffy growth function (VBGF) to these data.  That parameterization can be viewed with `vbModels()` in `FSA`.  Fit the additive errors version of this paramaterization in a model where all parameters differ by sex.
     1. Assess the assumptions from this model fit.
     1. Compute point and bootstrapped 95% confidence interval estimates for each parameter in this model.  Describe any problems that you encountered.
 1. Find the most parsimonius model that is a subset of the model fit above.
@@ -29,17 +29,19 @@ Use these data, and results from [this exercise](EuroPerch_Growth_A.html), to an
     1. Using the $AICc$ criterion.
     1. Use the extra sums-of-squares test. 
     1. Summarize (in words) the results of the most parsimonious model identified with the extra sums-of-squares test.
-1. Fit the typical VBGF seprately to both sexes.
+1. Fit the this VBGF parameterizations seprately to both sexes.
     1. Compute point and bootstrapped 95% confidence interval estimates for each parameter in the separate models.
     1. Describe any problems that you encountered.
     1. How do the point estimates from these separate models compare to the point estimates from the most complex model in #2 above?
     1. Do you see any issues with the confidence intervals?  If so, describe.
 1. Construct a summary graphic that shows the growth trajectories superimposed on the observed data for both sexes.
-
-[Continue with this data set here](EuroPerch_Growth_B.html).
+1. Make the following comparisons between the results from fitting this parameterization to the results from fitting the typical parameterization in [this exercise](EuroPerch_Growth_A.html).
+    1. Point estimates for $L_\infty$.
+    1. Summary graphic.
+    1. Any issues with model convergence or interval estimates.
 
 ---
-<p style="font-size: 0.75em; color: c6c6c6;">from <a href="http://derekogle.com">Derek H. Ogle</a>, 1-Oct-15, updated 1-Oct-15, <a href="mailto:fishr@derekogle.com?subject=European Perch Growth Exercise (A)">Comments/Suggestions</a></p>
+<p style="font-size: 0.75em; color: c6c6c6;">from <a href="http://derekogle.com">Derek H. Ogle</a>, 1-Oct-15, updated 1-Oct-15, <a href="mailto:fishr@derekogle.com?subject=European Perch Growth Exercise (B)">Comments/Suggestions</a></p>
 
 <style type="text/css">
 ol ol { list-style-type: lower-alpha; }

@@ -14,7 +14,9 @@ setwd("C:/aaaWork/Web/GitHub/IFAR/exercises")
 source("../rhelpers/modHTML.R"); modHTML("AKSlimySculpins_Growth_A")
 ```
 
-The total length (mm) and otolith age of Slimy Sculpin (*Cottus cognatus*) captured in the Arctic Long-Term Ecological Research area were recorded in [this CSV file](SculpinALTER.csv) (these data are also available in `SculpinALTER` from `FSAdata`.  Use these data to answer the following questions.
+The total length (mm) and otolith age of [Slimy Sculpin](https://en.wikipedia.org/wiki/Slimy_sculpin) (*Cottus cognatus*) captured in the [Arctic Long-Term Ecological Research](http://ecosystems.mbl.edu/ARC/) area were recorded in [this CSV file](SculpinALTER.csv) (these data are also available in `SculpinALTER` from `FSAdata`.
+
+Use these data to answer the following questions.
 
 1. Plot TL versus age.  Observe the "shape" of the data (do the results look linear or like a von Bertalanffy growth curve, is there an obvious asymptote, are young fish well represented, how variable are lengths within ages).
 1. Fit the typical parameterization of the von Bertalanffy growth function (VBGF).
@@ -31,7 +33,7 @@ The total length (mm) and otolith age of Slimy Sculpin (*Cottus cognatus*) captu
 [Continue with this data set here](AKSlimySculpins_Growth_B.html).
 
 ---
-<p style="font-size: 0.75em; color: c6c6c6;">from <a href="http://derekogle.com">Derek H. Ogle</a>, 1-Oct-15, updated 1-Oct-15, <a href="mailto:fishr@derekogle.com?subject=Rock Bass Growth Exercise (A)">Comments/Suggestions</a></p>
+<p style="font-size: 0.75em; color: c6c6c6;">from <a href="http://derekogle.com">Derek H. Ogle</a>, 1-Oct-15, updated 1-Oct-15, <a href="mailto:fishr@derekogle.com?subject=Slimy Sculpin Growth Exercise (A)">Comments/Suggestions</a></p>
 
 <style type="text/css">
 ol ol { list-style-type: lower-alpha; }

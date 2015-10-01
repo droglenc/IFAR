@@ -1,0 +1,53 @@
+---
+layout: page
+title: Individual Growth
+subtitle: Alaskan Slimy Sculpins B
+author: Derek H. Ogle
+---
+
+
+<p>The total length (mm) and otolith age of <a href="https://en.wikipedia.org/wiki/Slimy_sculpin">Slimy Sculpin</a> (<em>Cottus cognatus</em>) captured in the <a href="http://ecosystems.mbl.edu/ARC/">Arctic Long-Term Ecological Research</a> area were recorded in <a href="SculpinALTER.csv">this CSV file</a> (these data are also available in <code>SculpinALTER</code> from <code>FSAdata</code>. Use these data, and results from <a href="AKSlimySculpins_Growth_A.html">this exercise</a>, to answer the following questions.</p>
+<ol>
+<li>Plot TL versus age. Observe the “shape” of the data (do the results look linear or like a von Bertalanffy growth curve, is there an obvious asymptote, are young fish well represented, how variable are lengths within ages).</li>
+<li>Fit the von Bertalanffy’s original parameterization (see <code>vbModels()</code>).
+<ol>
+<li>Write the VBGF with parameters replaced by their estimated values.</li>
+<li>Carefully interpret the meaning of each parameter?</li>
+<li>Predict the mean TL, with 95% confidence interval, for an age-3 Slimy Sculpin. How does this prediction compare to the prediction you made using the typical VBGF in <a href="AKSlimySculpins_Growth_A.html">this exercise</a>?</li>
+<li>Plot TL versus age and superimpose the best-fit VBGF. Comment on model fit.</li>
+<li>Construct a residual plot. Comment on model fit.</li>
+<li>How does the estimate of <span class="math">\(L_{\infty}\)</span> and <span class="math">\(K\)</span> from fitting this parameterization compare to that from the typical VBGF fit in <a href="AKSlimySculpins_Growth_A.html">this exercise</a>. Explain your observation.</li>
+</ol></li>
+</ol>
+<hr />
+<p style="font-size: 0.75em; color: c6c6c6;">
+from <a href="http://derekogle.com">Derek H. Ogle</a>, 1-Oct-15, updated 1-Oct-15, <a href="mailto:fishr@derekogle.com?subject=Slimy Sculpin Growth Exercise (B)">
+</p>
+<style type="text/css">
+ol ol { list-style-type: lower-alpha; }
+</style>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
