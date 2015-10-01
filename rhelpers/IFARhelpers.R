@@ -1,18 +1,24 @@
 ##############################################################
 # Creates a footer for the bottom of the exercises
+#   f: filename without the extension
+#   author: author name
 ##############################################################
-exercise_footer <- function(f,n="Derek H. Ogle") {
+exercise_footer <- function(f,author="Derek H. Ogle") {
   # get file info
   info <- file.info(paste0(f,".Rmd"))
   # set the date format
   dfmt <- "%d-%b-%y"
-  # start making footer string
+  ## start making footer string
   ftr <- '<p style="font-size: 0.75em; color: c6c6c6;">from'
-  ftr <- paste(ftr,n,', created ',format(info$ctime,format=dfmt))
+  ftr <- paste(ftr,author,', created ',format(info$ctime,format=dfmt))
   ftr <- paste0(ftr,', updated ',format(info$mtime,format=dfmt))
   ftr <- paste0(ftr,', <a href="mailto:fishr@derekogle.com?subject=')
   ftr <- paste0(ftr,f,' exercise">Comments/Suggestions</a>.</p>')
   cat(ftr)
+  ## Add CSS directives
+  cat('<style type="text/css">')
+  cat('ol ol { list-style-type: lower-alpha; }')
+  cat('</style>')
 }
 
 ##############################################################

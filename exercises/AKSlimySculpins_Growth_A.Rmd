@@ -36,7 +36,3 @@ Use these data to answer the following questions.
 ```{r echo=FALSE, results="asis"}
 exercise_footer("AKSlimySculpins_Growth_A")
 ```
-
-<style type="text/css">
-ol ol { list-style-type: lower-alpha; }
-</style>
