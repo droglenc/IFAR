@@ -13,7 +13,7 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
 1. **Age Comparisons**
     * [Lake Champlain Lake Whitefish](AgeComp_LCLWhitefish.html)
 1. **Age-Length Keys**
-    * Lake Ontario Rock Bass -- [A](ALK_LORockBass_A.html) / [B](ALK_LORockBass_B.html)
+    * Lake Ontario Rock Bass -- [A](LORockBass_ALK_A.html) / [B](LORockBass_ALK_B.html)
 1. **Size Structure**
 1. **Weight-Length Relationships**
     * Inch Lake Bluegill - [A](Inch_WLBluegill_A.html) / [B](Inch_WLBluegill_B.html)
@@ -33,6 +33,6 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
     * [Stannard Rock Lake Trout](Mortality_LSSRLakeTrout.html)
 1. **Individual Growth**
     * Alaskan Slimy Sculpin -- [A](Growth_AKSculpin_A.html) / [B](Growth_AKSculpin_B.html)
-    * Lake Ontario Rock Bass -- [A](Growth_LORockBass_A.html) / [B](Growth_LORockBass_B.html)
+    * Lake Ontario Rock Bass -- [A](LORockBass_Growth_A.html) / [B](LORockBass_Growth_B.html)
     * Alaskan Slimy Sculpin -- [A](Growth_EuroPerch_A.html) / [B](Growth_EuroPerch_B.html)
 1. **Recruitment**
