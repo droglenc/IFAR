@@ -1,0 +1,33 @@
+---
+layout: page
+title: Individual Growth
+subtitle: Alaskan Slimy Sculpins B
+author: Derek H. Ogle
+output: 
+  html_document: 
+    fig_width: 5
+    self_contained: no
+---
+```{r echo=FALSE, eval=FALSE}
+# Renders an appropriate HTML file for the webpage
+setwd("C:/aaaWork/Web/GitHub/IFAR/exercises")
+source("../rhelpers/modHTML.R"); modHTML("AKSlimySculpins_Growth_B")
+```
+
+The total length (mm) and otolith age of Slimy Sculpin (*Cottus cognatus*) captured in the Arctic Long-Term Ecological Research area were recorded in [this CSV file](SculpinALTER.csv) (these data are also available in `SculpinALTER` from `FSAdata`.  Use these data, and results from [this exercise](AKSlimySculpins_Growth_A.html), to answer the following questions.
+
+1. Plot TL versus age.  Observe the "shape" of the data (do the results look linear or like a von Bertalanffy growth curve, is there an obvious asymptote, are young fish well represented, how variable are lengths within ages).
+1. Fit the von Bertalanffy's original parameterization (see `vbModels()`).
+    1. Write the VBGF with parameters replaced by their estimated values.
+    1. Carefully interpret the meaning of each parameter?
+    1. Predict the mean TL, with 95% confidence interval, for an age-3 Slimy Sculpin.  How does this prediction compare to the prediction you made using the typical VBGF in [this exercise](AKSlimySculpins_Growth_A.html)?
+    1. Plot TL versus age and superimpose the best-fit VBGF.  Comment on model fit.
+    1. Construct a residual plot.  Comment on model fit.
+    1. How does the estimate of $L_{\infty}$ and $K$ from fitting this parameterization compare to that from the typical VBGF fit in [this exercise](AKSlimySculpins_Growth_A.html).  Explain your observation.
+
+---
+<p style="font-size: 0.75em; color: c6c6c6;">from <a href="http://derekogle.com">Derek H. Ogle</a>, 1-Oct-15, updated 1-Oct-15, <a href="mailto:fishr@derekogle.com?subject=Rock Bass Growth Exercise (B)"></p>
+
+<style type="text/css">
+ol ol { list-style-type: lower-alpha; }
+</style>

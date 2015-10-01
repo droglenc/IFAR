@@ -1,0 +1,38 @@
+---
+layout: page
+title: Individual Growth
+subtitle: Alaskan Slimy Sculpins A
+author: Derek H. Ogle
+output: 
+  html_document: 
+    fig_width: 5
+    self_contained: no
+---
+```{r echo=FALSE, eval=FALSE}
+# Renders an appropriate HTML file for the webpage
+setwd("C:/aaaWork/Web/GitHub/IFAR/exercises")
+source("../rhelpers/modHTML.R"); modHTML("AKSlimySculpins_Growth_A")
+```
+
+The total length (mm) and otolith age of Slimy Sculpin (*Cottus cognatus*) captured in the Arctic Long-Term Ecological Research area were recorded in [this CSV file](SculpinALTER.csv) (these data are also available in `SculpinALTER` from `FSAdata`.  Use these data to answer the following questions.
+
+1. Plot TL versus age.  Observe the "shape" of the data (do the results look linear or like a von Bertalanffy growth curve, is there an obvious asymptote, are young fish well represented, how variable are lengths within ages).
+1. Fit the typical parameterization of the von Bertalanffy growth function (VBGF).
+    1. Write the typical VBGF with parameters replaced by their estimated values.
+    1. How realistic do the point estimates of $L_{\infty}$, $K$, and $t_{0}$ seem?
+    1. Construct 95% bootstrapped confidence intervals for each parameter.  Comment on the widths of these confidence intervals.  What explains this?
+    1. Carefully interpret the meaning of each parameter.
+    1. Predict the mean TL, with 95% confidence interval, for an age-3 Slimy Sculpin.  Comment on the width of this confidence interval.  What explains this?
+    1. Predict the age at which the Slimy Sculpins will have reached half of the asymptotic mean TL.
+    1. Plot TL versus age and superimpose the best-fit VBGF.  Comment on model fit.
+    1. Construct a residual plot.  Comment on model fit.
+    1. Compute the correlation between parameter values.  Comment.
+
+[Continue with this data set here](AKSlimySculpins_Growth_B.html).
+
+---
+<p style="font-size: 0.75em; color: c6c6c6;">from <a href="http://derekogle.com">Derek H. Ogle</a>, 1-Oct-15, updated 1-Oct-15, <a href="mailto:fishr@derekogle.com?subject=Rock Bass Growth Exercise (A)">Comments/Suggestions</a></p>
+
+<style type="text/css">
+ol ol { list-style-type: lower-alpha; }
+</style>

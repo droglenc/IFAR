@@ -34,5 +34,5 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
 1. **Individual Growth**
     * Alaskan Slimy Sculpin -- [A](Growth_AKSculpin_A.html) / [B](Growth_AKSculpin_B.html)
     * Lake Ontario Rock Bass -- [A](LORockBass_Growth_A.html) / [B](LORockBass_Growth_B.html)
-    * Alaskan Slimy Sculpin -- [A](Growth_EuroPerch_A.html) / [B](Growth_EuroPerch_B.html)
+    * European Perch -- [A](Growth_EuroPerch_A.html) / [B](Growth_EuroPerch_B.html)
 1. **Recruitment**

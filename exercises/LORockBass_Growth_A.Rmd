@@ -22,9 +22,11 @@ In this [age-length key exercise](ALK_LORockBass_B.html), a data.frame was produ
 1. Fit the typical parameterization of the von Bertalanffy growth function (VBGF).
     1. How realistic do the point estimates of $L_{\infty}$, $K$, and $t_{0}$ seem?
     1. Write the typical VBGF with parameters replaced by their estimated values.
+    1. Carefully interpret the meaning of each parameter.
     1. Construct 95% bootstrapped confidence intervals for each parameter.  Comment on the widths of these confidence intervals.  What explains this?
     1. Predict the mean TL, with 95% confidence interval, for an age-6 Rock Bass.  Comment on the width of this confidence interval.  What explains this?
     1. Plot TL versus age and superimpose the best-fit VBGF.  Comment on model fit.
+    1. Construct a residual plot.  Comment on model fit.
     1. Compute the correlation between parameter values.  Comment.
 
 [Continue with this data set here](LORockBass_Growth_B.html).
