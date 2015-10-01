@@ -32,7 +32,7 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
     * [Keewenaw Bay Lake Trout](Mortality_LSKBLakeTrout.html)
     * [Stannard Rock Lake Trout](Mortality_LSSRLakeTrout.html)
 1. **Individual Growth**
-    * Alaskan Slimy Sculpin -- [A](AKSlimySculpin_Growth_A.html) / [B](AKSlimySculpin_Growth_B.html)
+    * Alaskan Slimy Sculpin -- [A](AKSlimySculpins_Growth_A.html) / [B](AKSlimySculpins_Growth_B.html)
     * Lake Ontario Rock Bass -- [A](LORockBass_Growth_A.html) / [B](LORockBass_Growth_B.html)
     * European Perch -- [A](EuroPerch_Growth_A.html) / [B](EuroPerch_Growth_B.html)
 1. **Recruitment**
