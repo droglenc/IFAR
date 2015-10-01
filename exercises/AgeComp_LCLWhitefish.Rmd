@@ -2,6 +2,17 @@
 layout: page
 title: Age Comparisons
 subtitle: Lake Champlain Lake Whitefish
+author: Derek H. Ogle
+output: 
+  html_document: 
+    fig_width: 5
+    self_contained: no
+---
+```{r echo=FALSE, eval=FALSE}
+# Renders an appropriate HTML file for the webpage
+setwd("C:/aaaWork/Web/GitHub/IFAR/exercises"); source("../rhelpers/IFARhelpers.R")
+fnm <-"AgeComp_LCLWhitefish"; modHTML(fnm)
+```
 ---
 
 [Herbst and Marsden (2011)](http://www.uvm.edu/rsenr/emarsden/documents/Herbst%20and%20Marsden%20whitefish%20age%20structure%20comparison.pdf) compared the precision, bias, and reader uncertainty of ages estimated from the scales, dorsal fin rays, and otoliths of 151 Lake Whitefish (*Coregonus clupeaformis*) captured from Lake Champlain in 2009.  The inital age assessments for two readers and a consensus age between the two readers from each of the three structures (variables are the structure name with a "1" or "2" appended to denote the reader or "C" for the consensus ages) are in `data(WhitefishLC)` in `FSA`.
@@ -16,8 +27,6 @@ subtitle: Lake Champlain Lake Whitefish
 1. Describe precision of fin ray age estimates between the two readers.
 
 ---
-<p style="font-size:0.75em; color:c6c6c6">from <a href="http://derekogle.com">Derek H. Ogle</a>, 23-Sep-15, updated 23-Sep-15</p>
-
-<style type="text/css">
-ol ol { list-style-type: lower-alpha; }
-</style>
+```{r echo=FALSE, results="asis"}
+exercise_footer(fnm)
+```

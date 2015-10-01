@@ -10,8 +10,8 @@ output:
 ---
 ```{r echo=FALSE, eval=FALSE}
 # Renders an appropriate HTML file for the webpage
-setwd("C:/aaaWork/Web/GitHub/IFAR/exercises")
-source("../rhelpers/IFARhelpers.R"); modHTML("AKSlimySculpins_Growth_A")
+setwd("C:/aaaWork/Web/GitHub/IFAR/exercises"); source("../rhelpers/IFARhelpers.R")
+fnm <-"AKSlimySculpins_Growth_A"; modHTML(fnm)
 ```
 
 The total length (mm) and otolith age of [Slimy Sculpin](https://en.wikipedia.org/wiki/Slimy_sculpin) (*Cottus cognatus*) captured in the [Arctic Long-Term Ecological Research](http://ecosystems.mbl.edu/ARC/) area were recorded in [this CSV file](SculpinALTER.csv) (these data are also available in `SculpinALTER` from `FSAdata`.
@@ -34,5 +34,5 @@ Use these data to answer the following questions.
 
 ---
 ```{r echo=FALSE, results="asis"}
-exercise_footer("AKSlimySculpins_Growth_A")
+exercise_footer(fnm)
 ```
