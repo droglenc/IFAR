@@ -16,6 +16,8 @@ subtitle: Lake Ontario Rock Bass B
     1. Plot the length-at-age with the mean length-at-age superimposed for all fish.
     1. Compare your results to someone else's results (or repeat the steps above).  Did you both get the *exact* same results? Why or why not?  If not, how different were they?
 
+[Continue with this data set here](LORockBass_Growth_A.html).
+
 ---
 <p style="font-size: 0.75em; color: c6c6c6;">from <a href="http://derekogle.com">Derek H. Ogle</a>, 23-Sep-15, updated 1-Oct-15, <a href="mailto:fishr@derekogle.com?subject=Rock Bass ALK Exercise (B)">Comments/Suggestions</a></p>
 
