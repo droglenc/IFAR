@@ -13,6 +13,10 @@ modHTML <- function(f) {
   r <- r[1:5]
   # Put it all together as a new html file
   h <- c(r,"---",h)
+  # Remove Rstudio's ol styles
+  tmp <- which(grepl("list-style-type: decimal",h))
+  h[tmp] <- "<ol>"
+  # Write out the new file
   writeLines(h,paste0(f,".html"))
 }
 
@@ -29,5 +33,9 @@ modHTML2 <- function(f) {
   r <- r[1:5]
   # Put it all together as a new html file
   h <- c(r,"---",h)
+  # Remove Rstudio's ol styles
+  tmp <- which(grepl("list-style-type: decimal",h))
+  h[tmp] <- "<ol>"
+  # Write out the new file
   writeLines(h,paste0(f,".html"))
 }
