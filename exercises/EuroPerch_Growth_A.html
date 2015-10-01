@@ -1,0 +1,64 @@
+---
+layout: page
+title: Individual Growth
+subtitle: European Perch A
+author: Derek H. Ogle
+---
+
+
+<p><a href="http://www.tandfonline.com/doi/abs/10.1577/1548-8659%281999%29128%3C0483%3AAACOFG%3E2.0.CO%3B2">Mooij et al. (1999)</a> examined length-at-age data of European Perch (<em>Perca fluviatilis</em>) from Lake Tjuekemeer (The Netherlands) to identify possible sexual dimorphism in growth trajectories. Their data consisted of fork length (FL; cm), ages (yrs) from otoliths, and sex from 69 fish and are recorded in <a href="data/EuroPerchTJ.csv">this CSV file</a> (these data are also available in <code>EuroPerchTJ</code> from <code>FSAdata</code>).</p>
+<ol style="list-style-type: decimal">
+<li>Plot FL versus age with different symbols for each sex.
+<ol style="list-style-type: decimal">
+<li>Do you foresee any model fitting problems with these data?</li>
+<li>Do you observe any possible differences in growth between the sexes?</li>
+</ol></li>
+<li>Fit the additive errors typical VBGF where all parameters differ by sex.
+<ol style="list-style-type: decimal">
+<li>Assess the assumptions from this model fit.</li>
+</ol></li>
+<li>Use the extra sums-of-squares test to find the most parsimonious model that is a subset of the model fit above. Summarize (in words) the results of this model.</li>
+<li>Find the most parsimonious model using the likelihood ratio test. Does this model match the model from the previous question?</li>
+<li>Find the most parsimonious model using the <span class="math">\(AICc\)</span> criterion. Does this model match the model from the previous two questions?</li>
+<li>Compute point and bootstrapped 95% confidence interval estimates for each parameter for each sex from the most complex model from (b). Describe any problems that you encountered.</li>
+<li>Compute point and bootstrapped 95% confidence interval estimates for each parameter for each sex using models fit separately to each sex.
+<ol style="list-style-type: decimal">
+<li>Describe any problems that you encountered.</li>
+<li>How do the point estimates from these separate models compare to the point estimates from the most complex model in #2 above?</li>
+<li>Do you see any issues with the confidence intervals? If so, describe.</li>
+</ol></li>
+<li>Construct a summary graphic that shows the growth trajectories superimposed on the observed data for both sexes.</li>
+</ol>
+<p><a href="EuroPerch_Growth_B.html">Continue with this data set here</a>.</p>
+<hr />
+<p style="font-size: 0.75em; color: c6c6c6;">
+from <a href="http://derekogle.com">Derek H. Ogle</a>, 1-Oct-15, updated 1-Oct-15, <a href="mailto:fishr@derekogle.com?subject=European Perch Growth Exercise (A)">Comments/Suggestions</a>
+</p>
+<style type="text/css">
+ol ol { list-style-type: lower-alpha; }
+</style>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

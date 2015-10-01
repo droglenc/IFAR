@@ -1,0 +1,41 @@
+---
+layout: page
+title: Individual Growth
+subtitle: European Perch A
+author: Derek H. Ogle
+output: 
+  html_document: 
+    fig_width: 5
+    self_contained: no
+---
+```{r echo=FALSE, eval=FALSE}
+# Renders an appropriate HTML file for the webpage
+setwd("C:/aaaWork/Web/GitHub/IFAR/exercises")
+source("../rhelpers/modHTML.R"); modHTML("EuroPerch_Growth_A")
+```
+
+[Mooij et al. (1999)](http://www.tandfonline.com/doi/abs/10.1577/1548-8659%281999%29128%3C0483%3AAACOFG%3E2.0.CO%3B2) examined length-at-age data of European Perch (*Perca fluviatilis*) from Lake Tjuekemeer (The Netherlands) to identify possible sexual dimorphism in growth trajectories.  Their data consisted of fork length (FL; cm), ages (yrs) from otoliths, and sex from 69 fish and are recorded in [this CSV file](data/EuroPerchTJ.csv) (these data are also available in `EuroPerchTJ` from `FSAdata`).
+
+1. Plot FL versus age with different symbols for each sex.
+    1. Do you foresee any model fitting problems with these data?
+    1. Do you observe any possible differences in growth between the sexes?
+1. Fit the additive errors typical VBGF where all parameters differ by sex.
+    1. Assess the assumptions from this model fit.
+1. Use the extra sums-of-squares test to find the most parsimonious model that is a subset of the model fit above.  Summarize (in words) the results of this model.
+1. Find the most parsimonious model using the likelihood ratio test.  Does this model match the model from the previous question?
+1. Find the most parsimonious model using the $AICc$ criterion.  Does this model match the model from the previous two questions?
+1. Compute point and bootstrapped 95% confidence interval estimates for each parameter for each sex from the most complex model from (b).  Describe any problems that you encountered.
+1. Compute point and bootstrapped 95% confidence interval estimates for each parameter for each sex using models fit separately to each sex.
+    1. Describe any problems that you encountered.
+    1. How do the point estimates from these separate models compare to the point estimates from the most complex model in #2 above?
+    1. Do you see any issues with the confidence intervals?  If so, describe.
+1. Construct a summary graphic that shows the growth trajectories superimposed on the observed data for both sexes.
+
+[Continue with this data set here](EuroPerch_Growth_B.html).
+
+---
+<p style="font-size: 0.75em; color: c6c6c6;">from <a href="http://derekogle.com">Derek H. Ogle</a>, 1-Oct-15, updated 1-Oct-15, <a href="mailto:fishr@derekogle.com?subject=European Perch Growth Exercise (A)">Comments/Suggestions</a></p>
+
+<style type="text/css">
+ol ol { list-style-type: lower-alpha; }
+</style>
