@@ -10,8 +10,8 @@ output:
 ---
 ```{r echo=FALSE, eval=FALSE}
 # Renders an appropriate HTML file for the webpage
-setwd("C:/aaaWork/Web/GitHub/IFAR/exercises")
-source("../rhelpers/modHTML.R"); modHTML("Depletion_LKLargemouth")
+setwd("C:/aaaWork/Web/GitHub/IFAR/exercises"); source("../rhelpers/IFARhelpers.R")
+fnm <-"Depletion_LKLargemouth"; modHTML(fnm)
 ```
 
 [Maceina *et al.* (1995)](http://www.tandfonline.com/doi/abs/10.1577/1548-8675%281995%29015%3C0103%3AEHLBAI%3E2.3.CO%3B2) examined the population of harvestable Largemouth Bass (*Micropterus salmoides*) in Connor Cove of Lake Guntersville, Alabama (a 28,000 ha impoundment of the Tennessee River) in March, 1992.  Their objective was to estimate the abundance of harvestable bass through the depletion of catches due to electrofishing.  In their study, they electrofished for 15 minutes at each of four depth strata.  The total number of bass captured and removed from the population in the full hour of electrofishing at the four depths was recorded.  Thus, a total of one hour of electrofishing constituted one unit of effort.  Six one-hour periods were used to deplete the population of bass in one Connor Cove.  The number of bass caught in each successive sampling period was 23, 12, 13, 14, 9, and 7.  Use these data to answer the following questions.
@@ -23,9 +23,6 @@ source("../rhelpers/modHTML.R"); modHTML("Depletion_LKLargemouth")
 1. Estimate the expected number of bass that would be caught in the second sampling period, again given your best estimates of $q$ and $N_{0}$, and the amount of effort used in each sample period.?
 
 ---
-<p style="font-size: 0.75em; color: c6c6c6;">from <a href="http://derekogle.com">Derek H. Ogle</a>, 26-Sep-15, updated 27-Sep-15</p>
-
-<style type="text/css">
-ol ol { list-style-type: lower-alpha; }
-</style>
-
+```{r echo=FALSE, results="asis"}
+exercise_footer(fnm)
+```

@@ -10,8 +10,8 @@ output:
 ---
 ```{r echo=FALSE, eval=FALSE}
 # Renders an appropriate HTML file for the webpage
-setwd("C:/aaaWork/Web/GitHub/IFAR/exercises")
-source("../rhelpers/modHTML.R"); modHTML("MarkRecap_UNSPRainbowTrout")
+setwd("C:/aaaWork/Web/GitHub/IFAR/exercises"); source("../rhelpers/IFARhelpers.R")
+fnm <-"MarkRecap_UNSPRainbowTrout"; modHTML(fnm)
 ```
 
 [Warren *et al.* (2004)](https://collaboration.idfg.idaho.gov/FisheriesTechnicalReports/Mgt04-04Warren2001%20Regional%20Fisheries%20Management%20Investigations%20Magic%20Valley%20Region.pdf) examined the population of Rainbow Trout (*Oncorhynchus mykiss*) in the Upper Niagara Springs Pond in 2000.  Fish were captured at two times by using an electrofishing unit attached to a driftboat. The capture history of all fish examined in the two samples that were 100 mm and longer is in `RBTroutUNSP` in the `FSAdata` package.  Analyze these capture histories to answer the following questions.
@@ -22,9 +22,6 @@ source("../rhelpers/modHTML.R"); modHTML("MarkRecap_UNSPRainbowTrout")
 1. Which method did you use to construct the confidence interval?  Explain why you chose that method.
 
 ---
-<p style="font-size: 0.75em; color: c6c6c6;">from <a href="http://derekogle.com">Derek H. Ogle</a>, 27-Sep-15, updated 27-Sep-15</p>
-
-<style type="text/css">
-ol ol { list-style-type: lower-alpha; }
-</style>
-
+```{r echo=FALSE, results="asis"}
+exercise_footer(fnm)
+```
