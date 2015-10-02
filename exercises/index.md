@@ -36,3 +36,4 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
     * Lake Ontario Rock Bass -- [A](LORockBass_Growth_A.html) / [B](LORockBass_Growth_B.html)
     * European Perch -- [A](EuroPerch_Growth_A.html) / [B](EuroPerch_Growth_B.html)
 1. **Recruitment**
+    * Escanaba Lake Walleye -- [A](Recruitment_ELWalleye_A.html) / [B](Recruitment_ELWalleye_B.html)
