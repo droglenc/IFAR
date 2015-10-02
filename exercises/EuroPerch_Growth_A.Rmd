@@ -14,6 +14,7 @@ setwd("C:/aaaWork/Web/GitHub/IFAR/exercises"); source("../rhelpers/IFARhelpers.R
 fnm <-"EuroPerch_Growth_A"; modHTML(fnm)
 ```
 
+<img style="float: right; margin: 0px 0px 10px 10px;" src="imgs/perch-photo.jpg" width="250px" />
 [Mooij et al. (1999)](http://www.tandfonline.com/doi/abs/10.1577/1548-8659%281999%29128%3C0483%3AAACOFG%3E2.0.CO%3B2) examined length-at-age data of [European Perch](https://en.wikipedia.org/wiki/European_perch) (*Perca fluviatilis*) from [Lake Tjeukemeer](http://wldb.ilec.or.jp/data/databook_html/eur/eur-01.html) (The Netherlands) to identify possible sexual dimorphism in growth trajectories.  Their data consisted of fork length (FL; cm), ages (yrs) from otoliths, and sex from 69 fish and are recorded in [this CSV file](data/EuroPerchTJ.csv) (these data are also available in `EuroPerchTJ` from `FSAdata`).
 
 Use these data, and results from [this exercise](EuroPerch_Growth_A.html), to answer the following questions.
