@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Recruitment
-subtitle: Escanaba Lake (WI) Walleye (A)
+subtitle: Escanaba Lake (WI) Walleye (B)
 author: Derek H. Ogle
 output: 
   html_document: 
@@ -11,26 +11,20 @@ output:
 ```{r echo=FALSE, eval=FALSE}
 # Renders an appropriate HTML file for the webpage
 setwd("C:/aaaWork/Web/GitHub/IFAR/exercises"); source("../rhelpers/IFARhelpers.R")
-fnm <-"Recruitment_ELWalleye_A"; modHTML(fnm)
+fnm <-"Recruitment_ELWalleye_B"; modHTML(fnm)
 ```
 
 <img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/walleye-spawning.jpg" width="250px" />
 [Hansen *et al.*](http://www.tandfonline.com/doi/abs/10.1577/1548-8675%281998%29018%3C0764%3AFAROWI%3E2.0.CO%3B2?journalCode=ujfm20) (1998) modeled recruitment variation of age-0 [Walleye](https://en.wikipedia.org/wiki/Walleye) (*Sander vitreus*) in [Escanaba Lake](http://dnr.wi.gov/lakes/lakepages/LakeDetail.aspx?wbic=2339900&page=facts) (Wisconsin) to determine factors regulating their abundance.  Specifically, they examined the abundance of age-5 and older Walleye (spawning population), variation in May water temperatures, and abundance of 152.4 mm total length and longer [Yellow Perch](https://en.wikipedia.org/wiki/Yellow_perch) (*Perca flavescens*) on the abundance of age-0 Walleye.  These data are available in [this CSV file](data/WalleyeEL.csv) (these data are also available in `WalleyeEL` from `FSAdata`).
 
-Load these data into R to answer the following questions.
+Load these data into R to answer the following questions. [Note that this is an extension of this [recruitment exercise](Recruitment_ELWalleye_A.html).]
 
-1. Which variable should be considered the "recruits"?  Which variable should be considered the "spawning stock?"  Explain.
-1. Describe the relationship between "recruits" versus "stock."  Do you expect a stock-recruitment model to fit these data well?
-1. Fit the following recruitment functions to these data, assuming a multiplicative error structure.  Show your results by expressing the recruitment function with estimated values in place of the parameters.
-    1. Density-independence.
-    1. Beverton-Holt.
-    1. Ricker.
-    1. Shepherd.
-1. Construct a single plot that shows how well each recruitment function fits these data.
-1. Estimate recruitment for the mean stock level with each recruitment function.  How variable are the results among models?
-1. Determine if the density-dependent parameter is statistically significant in the Ricker model.
-
-[Continue with these data in this exercise.](Recruitment_ELWalleye_B.html)
+1. Fit the Ricker stock-recruitment function with a multiplicative error structure to age-5 and older and age-0 abundance data. [Note that this would have been completed in this [recruitment exercise](Recruitment_ELWalleye_A.html).]
+1. Determine if adding the variation in May water temperatures or the abundance of Yellow Perch significantly improves the predictive power of the model.
+1. If either of these two variables improved the predictive power of the model then answer the following.
+    1. Express the best model by replacing parameters with their estimated values.
+    1. Specifically describe the effect of the other variables on the recruitment of age-0 Walleye.
+    1. Do you feel that this model provides a clear explanation for the variability in recruitment of age-0 Walleye in Escanaba Lake?  Explain.
 
 ---
 ```{r echo=FALSE, results="asis"}
