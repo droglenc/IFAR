@@ -14,6 +14,7 @@ setwd("C:/aaaWork/Web/GitHub/IFAR/exercises"); source("../rhelpers/IFARhelpers.R
 fnm <-"Mortality_LSKBLakeTrout"; modHTML(fnm)
 ```
 
+<img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/laketrout_01a.jpg" width="250px" />
 The population biology of Lake Superior [Lake Trout](https://en.wikipedia.org/wiki/Lake_trout) (*Salvelinus namaycush*) prior to 1950 was examined in detail by [Sakagawa and Pycha (1971)](http://www.nrcresearchpress.com/doi/abs/10.1139/f71-011?journalCode=jfrbc).  In Table 1 of their paper, they presented the number of Lake Trout by age (from scales) collected in 4.5-inch mesh gillnets that were set between the [Keweenaw Peninsula](https://en.wikipedia.org/wiki/Keweenaw_Peninsula) and [Munising, MI](https://en.wikipedia.org/wiki/Munising,_Michigan) in 1948. The numbers of Lake Trout caught for ages 3 to 14 were 5, 18, 21, 10, 45, 109, 95, 63, 42, 25, 13, and 4. Use these data to answer the questions below. 
 
 1. Is this an example of a cross-sectional or longitudinal catch curve?

@@ -14,6 +14,7 @@ setwd("C:/aaaWork/Web/GitHub/IFAR/exercises"); source("../rhelpers/IFARhelpers.R
 fnm <-"Mortality_LSSRLakeTrout"; modHTML(fnm)
 ```
 
+<img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/lake-trout-gillnet.jpg" width="250px" />
 [Curtis (1990)](http://www.glsc.usgs.gov/publications/1990/688) examined the population dynamics related to the recovery of an offshore [Lake Trout](https://en.wikipedia.org/wiki/Lake_trout) population near [Stannard Rock](https://en.wikipedia.org/wiki/Stannard_Rock_Light), [Lake Superior](https://en.wikipedia.org/wiki/Lake_Superior).  As part of this study, mortality rates were estimated from the relative abundance of Lake Trout longer than 43.2 cm.  Relative abundance was recorded as the catch-per-unit-effort (CPE) of each age group in each year expressed as the number of fish caught per 50,000 m of 114.3 mm mesh gillnet.  The results are shown in the table below.  [Note: (1) the values in the table have been rounded to integers; (2) values recorded as "tr" in the original paper were recorded as "0.5" in this table; and (3) the years of capture are not contiguous (there is a break between 1959 and 1963 and again between 1969 and 1973).]
 
 

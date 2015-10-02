@@ -14,6 +14,7 @@ setwd("C:/aaaWork/Web/GitHub/IFAR/exercises"); source("../rhelpers/IFARhelpers.R
 fnm <-"MarkRecap_UNSPRainbowTrout"; modHTML(fnm)
 ```
 
+<img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/rainbow-trout-turns-pic.jpg" width="250px" />
 [Warren *et al.* (2004)](https://collaboration.idfg.idaho.gov/FisheriesTechnicalReports/Mgt04-04Warren2001%20Regional%20Fisheries%20Management%20Investigations%20Magic%20Valley%20Region.pdf) examined the population of [Rainbow Trout](https://en.wikipedia.org/wiki/Rainbow_trout) (*Oncorhynchus mykiss*) in the Upper Niagara Springs Pond in 2000.  Fish were captured at two times by using an electrofishing unit attached to a driftboat. The capture history of all fish examined in the two samples that were 100 mm and longer is in `RBTroutUNSP` in the `FSAdata` package.  Analyze these capture histories to answer the following questions.
 
 1. Create a summary of the capture histories.
