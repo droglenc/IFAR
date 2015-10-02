@@ -1,0 +1,57 @@
+---
+layout: page
+title: Weight-Length
+subtitle: Inch Lake Largemouth Bass A
+author: Derek H. Ogle
+---
+
+
+<p><a href="http://dnr.wi.gov/lakes/lakepages/LakeDetail.aspx?wbic=2764300&amp;page=facts">Inch Lake</a> is a 12.5 ha inland lake in northern Wisconsin that has been managed as catch-and-release for all species since 2006. Researchers at <a href="http://www.northland.edu/">Northland College</a> have monitored fish populations in Inch Lake since 2007. The total lengths (inches) and weights (g) for subsamples of several species of fish collected from Inch Lake in May of 2007 and 2008 are recorded in <a href="data/InchLake2.csv">this CSV file</a> (these data are also available in <code>InchLake2</code> from <code>FSAdata</code>).</p>
+<p>Load these data, isolate <a href="https://en.wikipedia.org/wiki/Largemouth_bass">Largemouth Bass</a>, and answer the following questions.</p>
+<ol>
+<li>Complete <a href="Inch_Plotting.html">this Plotting exercise</a>.
+<ol>
+<li>Describe the relationship between weight and length (in mm here and throughout).</li>
+<li>Describe the relationship between log-transformed weight and length.</li>
+</ol></li>
+<li>Compute the weight-length relationship with an appropriate linear regression.
+<ol>
+<li>Express your results as an equation on the transformed scale.</li>
+<li>Express your results as an equation on the raw scale.</li>
+<li>Plot the results (data and the fitted relationship) on both the transformed and raw scales.</li>
+<li>Carefully interpret the meaning of the slope of the weight-length relationship.</li>
+<li>Is there statistical evidence for isometric or allometric growth?</li>
+</ol></li>
+<li>Recompute the weight-length relationship using the original length in inches. How do the slope and y-intercept from this model fitting compare to the results from above?</li>
+</ol>
+<p>Continue with this data set for <a href="Inch_WLLargemouthBass_B.html">weight-length comparisons exercise</a>.</p>
+<hr />
+<p style="font-size: 0.75em; color: c6c6c6;">
+from Derek H. Ogle , created 01-Oct-15, updated 01-Oct-15, <a href="mailto:fishr@derekogle.com?subject=Inch_WLLargemouthBass_A exercise">Comments/Suggestions</a>.
+</p>
+<style type="text/css">ol ol { list-style-type: lower-alpha; }</style>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

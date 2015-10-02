@@ -1,0 +1,53 @@
+---
+layout: page
+title: Age-Length Keys
+subtitle: Lake Ontario Rock Bass B
+author: Derek H. Ogle
+---
+
+
+<p><a href="https://pubs.er.usgs.gov/publication/1000461">Wolfert (1980)</a> measured the total length (TL) of 1288 <a href="https://en.wikipedia.org/wiki/Rock_bass">Rock Bass</a> (<em>Ambloplites rupestris</em>) from Eastern <a href="https://en.wikipedia.org/wiki/Lake_Ontario">Lake Ontario</a> in the late 1970s. In addition, scales were removed for age estimation from as many as 10 specimens from each 10 mm length interval. All data are recorded in <a href="data/RockBassLO2.csv">this CSV file</a> (these data are also available in <code>data(RockBassLO2)</code> from <code>FSAdata</code>) [Note: the filename contains an “oh” not a “zero.”].</p>
+<ol>
+<li>Separate the observed data into age- and length-samples. Construct an <strong>observed</strong> age-length key. [This step would have been accomplished in <a href="LORockBass_ALK_A.html">this exercise</a>.]</li>
+<li>Use the semi-random age assignment technique from Isermann and Knight (2005) and the <strong>observed</strong> age-length key to assign ages to the unaged fish in the length-sample. Combine the age-sample and the age-assigned length-sample into a single data frame, add a variable to this data.frame that contains the 10 mm TL categories, and use the combined data frame to answer the following questions.
+<ol>
+<li>How many fish are estimated to be age 5? [Hint: use <code>xtabs()</code> or <code>Summarize()</code>.]</li>
+<li>How many fish are estimated to be age 11?</li>
+<li>Plot the age distribution for all fish.</li>
+<li>How many fish are in the 150 mm TL interval? [Hint: use <code>xtabs()</code>.]</li>
+<li>What is the mean TL of age-5 fish?</li>
+<li>Plot the length-at-age with the mean length-at-age superimposed for all fish.</li>
+<li>Compare your results to someone else’s results (or repeat the steps above). Did you both get the <em>exact</em> same results? Why or why not? If not, how different were they?</li>
+</ol></li>
+</ol>
+<p><a href="LORockBass_Growth_A.html">Continue with this data set here</a>.</p>
+<hr />
+<p style="font-size: 0.75em; color: c6c6c6;">
+from Derek H. Ogle , created 01-Oct-15, updated 01-Oct-15, <a href="mailto:fishr@derekogle.com?subject=LORockBass_ALK_B exercise">Comments/Suggestions</a>.
+</p>
+<style type="text/css">ol ol { list-style-type: lower-alpha; }</style>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
