@@ -14,7 +14,7 @@ setwd("C:/aaaWork/Web/GitHub/IFAR/exercises"); source("../rhelpers/IFARhelpers.R
 fnm <-"MarkRecap_TanRiffleshell"; modHTML(fnm)
 ```
 
-<img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/tan_riffleshell_lge.jpg" width="250px" />
+<img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/tan-riffleshell.jpg" width="250px" />
 [Rogers (1999)](http://scholar.lib.vt.edu/theses/available/etd-121499-145732/unrestricted/etd.pdf) studied the endangered freshwater mussel [Tan Riffleshell](http://ecos.fws.gov/speciesProfile/profile/speciesProfile.action?spcode=F010) (*Epioblasma florentina walkeri*) in Indian Creek, Virginia.  One part of the study included a detailed analysis of the population dynamics of mussels in a 100 m stretch of stream.  In this stream, mussels were captured by teams of snorkelers on six occasions (June 1996; August 1996; June 1997; October 1998; May 1999; and June 1999).  Mussels were tagged by attaching a numbered tag to the left valve of the mussel.  The number of mussels captured, the number of marked mussels observed, and the number of tagged mussels returned to the population were recorded for each sample time.  These data are in `Riffleshell` in the `FSAdata` package.  Use this information to answer the following questions.
 
 1. Estimate the number, with 95% confidence interval, of Tan Riffleshell mussels in the population at the beginning of the study.  Carefully interpret the result.
