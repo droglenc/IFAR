@@ -1,0 +1,56 @@
+---
+layout: page
+title: Recruitment
+subtitle: Escanaba Lake (WI) Walleye (A)
+author: Derek H. Ogle
+---
+
+
+<p><img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/walleye-spawning.jpg" width="250px" /> <a href="http://www.tandfonline.com/doi/abs/10.1577/1548-8675%281998%29018%3C0764%3AFAROWI%3E2.0.CO%3B2?journalCode=ujfm20">Hansen <em>et al.</em></a> (1998) modeled recruitment variation of age-0 <a href="https://en.wikipedia.org/wiki/Walleye">Walleye</a> (<em>Sander vitreus</em>) in <a href="http://dnr.wi.gov/lakes/lakepages/LakeDetail.aspx?wbic=2339900&amp;page=facts">Escanaba Lake</a> (Wisconsin) to determine factors regulating their abundance. Specifically, they examined the abundance of age-5 and older Walleye (spawning population), variation in May water temperatures, and abundance of 152.4 mm total length and longer <a href="https://en.wikipedia.org/wiki/Yellow_perch">Yellow Perch</a> (<em>Perca flavescens</em>) on the abundance of age-0 Walleye. These data are available in <a href="data/WalleyeEL.csv">this CSV file</a> (these data are also available in <code>WalleyeEL</code> from <code>FSAdata</code>).</p>
+<p>Load these data into R to answer the following questions.</p>
+<ol>
+<li>Which variable should be considered the “recruits”? Which variable should be considered the “spawning stock?” Explain.</li>
+<li>Describe the relationship between “recruits” versus “stock.” Do you expect a stock-recruitment model to fit these data well?</li>
+<li>Fit the following recruitment functions to these data, assuming a multiplicative error structure. Show your results by expressing the recruitment function with estimated values in place of the parameters.
+<ol>
+<li>Density-independence.</li>
+<li>Beverton-Holt.</li>
+<li>Ricker.</li>
+<li>Shepherd.</li>
+</ol></li>
+<li>Construct a single plot that shows how well each recruitment function fits these data.</li>
+<li>Estimate recruitment for the mean stock level with each recruitment function. How variable are the results among models?</li>
+<li>Determine if the density-dependent parameter is statistically significant in the Ricker model.</li>
+</ol>
+<div id="continue-with-these-data-in-this-exercise." class="section level2">
+<h2><a href="Recruitment_ELWalleye_B.html">Continue with these data in this exercise.</a></h2>
+<p style="font-size: 0.75em; color: c6c6c6;">
+from Derek H. Ogle , created 02-Oct-15, updated 02-Oct-15, <a href="mailto:fishr@derekogle.com?subject=Recruitment_ELWalleye_A exercise">Comments/Suggestions</a>.
+</p>
+<style type="text/css">ol ol { list-style-type: lower-alpha; }</style>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
