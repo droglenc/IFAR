@@ -89,8 +89,8 @@ ct <- c(187,77,35)
 pr1 <- removal(ct)
 cbind(summary(pr1),confint(pr1))
 
-( df <- data.frame(sta=c("MU10","MU13","MU27"),
-                   p1=c(19,75,20),p2=c(14,19,11),p3=c(9,5,3)) )
+(df <- data.frame(sta=c("MU10","MU13","MU27"),
+                  p1=c(19,75,20),p2=c(14,19,11),p3=c(9,5,3)) )
 
 res <- apply(df[,-1],MARGIN=1,FUN=removal,just.ests=TRUE)
 
@@ -102,4 +102,4 @@ res <- apply(df[,-1],MARGIN=1,FUN=removal,just.ests=TRUE)
 pchisq(teststat,df=1,lower.tail=FALSE)
 
 
-# Script created at 2015-09-16 10:22:36
+# Script created at 2015-10-05 09:37:13

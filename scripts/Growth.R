@@ -228,11 +228,11 @@ residPlot(fitLKt,col=rgb(0,0,0,1/3))
 
 fitO <- nls(vbO,data=bdmf,start=svO)
 
-lrt(fitO,com=fitLKt,com.name="All param differ",
-    sim.names="No params differ")
+lrt(fitO,com=fitLKt,com.name="All pars differ",
+    sim.names="No pars differ")
 
-extraSS(fitO,com=fitLKt,com.name="All param diff",
-    sim.names="No param diff")
+extraSS(fitO,com=fitLKt,com.name="All pars diff",
+    sim.names="No pars diff")
 
 # ############################################################
 # == BEGIN -- REDUNDANT CODE, FOR BOOK PRINTING ONLY =========
@@ -250,12 +250,12 @@ fitLK <- nls(vbLK,data=bdmf,start=svLK)
 fitLt <- nls(vbLt,data=bdmf,start=svLt)
 fitKt <- nls(vbKt,data=bdmf,start=svKt)
 
-lrt(fitLK,fitLt,fitKt,com=fitLKt,com.name="All param diff",
+lrt(fitLK,fitLt,fitKt,com=fitLKt,com.name="All pars diff",
     sim.names=c("Linf,K diff","Linf,t0 diff","K,t0 diff"))
 
 # ############################################################
 # == BEGIN -- REDUNDANT CODE, FOR BOOK PRINTING ONLY =========
-lrt2 <- lrt(fitLK,fitLt,fitKt,com=fitLKt,com.name="All param diff",
+lrt2 <- lrt(fitLK,fitLt,fitKt,com=fitLKt,com.name="All pars diff",
     sim.names=c("Linf,K diff","Linf,t0 diff","K,t0 diff"))
 print(lrt2,digits=4,dig.tst=4)
 # == END -- REDUNDANT CODE, FOR BOOK PRINTING ONLY ===========
@@ -274,7 +274,7 @@ lrt1 <- lrt(fitL,fitt,com=fitLt)
 # == END -- REDUNDANT CODE, FOR BOOK PRINTING ONLY ===========
 # ############################################################
 
-lrt(fitO,com=fitL,com.name="Linf dif",sim.names="No param dif")
+lrt(fitO,com=fitL,com.name="Linf dif",sim.names="No pars dif")
 
 svK <- Map(rep,svO,c(1,2,1))
 fitK <- nls(vbK,data=bdmf,start=svK)
@@ -327,4 +327,4 @@ fitTypP <- nls(tl~vbTyp(otoage,Linf,K,t0),data=bdm,
                upper=list(Linf=1400,K=0.30,t0=1))
 
 
-# Script created at 2015-09-16 10:22:36
+# Script created at 2015-10-05 09:37:13

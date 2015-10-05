@@ -65,11 +65,11 @@ legend("topleft",inset=0.05,legend=levels(BullTroutRML1$era),
         pch=pchs,col=cols,bty="n",cex=0.75)
 # ############################################################
 
-plot(eggs~year,data=BloaterLH,type="l",lwd=2,xlim=c(1980,1996),
-     ylab="Number of Eggs (Millions)",xlab="Year")
+plot(eggs~year,data=BloaterLH,type="l",lwd=2,xlab="Year",
+     xlim=c(1980,1996),ylab="Number of Eggs (Millions)")
 
-plot(eggs~year,data=BloaterLH,type="l",lwd=2,xlim=c(1980,1996),
-     ylab="Number of Eggs (Millions)",xlab="Year")
+plot(eggs~year,data=BloaterLH,type="l",lwd=2,xlab="Year",
+     xlim=c(1980,1996),ylab="Number of Eggs (Millions)")
 # ############################################################
 # == BEGIN -- REDUNDANT CODE, FOR BOOK PRINTING ONLY =========
 plot(eggs~year,data=BloaterLH,type="l",lwd=2,col="gray70",
@@ -254,4 +254,4 @@ hist(~fl,data=BullTroutRML1,xlab="Fork Length (mm)",
      breaks=seq(80,500,10))
 
 
-# Script created at 2015-09-16 10:22:34
+# Script created at 2015-10-05 09:37:11

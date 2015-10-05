@@ -129,4 +129,4 @@ pCI <- with(cut.op,cbind(p.LCI=capture.prob[,"estimate"]-z*capture.prob[,"stderr
 plot(cut.op,main="",pch=19,col=rgb(0,0,0,1/6))
 
 
-# Script created at 2015-09-16 10:22:36
+# Script created at 2015-10-05 09:37:12

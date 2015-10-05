@@ -341,10 +341,10 @@ class(tmp)
 tmp
 
 tmp <- age %>% group_by(fishID) %>%
-  summarize(aageCap=mean(ageCap),aradCap=mean(radCap),
-            arad1=mean(rad1),arad2=mean(rad2),arad3=mean(rad3),
-            arad4=mean(rad4),arad5=mean(rad5),arad6=mean(rad6),
-            arad7=mean(rad7)) %>% as.data.frame()
+ summarize(aageCap=mean(ageCap),aradCap=mean(radCap),
+           arad1=mean(rad1),arad2=mean(rad2),arad3=mean(rad3),
+           arad4=mean(rad4),arad5=mean(rad5),arad6=mean(rad6),
+           arad7=mean(rad7)) %>% as.data.frame()
 head(tmp,n=2)
 
 tmp <- bio %>% group_by(netID,species) %>%
@@ -367,8 +367,8 @@ gear <- read.csv("BGHRsample.csv") %>%
 head(gear,n=3)
 
 fish <- read.csv("BGHRfish.csv") %>%
-  mutate(spec=mapvalues(specCode,from=c(116,118,122),
-         to=c("Smallmouth Bass","Largemouth Bass","Bluegill")))
+ mutate(spec=mapvalues(specCode,from=c(116,118,122),
+        to=c("Smallmouth Bass","Largemouth Bass","Bluegill")))
 headtail(fish)
 
 catch <- fish %>% group_by(UID,spec) %>%
@@ -392,4 +392,4 @@ cpeSum <- catch %>% group_by(spec) %>%
 cpeSum
 
 
-# Script created at 2015-09-16 10:22:34
+# Script created at 2015-10-05 09:37:10
