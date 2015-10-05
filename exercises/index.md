@@ -3,6 +3,10 @@ layout: page
 title: Exercises
 ---
 
+<div style="width=auto; max-width:300px; margin-left:auto; margin-right:auto;text-align:center">
+  <img src="../img/work-in-progress.png" alt="fishR logo" width="100%">
+</div>
+
 Exercises for each chapter are listed below.  Please send me ideas for new exercises to include here.
 
 1. **(Very Brief) Introduction to R Basics**

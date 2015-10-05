@@ -39,9 +39,9 @@ title: Supplements
 <ol start="12">
   <li><strong>Individual Growth</strong>
     <ul>
-      <li><a href="OtherVBGFParams.html">Fitting Other VBGF Parameterizations</a></li>
-      <li><a href="OtherGrowthFuns.html">Fitting Other Growth Functions</a></li>
-      <li><a href="OtherNLAlgorithms.html">Additional Nonlinear Regression Algorithms</a></li>
+      <li><a href="growth/OtherVBGFParams.html">Fitting Other VBGF Parameterizations</a></li>
+      <li><a href="growth/OtherGrowthFuns.html">Fitting Other Growth Functions</a></li>
+      <li><a href="growth/OtherNLAlgorithms.html">Additional Nonlinear Regression Algorithms</a></li>
       <li>Data -- <a href="BlackDrum2001.csv">BlackDrum2001.csv</a></li>
     </ul>
   </li>
