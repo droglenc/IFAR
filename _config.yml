@@ -17,10 +17,10 @@ avatar: "/img/IFARLogo.jpg"
 
 # List of links in the navigation bar
 navbar-links:
-  Contents: "book"
-  Scripts: "scripts"
+  Book: "book"
   Supplements: "supplements"
   Exercises: "exercises"
+  Scripts: "scripts"
   Errata: "errata"
   Reviews: "reviews"
   Author: "author"

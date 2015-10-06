@@ -1,20 +1,32 @@
 ---
 layout: page
-title: Table of Contents
+title: Book Details
 ---
 
+* [Brief Description](#brief-description)
+* [Table of Contents](#table-of-contents)
+* [How to Purchase](#how-to-purchase)
+
+----
+
+## Brief Description
+*Introductory Fisheries Analyses with R* provides detailed instructions on how to perform basic fisheries stock assessment analyses in the R environment. The analyses covered are typical analyses for many working fisheries scientists and, thus, also occur in most upper-level undergraduate and graduate level fisheries science, analysis, or management courses. The book begins with three foundational chapters (R basics, data manipulation, and plotting) that help the reader become familiar with R within the context of basic fisheries analyses and examples.  The remaining chapters build upon these foundational skills with analytical techniques specific to fisheries stock assessments (see the [Table of Contents](#table-of-contents) below).
+
+
+## Table of Contents
+
 1. **(Very Brief) Introduction to R Basics**
-    * The most bare fundamentals of R that are required for the remainder of the book.
+    * The bare fundamentals of R that are required for the remainder of the book.
 1. **Loading Data and Basic Manipulations**
-    * Load data into R from external files and perform typical manipulations including filtering, subsetting, sorting, aggregating, joining, and converting between wide- and long-formats.
+    * Load data into R from external files and perform typical manipulations including filtering, sorting, aggregating, joining, and converting between wide- and long-formats.
 1. **Plotting Fundamentals**
-    * The most bare fundamentals for constructing basic plots using base R.
+    * The bare fundamentals for constructing basic plots using base R.
 1. **Age Comparisons**
-    * Compare two or more estimates of ages for the same fish with precision and bias metrics and plots.
+    * Compare two or more estimates of age for the same fish with precision and bias metrics and plots.
 1. **Age-Length Keys**
     * Assign ages to unaged fish from their length and an age-length-key.
 1. **Size Structure**
-    * Assess size structure through length frequencies and the proportional size distribution metric.
+    * Assess size structure through length frequencies and the proportional size distribution (PSD) metric.
 1. **Weight-Length Relationships**
     * Introduction to simple linear regression through examination of weight-length relationships.
 1. **Condition**
@@ -29,3 +41,10 @@ title: Table of Contents
     * Estimate parameters for the von Bertalanffy growth function and compare growth parameters among populations.
 1. **Recruitment**
     * Estimate parameters for the Beverton-Holt and Ricker stock-recruitment models, compute spawning potential ratios, and estimate year-class strengths from catch data.
+
+
+## How to Purchase
+The book may be purchases at the following locations.
+
+* [CRC Press](https://www.crcpress.com/Introductory-Fisheries-Analyses-with-R/Ogle/9781482235203)
+* Amazon.com
