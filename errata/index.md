@@ -3,4 +3,4 @@ layout: page
 title: Errata
 ---
 
-UNDER CONSTRUCTION
+NONE YET!!
