@@ -102,4 +102,4 @@ res <- apply(df[,-1],MARGIN=1,FUN=removal,just.ests=TRUE)
 pchisq(teststat,df=1,lower.tail=FALSE)
 
 
-# Script created at 2015-10-05 09:37:13
+# Script created at 2015-10-06 10:23:32
