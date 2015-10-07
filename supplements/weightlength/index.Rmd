@@ -1,0 +1,127 @@
+---
+layout: page
+title: Weight-Length Relationships
+subtitle: DVR with More than Two Groups
+author: Derek H. Ogle
+csl: ../american-fisheries-society.csl
+bibliography: ../IFARSupplement.bib
+output: 
+  html_document: 
+    fig_width: 5
+    self_contained: no
+---
+```{r echo=FALSE, eval=FALSE}
+##############################################################
+# == BEGIN -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
+# First line renders an appropriate HTML file for the webpage
+# Second line makes the script file
+# RUN BOTH MANUALLY
+setwd("C:/aaaWork/Web/GitHub/IFAR/supplements/weightlength")
+source("../../rhelpers/modHTML.R"); modHTML("index")
+if (require(FSA)) purl2("index.Rmd",newname="weightlengthDVR",topnotes="User must set working directory appropriately.")
+# == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
+##############################################################
+```
+
+Dummy variable regression (DVR) was introduced in Chapter 7 of the *Introductory Fisheries Analyses with R* book in the context of determining if the slope and y-intercept parameters of weight-length relationship regressions differed between fish captured in two different years.  That analysis can be extended to more than two groups, though more dummy variables are required and special methods are needed to determine which pairs of groups (if any) differ.  This supplement demonstrates how to extend the DVR to more than two groups.
+
+### Required Packages for this Supplement
+Functions used in this supplement require the packages shown below.
+```{r echo=FALSE, results='hide', message=FALSE, warnings=FALSE}
+##############################################################
+# == BEGIN -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
+# 
+# Setup of knitr
+source("../../rhelpers/knitr_setup.R")
+# declare packages used
+rqrd <- c("FSA","dplyr","car","captioner","knitr")
+# setup figure, table, and equation captioning
+library(captioner)
+figcaps <- captioner(prefix="Figure")
+figcaps("FullResidPlot","Modified residual plot (Left) and histogram of residuals (Right) from fitting a dummy variable regression to the log-transformed weights and lengths of Ruffe captured in 1990, 1995, and 2000.")
+
+tabcaps <- captioner(prefix="Table")
+
+eqncaps <- captioner(prefix="Equation")
+eqncaps("FullModel")
+# == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
+##############################################################
+```
+```{r cache=FALSE, results='hide', message=FALSE}
+library(FSA)
+library(dplyr)
+library(car)
+```
+
+
+### Data Used in this Supplement
+Weights (g) and total lengths (mm) from Ruffe (*Gymnocephalus cernuus*) captured in the St. Louis River Harbor (Minnesota and Wisconsin) were used in Chapter 7 and will also be used in this supplement.  These data are from @OgleWinfield2009 and are in `RuffeSLRH.csv`.  To eliminate within-season variability, only Ruffe captured in July are used here.  Additionally, fish from only three years (1990, 1995, and 2000) were extracted, a factored version of `year` was created, the common logarithms of weight and length were created, and the `fishID`, `month`, `day` variables were removed to save space in the output.
+```{r message=FALSE}
+ruf <- read.csv("RuffeSLRH.csv") %>%
+  filterD(month==7, year %in% c(1990,1995,2000)) %>%
+  mutate(fYear=factor(year),logW=log10(wt),logL=log10(tl)) %>%
+  select(-fishID,-month,-day)
+headtail(ruf)
+```
+
+## Full Model
+
+The number of dummy variables required to required to represent $k$ groups is $k-1$.  Thus, in Chapter 7, only one dummy variable was required to represent the two groups.  In this supplement, three groups (the years) are being examined and, thus, two dummy variables are needed.  For example, `lm()` will ultimately treat the "1990" group as the reference group and create two dummy variables as follows
+
+$$  fYear1995 = \left\{\begin{array}{l}
+    1 \text{, if captured in 1995 }\\
+    0 \text{, if NOT captured in 1995 }
+    \end{array}  \right. $$
+
+$$  fYear2000 = \left\{\begin{array}{l}
+    1 \text{, if captured in 2000 }\\
+    0 \text{, if NOT captured in 2000 }
+    \end{array}  \right. $$
+
+These dummy variables are each combined with the covariate ($log_{10}(L)$) to construct the following ultimate full model
+
+$$ \begin{split}
+    log_{10}(W_{i}) &= log_{10}(\alpha) + \beta log_{10}(L_{i}) \\
+                    &\mspace{16mu}+ \delta_{1} fYear1995 + \delta_{2} fYear2000 \\
+                    &\mspace{16mu}+ \gamma_{1} fYear1995*log_{10}(L_{i})+ \gamma_{2} fYear2000*log_{10}(L_{i}) + \epsilon_{i}\quad \quad \quad \quad \text{`r paste0("(",eqncaps("FullModel",display="num"),")")`}
+\end{split} $$
+
+Substitution of appropriate values for the dummy variables into `r eqncaps("FullModel",display="cite")` shows how `r eqncaps("FullModel",display="cite")` simultaneously represents the weight-length relationship regressions for all three years ().  From these submodels, it is apparent that $\alpha$ is the y-intercept for the reference (e.g., 1990) group, $\beta$ is the slope for the reference group, $\delta_{i}$ is the difference in y-intercepts between the $i$th and reference groups, and $\gamma_{i}$ is the difference in slopes between the $i$th and reference groups.  By extension, the interaction variables measure differences in slopes and the dummy variables measure differences in y-intercepts.
+
+The model in `r eqncaps("FullModel",display="cite")` is fit with `lm()` using a formula of the form `y~x*factor` exactly as described in Chapter 7 (again noting that `lm()` will create the appropriate dummy and interaction variables).
+```{r}
+fit1 <- lm(logW~logL*fYear,data=ruf)
+```
+
+The linearity and homoscedasticity assumptions (`r figcaps("FullResidPlot",display="cite")`-Left) and normality assumption (`r figcaps("FullResidPlot",display="cite")`-Right) are largely met with this model.
+```{r FullResidPlot, message=FALSE, fig.width=2*figsz, fig.height=figsz, par1=TRUE}
+residPlot(fit1,legend=FALSE)
+```
+
+`r figcaps("FullResidPlot")`
+
+An ANOVA table is constructed (using `Anova()` from `car`) and interpreted (sequentially starting at the bottom of the table) as described in Chapter 7.
+
+```{r}
+Anova(fit1)
+```
+
+From these results it is apparent that the interaction term is a significant predictor in the model.  In relation to `r eqncaps("FullModel",display="cite")` this suggests that at least one of $\gamma_{1}$ or $\gamma_{2}$ is significantly different than zero, which implies that the slope of the relationship for fish captured in 1995, 2000, or both differs significantly from the slope for fish captured in 1990.  Additionally, it is possible that the slopes for fish captured in 1995 and 2000 also differ, but this cannot be assessed with this model.
+
+The ANOVA table for the fit of the full model is useful for determining if there is some difference in the regression model parameters among groups, but it cannot specifically identify where those differences occur.  Specific differences are identified in the next section.
+
+## Pinpointing Specific Differences Among Parameters
+
+ 
+
+
+--------------------------------------------------------------
+
+```{r echo=FALSE, results='asis'}
+reproInfo(rqrdPkgs=rqrd,out="markdown",links=c(Script="weightlengthDVR.R",RMarkdown="index.Rmd"))
+```
+
+--------------------------------------------------------------
+
+
+## References
