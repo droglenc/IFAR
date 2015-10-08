@@ -1,12 +1,76 @@
----
-layout: page
-title: Weight-Length Relationships
-subtitle: DVR with More than Two Groups
-author: Derek H. Ogle
----
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="author" content="Derek H. Ogle" />
 
 
-<p>Dummy variable regression (DVR) was introduced in Chapter 7 of the <em>Introductory Fisheries Analyses with R</em> book in the context of determining if the slope and y-intercept parameters of weight-length relationship regressions differed between fish captured in two different years. That analysis can be extended to more than two groups, though more dummy variables are required and special methods are needed to determine which pairs of groups (if any) differ. This supplement demonstrates how to extend the DVR to more than two groups.</p>
+<title>Weight-Length Relationships</title>
+
+<script src="index_files/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="index_files/bootstrap-3.3.1/css/bootstrap.min.css" rel="stylesheet" />
+<script src="index_files/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="index_files/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="index_files/bootstrap-3.3.1/shim/respond.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="index_files/highlight/default.css"
+      type="text/css" />
+<script src="index_files/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+
+
+<div id="header">
+<h1 class="title">Weight-Length Relationships</h1>
+<h3 class="subtitle"><em>DVR with More than Two Groups</em></h3>
+<h4 class="author"><em>Derek H. Ogle</em></h4>
+</div>
+
+
+<hr />
+<p>Dummy variable regression (DVR) was introduced in Chapter 7 of <a href="http://derekogle.com/IFAR/"><em>Introductory Fisheries Analyses with R</em></a> in the context of determining if the slope and y-intercept parameters of weight-length relationship regressions differed between fish captured in two different years. That analysis may be extended to more than two groups, though more dummy variables are required and special methods are needed to determine which pairs of groups (if any) differ. This supplement demonstrates how to extend the DVR to more than two groups.</p>
 <div id="required-packages-for-this-supplement" class="section level3">
 <h3>Required Packages for this Supplement</h3>
 <p>Functions used in this supplement require the packages shown below.</p>
@@ -16,7 +80,7 @@ author: Derek H. Ogle
 </div>
 <div id="data-used-in-this-supplement" class="section level3">
 <h3>Data Used in this Supplement</h3>
-<p>Weights (g) and total lengths (mm) from Ruffe (<em>Gymnocephalus cernuus</em>) captured in the St. Louis River Harbor (Minnesota and Wisconsin) were used in Chapter 7 and will also be used in this supplement. These data are from <span class="citation">Ogle and Winfield (2009)</span> and are in <code>RuffeSLRH.csv</code>. To eliminate within-season variability, only Ruffe captured in July are used here. Additionally, fish from only three years (1990, 1995, and 2000) were extracted, a factored version of <code>year</code> was created, the common logarithms of weight and length were created, and the <code>fishID</code>, <code>month</code>, <code>day</code> variables were removed to save space in the output.</p>
+<p>Weights (g) and total lengths (mm) from Ruffe (<em>Gymnocephalus cernuus</em>) captured in the St. Louis River Harbor (Minnesota and Wisconsin) were used in Chapter 7 and will also be used in this supplement. These data are from <span class="citation">Ogle and Winfield (2009)</span> and are in <code>RuffeSLRH.csv</code>. To eliminate within-season variability, only Ruffe captured in July are used here. Additionally, fish from only three years (1990, 1995, and 2000) were extracted, a factored version of <code>year</code> was created, the common logarithms of weight and length were created, and the <code>fishID</code>, <code>month</code>, and <code>day</code> variables were removed to save space in the output.</p>
 <pre class="r"><code>&gt; ruf &lt;- read.csv(&quot;RuffeSLRH.csv&quot;) %&gt;%
     filterD(month==7, year %in% c(1990,1995,2000)) %&gt;%
     mutate(fYear=factor(year),logW=log10(wt),logL=log10(tl)) %&gt;%
@@ -32,7 +96,8 @@ author: Derek H. Ogle
 </div>
 <div id="full-model" class="section level2">
 <h2>Full Model</h2>
-<p>The number of dummy variables required to required to represent <span class="math">\(k\)</span> groups is <span class="math">\(k-1\)</span>. Thus, in Chapter 7, only one dummy variable was required to represent the two groups. In this supplement, three groups (the years) are being examined and, thus, two dummy variables are needed. For example, <code>lm()</code> will ultimately treat the “1990” group as the reference group and create two dummy variables as follows</p>
+<p>The number of dummy variables required to represent <span class="math">\(k\)</span> groups is <span class="math">\(k-1\)</span>. Thus, in Chapter 7, only one dummy variable was required to represent the two groups. In this supplement, three groups (the years) are being examined and, thus, two dummy variables are needed. For example, <code>lm()</code> will ultimately treat the “1990” group as the reference group and create two dummy variables as follows</p>
+<p> </p>
 <p><span class="math">\[  fYear1995 = \left\{\begin{array}{l}
     1 \text{, if captured in 1995 }\\
     0 \text{, if NOT captured in 1995 }
@@ -41,13 +106,49 @@ author: Derek H. Ogle
     1 \text{, if captured in 2000 }\\
     0 \text{, if NOT captured in 2000 }
     \end{array}  \right. \]</span></p>
-<p>These dummy variables are each combined with the covariate (<span class="math">\(log_{10}(L)\)</span>) to construct the following ultimate full model</p>
+<p> </p>
+<p>These dummy variables are each combined with the <span class="math">\(log_{10}(L)\)</span> covariate to construct the following ultimate full model</p>
+<p> </p>
 <p><span class="math">\[ \begin{split}
     log_{10}(W_{i}) &amp;= log_{10}(\alpha) + \beta log_{10}(L_{i}) \\
                     &amp;\mspace{16mu}+ \delta_{1} fYear1995 + \delta_{2} fYear2000 \\
                     &amp;\mspace{16mu}+ \gamma_{1} fYear1995*log_{10}(L_{i})+ \gamma_{2} fYear2000*log_{10}(L_{i}) + \epsilon_{i}\quad \quad \quad \quad \text{(1)}
 \end{split} \]</span></p>
+<p> </p>
 <p>Substitution of appropriate values for the dummy variables into Equation 1 shows how Equation 1 simultaneously represents the weight-length relationship regressions for all three years (). From these submodels, it is apparent that <span class="math">\(\alpha\)</span> is the y-intercept for the reference (e.g., 1990) group, <span class="math">\(\beta\)</span> is the slope for the reference group, <span class="math">\(\delta_{i}\)</span> is the difference in y-intercepts between the <span class="math">\(i\)</span>th and reference groups, and <span class="math">\(\gamma_{i}\)</span> is the difference in slopes between the <span class="math">\(i\)</span>th and reference groups. By extension, the interaction variables measure differences in slopes and the dummy variables measure differences in y-intercepts.</p>
+<p>   </p>
+<p>Table 1: The submodels by capture year represented by the full model.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Year</th>
+<th align="center">fYear1995</th>
+<th align="center">fYear2000</th>
+<th align="center">Submodel (<span class="math">\(log_{10}(W_{i})=\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1990</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center"><span class="math">\(log_{10}(\alpha) + \beta log_{10}(L_{i})\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">1995</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center"><span class="math">\((log_{10}(\alpha) + \delta_{1}) + (\beta + \gamma_{1})*log_{10}(L_{i})\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">2000</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center"><span class="math">\((log_{10}(\alpha) + \delta_{2}) + (\beta + \gamma_{2})*log_{10}(L_{i})\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>   </p>
 <p>The model in Equation 1 is fit with <code>lm()</code> using a formula of the form <code>y~x*factor</code> exactly as described in Chapter 7 (again noting that <code>lm()</code> will create the appropriate dummy and interaction variables).</p>
 <pre class="r"><code>&gt; fit1 &lt;- lm(logW~logL*fYear,data=ruf)</code></pre>
 <p>The linearity and homoscedasticity assumptions (Figure 1-Left) and normality assumption (Figure 1-Right) are largely met with this model.</p>
@@ -69,19 +170,40 @@ Residuals   0.971 497                    </code></pre>
 </div>
 <div id="pinpointing-specific-differences-among-parameters" class="section level2">
 <h2>Pinpointing Specific Differences Among Parameters</h2>
+</div>
+<div id="a-summary-plot" class="section level2">
+<h2>A Summary Plot</h2>
+<pre class="r"><code>&gt; ## Base plot
+&gt; transp &lt;- 1/4
+&gt; clrs &lt;- c(rgb(0,0,0,transp),rgb(1,0,0,transp),rgb(0,0,1,transp))
+&gt; plot(logW~logL,data=ruf,pch=19,col=clrs[fYear])
+&gt; ## Fitted lines
+&gt; ( cfs &lt;- coef(fit1) )</code></pre>
+<pre><code>   (Intercept)           logL      fYear1995      fYear2000 
+    -4.9144676      3.0251636      0.2817809      0.3942964 
+logL:fYear1995 logL:fYear2000 
+    -0.1718633     -0.2285159 </code></pre>
+<pre class="r"><code>&gt; minx &lt;- min(ruf$logL)
+&gt; maxx &lt;- max(ruf$logL)
+&gt; curve(cfs[1]+cfs[2]*x,from=minx,to=maxx,col=&quot;black&quot;,add=TRUE)
+&gt; curve((cfs[1]+cfs[3])+(cfs[2]+cfs[5])*x,from=minx,to=maxx,col=&quot;red&quot;,add=TRUE)
+&gt; curve((cfs[1]+cfs[4])+(cfs[2]+cfs[6])*x,from=minx,to=maxx,col=&quot;blue&quot;,add=TRUE)
+&gt; ## Add legend
+&gt; legend(&quot;topleft&quot;,levels(ruf$fYear),pch=19,col=clrs)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" title="" alt="" width="480" /></p>
 <hr />
 </div>
 <div id="reproducibility-information" class="section level2">
 <h2>Reproducibility Information</h2>
 <ul>
-<li><strong>Compiled Date:</strong> Wed Oct 07 2015</li>
-<li><strong>Compiled Time:</strong> 12:54:27 PM</li>
+<li><strong>Compiled Date:</strong> Thu Oct 08 2015</li>
+<li><strong>Compiled Time:</strong> 5:02:48 PM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>
 <li><strong>Required Packages:</strong> FSA, dplyr, car, captioner, knitr and their dependencies (assertthat, DBI, digest, evaluate, formatR, graphics, grDevices, highr, lazyeval, magrittr, markdown, MASS, methods, mgcv, nnet, pbkrtest, plotrix, plyr, quantreg, R6, Rcpp, stats, stringr, tools, utils, yaml)</li>
-<li><strong>Other Packages:</strong> captioner_2.2.3, car_2.1-0, dplyr_0.4.3, extrafont_0.17, FSA_0.8.0, knitr_1.11, rmarkdown_0.8</li>
-<li><strong>Loaded-Only Packages:</strong> assertthat_0.1, DBI_0.3.1, digest_0.6.8, evaluate_0.8, extrafontdb_1.0, formatR_1.2.1, gdata_2.17.0, grid_3.2.2, gtools_3.5.0, htmltools_0.2.6, lattice_0.20-33, lazyeval_0.1.10, lme4_1.1-10, magrittr_1.5, MASS_7.3-44, Matrix_1.2-2, MatrixModels_0.4-1, mgcv_1.8-7, minqa_1.2.4, nlme_3.1-122, nloptr_1.0.4, nnet_7.3-11, parallel_3.2.2, pbkrtest_0.4-2, plyr_1.8.3, quantreg_5.19, R6_2.1.1, Rcpp_0.12.1, Rttf2pt1_1.3.3, SparseM_1.7, splines_3.2.2, stringi_0.5-5, stringr_1.0.0, tools_3.2.2, yaml_2.1.13</li>
+<li><strong>Other Packages:</strong> captioner_2.2.3, car_2.1-0, dplyr_0.4.3, extrafont_0.17, FSA_0.8.0, knitr_1.11</li>
+<li><strong>Loaded-Only Packages:</strong> assertthat_0.1, DBI_0.3.1, digest_0.6.8, evaluate_0.8, extrafontdb_1.0, formatR_1.2.1, gdata_2.17.0, grid_3.2.2, gtools_3.5.0, htmltools_0.2.6, lattice_0.20-33, lazyeval_0.1.10, lme4_1.1-10, magrittr_1.5, MASS_7.3-44, Matrix_1.2-2, MatrixModels_0.4-1, mgcv_1.8-7, minqa_1.2.4, nlme_3.1-122, nloptr_1.0.4, nnet_7.3-11, parallel_3.2.2, pbkrtest_0.4-2, plyr_1.8.3, quantreg_5.19, R6_2.1.1, Rcpp_0.12.1, rmarkdown_0.8, Rttf2pt1_1.3.3, SparseM_1.7, splines_3.2.2, stringi_0.5-5, stringr_1.0.0, tools_3.2.2, yaml_2.1.13</li>
 <li><strong>Links:</strong> <a href="weightlengthDVR.R">Script</a> / <a href="index.Rmd">RMarkdown</a></li>
 </ul>
 <hr />

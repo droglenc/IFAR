@@ -23,7 +23,9 @@ if (require(FSA)) purl2("index.Rmd",newname="weightlengthDVR",topnotes="User mus
 ##############################################################
 ```
 
-Dummy variable regression (DVR) was introduced in Chapter 7 of the *Introductory Fisheries Analyses with R* book in the context of determining if the slope and y-intercept parameters of weight-length relationship regressions differed between fish captured in two different years.  That analysis can be extended to more than two groups, though more dummy variables are required and special methods are needed to determine which pairs of groups (if any) differ.  This supplement demonstrates how to extend the DVR to more than two groups.
+----
+
+Dummy variable regression (DVR) was introduced in Chapter 7 of [*Introductory Fisheries Analyses with R*](http://derekogle.com/IFAR/) in the context of determining if the slope and y-intercept parameters of weight-length relationship regressions differed between fish captured in two different years.  That analysis may be extended to more than two groups, though more dummy variables are required and special methods are needed to determine which pairs of groups (if any) differ.  This supplement demonstrates how to extend the DVR to more than two groups.
 
 ### Required Packages for this Supplement
 Functions used in this supplement require the packages shown below.
@@ -41,6 +43,7 @@ figcaps <- captioner(prefix="Figure")
 figcaps("FullResidPlot","Modified residual plot (Left) and histogram of residuals (Right) from fitting a dummy variable regression to the log-transformed weights and lengths of Ruffe captured in 1990, 1995, and 2000.")
 
 tabcaps <- captioner(prefix="Table")
+tabcaps("SubsetModels","The submodels by capture year represented by the full model.")
 
 eqncaps <- captioner(prefix="Equation")
 eqncaps("FullModel")
@@ -55,7 +58,7 @@ library(car)
 
 
 ### Data Used in this Supplement
-Weights (g) and total lengths (mm) from Ruffe (*Gymnocephalus cernuus*) captured in the St. Louis River Harbor (Minnesota and Wisconsin) were used in Chapter 7 and will also be used in this supplement.  These data are from @OgleWinfield2009 and are in `RuffeSLRH.csv`.  To eliminate within-season variability, only Ruffe captured in July are used here.  Additionally, fish from only three years (1990, 1995, and 2000) were extracted, a factored version of `year` was created, the common logarithms of weight and length were created, and the `fishID`, `month`, `day` variables were removed to save space in the output.
+Weights (g) and total lengths (mm) from Ruffe (*Gymnocephalus cernuus*) captured in the St. Louis River Harbor (Minnesota and Wisconsin) were used in Chapter 7 and will also be used in this supplement.  These data are from @OgleWinfield2009 and are in `RuffeSLRH.csv`.  To eliminate within-season variability, only Ruffe captured in July are used here.  Additionally, fish from only three years (1990, 1995, and 2000) were extracted, a factored version of `year` was created, the common logarithms of weight and length were created, and the `fishID`, `month`, and `day` variables were removed to save space in the output.
 ```{r message=FALSE}
 ruf <- read.csv("RuffeSLRH.csv") %>%
   filterD(month==7, year %in% c(1990,1995,2000)) %>%
@@ -66,7 +69,9 @@ headtail(ruf)
 
 ## Full Model
 
-The number of dummy variables required to required to represent $k$ groups is $k-1$.  Thus, in Chapter 7, only one dummy variable was required to represent the two groups.  In this supplement, three groups (the years) are being examined and, thus, two dummy variables are needed.  For example, `lm()` will ultimately treat the "1990" group as the reference group and create two dummy variables as follows
+The number of dummy variables required to represent $k$ groups is $k-1$.  Thus, in Chapter 7, only one dummy variable was required to represent the two groups.  In this supplement, three groups (the years) are being examined and, thus, two dummy variables are needed.  For example, `lm()` will ultimately treat the "1990" group as the reference group and create two dummy variables as follows
+
+\ 
 
 $$  fYear1995 = \left\{\begin{array}{l}
     1 \text{, if captured in 1995 }\\
@@ -78,7 +83,11 @@ $$  fYear2000 = \left\{\begin{array}{l}
     0 \text{, if NOT captured in 2000 }
     \end{array}  \right. $$
 
-These dummy variables are each combined with the covariate ($log_{10}(L)$) to construct the following ultimate full model
+\ 
+
+These dummy variables are each combined with the $log_{10}(L)$ covariate to construct the following ultimate full model
+
+\ 
 
 $$ \begin{split}
     log_{10}(W_{i}) &= log_{10}(\alpha) + \beta log_{10}(L_{i}) \\
@@ -86,7 +95,23 @@ $$ \begin{split}
                     &\mspace{16mu}+ \gamma_{1} fYear1995*log_{10}(L_{i})+ \gamma_{2} fYear2000*log_{10}(L_{i}) + \epsilon_{i}\quad \quad \quad \quad \text{`r paste0("(",eqncaps("FullModel",display="num"),")")`}
 \end{split} $$
 
+\ 
+
 Substitution of appropriate values for the dummy variables into `r eqncaps("FullModel",display="cite")` shows how `r eqncaps("FullModel",display="cite")` simultaneously represents the weight-length relationship regressions for all three years ().  From these submodels, it is apparent that $\alpha$ is the y-intercept for the reference (e.g., 1990) group, $\beta$ is the slope for the reference group, $\delta_{i}$ is the difference in y-intercepts between the $i$th and reference groups, and $\gamma_{i}$ is the difference in slopes between the $i$th and reference groups.  By extension, the interaction variables measure differences in slopes and the dummy variables measure differences in y-intercepts.
+
+\ 
+\ 
+
+`r tabcaps("SubsetModels")`
+
+| Year | fYear1995 | fYear2000 | Submodel ($log_{10}(W_{i})=$) |
+|:----:|:---------:|:---------:|:--------:|
+| 1990 |     0     |     0     | $log_{10}(\alpha) + \beta log_{10}(L_{i})$ |
+| 1995 |     1     |     0     | $(log_{10}(\alpha) + \delta_{1}) + (\beta + \gamma_{1})*log_{10}(L_{i})$ |
+| 2000 |     0     |     1     | $(log_{10}(\alpha) + \delta_{2}) + (\beta + \gamma_{2})*log_{10}(L_{i})$ |
+
+\ 
+\ 
 
 The model in `r eqncaps("FullModel",display="cite")` is fit with `lm()` using a formula of the form `y~x*factor` exactly as described in Chapter 7 (again noting that `lm()` will create the appropriate dummy and interaction variables).
 ```{r}
@@ -113,6 +138,24 @@ The ANOVA table for the fit of the full model is useful for determining if there
 ## Pinpointing Specific Differences Among Parameters
 
  
+## A Summary Plot
+
+```{r}
+## Base plot
+transp <- 1/4
+clrs <- c(rgb(0,0,0,transp),rgb(1,0,0,transp),rgb(0,0,1,transp))
+plot(logW~logL,data=ruf,pch=19,col=clrs[fYear])
+## Fitted lines
+( cfs <- coef(fit1) )
+minx <- min(ruf$logL)
+maxx <- max(ruf$logL)
+curve(cfs[1]+cfs[2]*x,from=minx,to=maxx,col="black",add=TRUE)
+curve((cfs[1]+cfs[3])+(cfs[2]+cfs[5])*x,from=minx,to=maxx,col="red",add=TRUE)
+curve((cfs[1]+cfs[4])+(cfs[2]+cfs[6])*x,from=minx,to=maxx,col="blue",add=TRUE)
+## Add legend
+legend("topleft",levels(ruf$fYear),pch=19,col=clrs)
+```
+
 
 
 --------------------------------------------------------------
