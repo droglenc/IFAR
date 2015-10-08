@@ -14,7 +14,6 @@ Packages distributed via the Comprehensive R Archive Network (CRAN) extend the f
 1. Select the `Packages` menu and `Install package(s)' submenu items.
 
 1. In the dialog box, select the packages to install (use the `<CTRL>` key to select multiple packages).  R should now install these packages plus all packages that these depend on.  This may take several minutes and you should see several "package 'xxx' successfully unpacked and MD5 sums checked" messages.
-
     * Depending on your priveleges on your machine, you may get a warning at this point about a library that "is not writable" and then be prompted with a dialog box asking you "Would you like to use a personal library instead?"  You can select `Yes` on this dialog box.  A second dialog box will appear with a question that starts with "Would you like to create a personal library."  You can also select `Yes` on this dialog box.
 
 

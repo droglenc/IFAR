@@ -24,7 +24,6 @@ Packages distributed via the Comprehensive R Archive Network (CRAN) extend the f
     </div>
 
 1. Press `Install`.  RStudio should now install these packages plus all packages that these depend on.  This may take several minutes and you should see several "package 'xxx' successfully unpacked and MD5 sums checked" messages.
-
     * Depending on your priveleges on your machine, you may get a warning at this point about a library that "is not writable" and then be prompted with a dialog box asking you "Would you like to use a personal library instead?"  You can select `Yes` on this dialog box.  A second dialog box will appear with a question that starts with "Would you like to create a personal library."  You can also select `Yes` on this dialog box.
 
 
