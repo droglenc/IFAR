@@ -11,7 +11,7 @@ title: Book Details
 ----
 
 ## Brief Description
-<img style="float: right; margin: 5px 5px 15px 15px;" src="../img/IFARCover_large.JPG" height="300px" />
+<img style="float: right; margin: 5px 5px 15px 25px;" src="../img/IFARCover_large.JPG" height="300px" />
 *Introductory Fisheries Analyses with R* provides detailed instructions on how to perform basic fisheries stock assessment analyses in the R environment. The analyses covered are typical analyses for many working fisheries scientists and, thus, also occur in most upper-level undergraduate and graduate level fisheries science, analysis, or management courses. The book begins with three foundational chapters (R basics, data manipulation, and plotting) that help the reader become familiar with R within the context of basic fisheries analyses and examples.  The remaining chapters build upon these foundational skills with analytical techniques specific to fisheries stock assessments (see the [Table of Contents](#table-of-contents) below).
 
 
