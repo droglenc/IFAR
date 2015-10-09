@@ -306,4 +306,4 @@ with(yce,lines(fact2num(yrclass),lsmean))
 residPlot(lm1,bp=FALSE)
 
 
-# Script created at 2015-10-06 10:23:33
+# Script created at 2015-10-09 09:02:51
