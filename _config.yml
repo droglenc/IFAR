@@ -21,8 +21,8 @@ navbar-links:
   Supplements: "supplements"
   Exercises: "exercises"
   Scripts: "scripts"
-  Errata: "errata"
-  Reviews: "reviews"
+#  Errata: "errata"
+#  Reviews: "reviews"
   Author: "author"
 
 # --- Footer options --- #
