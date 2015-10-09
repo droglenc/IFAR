@@ -9,7 +9,7 @@ css: /supplements/installations/directions.css
 
 Packages distributed via the Comprehensive R Archive Network (CRAN) extend the functionality of R.  If you have chosen **NOT** to interact with R through RStudio, then these directions explain how to install package from within R.  If you have chosen to use RStudio, then goto [the directions for installing packages within RStudio](InstallPackagesRStudio).
 
-1. Open R (if not already open).  Of course, these directions assume that you have installed R.  If not, here are directions to install R for [Windows](InstallRWin) or [Mac]().
+1. Open R (if not already open).  Of course, these directions assume that you have installed R.  If not, here are directions to install R for [Windows](InstallRWin).
 
 1. Select the `Packages` menu and `Install package(s)' submenu items.
 

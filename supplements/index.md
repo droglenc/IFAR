@@ -14,7 +14,7 @@ title: Supplements
       <li>R Install – <a href="installations/InstallRWin.html">Windows</a> / <a href="installations/InstallRMac.html">Mac OS</a></li>
       <li>RStudio Install &amp; Setup – <a href="installations/InstallRStudioWin.html">Windows</a> /  <a href="installations/InstallRStudioMac.html">Mac OS</a></li>
       <li><a href="installations/InstallPackagesRStudio.html">Install Packages in RStudio</a></li>
-      <li>Install Packages in R – <a href="installations/InstallPackagesRWin.html">Windows</a> /  Mac</li>
+      <li>Install Packages in R – <a href="installations/InstallPackagesRWin.html">Windows</a> / <a href="installations/InstallPackagesRMac.html">Mac OS</a></li>
     </ul>
   </li>
   <li><strong>Loading Data and Basic Manipulations</strong>
