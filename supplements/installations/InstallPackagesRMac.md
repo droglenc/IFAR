@@ -29,8 +29,10 @@ Packages distributed via the Comprehensive R Archive Network (CRAN) extend the f
     <img src="figures/InstallPkgs_RMac_Success.PNG" width="100%">
     </div>
 
-
-
 ## Installing FSA and FSAdata
 
 The `FSA` and `FSAdata` packages are distributed on CRAN and can be installed using the directions above.
+
+-----
+
+Thanks to Taylor Stewart for help with these directions.
