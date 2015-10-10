@@ -41,6 +41,8 @@ rqrd <- c("FSA","dplyr","car","captioner","knitr")
 library(captioner)
 figcaps <- captioner(prefix="Figure")
 figcaps("FullResidPlot","Modified residual plot (Left) and histogram of residuals (Right) from fitting a dummy variable regression to the log-transformed weights and lengths of Ruffe captured in 1990, 1995, and 2000.")
+figcaps("FitPlotSlopes","Log-transformed weight versus log-transformed length of Ruffe separated by capture year.")
+figcaps("FitPlotIntercepts","Log-transformed weight versus log-transformed length of Ruffe separated by capture year.")
 
 tabcaps <- captioner(prefix="Table")
 tabcaps("SubsetModels","The submodels by capture year represented by the full model.")
@@ -58,18 +60,23 @@ library(car)
 
 
 ### Data Used in this Supplement
-Weights (g) and total lengths (mm) from Ruffe (*Gymnocephalus cernuus*) captured in the St. Louis River Harbor (Minnesota and Wisconsin) were used in Chapter 7 and will also be used in this supplement.  These data are from @OgleWinfield2009 and are in `RuffeSLRH.csv`.  To eliminate within-season variability, only Ruffe captured in July are used here.  Additionally, fish from only three years (1990, 1995, and 2000) were extracted, a factored version of `year` was created, the common logarithms of weight and length were created, and the `fishID`, `month`, and `day` variables were removed to save space in the output.
+Weights (g) and total lengths (mm) from Ruffe (*Gymnocephalus cernuus*) captured in the St. Louis River Harbor (Minnesota and Wisconsin) were used in Chapter 7 and will also be used in this supplement.  These data are from @OgleWinfield2009 and are in `RuffeSLRH.csv`.  To eliminate within-season variability, only Ruffe captured in July are used here.  Additionally,  a factored version of `year` was created, the common logarithms of weight and length were created, and the `fishID`, `month`, and `day` variables were removed to save space in the output.
 ```{r message=FALSE}
 ruf <- read.csv("RuffeSLRH.csv") %>%
-  filterD(month==7, year %in% c(1990,1995,2000)) %>%
+  filterD(month==7) %>%
   mutate(fYear=factor(year),logW=log10(wt),logL=log10(tl)) %>%
   select(-fishID,-month,-day)
 headtail(ruf)
 ```
+For the first example below, only fish from 1990, 1995, and 2000 were examined.  In the second example below, fish from 1992 to 1995 were examined.
+```{r message=FALSE}
+ruf1 <- filterD(ruf,year %in% c(1990,1995,2000))
+ruf2 <- filterD(ruf,year %in% 1992:1995)
+```
 
 ## Full Model
 
-The number of dummy variables required to represent $k$ groups is $k-1$.  Thus, in Chapter 7, only one dummy variable was required to represent the two groups.  In this supplement, three groups (the years) are being examined and, thus, two dummy variables are needed.  For example, `lm()` will ultimately treat the "1990" group as the reference group and create two dummy variables as follows
+The number of dummy variables required to represent $k$ groups is $k-1$.  Thus, in Chapter 7, only one dummy variable was required to represent the two groups.  In this example, three groups (the years) are being examined and, thus, two dummy variables are needed.  For example, `lm()` will ultimately treat the "1990" group as the reference group and create two dummy variables as follows
 
 \ 
 
@@ -97,7 +104,7 @@ $$ \begin{split}
 
 \ 
 
-Substitution of appropriate values for the dummy variables into `r eqncaps("FullModel",display="cite")` shows how `r eqncaps("FullModel",display="cite")` simultaneously represents the weight-length relationship regressions for all three years ().  From these submodels, it is apparent that $\alpha$ is the y-intercept for the reference (e.g., 1990) group, $\beta$ is the slope for the reference group, $\delta_{i}$ is the difference in y-intercepts between the $i$th and reference groups, and $\gamma_{i}$ is the difference in slopes between the $i$th and reference groups.  By extension, the interaction variables measure differences in slopes and the dummy variables measure differences in y-intercepts.
+Substitution of appropriate values for the dummy variables into `r eqncaps("FullModel",display="cite")` shows how `r eqncaps("FullModel",display="cite")` simultaneously represents the weight-length relationship regressions for all three years (`r tabcaps("SubsetModels",display="cite")`).  From these submodels, it is apparent that $\alpha$ is the y-intercept for the reference (e.g., 1990) group, $\beta$ is the slope for the reference group, $\delta_{i}$ is the difference in y-intercepts between the $i$th and reference groups, and $\gamma_{i}$ is the difference in slopes between the $i$th and reference groups.  By extension, the interaction variables measure differences in slopes and the dummy variables measure differences in y-intercepts.
 
 \ 
 \ 
@@ -115,7 +122,7 @@ Substitution of appropriate values for the dummy variables into `r eqncaps("Full
 
 The model in `r eqncaps("FullModel",display="cite")` is fit with `lm()` using a formula of the form `y~x*factor` exactly as described in Chapter 7 (again noting that `lm()` will create the appropriate dummy and interaction variables).
 ```{r}
-fit1 <- lm(logW~logL*fYear,data=ruf)
+fit1 <- lm(logW~logL*fYear,data=ruf1)
 ```
 
 The linearity and homoscedasticity assumptions (`r figcaps("FullResidPlot",display="cite")`-Left) and normality assumption (`r figcaps("FullResidPlot",display="cite")`-Right) are largely met with this model.
@@ -135,28 +142,91 @@ From these results it is apparent that the interaction term is a significant pre
 
 The ANOVA table for the fit of the full model is useful for determining if there is some difference in the regression model parameters among groups, but it cannot specifically identify where those differences occur.  Specific differences are identified in the next section.
 
-## Pinpointing Specific Differences Among Parameters
+## Pinpointing Specific Differences Among Slopes
 
- 
+No simple method exists (such as Tukey's Honestly Significant Difference (HSD) method) for comparing slopes among all pairs of groups while controlling for an increase in experimentwise error due to multiple comparisons.  One strategy to perform these tests, though, is to fit the DVR as in the previous section and extract all of the p-values for comparisons of slopes to the reference level.  Another model is then fit where the reference level has been changed and all p-values for comparisons of slopes to this level are extracted.  This process is repeated until p-values for all pairwise comparisons has been extracted.  The set of p-values from these comparisons is then submitted to procedures, such as one of the sequential Bonferroni or false discovery rate procedures, that are designed to adjust a set of p-values for multiple comparisons.
+
+Controlling the experimentwise error rate for multiple comparisons is easily accomplished in R with `p.adjust()`.  However, the sequential resetting of the reference level, fitting a new model, and extracting the p-values from all slope comparisons is tedious, especially for many groups.  Fortunately, `compSlopes()` from `FSA` automates the tedious computation of the set of p-values and use of `p.adjust()` to control the experimentwise error rate.
+
+The `compSlopes()` function requires a DVR model fit with `lm()` as its first argument.  The method to conrol for multiple comparisions may be set with `method=` and may be any of the methods returned by `p.adjust.methods()` (see `?p.adjust`).
+```{r}
+compSlopes(fit1)
+```
+
+Two sets of results are returned by `compSlopes()`.  The top set of results shows the difference in slopes (`diff`), unadjusted confidence interval for the difference in slopes (`95% LCI` and `95% UCI`), and unadjusted (`p.unadj`) and adjusted (`p.adj`) p-values for testing that the difference in slopes is not zero.  These results show that the slope for 1990 is significantly greater than the slopes for 1995 and 2000, and that the slopes for 1995 and 2000 do not differ significantly.
+
+The bottom set of results shows the slope (`slope`), unadjusted confidence interval for the slope (`95% LCI` and `95% UCI`), and unadjusted (`p.unadj`) and adjusted (`p.adj`) p-values for testing that the slope is not equal to zero.  In this case, this output is primarily for completeness as these hypothesis are not generally of interest with weight-length relationship regressions.
+
 ## A Summary Plot
+
+A plot that shows the transformed weight-length data with best-fit lines for each year superimposed (`r figcaps("FitPlotSlopes",display="cite")`) is constructed with the code below.  This code follows that found in the book with the exception that `col2rgbt()` from `FSA` is used to add transparency to each color in a vector of colors.
 
 ```{r}
 ## Base plot
-transp <- 1/4
-clrs <- c(rgb(0,0,0,transp),rgb(1,0,0,transp),rgb(0,0,1,transp))
-plot(logW~logL,data=ruf,pch=19,col=clrs[fYear])
+clrs1 <- c("black","red","blue")
+clrs2 <- col2rgbt(clrs1,1/4)
+plot(logW~logL,data=ruf1,pch=19,col=clrs2[fYear],
+     xlab="log(Total Length)",ylab="log(Weight)")
 ## Fitted lines
 ( cfs <- coef(fit1) )
-minx <- min(ruf$logL)
-maxx <- max(ruf$logL)
-curve(cfs[1]+cfs[2]*x,from=minx,to=maxx,col="black",add=TRUE)
-curve((cfs[1]+cfs[3])+(cfs[2]+cfs[5])*x,from=minx,to=maxx,col="red",add=TRUE)
-curve((cfs[1]+cfs[4])+(cfs[2]+cfs[6])*x,from=minx,to=maxx,col="blue",add=TRUE)
+minx <- min(ruf1$logL)
+maxx <- max(ruf1$logL)
+curve(cfs[1]+cfs[2]*x,from=minx,to=maxx,col=clrs1[1],lwd=2,add=TRUE)
+curve((cfs[1]+cfs[3])+(cfs[2]+cfs[5])*x,from=minx,to=maxx,col=clrs1[2],lwd=2,add=TRUE)
+curve((cfs[1]+cfs[4])+(cfs[2]+cfs[6])*x,from=minx,to=maxx,col=clrs1[3],lwd=2,add=TRUE)
 ## Add legend
-legend("topleft",levels(ruf$fYear),pch=19,col=clrs)
+legend("topleft",levels(ruf1$fYear),pch=19,col=clrs1)
 ```
 
+`r figcaps("FitPlotSlopes")`
 
+## Pinpointing Specific Differences Among Intercepts
+
+When a difference in slopes exists, as in the previous example, it generally does not make sense to compare intercepts.  However, if the slopes do not differ, then testing for differences in intercepts becomes important because, with parallel lines (i.e., same slopes), a difference in intercepts implies that the mean value of the response variable differs at *every* value of the explanatory variable.
+
+The example below fits a DVR of the weight-length relationship regressions for the years from 1992 to 1995 (data.frame constructed above).  In this example, the interaction term is not a significant predictor which indicates that none of the slopes differ.  However, the term related to the factor variable is significant, which implies that at least one of the $\delta_{i}$ is different from zero.  Thus, the y-intercept for at least of 1993, 1994, or 1995 differs from the y-intercept for 1992 (the reference level).
+
+```{r}
+fit2 <- lm(logW~logL*fYear,data=ruf2)
+Anova(fit2)
+```
+
+The same problem of incomplete comparisons and increasing experimentwise error occurs here with the y-intercepts as occurred with the slopes above.  The solution, however, is different here because the y-intercept is a point estimate, whereas the slope estimates a rate of change.  In this case, Tukey's HSD method can be used to determine which pairs of y-intercepts differ.  However, the observed values need to be adjusted to a single values of the covariate.
+
+The adjusted value for an individual is computed by adding the indivdiual's residual to the predicted value of the response variable at a common covariate value based on the regression line for that individual.  Visually, this adjustment may be thought of as sliding each point along its corresponding regression line to a common value along the x-axis.
+
+The `compIntercepts()` function from `FSA` performs these adjustments and applies Tukey's HSD procedure to the adjusted values.  The `compIntercepts()` function requires the fitted DVR as the first argument.  By default, the response variables are are adjusted to the mean value of the covariate unless a value is given to `common.cov=`.  For example, the actual y-intercepts will be used if `common.cov=0`.  Also note that a warning is given if the DVR model contains an interaction term, though `compIntercepts()` will adjust for this by fitting a new model without the nonsignificant interaction term.
+
+```{r}
+compIntercepts(fit2)
+```
+
+Two sets of results are returned by `compIntercepts()`.  The top set of results shows the difference in y-intercepts (`diff`), unadjusted confidence interval for the difference in y-intercepts (`95% LCI` and `95% UCI`), and adjusted (`p.adj`) p-values for testing that the difference in y-intercepts is not zero.  These results show that the y-intercept for 1992 is significantly greater than the y-intercepts for all other years, which did not differ significantly.
+
+```{r echo=FALSE, results="hide", warning=FALSE}
+tmp <- compIntercepts(fit2)
+```
+
+The bottom set of results shows the mean value of the response variable at a common value of the covariate for each group.  For example, the mean $log_{10}(W)$ for when $log_{10}(L)$=`r formatC(tmp$common.cov,format="f",digits=6)` for fish captured in 1992 is `r formatC(tmp$means["1992"],format="f",digits=6)`.
+```{r}
+## Base plot
+clrs1 <- c("black","red","blue","green")
+clrs2 <- col2rgbt(clrs1,1/4)
+plot(logW~logL,data=ruf2,pch=19,col=clrs2[fYear],
+     xlab="log(Total Length)",ylab="log(Weight)")
+## Fitted lines
+( cfs <- coef(fit2) )
+minx <- min(ruf2$logL)
+maxx <- max(ruf2$logL)
+curve(cfs[1]+cfs[2]*x,from=minx,to=maxx,col=clrs1[1],lwd=2,add=TRUE)
+curve((cfs[1]+cfs[3])+(cfs[2]+cfs[6])*x,from=minx,to=maxx,col=clrs1[2],lwd=2,add=TRUE)
+curve((cfs[1]+cfs[4])+(cfs[2]+cfs[7])*x,from=minx,to=maxx,col=clrs1[3],lwd=2,add=TRUE)
+curve((cfs[1]+cfs[5])+(cfs[2]+cfs[8])*x,from=minx,to=maxx,col=clrs1[4],lwd=2,add=TRUE)
+## Add legend
+legend("topleft",levels(ruf2$fYear),pch=19,col=clrs1)
+```
+
+`r figcaps("FitPlotIntercepts")`
 
 --------------------------------------------------------------
 

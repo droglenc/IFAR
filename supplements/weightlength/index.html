@@ -1,72 +1,9 @@
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-
-<meta charset="utf-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="pandoc" />
-
-<meta name="author" content="Derek H. Ogle" />
-
-
-<title>Weight-Length Relationships</title>
-
-<script src="index_files/jquery-1.11.0/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="index_files/bootstrap-3.3.1/css/bootstrap.min.css" rel="stylesheet" />
-<script src="index_files/bootstrap-3.3.1/js/bootstrap.min.js"></script>
-<script src="index_files/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
-<script src="index_files/bootstrap-3.3.1/shim/respond.min.js"></script>
-
-<style type="text/css">code{white-space: pre;}</style>
-<link rel="stylesheet"
-      href="index_files/highlight/default.css"
-      type="text/css" />
-<script src="index_files/highlight/highlight.js"></script>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
-<script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
-}
-</script>
-
-
-
-</head>
-
-<body>
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img { 
-  max-width:100%; 
-  height: auto; 
-}
-</style>
-<div class="container-fluid main-container">
-
-
-<div id="header">
-<h1 class="title">Weight-Length Relationships</h1>
-<h3 class="subtitle"><em>DVR with More than Two Groups</em></h3>
-<h4 class="author"><em>Derek H. Ogle</em></h4>
-</div>
+---
+layout: page
+title: Weight-Length Relationships
+subtitle: DVR with More than Two Groups
+author: Derek H. Ogle
+---
 
 
 <hr />
@@ -80,23 +17,26 @@ img {
 </div>
 <div id="data-used-in-this-supplement" class="section level3">
 <h3>Data Used in this Supplement</h3>
-<p>Weights (g) and total lengths (mm) from Ruffe (<em>Gymnocephalus cernuus</em>) captured in the St. Louis River Harbor (Minnesota and Wisconsin) were used in Chapter 7 and will also be used in this supplement. These data are from <span class="citation">Ogle and Winfield (2009)</span> and are in <code>RuffeSLRH.csv</code>. To eliminate within-season variability, only Ruffe captured in July are used here. Additionally, fish from only three years (1990, 1995, and 2000) were extracted, a factored version of <code>year</code> was created, the common logarithms of weight and length were created, and the <code>fishID</code>, <code>month</code>, and <code>day</code> variables were removed to save space in the output.</p>
+<p>Weights (g) and total lengths (mm) from Ruffe (<em>Gymnocephalus cernuus</em>) captured in the St. Louis River Harbor (Minnesota and Wisconsin) were used in Chapter 7 and will also be used in this supplement. These data are from <span class="citation">Ogle and Winfield (2009)</span> and are in <code>RuffeSLRH.csv</code>. To eliminate within-season variability, only Ruffe captured in July are used here. Additionally, a factored version of <code>year</code> was created, the common logarithms of weight and length were created, and the <code>fishID</code>, <code>month</code>, and <code>day</code> variables were removed to save space in the output.</p>
 <pre class="r"><code>&gt; ruf &lt;- read.csv(&quot;RuffeSLRH.csv&quot;) %&gt;%
-    filterD(month==7, year %in% c(1990,1995,2000)) %&gt;%
+    filterD(month==7) %&gt;%
     mutate(fYear=factor(year),logW=log10(wt),logL=log10(tl)) %&gt;%
     select(-fishID,-month,-day)
 &gt; headtail(ruf)</code></pre>
-<pre><code>    year  tl   wt fYear      logW     logL
-1   1990  55  2.1  1990 0.3222193 1.740363
-2   1990  60  3.2  1990 0.5051500 1.778151
-3   1990  69  4.5  1990 0.6532125 1.838849
-501 2000 136 35.4  2000 1.5490033 2.133539
-502 2000 140 30.2  2000 1.4800069 2.146128
-503 2000 140 36.2  2000 1.5587086 2.146128</code></pre>
+<pre><code>     year  tl   wt fYear      logW     logL
+1    1988  78  6.0  1988 0.7781513 1.892095
+2    1988  81  7.0  1988 0.8450980 1.908485
+3    1988  82  7.0  1988 0.8450980 1.913814
+1936 2004 137 28.0  2004 1.4471580 2.136721
+1937 2004 143 31.4  2004 1.4969296 2.155336
+1938 2004 174 82.4  2004 1.9159272 2.240549</code></pre>
+<p>For the first example below, only fish from 1990, 1995, and 2000 were examined. In the second example below, fish from 1992 to 1995 were examined.</p>
+<pre class="r"><code>&gt; ruf1 &lt;- filterD(ruf,year %in% c(1990,1995,2000))
+&gt; ruf2 &lt;- filterD(ruf,year %in% 1992:1995)</code></pre>
 </div>
 <div id="full-model" class="section level2">
 <h2>Full Model</h2>
-<p>The number of dummy variables required to represent <span class="math">\(k\)</span> groups is <span class="math">\(k-1\)</span>. Thus, in Chapter 7, only one dummy variable was required to represent the two groups. In this supplement, three groups (the years) are being examined and, thus, two dummy variables are needed. For example, <code>lm()</code> will ultimately treat the “1990” group as the reference group and create two dummy variables as follows</p>
+<p>The number of dummy variables required to represent <span class="math">\(k\)</span> groups is <span class="math">\(k-1\)</span>. Thus, in Chapter 7, only one dummy variable was required to represent the two groups. In this example, three groups (the years) are being examined and, thus, two dummy variables are needed. For example, <code>lm()</code> will ultimately treat the “1990” group as the reference group and create two dummy variables as follows</p>
 <p> </p>
 <p><span class="math">\[  fYear1995 = \left\{\begin{array}{l}
     1 \text{, if captured in 1995 }\\
@@ -115,7 +55,7 @@ img {
                     &amp;\mspace{16mu}+ \gamma_{1} fYear1995*log_{10}(L_{i})+ \gamma_{2} fYear2000*log_{10}(L_{i}) + \epsilon_{i}\quad \quad \quad \quad \text{(1)}
 \end{split} \]</span></p>
 <p> </p>
-<p>Substitution of appropriate values for the dummy variables into Equation 1 shows how Equation 1 simultaneously represents the weight-length relationship regressions for all three years (). From these submodels, it is apparent that <span class="math">\(\alpha\)</span> is the y-intercept for the reference (e.g., 1990) group, <span class="math">\(\beta\)</span> is the slope for the reference group, <span class="math">\(\delta_{i}\)</span> is the difference in y-intercepts between the <span class="math">\(i\)</span>th and reference groups, and <span class="math">\(\gamma_{i}\)</span> is the difference in slopes between the <span class="math">\(i\)</span>th and reference groups. By extension, the interaction variables measure differences in slopes and the dummy variables measure differences in y-intercepts.</p>
+<p>Substitution of appropriate values for the dummy variables into Equation 1 shows how Equation 1 simultaneously represents the weight-length relationship regressions for all three years (Table 1). From these submodels, it is apparent that <span class="math">\(\alpha\)</span> is the y-intercept for the reference (e.g., 1990) group, <span class="math">\(\beta\)</span> is the slope for the reference group, <span class="math">\(\delta_{i}\)</span> is the difference in y-intercepts between the <span class="math">\(i\)</span>th and reference groups, and <span class="math">\(\gamma_{i}\)</span> is the difference in slopes between the <span class="math">\(i\)</span>th and reference groups. By extension, the interaction variables measure differences in slopes and the dummy variables measure differences in y-intercepts.</p>
 <p>   </p>
 <p>Table 1: The submodels by capture year represented by the full model.</p>
 <table>
@@ -150,7 +90,7 @@ img {
 </table>
 <p>   </p>
 <p>The model in Equation 1 is fit with <code>lm()</code> using a formula of the form <code>y~x*factor</code> exactly as described in Chapter 7 (again noting that <code>lm()</code> will create the appropriate dummy and interaction variables).</p>
-<pre class="r"><code>&gt; fit1 &lt;- lm(logW~logL*fYear,data=ruf)</code></pre>
+<pre class="r"><code>&gt; fit1 &lt;- lm(logW~logL*fYear,data=ruf1)</code></pre>
 <p>The linearity and homoscedasticity assumptions (Figure 1-Left) and normality assumption (Figure 1-Right) are largely met with this model.</p>
 <pre class="r"><code>&gt; residPlot(fit1,legend=FALSE)</code></pre>
 <p><img src="index_files/figure-html/FullResidPlot-1.png" title="" alt="" width="480" /></p>
@@ -168,42 +108,118 @@ Residuals   0.971 497                    </code></pre>
 <p>From these results it is apparent that the interaction term is a significant predictor in the model. In relation to Equation 1 this suggests that at least one of <span class="math">\(\gamma_{1}\)</span> or <span class="math">\(\gamma_{2}\)</span> is significantly different than zero, which implies that the slope of the relationship for fish captured in 1995, 2000, or both differs significantly from the slope for fish captured in 1990. Additionally, it is possible that the slopes for fish captured in 1995 and 2000 also differ, but this cannot be assessed with this model.</p>
 <p>The ANOVA table for the fit of the full model is useful for determining if there is some difference in the regression model parameters among groups, but it cannot specifically identify where those differences occur. Specific differences are identified in the next section.</p>
 </div>
-<div id="pinpointing-specific-differences-among-parameters" class="section level2">
-<h2>Pinpointing Specific Differences Among Parameters</h2>
+<div id="pinpointing-specific-differences-among-slopes" class="section level2">
+<h2>Pinpointing Specific Differences Among Slopes</h2>
+<p>No simple method exists (such as Tukey’s Honestly Significant Difference (HSD) method) for comparing slopes among all pairs of groups while controlling for an increase in experimentwise error due to multiple comparisons. One strategy to perform these tests, though, is to fit the DVR as in the previous section and extract all of the p-values for comparisons of slopes to the reference level. Another model is then fit where the reference level has been changed and all p-values for comparisons of slopes to this level are extracted. This process is repeated until p-values for all pairwise comparisons has been extracted. The set of p-values from these comparisons is then submitted to procedures, such as one of the sequential Bonferroni or false discovery rate procedures, that are designed to adjust a set of p-values for multiple comparisons.</p>
+<p>Controlling the experimentwise error rate for multiple comparisons is easily accomplished in R with <code>p.adjust()</code>. However, the sequential resetting of the reference level, fitting a new model, and extracting the p-values from all slope comparisons is tedious, especially for many groups. Fortunately, <code>compSlopes()</code> from <code>FSA</code> automates the tedious computation of the set of p-values and use of <code>p.adjust()</code> to control the experimentwise error rate.</p>
+<p>The <code>compSlopes()</code> function requires a DVR model fit with <code>lm()</code> as its first argument. The method to conrol for multiple comparisions may be set with <code>method=</code> and may be any of the methods returned by <code>p.adjust.methods()</code> (see <code>?p.adjust</code>).</p>
+<pre class="r"><code>&gt; compSlopes(fit1)</code></pre>
+<pre><code>Multiple Slope Comparisons (using the &#39;holm&#39; adjustment)</code></pre>
+<pre><code>  comparison     diff  95% LCI  95% UCI p.unadj   p.adj
+1  1995-1990 -0.17186 -0.27049 -0.07324 0.00067 0.00134
+2  2000-1990 -0.22852 -0.31738 -0.13965 0.00000 0.00000
+3  2000-1995 -0.05665 -0.15236  0.03905 0.24538 0.24538</code></pre>
+<pre><code>
+Slope Information (using the &#39;holm&#39; adjustment)</code></pre>
+<pre><code>  level  slopes 95% LCI 95% UCI p.unadj p.adj
+3  2000 2.79665 2.73611 2.85719       0     0
+2  1995 2.85330 2.77918 2.92743       0     0
+1  1990 3.02516 2.96011 3.09022       0     0</code></pre>
+<p>Two sets of results are returned by <code>compSlopes()</code>. The top set of results shows the difference in slopes (<code>diff</code>), unadjusted confidence interval for the difference in slopes (<code>95% LCI</code> and <code>95% UCI</code>), and unadjusted (<code>p.unadj</code>) and adjusted (<code>p.adj</code>) p-values for testing that the difference in slopes is not zero. These results show that the slope for 1990 is significantly greater than the slopes for 1995 and 2000, and that the slopes for 1995 and 2000 do not differ significantly.</p>
+<p>The bottom set of results shows the slope (<code>slope</code>), unadjusted confidence interval for the slope (<code>95% LCI</code> and <code>95% UCI</code>), and unadjusted (<code>p.unadj</code>) and adjusted (<code>p.adj</code>) p-values for testing that the slope is not equal to zero. In this case, this output is primarily for completeness as these hypothesis are not generally of interest with weight-length relationship regressions.</p>
 </div>
 <div id="a-summary-plot" class="section level2">
 <h2>A Summary Plot</h2>
+<p>A plot that shows the transformed weight-length data with best-fit lines for each year superimposed (Figure 2) is constructed with the code below. This code follows that found in the book with the exception that <code>col2rgbt()</code> from <code>FSA</code> is used to add transparency to each color in a vector of colors.</p>
 <pre class="r"><code>&gt; ## Base plot
-&gt; transp &lt;- 1/4
-&gt; clrs &lt;- c(rgb(0,0,0,transp),rgb(1,0,0,transp),rgb(0,0,1,transp))
-&gt; plot(logW~logL,data=ruf,pch=19,col=clrs[fYear])
+&gt; clrs1 &lt;- c(&quot;black&quot;,&quot;red&quot;,&quot;blue&quot;)
+&gt; clrs2 &lt;- col2rgbt(clrs1,1/4)
+&gt; plot(logW~logL,data=ruf1,pch=19,col=clrs2[fYear],
+       xlab=&quot;log(Total Length)&quot;,ylab=&quot;log(Weight)&quot;)
 &gt; ## Fitted lines
 &gt; ( cfs &lt;- coef(fit1) )</code></pre>
 <pre><code>   (Intercept)           logL      fYear1995      fYear2000 
     -4.9144676      3.0251636      0.2817809      0.3942964 
 logL:fYear1995 logL:fYear2000 
     -0.1718633     -0.2285159 </code></pre>
-<pre class="r"><code>&gt; minx &lt;- min(ruf$logL)
-&gt; maxx &lt;- max(ruf$logL)
-&gt; curve(cfs[1]+cfs[2]*x,from=minx,to=maxx,col=&quot;black&quot;,add=TRUE)
-&gt; curve((cfs[1]+cfs[3])+(cfs[2]+cfs[5])*x,from=minx,to=maxx,col=&quot;red&quot;,add=TRUE)
-&gt; curve((cfs[1]+cfs[4])+(cfs[2]+cfs[6])*x,from=minx,to=maxx,col=&quot;blue&quot;,add=TRUE)
+<pre class="r"><code>&gt; minx &lt;- min(ruf1$logL)
+&gt; maxx &lt;- max(ruf1$logL)
+&gt; curve(cfs[1]+cfs[2]*x,from=minx,to=maxx,col=clrs1[1],lwd=2,add=TRUE)
+&gt; curve((cfs[1]+cfs[3])+(cfs[2]+cfs[5])*x,from=minx,to=maxx,col=clrs1[2],lwd=2,add=TRUE)
+&gt; curve((cfs[1]+cfs[4])+(cfs[2]+cfs[6])*x,from=minx,to=maxx,col=clrs1[3],lwd=2,add=TRUE)
 &gt; ## Add legend
-&gt; legend(&quot;topleft&quot;,levels(ruf$fYear),pch=19,col=clrs)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" title="" alt="" width="480" /></p>
+&gt; legend(&quot;topleft&quot;,levels(ruf1$fYear),pch=19,col=clrs1)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" title="" alt="" width="480" /></p>
+<p>Figure 2: Log-transformed weight versus log-transformed length of Ruffe separated by capture year.</p>
+</div>
+<div id="pinpointing-specific-differences-among-intercepts" class="section level2">
+<h2>Pinpointing Specific Differences Among Intercepts</h2>
+<p>When a difference in slopes exists, as in the previous example, it generally does not make sense to compare intercepts. However, if the slopes do not differ, then testing for differences in intercepts becomes important because, with parallel lines (i.e., same slopes), a difference in intercepts implies that the mean value of the response variable differs at <em>every</em> value of the explanatory variable.</p>
+<p>The example below fits a DVR of the weight-length relationship regressions for the years from 1992 to 1995 (data.frame constructed above). In this example, the interaction term is not a significant predictor which indicates that none of the slopes differ. However, the term related to the factor variable is significant, which implies that at least one of the <span class="math">\(\delta_{i}\)</span> is different from zero. Thus, the y-intercept for at least of 1993, 1994, or 1995 differs from the y-intercept for 1992 (the reference level).</p>
+<pre class="r"><code>&gt; fit2 &lt;- lm(logW~logL*fYear,data=ruf2)
+&gt; Anova(fit2)</code></pre>
+<pre><code>Anova Table (Type II tests)
+
+Response: logW
+           Sum Sq  Df    F value Pr(&gt;F)
+logL       75.798   1 45594.0523 &lt;2e-16
+fYear       0.326   3    65.4373 &lt;2e-16
+logL:fYear  0.008   3     1.6373 0.1793
+Residuals   1.235 743                  </code></pre>
+<p>The same problem of incomplete comparisons and increasing experimentwise error occurs here with the y-intercepts as occurred with the slopes above. The solution, however, is different here because the y-intercept is a point estimate, whereas the slope estimates a rate of change. In this case, Tukey’s HSD method can be used to determine which pairs of y-intercepts differ. However, the observed values need to be adjusted to a single values of the covariate.</p>
+<p>The adjusted value for an individual is computed by adding the indivdiual’s residual to the predicted value of the response variable at a common covariate value based on the regression line for that individual. Visually, this adjustment may be thought of as sliding each point along its corresponding regression line to a common value along the x-axis.</p>
+<p>The <code>compIntercepts()</code> function from <code>FSA</code> performs these adjustments and applies Tukey’s HSD procedure to the adjusted values. The <code>compIntercepts()</code> function requires the fitted DVR as the first argument. By default, the response variables are are adjusted to the mean value of the covariate unless a value is given to <code>common.cov=</code>. For example, the actual y-intercepts will be used if <code>common.cov=0</code>. Also note that a warning is given if the DVR model contains an interaction term, though <code>compIntercepts()</code> will adjust for this by fitting a new model without the nonsignificant interaction term.</p>
+<pre class="r"><code>&gt; compIntercepts(fit2)</code></pre>
+<pre><code>Warning: Removed an interaction term from &#39;mdl&#39; (i.e., assumed
+ parallel lines) to test intercepts.</code></pre>
+<pre><code>Tukey HSD on means adjusted assuming parallel lines</code></pre>
+<pre><code>  comparison          diff     95% LCI      95% UCI     p.adj
+1  1993-1992 -0.0560847608 -0.06723042 -0.044939103 0.0000000
+2  1994-1992 -0.0609843518 -0.07392816 -0.048040541 0.0000000
+3  1995-1992 -0.0616068456 -0.07461176 -0.048601927 0.0000000
+4  1994-1993 -0.0048995910 -0.01528465  0.005485465 0.6176269
+5  1995-1993 -0.0055220848 -0.01598321  0.004939036 0.5254957
+6  1995-1994 -0.0006224938 -0.01298177  0.011736778 0.9992208</code></pre>
+<pre><code>
+Mean logW when logL=2.012621</code></pre>
+<pre><code>    1992     1993     1994     1995 
+1.171924 1.115839 1.110939 1.110317 </code></pre>
+<p>Two sets of results are returned by <code>compIntercepts()</code>. The top set of results shows the difference in y-intercepts (<code>diff</code>), unadjusted confidence interval for the difference in y-intercepts (<code>95% LCI</code> and <code>95% UCI</code>), and adjusted (<code>p.adj</code>) p-values for testing that the difference in y-intercepts is not zero. These results show that the y-intercept for 1992 is significantly greater than the y-intercepts for all other years, which did not differ significantly.</p>
+<p>The bottom set of results shows the mean value of the response variable at a common value of the covariate for each group. For example, the mean <span class="math">\(log_{10}(W)\)</span> for when <span class="math">\(log_{10}(L)\)</span>=2.012621 for fish captured in 1992 is 1.171924.</p>
+<pre class="r"><code>&gt; ## Base plot
+&gt; clrs1 &lt;- c(&quot;black&quot;,&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;)
+&gt; clrs2 &lt;- col2rgbt(clrs1,1/4)
+&gt; plot(logW~logL,data=ruf2,pch=19,col=clrs2[fYear],
+       xlab=&quot;log(Total Length)&quot;,ylab=&quot;log(Weight)&quot;)
+&gt; ## Fitted lines
+&gt; ( cfs &lt;- coef(fit2) )</code></pre>
+<pre><code>   (Intercept)           logL      fYear1993      fYear1994 
+  -4.553035394    2.846025564   -0.197272960   -0.189460113 
+     fYear1995 logL:fYear1993 logL:fYear1994 logL:fYear1995 
+  -0.079651305    0.068720265    0.062584797    0.007274738 </code></pre>
+<pre class="r"><code>&gt; minx &lt;- min(ruf2$logL)
+&gt; maxx &lt;- max(ruf2$logL)
+&gt; curve(cfs[1]+cfs[2]*x,from=minx,to=maxx,col=clrs1[1],lwd=2,add=TRUE)
+&gt; curve((cfs[1]+cfs[3])+(cfs[2]+cfs[6])*x,from=minx,to=maxx,col=clrs1[2],lwd=2,add=TRUE)
+&gt; curve((cfs[1]+cfs[4])+(cfs[2]+cfs[7])*x,from=minx,to=maxx,col=clrs1[3],lwd=2,add=TRUE)
+&gt; curve((cfs[1]+cfs[5])+(cfs[2]+cfs[8])*x,from=minx,to=maxx,col=clrs1[4],lwd=2,add=TRUE)
+&gt; ## Add legend
+&gt; legend(&quot;topleft&quot;,levels(ruf2$fYear),pch=19,col=clrs1)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" title="" alt="" width="480" /></p>
+<p>Figure 3: Log-transformed weight versus log-transformed length of Ruffe separated by capture year.</p>
 <hr />
 </div>
 <div id="reproducibility-information" class="section level2">
 <h2>Reproducibility Information</h2>
 <ul>
-<li><strong>Compiled Date:</strong> Thu Oct 08 2015</li>
-<li><strong>Compiled Time:</strong> 5:02:48 PM</li>
+<li><strong>Compiled Date:</strong> Fri Oct 09 2015</li>
+<li><strong>Compiled Time:</strong> 8:16:21 PM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>
 <li><strong>Required Packages:</strong> FSA, dplyr, car, captioner, knitr and their dependencies (assertthat, DBI, digest, evaluate, formatR, graphics, grDevices, highr, lazyeval, magrittr, markdown, MASS, methods, mgcv, nnet, pbkrtest, plotrix, plyr, quantreg, R6, Rcpp, stats, stringr, tools, utils, yaml)</li>
-<li><strong>Other Packages:</strong> captioner_2.2.3, car_2.1-0, dplyr_0.4.3, extrafont_0.17, FSA_0.8.0, knitr_1.11</li>
-<li><strong>Loaded-Only Packages:</strong> assertthat_0.1, DBI_0.3.1, digest_0.6.8, evaluate_0.8, extrafontdb_1.0, formatR_1.2.1, gdata_2.17.0, grid_3.2.2, gtools_3.5.0, htmltools_0.2.6, lattice_0.20-33, lazyeval_0.1.10, lme4_1.1-10, magrittr_1.5, MASS_7.3-44, Matrix_1.2-2, MatrixModels_0.4-1, mgcv_1.8-7, minqa_1.2.4, nlme_3.1-122, nloptr_1.0.4, nnet_7.3-11, parallel_3.2.2, pbkrtest_0.4-2, plyr_1.8.3, quantreg_5.19, R6_2.1.1, Rcpp_0.12.1, rmarkdown_0.8, Rttf2pt1_1.3.3, SparseM_1.7, splines_3.2.2, stringi_0.5-5, stringr_1.0.0, tools_3.2.2, yaml_2.1.13</li>
+<li><strong>Other Packages:</strong> captioner_2.2.3, car_2.1-0, dplyr_0.4.3, extrafont_0.17, FSA_0.8.1, knitr_1.11, rmarkdown_0.8</li>
+<li><strong>Loaded-Only Packages:</strong> assertthat_0.1, DBI_0.3.1, digest_0.6.8, evaluate_0.8, extrafontdb_1.0, formatR_1.2.1, gdata_2.17.0, grid_3.2.2, gtools_3.5.0, htmltools_0.2.6, lattice_0.20-33, lazyeval_0.1.10, lme4_1.1-10, magrittr_1.5, MASS_7.3-44, Matrix_1.2-2, MatrixModels_0.4-1, mgcv_1.8-7, minqa_1.2.4, nlme_3.1-122, nloptr_1.0.4, nnet_7.3-11, parallel_3.2.2, pbkrtest_0.4-2, plyr_1.8.3, quantreg_5.19, R6_2.1.1, Rcpp_0.12.1, Rttf2pt1_1.3.3, SparseM_1.7, splines_3.2.2, stringi_0.5-5, stringr_1.0.0, tools_3.2.2, yaml_2.1.13</li>
 <li><strong>Links:</strong> <a href="weightlengthDVR.R">Script</a> / <a href="index.Rmd">RMarkdown</a></li>
 </ul>
 <hr />
