@@ -254,4 +254,4 @@ hist(~fl,data=BullTroutRML1,xlab="Fork Length (mm)",
      breaks=seq(80,500,10))
 
 
-# Script created at 2015-10-09 09:02:47
+# Script created at 2015-10-11 12:35:14

@@ -103,4 +103,4 @@ kruskal.test(Wr~gcat,data=ruf90)
 dunnTest(Wr~gcat,data=ruf90,method="holm")
 
 
-# Script created at 2015-10-09 09:02:49
+# Script created at 2015-10-11 12:35:16

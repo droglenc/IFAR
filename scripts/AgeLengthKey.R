@@ -113,4 +113,4 @@ alkPlot(alkM,type="area",pal="gray",xlab="Total Length (mm)",
         showLegend=TRUE,leg.cex=0.7)
 
 
-# Script created at 2015-10-09 09:02:48
+# Script created at 2015-10-11 12:35:15
