@@ -7,7 +7,8 @@ csl: ../american-fisheries-society.csl
 bibliography: ../IFARSupplement.bib
 output: 
   html_document: 
-    fig_width: 5
+    fig_width: 3.5
+    fig_height: 3.5
     self_contained: no
 ---
 ```{r echo=FALSE, eval=FALSE}
@@ -88,7 +89,7 @@ str(df)
 ```
 
 The year of captured is then extracted with `year()` from `lubridate`.  Note that the month could be extracted with `month()`, day of the month with `mday()`, and day of the year (1-366) with `yday()`.  The `pre02` variable may then be added to the data.frame.
-```{r}
+```{r R.options=list(width=80)}
 df %<>% mutate(year=year(date),
                era=factor(ifelse(year<2002,"pre-2002","2002 and after")))
 headtail(df)
@@ -106,7 +107,7 @@ df %<>% mutate(lcat2=lencat(length,w=2))
 headtail(df)
 ```
 The frequency of mature and immature fish in each length category is computed with `xtabs()` below.  The raw frequencies are converted to a "row proportions" table to see the proportion of fish within each length bin that are mature.  Finally, a plot of the percentage of mature fish is constructed (`r figcaps("SumLength",display="cite")`).
-```{r sumLength, fig.width=figsz, fig.height=figsz, par1=TRUE}
+```{r sumLength, par1=TRUE}
 freq <- xtabs(~lcat2+maturity,data=df)
 props <- prop.table(freq,margin=1)
 round(props,1)   # for display only
@@ -116,7 +117,6 @@ plot(props[,"Mature"]~as.numeric(rownames(props)),pch=19,
 
 `r figcaps("SumLength")`
 
-\ 
 \ 
 
 These results show that the percentage of mature female Yellow Rockfish increases quickly between 34 and 42 cm.
@@ -184,7 +184,7 @@ preds <- predict(glm1,data.frame(length=lens),type="response")
 lines(preds~lens,lwd=2)
 ```
 
-```{r LogisticFit1, echo=FALSE, fig.width=figsz, fig.height=figsz, par1=TRUE}
+```{r LogisticFit1, echo=FALSE, par1=TRUE}
 ##############################################################
 # This code is redundant with the code above and was used
 # only for producing the supplement.
@@ -236,7 +236,7 @@ The calculation of the $L_{50}$ may be illustrated on a fitted-line plot (`r fig
 lines(c(0,L50),c(0.5,0.5),lty=2,lwd=2,col="red")
 lines(c(L50,L50),c(-0.2,0.5),lty=2,lwd=2,col="red")
 ```
-```{r LogisticFit2, echo=FALSE, fig.width=figsz, fig.height=figsz, par1=TRUE}
+```{r LogisticFit2, echo=FALSE, par1=TRUE}
 ##############################################################
 # This code is redundant with the code above and was used
 # only for producing the supplement.

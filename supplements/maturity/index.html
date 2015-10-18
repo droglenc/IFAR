@@ -35,20 +35,20 @@ author: Derek H. Ogle
 <pre class="r"><code>&gt; df &lt;- read.csv(&quot;YERockfish.csv&quot;)
 &gt; str(df)</code></pre>
 <pre><code>&#39;data.frame&#39;:   158 obs. of  5 variables:
- $ date    : Factor w/ 71 levels &quot;10/1/2003&quot;,&quot;10/2/2003&quot;,..: 66 ..
+ $ date    : Factor w/ 71 levels &quot;10/1/2003&quot;,&quot;10/2/2003&quot;,..: 66 9 38 25 60 6 3..
  $ length  : int  31 32 32 32 32 33 33 34 34 34 ...
  $ age     : int  10 6 11 11 13 9 10 8 10 11 ...
- $ maturity: Factor w/ 2 levels &quot;Immature&quot;,&quot;Mature&quot;: 1 1 1 1 1 1..
- $ stage   : Factor w/ 9 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 1 1 2 2 1 ..</code></pre>
+ $ maturity: Factor w/ 2 levels &quot;Immature&quot;,&quot;Mature&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+ $ stage   : Factor w/ 9 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 1 1 2 2 1 1 1 1 1 ...</code></pre>
 <p>The date of capture was also recorded. For a later example that compares the maturity analysis between two groups, a new variable that indicates whether the fish was captured before 2002 or in 2002 and after is needed. This conversion requires that the <code>date</code> variable be converted to a format that R recognizes as a date. The <code>as.POSIXct()</code> function does this conversion taking the original dates as its first argument and a <code>format=</code> argument that describes the format of the dates in the original varible. The format argument takes a string where <code>%m</code> represents the month as a number (<code>%b</code> would be the abbreviated month name), <code>%d</code> is the day of the month, and <code>%Y</code> is the four-digit year (<code>%y</code> is the year without the century). These format codes are then separated by characters that separate the fields in the original dates. See <code>?strptime</code> for more format codes.</p>
 <pre class="r"><code>&gt; df %&lt;&gt;% mutate(date=as.POSIXct(date,format=&quot;%m/%d/%Y&quot;))
 &gt; str(df)</code></pre>
 <pre><code>&#39;data.frame&#39;:   158 obs. of  5 variables:
- $ date    : POSIXct, format: &quot;2003-09-02&quot; ...
+ $ date    : POSIXct, format: &quot;2003-09-02&quot; &quot;2002-10-07&quot; ...
  $ length  : int  31 32 32 32 32 33 33 34 34 34 ...
  $ age     : int  10 6 11 11 13 9 10 8 10 11 ...
- $ maturity: Factor w/ 2 levels &quot;Immature&quot;,&quot;Mature&quot;: 1 1 1 1 1 1..
- $ stage   : Factor w/ 9 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 1 1 2 2 1 ..</code></pre>
+ $ maturity: Factor w/ 2 levels &quot;Immature&quot;,&quot;Mature&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+ $ stage   : Factor w/ 9 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 1 1 2 2 1 1 1 1 1 ...</code></pre>
 <p>The year of captured is then extracted with <code>year()</code> from <code>lubridate</code>. Note that the month could be extracted with <code>month()</code>, day of the month with <code>mday()</code>, and day of the year (1-366) with <code>yday()</code>. The <code>pre02</code> variable may then be added to the data.frame.</p>
 <pre class="r"><code>&gt; df %&lt;&gt;% mutate(year=year(date),
                  era=factor(ifelse(year&lt;2002,&quot;pre-2002&quot;,&quot;2002 and after&quot;)))
@@ -68,20 +68,13 @@ author: Derek H. Ogle
 <p>In this supplement, the total length of the rockfish was measured to the nearest cm. Length categories of 2 cm were chosen to summarize the data so that reasonable sample sizes (<span class="math">\(&gt;10\)</span> fish) in the length range where the proportion of mature fish is most rapidly changing. These length categories are added to the data.frame with <code>lencat()</code> below.</p>
 <pre class="r"><code>&gt; df %&lt;&gt;% mutate(lcat2=lencat(length,w=2))
 &gt; headtail(df)</code></pre>
-<pre><code>          date length age maturity stage year            era
-1   2003-09-02     31  10 Immature     1 2003 2002 and after
-2   2002-10-07     32   6 Immature     1 2002 2002 and after
-3   2000-07-18     32  11 Immature     1 2000       pre-2002
-156 2002-08-18     67  50   Mature     6 2002 2002 and after
-157 2002-10-07     68  88   Mature     6 2002 2002 and after
-158 2001-04-23     70  66   Mature     4 2001       pre-2002
-    lcat2
-1      30
-2      32
-3      32
-156    66
-157    68
-158    70</code></pre>
+<pre><code>          date length age maturity stage year            era lcat2
+1   2003-09-02     31  10 Immature     1 2003 2002 and after    30
+2   2002-10-07     32   6 Immature     1 2002 2002 and after    32
+3   2000-07-18     32  11 Immature     1 2000       pre-2002    32
+156 2002-08-18     67  50   Mature     6 2002 2002 and after    66
+157 2002-10-07     68  88   Mature     6 2002 2002 and after    68
+158 2001-04-23     70  66   Mature     4 2001       pre-2002    70</code></pre>
 <p>The frequency of mature and immature fish in each length category is computed with <code>xtabs()</code> below. The raw frequencies are converted to a “row proportions” table to see the proportion of fish within each length bin that are mature. Finally, a plot of the percentage of mature fish is constructed (Figure 1).</p>
 <pre class="r"><code>&gt; freq &lt;- xtabs(~lcat2+maturity,data=df)
 &gt; props &lt;- prop.table(freq,margin=1)
@@ -111,9 +104,9 @@ lcat2 Immature Mature
    70      0.0    1.0</code></pre>
 <pre class="r"><code>&gt; plot(props[,&quot;Mature&quot;]~as.numeric(rownames(props)),pch=19,
        xlab=&quot;Total Length (cm)&quot;,ylab=&quot;Proportion Mature&quot;)</code></pre>
-<p><img src="index_files/figure-html/sumLength-1.png" title="" alt="" width="240" /></p>
+<p><img src="index_files/figure-html/sumLength-1.png" title="" alt="" width="336" /></p>
 <p>Figure 1: Proportion of female Yelloweye Rockfish that were mature at each 2-cm length category.</p>
-<p>   </p>
+<p> </p>
 <p>These results show that the percentage of mature female Yellow Rockfish increases quickly between 34 and 42 cm.</p>
 <p>   </p>
 </div>
@@ -132,8 +125,8 @@ lcat2 Immature Mature
 <pre class="r"><code>&gt; bcL &lt;- bootCase(glm1,B=100)  # B should be nearer to 1000
 &gt; cbind(Ests=coef(glm1),confint(bcL))</code></pre>
 <pre><code>                   Ests     95% LCI     95% UCI
-(Intercept) -16.9482593 -27.9647193 -12.6127432
-length        0.4371786   0.3298839   0.7209656</code></pre>
+(Intercept) -16.9482593 -27.9408294 -12.0763659
+length        0.4371786   0.3200021   0.7057812</code></pre>
 <p>A predicted probability of “success” (i.e., being mature) at a given value of the explanatory variable (<span class="math">\(x\)</span>) is computed with</p>
 <p><span class="math">\[ p = \frac{e^{\alpha + \beta_{1}x}}{1+e^{\alpha + \beta_{1}}} \quad \quad \quad \quad \text{(1)} \]</span></p>
 <p>This prediction is computed with <code>predict()</code>, which requires the <code>glm</code> object as the first argument, a data.frame with the values of the explanatory variable for which to make the prediction as the second argument, and <code>type=&quot;response&quot;</code> (which forces the prediction of the probability of being mature rather than the logit). For example, the predicted probabilities of being mature for female Yelloweye Rockfish that are 32- and 42-cm total length are computed below.</p>
@@ -145,7 +138,7 @@ length        0.4371786   0.3298839   0.7209656</code></pre>
 &gt; p32 &lt;- apply(bcL,1,predP,x=32)
 &gt; quantile(p32,c(0.025,0.975))</code></pre>
 <pre><code>       2.5%       97.5% 
-0.005514326 0.116523471 </code></pre>
+0.004692968 0.137612223 </code></pre>
 <p>A plot that illustrates the fit of the logistic regression (Figure 2) can be constructed in several steps. First, a base plot that depicts the raw data is constructed. This plot is constructed below. Take special note that <code>maturity</code> was forced to be numeric between 0 and 1 for the plot and transparent points (as described in Chapter 3) were used because there is considerable overplotting with the “discrete” maturity and length data.</p>
 <pre class="r"><code>&gt; plot((as.numeric(maturity)-1)~length,data=df,
        pch=19,col=rgb(0,0,0,1/8),
@@ -156,7 +149,7 @@ length        0.4371786   0.3298839   0.7209656</code></pre>
 <pre class="r"><code>&gt; lens &lt;- seq(30,70,length.out=99)
 &gt; preds &lt;- predict(glm1,data.frame(length=lens),type=&quot;response&quot;)
 &gt; lines(preds~lens,lwd=2)</code></pre>
-<p><img src="index_files/figure-html/LogisticFit1-1.png" title="" alt="" width="240" /></p>
+<p><img src="index_files/figure-html/LogisticFit1-1.png" title="" alt="" width="336" /></p>
 <p>Figure 2: Fitted logistic regression for proportion of female Yelloweye Rockfish mature by total length.</p>
 <p>   </p>
 </div>
@@ -178,15 +171,15 @@ length        0.4371786   0.3298839   0.7209656</code></pre>
 <pre class="r"><code>&gt; bL50 &lt;- apply(bcL,1,lrPerc,p=0.5)
 &gt; ( L50ci &lt;- quantile(bL50,c(0.025,0.975)) )</code></pre>
 <pre><code>    2.5%    97.5% 
-37.63161 40.03583 </code></pre>
+37.23400 39.97566 </code></pre>
 <pre class="r"><code>&gt; bL90 &lt;- apply(bcL,1,lrPerc,p=0.9)
 &gt; ( L90ci &lt;- quantile(bL90,c(0.025,0.975)) )</code></pre>
 <pre><code>    2.5%    97.5% 
-41.84849 45.45220 </code></pre>
+41.89260 45.22962 </code></pre>
 <p>The calculation of the <span class="math">\(L_{50}\)</span> may be illustrated on a fitted-line plot (Figure 3) by adding the code below to the code above used to construct Figure 2.</p>
 <pre class="r"><code>&gt; lines(c(0,L50),c(0.5,0.5),lty=2,lwd=2,col=&quot;red&quot;)
 &gt; lines(c(L50,L50),c(-0.2,0.5),lty=2,lwd=2,col=&quot;red&quot;)</code></pre>
-<p><img src="index_files/figure-html/LogisticFit2-1.png" title="" alt="" width="240" /></p>
+<p><img src="index_files/figure-html/LogisticFit2-1.png" title="" alt="" width="336" /></p>
 <p>Figure 3: Fitted logistic regression for proportion of female Yelloweye Rockfish mature by total length with <span class="math">\(L_{50}\)</span> shown.</p>
 <p>   </p>
 </div>
@@ -203,7 +196,7 @@ length        0.4371786   0.3298839   0.7209656</code></pre>
 <h2>Reproducibility Information</h2>
 <ul>
 <li><strong>Compiled Date:</strong> Sun Oct 18 2015</li>
-<li><strong>Compiled Time:</strong> 12:19:08 PM</li>
+<li><strong>Compiled Time:</strong> 12:27:24 PM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, grid, methods, stats, utils</li>

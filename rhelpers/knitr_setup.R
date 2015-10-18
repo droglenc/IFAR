@@ -37,7 +37,7 @@ knit_hooks$set(
 ## knitr options -- figure handling
 ################################################################################
 # set default plot options
-figsz <- 2.5
+figsz <- 3.5
 fullwide <- '.99\\linewidth'
 halfwide <- '.49\\linewidth'
 thirdwide <- '.32\\linewidth'
@@ -52,7 +52,7 @@ opts_chunk$set(prompt=TRUE,
 ################################################################################
 ## r options
 ################################################################################
-options(width=66,
+options(width=80,
         show.signif.stars=FALSE,
         continue="  ",
         str=strOptions(strict.width="cut"))
