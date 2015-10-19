@@ -55,6 +55,8 @@ figcaps <- captioner(prefix="Figure")
 figcaps("SumLength","Proportion of female Yelloweye Rockfish that were mature at each 2-cm length category.")
 figcaps("LogisticFit1","Fitted logistic regression for proportion of female Yelloweye Rockfish mature by total length.")
 figcaps("LogisticFit2","Fitted logistic regression for proportion of female Yelloweye Rockfish mature by total length with $L_{50}$ shown.")
+figcaps("LogisticFit3",'Fitted logistic regression for proportion of female Yelloweye Rockfish mature by total length separated by the "pre-2002" and "post-2002" periods.')
+
 
 tabcaps <- captioner(prefix="Table")
 tabcaps("SubsetModels","The submodels by capture year represented by the full model.")
@@ -95,6 +97,11 @@ df %<>% mutate(year=year(date),
 headtail(df)
 ```
 
+Finally, `maturity` was not recorded for several individuals.  These individuals were removed from further analysis.
+```{r}
+df %<>% filter(!is.na(maturity))
+```
+
 ## Maturity Data
 
 Raw maturity data generally consists of a maturity statement (either "mature"" or "immature""), size (length or weight), age, sex, and other variables as needed (e.g., capture date, capture location) recorded for individual fish.  The maturity variable may need to be derived from more specific data about the "stage of maturation" recorded for each fish.  Often, maturity will be recorded as a dummy or indicator variable -- "0" for immature and a "1" for mature -- but this is not required for most modern software.  Sex is an important variable to record as maturity should be analyzed separately for each sex.
@@ -117,15 +124,12 @@ plot(props[,"Mature"]~as.numeric(rownames(props)),pch=19,
 
 `r figcaps("SumLength")`
 
-\ 
-
 These results show that the percentage of mature female Yellow Rockfish increases quickly between 34 and 42 cm.
 
 \ 
 \ 
 
 ## Modeling with Raw Data
-
 ### Fitting the Logistic Regression Model
 
 Raw maturity data is generally summarized with a logistic regression.  A logistic regression is conducted with a binomial response variable and, generally, a quantitative explanatory variable.  The logistic regression would like to use typical general linear model theory to model the probability of "success" ($p$) by the value of the explanatory variable.  However, this relationship is generally not linear (primarily due to the constaint that the probability is between 0 and 1).  Thus, the logistic regression procedure must transform $p$ to form a linear equation.  The required transformation is the *logit* transformation,
@@ -257,11 +261,73 @@ lines(c(L50,L50),c(-0.2,0.5),lty=2,lwd=2,col="red")
 ## Modeling with Summarized Data
 
 
+Sometimes maturity data is presented in summarized format -- that is, the proportion of fish for each length that were mature.  Such data can be computed from the original data.frame with the code below.  Note that there are two "tricks" in this code.  First, the `maturity` factor variable is coerced to be a numeric variable, but 1 is subtracted from this result because values of 1 for immature and 2 for mature are returned.  Second, the mean of this result is the proportion of ones in the data, which is the proportion of mature fish.
+```{r}
+df2 <- df %>%
+  group_by(length) %>%
+  summarize(pmat=mean(as.numeric(maturity)-1),
+            n=n()) %>%
+  as.data.frame()
+headtail(df2)
+```
+
+Also note that this code is only used here to produce data to illustrate how to analyze summarized data.  If one has raw data as in `YERockfish`, then the methods of the previous section should be used, though the technique used here provides identical answers.
+
+The appropriate logistic regression model is again fit with \R{glm()}.  However, the left side of the formula is the proportion of "successes" variable and \R{weights=} is set equal to the sample size used to compute each proportion.  Once the model is fit, the same extractor functions can be used to summarize the results. [*Note that `glm()` and `bootCase()` will return a warning about non-integer number of successes when used in this way.*]
+```{r warning=FALSE}
+glm2 <- glm(pmat~length,data=df2,family=binomial,weights=n)
+bcL2 <- bootCase(glm2,B=100)  # B should be closer to 1000
+cbind(Ests=coef(glm2),confint(bcL2))
+predict(glm2,data.frame(length=c(32,42)),type="response")
+p32a <- apply(bcL2,1,predP,x=32)
+quantile(p32a,c(0.025,0.975))
+```
+
+Note that the coefficients and predictions computed here are the same and that the bootstrapped confidence intervals are approximately the same here as in the results from using the raw data.
 
 \ 
 \ 
 
 ## Comparing Logistic Regressions Between Groups
+
+It may be important to determine if the fit of the logistic regression differs between two groups.  For example, one may need to determine if the logistic regression parameters differ significantly between fish captured "pre-2002" and those captured in "2002 and after" (recall that these two "eras" are recorded in `era` in `df`).
+
+The model required to answer this type of question is a logistic regression version of the dummy variable regression introduced in Chapter X.  Specifically, the right side of the formula in `glm` is modified to be `quantiative*factor` where `quantiative` is the covariate (usually length or age) and `factor` is the group factor variable that is used to identify the groups being compared.  As noted in Chapter X, this formula is actually shorthand for a model with three terms -- `quantivative` and `factor` main effects and the interaction between the `quantitative` and `factor` variables.  In this case, the model is fit as shown below.
+```{r}
+glm3 <- glm(maturity~length*era,data=df,family=binomial)
+```
+
+The significance of terms in a general linear model are computed with a chi-square distribution and summarized in an "Analysis of Deviance Table", rather than with an F distribution and ANOVA table as with a linear model.  Fortunately, the Analysis of Deviance table using Type II tests is also retrieved with `Anova()` from `car`.
+```{r}
+Anova(glm3)
+```
+
+As with the ANOVA table in a dummy variable regression, the Analysis of Deviance table should be read from the bottom.  In this case, the interaction term is not signficant which suggests that the slopes for the logit-transformed models do not differ between the eras.  The `era` main effect is also not signficant, which suggests that the y-intercepts for the logit-transformed models do not differ between the eras.  Thus, there is not signficant differ in the logistic regressions between fish captured in the two eras.
+
+```{r message=FALSE, par1=TRUE}
+## Set-up colors
+clrs1 <- c("black","red")
+clrs2 <- col2rgbt(clrs1,1/5)
+## Get predicted values for each era
+lvls <- levels(df$era)
+lens <- seq(30,70,length.out=99)
+pa02 <- predict(glm3,type="response",
+                data.frame(length=lens,era=factor("2002 and after",levels=lvls)))
+pp02 <- predict(glm3,type="response",
+                data.frame(length=lens,era=factor("pre-2002",levels=lvls)))
+## Make the base plot
+plot((as.numeric(maturity)-1)~length,data=filterD(df,era==lvls[1]),
+     pch=19,col=clrs2[1],xlab="Total Length (cm)",ylab="Proportion Mature")
+points((as.numeric(maturity)-1)~length,data=filterD(df,era==lvls[2]),
+     pch=19,col=clrs2[2])
+## Add the two fitted lines
+lines(pa02~lens,lwd=2,col=clrs1[1])
+lines(pp02~lens,lwd=2,col=clrs1[2])
+```
+
+`r figcaps("LogisticFit3")`
+
+
 
 --------------------------------------------------------------
 
