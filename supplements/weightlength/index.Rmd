@@ -25,6 +25,13 @@ if (require(FSA)) purl2("index.Rmd",newname="weightlengthDVR",topnotes="User mus
 
 ----
 
+* [Full Model](#full-model)
+* [Pinpointing Specific Differences Among Slopes](#pinpointing-specific-differences-among-alopes)
+* [A Summary Plot](#a-summary-plot)
+* [Pinpointing Specific Differences Among Intercepts](#pinpointing-specific-differences-among-intercepts)
+
+----
+
 Dummy variable regression (DVR) was introduced in Chapter 7 of [*Introductory Fisheries Analyses with R*](http://derekogle.com/IFAR/) in the context of determining if the slope and y-intercept parameters of weight-length relationship regressions differed between fish captured in two different years.  That analysis may be extended to more than two groups, though more dummy variables are required and special methods are needed to determine which pairs of groups (if any) differ.  This supplement demonstrates how to extend the DVR to more than two groups.
 
 ### Required Packages for this Supplement

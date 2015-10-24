@@ -7,6 +7,13 @@ author: Derek H. Ogle
 
 
 <hr />
+<ul>
+<li><a href="#full-model">Full Model</a></li>
+<li><a href="#pinpointing-specific-differences-among-alopes">Pinpointing Specific Differences Among Slopes</a></li>
+<li><a href="#a-summary-plot">A Summary Plot</a></li>
+<li><a href="#pinpointing-specific-differences-among-intercepts">Pinpointing Specific Differences Among Intercepts</a></li>
+</ul>
+<hr />
 <p>Dummy variable regression (DVR) was introduced in Chapter 7 of <a href="http://derekogle.com/IFAR/"><em>Introductory Fisheries Analyses with R</em></a> in the context of determining if the slope and y-intercept parameters of weight-length relationship regressions differed between fish captured in two different years. That analysis may be extended to more than two groups, though more dummy variables are required and special methods are needed to determine which pairs of groups (if any) differ. This supplement demonstrates how to extend the DVR to more than two groups.</p>
 <div id="required-packages-for-this-supplement" class="section level3">
 <h3>Required Packages for this Supplement</h3>
@@ -93,7 +100,7 @@ author: Derek H. Ogle
 <pre class="r"><code>&gt; fit1 &lt;- lm(logW~logL*fYear,data=ruf1)</code></pre>
 <p>The linearity and homoscedasticity assumptions (Figure 1-Left) and normality assumption (Figure 1-Right) are largely met with this model.</p>
 <pre class="r"><code>&gt; residPlot(fit1,legend=FALSE)</code></pre>
-<p><img src="index_files/figure-html/FullResidPlot-1.png" title="" alt="" width="480" /></p>
+<p><img src="index_files/figure-html/FullResidPlot-1.png" title="" alt="" width="672" /></p>
 <p>Figure 1: Modified residual plot (Left) and histogram of residuals (Right) from fitting a dummy variable regression to the log-transformed weights and lengths of Ruffe captured in 1990, 1995, and 2000.</p>
 <p>An ANOVA table is constructed (using <code>Anova()</code> from <code>car</code>) and interpreted (sequentially starting at the bottom of the table) as described in Chapter 7.</p>
 <pre class="r"><code>&gt; Anova(fit1)</code></pre>
@@ -138,10 +145,10 @@ Slope Information (using the &#39;holm&#39; adjustment)</code></pre>
        xlab=&quot;log(Total Length)&quot;,ylab=&quot;log(Weight)&quot;)
 &gt; ## Fitted lines
 &gt; ( cfs &lt;- coef(fit1) )</code></pre>
-<pre><code>   (Intercept)           logL      fYear1995      fYear2000 
-    -4.9144676      3.0251636      0.2817809      0.3942964 
-logL:fYear1995 logL:fYear2000 
-    -0.1718633     -0.2285159 </code></pre>
+<pre><code>   (Intercept)           logL      fYear1995      fYear2000 logL:fYear1995 
+    -4.9144676      3.0251636      0.2817809      0.3942964     -0.1718633 
+logL:fYear2000 
+    -0.2285159 </code></pre>
 <pre class="r"><code>&gt; minx &lt;- min(ruf1$logL)
 &gt; maxx &lt;- max(ruf1$logL)
 &gt; curve(cfs[1]+cfs[2]*x,from=minx,to=maxx,col=clrs1[1],lwd=2,add=TRUE)
@@ -193,10 +200,10 @@ Mean logW when logL=2.012621</code></pre>
        xlab=&quot;log(Total Length)&quot;,ylab=&quot;log(Weight)&quot;)
 &gt; ## Fitted lines
 &gt; ( cfs &lt;- coef(fit2) )</code></pre>
-<pre><code>   (Intercept)           logL      fYear1993      fYear1994 
-  -4.553035394    2.846025564   -0.197272960   -0.189460113 
-     fYear1995 logL:fYear1993 logL:fYear1994 logL:fYear1995 
-  -0.079651305    0.068720265    0.062584797    0.007274738 </code></pre>
+<pre><code>   (Intercept)           logL      fYear1993      fYear1994      fYear1995 
+  -4.553035394    2.846025564   -0.197272960   -0.189460113   -0.079651305 
+logL:fYear1993 logL:fYear1994 logL:fYear1995 
+   0.068720265    0.062584797    0.007274738 </code></pre>
 <pre class="r"><code>&gt; minx &lt;- min(ruf2$logL)
 &gt; maxx &lt;- max(ruf2$logL)
 &gt; curve(cfs[1]+cfs[2]*x,from=minx,to=maxx,col=clrs1[1],lwd=2,add=TRUE)
@@ -212,14 +219,14 @@ Mean logW when logL=2.012621</code></pre>
 <div id="reproducibility-information" class="section level2">
 <h2>Reproducibility Information</h2>
 <ul>
-<li><strong>Compiled Date:</strong> Fri Oct 09 2015</li>
-<li><strong>Compiled Time:</strong> 8:16:21 PM</li>
+<li><strong>Compiled Date:</strong> Sat Oct 24 2015</li>
+<li><strong>Compiled Time:</strong> 6:36:48 PM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>
 <li><strong>Required Packages:</strong> FSA, dplyr, car, captioner, knitr and their dependencies (assertthat, DBI, digest, evaluate, formatR, graphics, grDevices, highr, lazyeval, magrittr, markdown, MASS, methods, mgcv, nnet, pbkrtest, plotrix, plyr, quantreg, R6, Rcpp, stats, stringr, tools, utils, yaml)</li>
-<li><strong>Other Packages:</strong> captioner_2.2.3, car_2.1-0, dplyr_0.4.3, extrafont_0.17, FSA_0.8.1, knitr_1.11, rmarkdown_0.8</li>
-<li><strong>Loaded-Only Packages:</strong> assertthat_0.1, DBI_0.3.1, digest_0.6.8, evaluate_0.8, extrafontdb_1.0, formatR_1.2.1, gdata_2.17.0, grid_3.2.2, gtools_3.5.0, htmltools_0.2.6, lattice_0.20-33, lazyeval_0.1.10, lme4_1.1-10, magrittr_1.5, MASS_7.3-44, Matrix_1.2-2, MatrixModels_0.4-1, mgcv_1.8-7, minqa_1.2.4, nlme_3.1-122, nloptr_1.0.4, nnet_7.3-11, parallel_3.2.2, pbkrtest_0.4-2, plyr_1.8.3, quantreg_5.19, R6_2.1.1, Rcpp_0.12.1, Rttf2pt1_1.3.3, SparseM_1.7, splines_3.2.2, stringi_0.5-5, stringr_1.0.0, tools_3.2.2, yaml_2.1.13</li>
+<li><strong>Other Packages:</strong> captioner_2.2.3, car_2.1-0, dplyr_0.4.3, extrafont_0.17, FSA_0.8.3, knitr_1.11, magrittr_1.5, rmarkdown_0.8.1, stringr_1.0.0, tidyr_0.3.1</li>
+<li><strong>Loaded-Only Packages:</strong> assertthat_0.1, DBI_0.3.1, digest_0.6.8, evaluate_0.8, extrafontdb_1.0, formatR_1.2.1, gdata_2.17.0, grid_3.2.2, gtools_3.5.0, highr_0.5.1, htmltools_0.2.6, lattice_0.20-33, lazyeval_0.1.10, lme4_1.1-10, MASS_7.3-44, Matrix_1.2-2, MatrixModels_0.4-1, mgcv_1.8-7, minqa_1.2.4, nlme_3.1-122, nloptr_1.0.4, nnet_7.3-11, parallel_3.2.2, pbkrtest_0.4-2, plyr_1.8.3, quantreg_5.19, R6_2.1.1, Rcpp_0.12.1, Rttf2pt1_1.3.3, SparseM_1.7, splines_3.2.2, stringi_0.5-5, tools_3.2.2, yaml_2.1.13</li>
 <li><strong>Links:</strong> <a href="weightlengthDVR.R">Script</a> / <a href="index.Rmd">RMarkdown</a></li>
 </ul>
 <hr />
