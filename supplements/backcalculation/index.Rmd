@@ -23,6 +23,16 @@ if (require(FSA)) purl2("index.Rmd",newname="backcalculation",topnotes="User mus
 ##############################################################
 ```
 
+----
+
+* [Terminology](#terminology)
+* [Common Back-Calculation Models](#common-back-calculation-models)
+* [Data Organization & Manipulation](#data-organization-manipulation)
+* [Computing Back-Calculated Lengths](#computing-back-calculated-lenghts)
+    * [Scale-Length Relationships](#scale-length-relationships)
+    * [Applying the Back-Calculation Models](#applying-the-back-calculation-models)
+
+----
 
 @Francis1990 defined *back-calculation* as "*... a technique that uses a set of measurements made on a fish at one time to infer its length at an earlier time or times.  Specifically, the dimensions of one or more marks in some hard part of the fish, together with its current body length, are used to estimate its length at the time of formation of each of the marks. ... The marks are generally annual rings associated with growth checks, ... .*"  Thus, backcalculation is the reconstruction of the length of a fish at previous ages from measurements made on calcified structures.
 
@@ -70,8 +80,7 @@ wb90 <- filterD(SMBassWB,yearcap==1990) %>%
   select(-(species:gear),-(anu10:anu12))
 ```
 
-## Background
-### Terminology
+## Terminology
 Two types of measurements can be made on calcified structures.  A *radial* measurement is the total distance from the center of the structure (e.g., focus of scale or nucleus of otolith) to the anterior edge of an annulus.  An *incremental* measurement is the distance between two successive annuli.  Radial measurements are required for back-calculation of fish length.
 
 Back-calculation models estimate length at previous age $i$ (i.e., $L_{i}$) from known values of length at time of capture ($L_{C}$), scale radius to the $i$th annulus ($S_{i}$), and scale radius at time of capture ($S_{C}$).  Several back-calculation models rely on the relationship between $S_{C}$ and $L_{C}$.  Depending on the model, a function of mean $S_{C}$ for a given $L_{C}$ (i.e., $E(S_{C}|L_{C})$ ) or mean $L_{C}$ for a given $S_{C}$ (i.e., $E(L_{C}|S_{C})$) is used.  These functions are not required to be linear, but often are, and in their linear form are represented as
@@ -83,7 +92,7 @@ $$ E(L_{C}|S_{C})=c+dS_{C} \quad \quad \text{`r paste0("(",eqncaps("BackCalcELS"
 \noindent Fitting these regressions is demonstrated below.
 
 
-### Common Back-Calculation Models
+## Common Back-Calculation Models
 The first back-calculation model was jointly developed by Knut Dahl and Einar Lea and appeared in @Lea1910.  The underlying concept of the *Dahl-Lea model* is that growth of the calcified structure is in exact proportion to growth in length of the fish.  With this, the ratio of $S_{i}$ to $S_{C}$ is the same as the ratio of $L_{i}$ to $L_{C}$.  Rearrangement of this equality yields the Dahl-Lea back-calculation model
 
 $$ L_{i}=\frac{S_{i}}{S_{C}}L_{C} \quad \quad \text{`r paste0("(",eqncaps("BackCalcDahlLea",display="num"),")")`} $$
