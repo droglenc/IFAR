@@ -36,7 +36,7 @@ if (require(FSA)) purl2("index.Rmd",newname="maturity",topnotes="User must set w
 
 ----
 
-MOTIVATION HERE
+The length-, weight-, or age-at-maturity is important to monitor for fish populations because these metrics are closely tied to reproductive potential and respond to density-depencent and resource changes [@Popeetal2010].  Methods for modeling the relationship between maturity stage and length is demonstrated in this supplement.  Results from these modeled relationships are then used to calculate metrics such as length at 50% maturity.  These methods extend directly to use with age or weight data.
 
 
 ### Required Packages for this Supplement
@@ -55,7 +55,7 @@ figcaps <- captioner(prefix="Figure")
 figcaps("SumLength","Proportion of female Yelloweye Rockfish that were mature at each 2-cm length category.")
 figcaps("LogisticFit1","Fitted logistic regression for proportion of female Yelloweye Rockfish mature by total length.")
 figcaps("LogisticFit2","Fitted logistic regression for proportion of female Yelloweye Rockfish mature by total length with $L_{50}$ shown.")
-figcaps("LogisticFit3",'Fitted logistic regression for proportion of female Yelloweye Rockfish mature by total length separated by the "pre-2002" and "post-2002" periods.')
+figcaps("LogisticFit3",'Fitted logistic regression for proportion of female Yelloweye Rockfish mature by total length separated by the "pre-2002" and "2002 and after" periods.')
 
 
 tabcaps <- captioner(prefix="Table")
@@ -78,7 +78,7 @@ library(car)
 
 
 ### Data Used in this Supplement
-The total length (`length`; to the nearest cm), `age` (years), and `maturity` (`Immature` and `Mature`) state of female Yelloweye Rockfish (*Sebastes rubberimus*) collected from along the Oregon coast are recorded in `YERockFish`.
+The total length (`length`; to the nearest cm), `age` (years), and `maturity` (`Immature` and `Mature`) state of female Yelloweye Rockfish (*Sebastes rubberimus*) collected from along the Oregon coast are recorded in `YERockFish.csv` ([view](https://github.com/droglenc/FSAdata/blob/master/data-raw/YERockfish.csv), [download](https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/YERockfish.csv), [meta-data](http://derekogle.com/fishR/data/data-html/YERockfish.html)).
 ```{r}
 df <- read.csv("YERockfish.csv")
 str(df)

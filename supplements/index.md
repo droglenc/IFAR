@@ -48,7 +48,6 @@ title: Supplements
   <li><strong>Recruitment</strong>
     <ul>
       <li><a href="maturity/index.html">Maturity Schedules</a></li>
-      <li>Data -- <a href="YERockfish.csv">YERockfish.csv</a></li>
     </ul>
   </li>
 </ol>
