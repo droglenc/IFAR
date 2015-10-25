@@ -76,4 +76,4 @@ curve((cfs[1]+cfs[5])+(cfs[2]+cfs[8])*x,from=minx,to=maxx,col=clrs1[4],lwd=2,add
 legend("topleft",levels(ruf2$fYear),pch=19,col=clrs1)
 
 
-# Script created at 2015-10-24 18:36:49
+# Script created at 2015-10-25 08:28:48

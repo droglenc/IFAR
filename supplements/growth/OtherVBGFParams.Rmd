@@ -51,7 +51,7 @@ library(nlstools)
 
 ### Data Used in this Supplement
   
-The male Black Drum data used in the book will also be used here.
+The male Black Drum data ([view](https://github.com/droglenc/FSAdata/blob/master/data-raw/BlackDrum2001.csv), [download](https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/BlackDrum2001.csv), [meta-data](http://derekogle.com/fishR/data/data-html/BlackDrum2001.html)) used in the book will also be used here.
 ```{r}
 bdmf <- read.csv("BlackDrum2001.csv") %>%
   select(-c(spname,day,weight)) %>%

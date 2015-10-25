@@ -26,7 +26,7 @@ if (require(FSA)) purl2("index.Rmd",newname="weightlengthDVR",topnotes="User mus
 ----
 
 * [Full Model](#full-model)
-* [Pinpointing Specific Differences Among Slopes](#pinpointing-specific-differences-among-alopes)
+* [Pinpointing Specific Differences Among Slopes](#pinpointing-specific-differences-among-slopes)
 * [A Summary Plot](#a-summary-plot)
 * [Pinpointing Specific Differences Among Intercepts](#pinpointing-specific-differences-among-intercepts)
 

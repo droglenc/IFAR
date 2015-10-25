@@ -16,9 +16,9 @@ output:
 # == BEGIN -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 # First line renders an appropriate HTML file for the webpage
 # Second line makes the script file
-# RUN BOTH MANUALLY
+# RUN BOTH MANUALLY (following using Knit HTML button)
 setwd("C:/aaaWork/Web/GitHub/IFAR/supplements/maturity")
-source("../../rhelpers/modHTML.R"); modHTML("index")
+source("../../rhelpers/modHTML.R"); modHTML2("index")
 if (require(FSA)) purl2("index.Rmd",newname="maturity",topnotes="User must set working directory appropriately.")
 # == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 ##############################################################

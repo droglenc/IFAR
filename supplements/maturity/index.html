@@ -1,72 +1,9 @@
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-
-<meta charset="utf-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="pandoc" />
-
-<meta name="author" content="Derek H. Ogle" />
-
-
-<title>Recruitment</title>
-
-<script src="index_files/jquery-1.11.0/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="index_files/bootstrap-3.3.1/css/bootstrap.min.css" rel="stylesheet" />
-<script src="index_files/bootstrap-3.3.1/js/bootstrap.min.js"></script>
-<script src="index_files/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
-<script src="index_files/bootstrap-3.3.1/shim/respond.min.js"></script>
-
-<style type="text/css">code{white-space: pre;}</style>
-<link rel="stylesheet"
-      href="index_files/highlight/default.css"
-      type="text/css" />
-<script src="index_files/highlight/highlight.js"></script>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
-<script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
-}
-</script>
-
-
-
-</head>
-
-<body>
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img { 
-  max-width:100%; 
-  height: auto; 
-}
-</style>
-<div class="container-fluid main-container">
-
-
-<div id="header">
-<h1 class="title">Recruitment</h1>
-<h3 class="subtitle"><em>Maturity Analyses</em></h3>
-<h4 class="author"><em>Derek H. Ogle</em></h4>
-</div>
+---
+layout: page
+title: Recruitment
+subtitle: Maturity Analyses
+author: Derek H. Ogle
+---
 
 
 <hr />
@@ -188,9 +125,9 @@ lcat2 Immature Mature
 <p>Parameters estimates are extracted with <code>coef()</code>. Confidence intervals for the parameters of a logistic regression are best estiamted with bootstrapping (rather than normal theory). Bootstrapping is performed with <code>bootCase()</code> from <code>car</code> as described in Chapter X.</p>
 <pre class="r"><code>&gt; bcL &lt;- bootCase(glm1,B=100)  # B should be nearer to 1000
 &gt; cbind(Ests=coef(glm1),confint(bcL))</code></pre>
-<pre><code>                   Ests     95% LCI     95% UCI
-(Intercept) -16.9482593 -30.0233488 -12.5151964
-length        0.4371786   0.3211833   0.7720124</code></pre>
+<pre><code>                   Ests     95% LCI    95% UCI
+(Intercept) -16.9482593 -26.4115977 -11.675650
+length        0.4371786   0.3022088   0.675672</code></pre>
 <p>A predicted probability of “success” (i.e., being mature) at a given value of the explanatory variable (<span class="math">\(x\)</span>) is computed with</p>
 <p><span class="math">\[ p = \frac{e^{\alpha + \beta_{1}x}}{1+e^{\alpha + \beta_{1}}} \quad \quad \quad \quad \text{(1)} \]</span></p>
 <p>This prediction is computed with <code>predict()</code>, which requires the <code>glm</code> object as the first argument, a data.frame with the values of the explanatory variable for which to make the prediction as the second argument, and <code>type=&quot;response&quot;</code> (which forces the prediction of the probability of being mature rather than the logit). For example, the predicted probabilities of being mature for female Yelloweye Rockfish that are 32- and 42-cm total length are computed below.</p>
@@ -202,7 +139,7 @@ length        0.4371786   0.3211833   0.7720124</code></pre>
 &gt; p32 &lt;- apply(bcL,1,predP,x=32)
 &gt; quantile(p32,c(0.025,0.975))</code></pre>
 <pre><code>       2.5%       97.5% 
-0.005483389 0.122981080 </code></pre>
+0.007069653 0.139939559 </code></pre>
 <p>A plot that illustrates the fit of the logistic regression (Figure 2) can be constructed in several steps. First, a base plot that depicts the raw data is constructed. This plot is constructed below. Take special note that <code>maturity</code> was forced to be numeric between 0 and 1 for the plot and transparent points (as described in Chapter 3) were used because there is considerable overplotting with the “discrete” maturity and length data.</p>
 <pre class="r"><code>&gt; plot((as.numeric(maturity)-1)~length,data=df,
        pch=19,col=rgb(0,0,0,1/8),
@@ -235,11 +172,11 @@ length        0.4371786   0.3211833   0.7720124</code></pre>
 <pre class="r"><code>&gt; bL50 &lt;- apply(bcL,1,lrPerc,p=0.5)
 &gt; ( L50ci &lt;- quantile(bL50,c(0.025,0.975)) )</code></pre>
 <pre><code>    2.5%    97.5% 
-37.64591 39.69301 </code></pre>
+37.25437 39.90245 </code></pre>
 <pre class="r"><code>&gt; bL90 &lt;- apply(bcL,1,lrPerc,p=0.9)
 &gt; ( L90ci &lt;- quantile(bL90,c(0.025,0.975)) )</code></pre>
 <pre><code>    2.5%    97.5% 
-41.72979 45.82816 </code></pre>
+41.55196 46.18781 </code></pre>
 <p>The calculation of the <span class="math">\(L_{50}\)</span> may be illustrated on a fitted-line plot (Figure 3) by adding the code below to the code above used to construct Figure 2.</p>
 <pre class="r"><code>&gt; lines(c(0,L50),c(0.5,0.5),lty=2,lwd=2,col=&quot;red&quot;)
 &gt; lines(c(L50,L50),c(-0.2,0.5),lty=2,lwd=2,col=&quot;red&quot;)</code></pre>
@@ -269,16 +206,16 @@ length        0.4371786   0.3211833   0.7720124</code></pre>
 <pre class="r"><code>&gt; glm2 &lt;- glm(pmat~length,data=df2,family=binomial,weights=n)
 &gt; bcL2 &lt;- bootCase(glm2,B=100)  # B should be closer to 1000
 &gt; cbind(Ests=coef(glm2),confint(bcL2))</code></pre>
-<pre><code>                   Ests     95% LCI     95% UCI
-(Intercept) -16.9482593 -25.3045732 -11.4874407
-length        0.4371786   0.3032473   0.6471767</code></pre>
+<pre><code>                   Ests     95% LCI    95% UCI
+(Intercept) -16.9482593 -24.1687847 -11.206106
+length        0.4371786   0.2959192   0.609882</code></pre>
 <pre class="r"><code>&gt; predict(glm2,data.frame(length=c(32,42)),type=&quot;response&quot;)</code></pre>
 <pre><code>        1         2 
 0.0493342 0.8042766 </code></pre>
 <pre class="r"><code>&gt; p32a &lt;- apply(bcL2,1,predP,x=32)
 &gt; quantile(p32a,c(0.025,0.975))</code></pre>
 <pre><code>      2.5%      97.5% 
-0.00976349 0.14402188 </code></pre>
+0.01088236 0.15702375 </code></pre>
 <p>Note that the coefficients and predictions computed here are the same and that the bootstrapped confidence intervals are approximately the same here as in the results from using the raw data.</p>
 <p>   </p>
 </div>
@@ -322,8 +259,8 @@ length:era    3.100  1    0.07831</code></pre>
 <div id="reproducibility-information" class="section level2">
 <h2>Reproducibility Information</h2>
 <ul>
-<li><strong>Compiled Date:</strong> Sat Oct 24 2015</li>
-<li><strong>Compiled Time:</strong> 7:15:07 PM</li>
+<li><strong>Compiled Date:</strong> Sun Oct 25 2015</li>
+<li><strong>Compiled Time:</strong> 8:46:27 AM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>

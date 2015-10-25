@@ -30,7 +30,10 @@ library(dplyr)
 library(tidyr)
 library(stringr)
 
-data(SMBassWB)
+##############################################################
+SMBassWB <- read.csv("https://raw.githubusercontent.com/droglenc/FSA/master/data-raw/SMBassWB.csv")
+##############################################################
+
 wb90 <- filterD(SMBassWB,yearcap==1990) %>%
   select(-(species:gear),-(anu10:anu12))
 
@@ -147,4 +150,4 @@ tmp
 sumTable(FL.len~agecap*agei,data=wb90r,digits=1)
 
 
-# Script created at 2015-10-24 18:33:01
+# Script created at 2015-10-25 08:39:59

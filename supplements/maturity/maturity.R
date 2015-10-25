@@ -1,13 +1,4 @@
 # User must set working directory appropriately.
-##############################################################
-# == BEGIN -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
-# First line renders an appropriate HTML file for the webpage
-# Second line makes the script file
-# RUN BOTH MANUALLY
-setwd("C:/aaaWork/Web/GitHub/IFAR/supplements/maturity")
-source("../../rhelpers/modHTML.R"); modHTML("index")
-# == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
-##############################################################
 
 ##############################################################
 # == BEGIN -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
@@ -22,7 +13,7 @@ figcaps <- captioner(prefix="Figure")
 figcaps("SumLength","Proportion of female Yelloweye Rockfish that were mature at each 2-cm length category.")
 figcaps("LogisticFit1","Fitted logistic regression for proportion of female Yelloweye Rockfish mature by total length.")
 figcaps("LogisticFit2","Fitted logistic regression for proportion of female Yelloweye Rockfish mature by total length with $L_{50}$ shown.")
-figcaps("LogisticFit3",'Fitted logistic regression for proportion of female Yelloweye Rockfish mature by total length separated by the "pre-2002" and "post-2002" periods.')
+figcaps("LogisticFit3",'Fitted logistic regression for proportion of female Yelloweye Rockfish mature by total length separated by the "pre-2002" and "2002 and after" periods.')
 
 tabcaps <- captioner(prefix="Table")
 tabcaps("SubsetModels","The submodels by capture year represented by the full model.")
@@ -72,16 +63,6 @@ predP <- function(cf,x) exp(cf[1]+cf[2]*x)/(1+exp(cf[1]+cf[2]*x))
 p32 <- apply(bcL,1,predP,x=32)
 quantile(p32,c(0.025,0.975))
 
-plot((as.numeric(maturity)-1)~length,data=df,
-     pch=19,col=rgb(0,0,0,1/8),
-     xlab="Total Length (cm)",ylab="Proportion Mature")
-
-points(props[,"Mature"]~as.numeric(rownames(props)),pch=3)
-
-lens <- seq(30,70,length.out=99)
-preds <- predict(glm1,data.frame(length=lens),type="response")
-lines(preds~lens,lwd=2)
-
 ##############################################################
 # This code is redundant with the code above and was used
 # only for producing the supplement.
@@ -103,9 +84,6 @@ bL50 <- apply(bcL,1,lrPerc,p=0.5)
 ( L50ci <- quantile(bL50,c(0.025,0.975)) )
 bL90 <- apply(bcL,1,lrPerc,p=0.9)
 ( L90ci <- quantile(bL90,c(0.025,0.975)) )
-
-lines(c(0,L50),c(0.5,0.5),lty=2,lwd=2,col="red")
-lines(c(L50,L50),c(-0.2,0.5),lty=2,lwd=2,col="red")
 
 ##############################################################
 # This code is redundant with the code above and was used
@@ -155,4 +133,4 @@ lines(pa02~lens,lwd=2,col=clrs1[1])
 lines(pp02~lens,lwd=2,col=clrs1[2])
 
 
-# Script created at 2015-10-18 20:38:47
+# Script created at 2015-10-25 08:46:36

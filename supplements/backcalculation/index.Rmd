@@ -28,7 +28,7 @@ if (require(FSA)) purl2("index.Rmd",newname="backcalculation",topnotes="User mus
 * [Terminology](#terminology)
 * [Common Back-Calculation Models](#common-back-calculation-models)
 * [Data Organization & Manipulation](#data-organization-manipulation)
-* [Computing Back-Calculated Lengths](#computing-back-calculated-lenghts)
+* [Computing Back-Calculated Lengths](#computing-back-calculated-lengths)
     * [Scale-Length Relationships](#scale-length-relationships)
     * [Applying the Back-Calculation Models](#applying-the-back-calculation-models)
 
@@ -73,9 +73,17 @@ library(stringr)
 
 
 ### Data Used in this Supplement
-All analyses in this supplement use the West Bearskin Lake Smallmouth Bass (*Micropterus dolomieu*) data from @Weisberg1993 in `SMBassWB` of `FSA`.  The analysis in this supplement will focus on those fish captured in 1990.  Three variables that were constant and not used in this analysis and three measurement variables that corresponded to ages that did not exist after reducing to only 1990 were removed to save space.
+All analyses in this supplement use the West Bearskin Lake Smallmouth Bass (*Micropterus dolomieu*) data from @Weisberg1993 in `SMBassWB` ([view](https://github.com/droglenc/FSA/blob/master/data-raw/SMBassWB.csv), [download](https://raw.githubusercontent.com/droglenc/FSA/master/data-raw/SMBassWB.csv), [meta-data](http://derekogle.com/fishR/data/data-html/SMBassWB.html)) of `FSA`.  The analysis in this supplement will focus on those fish captured in 1990.  Three variables that were constant and not used in this analysis and three measurement variables that corresponded to ages that did not exist after reducing to only 1990 were removed to save space.
+```{r echo=FALSE}
+##############################################################
+## This is only used to make the supplement
+SMBassWB <- read.csv("https://raw.githubusercontent.com/droglenc/FSA/master/data-raw/SMBassWB.csv")
+##############################################################
+```
+```{r eval=FALSE}
+SMBassWB <- read.csv("SMBassWB.csv")
+```
 ```{r message=FALSE}
-data(SMBassWB)
 wb90 <- filterD(SMBassWB,yearcap==1990) %>%
   select(-(species:gear),-(anu10:anu12))
 ```

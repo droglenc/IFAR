@@ -4,3 +4,6 @@ _site/
 
 ## Exercise unneeded files
 exercises/*_files
+
+## Supplements unneeded files
+supplements/*.bib.bak
