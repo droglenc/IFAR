@@ -32,8 +32,11 @@ if (require(FSA)) purl2("index.Rmd",newname="maturity",topnotes="User must set w
     * [Fitting the Logistic Regression Model](#fitting-the-logistic-regression-model)
     * [Predicted Probability of Being Mature](#predicted-probability-of-being-mature)
     * [Length- or Age-at-Maturity](#length-or-age-at-maturity)
-    * [A Summary Plot](*a-summary-plot)
+    * [A Summary Plot](#a-summary-plot)
 * [Modeling with Summarized Data](#modeling-with-summarized-data)
+    * [Model Fitting](#model-fitting)
+    * [Comparing Lengths- or Ages-at-Maturity](#comparing-lengths-or-ages-at-maturity)
+    * [A Summary Plot](#a-summary-plot-1)
 * [Comparing Logistic Regressions Between Groups](#comparing-logistic-regressions-between-groups)
 
 ----
@@ -59,15 +62,13 @@ figcaps("LogisticFit1","Fitted logistic regression for the proportion of female 
 figcaps("LogisticFit2","Fitted logistic regression for the proportion of female Yelloweye Rockfish that are mature by total length with $L_{50}$ shown.")
 figcaps("LogisticFit3",'Fitted logistic regression for the proportion of female Yelloweye Rockfish that are mature by total length separated by the "pre-2002" and "2002 and after" eras.')
 
-
-tabcaps <- captioner(prefix="Table")
-tabcaps("SubsetModels","The submodels by capture year represented by the full model.")
-
 eqncaps <- captioner(prefix="Equation")
 eqncaps("LogisticModel")
 eqncaps("LogisticPredict")
 eqncaps("LogisticReverseGnrl")
 eqncaps("LogisticReverse50")
+
+set.seed(534234789)  # for reproducibility
 # == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 ##############################################################
 ```
@@ -82,8 +83,16 @@ library(car)
 
 ### Data Used in this Supplement
 The total length (`length`; to the nearest cm), `age` (years), and `maturity` (`Immature` and `Mature`) state of female Yelloweye Rockfish (*Sebastes rubberimus*) collected from along the Oregon coast are recorded in `YERockFish.csv` ([view](https://github.com/droglenc/FSAdata/blob/master/data-raw/YERockfish.csv), [download](https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/YERockfish.csv), [meta-data](http://derekogle.com/fishR/data/data-html/YERockfish.html)).
-```{r}
+```{r echo=FALSE}
+##############################################################
+## This is only used to produce the supplement
+df <- read.csv("https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/YERockfish.csv")
+##############################################################
+```
+```{r eval=FALSE}
 df <- read.csv("YERockfish.csv")
+```
+```{r}
 str(df)
 ```
 
@@ -111,7 +120,8 @@ str(df)
 The year of capture may then be extracted from `date` with `year()` from `lubridate` [@GrolemundWickham2011].  Note that the month could be extracted with `month()`, day of the month with `mday()`, and day of the year (1-366) with `yday()`.  A variable (`era`) that indicates the era (`pre-2002` or `2002 and after`) is then added to the data.frame as a factor.
 ```{r R.options=list(width=80)}
 df %<>% mutate(year=year(date),
-               era=factor(ifelse(year<2002,"pre-2002","2002 and after")))
+               era=ifelse(year<2002,"pre-2002","2002 and after"),
+               era=factor(era,levels=c("pre-2002","2002 and after")))
 headtail(df)
 ```
 
@@ -167,8 +177,8 @@ glm1 <- glm(maturity~length,data=df,family=binomial)
 ```
 
 Parameter estimates are extracted from the `glm()` object with `coef()`.  Confidence intervals for the parameters of a logistic regression are best estiamted with bootstrapping (rather than normal theory).  Bootstrapping is performed with `bootCase()` from `car` as described in Chapter 12 of the IFAR book.
-```{r}
-bcL <- bootCase(glm1,B=100)  # B should be nearer to 1000
+```{r warning=FALSE, cache=TRUE}
+bcL <- bootCase(glm1,B=1000)
 cbind(Ests=coef(glm1),confint(bcL))
 ```
 
@@ -305,9 +315,9 @@ headtail(df2)
 Also note that this code is only used here to produce data to illustrate how to analyze summarized data.  If one has raw data, as in this supplement, then the methods of the previous section should be used, though the technique used here provides identical answers.
 
 The appropriate logistic regression model is again fit with `glm()`.  However, the left side of the formula is the proportion of "successes" variable and `weights=` is set equal to the sample size used to compute each proportion.  Once the model is fit, the same extractor functions can be used to summarize the results. [*Note that `glm()` and `bootCase()` will return a warning about non-integer number of successes when used in this way.*]
-```{r warning=FALSE}
+```{r warning=FALSE, cache=TRUE}
 glm2 <- glm(pmat~length,data=df2,family=binomial,weights=n)
-bcL2 <- bootCase(glm2,B=100)  # B should be closer to 1000
+bcL2 <- bootCase(glm2,B=1000)
 cbind(Ests=coef(glm2),confint(bcL2))
 predict(glm2,data.frame(length=c(32,42)),type="response")
 p32a <- apply(bcL2,1,predP,x=32)
@@ -321,9 +331,10 @@ Note that the coefficients and predictions computed here are the same as in the 
 
 ## Comparing Logistic Regressions Between Groups
 
+### Model Fitting
 It may be important to determine if the fit of the logistic regression differs between two groups.  For example, one may need to determine if the logistic regression parameters differ significantly between fish captured "pre-2002" and those captured in "2002 and after" (recall that these two "eras" are recorded in `era` in `df`).
 
-The model required to answer this type of question is a logistic regression version of the dummy variable regression introduced in Chapter X.  Specifically, the right side of the formula in `glm` is modified to be `quantiative*factor` where `quantiative` is the covariate (usually length or age) and `factor` is the group factor variable that is used to identify the groups being compared.  As noted in Chapter X, this formula is actually shorthand for a model with three terms -- `quantivative` and `factor` main effects and the interaction between the `quantitative` and `factor` variables.  In this case, the model is fit as shown below.
+The model required to answer this type of question is a logistic regression version of the dummy variable regression introduced in Chapter 7 of the IFAR book.  Specifically, the right side of the formula in `glm` is modified to be `quant*factor` where `quant` is the covariate (usually length or age) and `factor` is the group factor variable that is used to identify the groups being compared.  As noted in Chapter 7 of the IFAR book, this formula is actually shorthand for a model with three terms -- `quant` and `factor` main effects and the interaction between the `quant` and `factor` variables.  In this case, the model is fit as shown below.
 ```{r}
 glm3 <- glm(maturity~length*era,data=df,family=binomial)
 ```
@@ -333,8 +344,62 @@ The significance of terms in a general linear model are computed with a chi-squa
 Anova(glm3)
 ```
 
-As with the ANOVA table in a dummy variable regression, the Analysis of Deviance table should be read from the bottom.  In this case, the interaction term is not signficant which suggests that the slopes for the logit-transformed models do not differ between the eras.  The `era` main effect is also not signficant, which suggests that the y-intercepts for the logit-transformed models do not differ between the eras.  Thus, there is not signficant differ in the logistic regressions between fish captured in the two eras.
+As with the ANOVA table in a dummy variable regression, the Analysis of Deviance table should be read from the bottom.  In this case, the interaction term is not signficant which suggests that the slopes for the logit-transformed models do not differ between the eras.  The `era` main effect is also not signficant, which suggests that the y-intercepts for the logit-transformed models do not differ between the eras.  Thus, there is no signficant difference in the logistic regressions between fish captured in the two eras.
 
+### Comparing Lengths- or Ages-at-Maturity
+
+A p-value for testing whether the $L_{50}$ differed between groups may be computed from the bootstrapped sampled.  However, this calculation requires several steps and a good understanding of the parameter estimates from the logistic regression model fit to both groups.  Thus, the steps and the parameter estimates are described further below.
+
+Before building the hypothesis test, lets examine the parameter estimates for the logistic regression model.
+```{r}
+coef(glm3)
+```
+
+Note that the parameter estimates under the `(Intercept)` and `length` headings are the intercept and slope, respectively, for the "reference" group in the model.  The reference group is the alphabetically first group, unless the levels of the factor variable were changed by the user as was done in this supplement.  The order of the levels can be observed with `str()` or `levels()`.
+```{r}
+levels(df$era)
+```
+Thus, the estimated intercept and slope of the logistic regression for the "pre-2002" era are `r formatC(coef(glm3)[["(Intercept)"]],format="f",digits=3)` and  `r formatC(coef(glm3)[["length"]],format="f",digits=3)`, respectively.
+
+The parameter estimates under the `era2002 and after` and `length:era2002 and after` are the **differences** in intercept and slope between the two eras.  Thus, these values need to be added to the intercept and slope for "pre-2000" era to estimate the intercept and slope for the "2002 and after" era.  Thus, the estimated intercept and slope of the logistic regression for the "2002 and after" era are `r formatC(sum(coef(glm3)[c("(Intercept)","era2002 and after")]),format="f",digits=3)` and  `r formatC(sum(coef(glm3)[c("length","length:era2002 and after")]),format="f",digits=3)`, respectively.
+
+The first step in building the hypothesis test for whether $L_{50}$ differs between eras is to construct the bootstrap samples from the `glm()` object.
+```{r warning=FALSE, cache=TRUE}
+bcL3 <- bootCase(glm3,B=1000)  
+headtail(bcL3)
+```
+
+The $L_{50}$ for fish from the "pre-2002" era is computed for each sample using only the first two columns of the bootstrap sample results (i.e., the intercept and slope for the "pre-2002" era) and the `lrperc()` function created and used in a previous section.  The $L_{50}$ for fish from the "2002 and after" era is computed similarly but the last two columns in the bootstrap sample results must be added to the first two columns (i.e., produce the intercept and slope for the "2002 and after" era).
+```{r}
+L50.pre= apply(bcL3[,1:2],1,lrPerc,p=0.5)
+L50.post=apply(bcL3[,1:2]+bcL3[,3:4],1,lrPerc,p=0.5)
+```
+
+If there was no difference in $L_{50}$ between the two eras, then one would expect the means of these two groups to be the same or, equivalently, the mean of the differences in these two value to equal zero.  The difference in $L_{50}$ for each bootstrap sample is computed below.
+```{r}
+L50.diff <- L50.pre-L50.post
+```
+
+A two-sided p-value may be computed as two times the smaller of the proportions of samples that are less than or greater than 0.  [Note that the code below exploits the fact that R will treat a `TRUE` as a `1` and a `FALSE` as a `0` such that the mean of a vector of `TRUE`s and `FALSE`s will return the proportion of `TRUE`s.]
+```{r}
+( p.L50.diff <- 2*min(c(mean(L50.diff>0),mean(L50.diff<0))) )
+```
+
+This result suggests that there is no significant difference in the $L_{50}$ for fish captured in the two eras (not surprising given that the logistic regression parameters did not differ between eras).
+
+Confidence intervals for the difference in $L_{50}$ between the eras and athe $L_{50}$ for each era may be computed as before but making sure to use the correct vector of results.
+```{r}
+( ci.L50.diff <- quantile(L50.diff,c(0.025,0.975)) )
+( ci.L50.pre <-  quantile(L50.pre,c(0.025,0.975)) )
+( ci.L50.post <- quantile(L50.post,c(0.025,0.975)) )
+```
+
+\ 
+\ 
+
+### A Summary Plot
+
+The construction of a plot the illustrates the fitted logistic regression lines for both groups is left largely as an exercise for the reader.  Note that the code below uses several of the same ideas shown previously and relies on directions given in Chapter 3 of the IFAR book.
 ```{r message=FALSE, par1=TRUE}
 ## Set-up colors
 clrs1 <- c("black","red")

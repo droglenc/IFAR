@@ -1,72 +1,9 @@
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-
-<meta charset="utf-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="pandoc" />
-
-<meta name="author" content="Derek H. Ogle" />
-
-
-<title>Recruitment</title>
-
-<script src="index_files/jquery-1.11.0/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="index_files/bootstrap-3.3.1/css/bootstrap.min.css" rel="stylesheet" />
-<script src="index_files/bootstrap-3.3.1/js/bootstrap.min.js"></script>
-<script src="index_files/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
-<script src="index_files/bootstrap-3.3.1/shim/respond.min.js"></script>
-
-<style type="text/css">code{white-space: pre;}</style>
-<link rel="stylesheet"
-      href="index_files/highlight/default.css"
-      type="text/css" />
-<script src="index_files/highlight/highlight.js"></script>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
-<script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
-}
-</script>
-
-
-
-</head>
-
-<body>
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img { 
-  max-width:100%; 
-  height: auto; 
-}
-</style>
-<div class="container-fluid main-container">
-
-
-<div id="header">
-<h1 class="title">Recruitment</h1>
-<h3 class="subtitle"><em>Maturity Analyses</em></h3>
-<h4 class="author"><em>Derek H. Ogle</em></h4>
-</div>
+---
+layout: page
+title: Recruitment
+subtitle: Maturity Analyses
+author: Derek H. Ogle
+---
 
 
 <hr />
@@ -78,9 +15,14 @@ img {
 <li><a href="#fitting-the-logistic-regression-model">Fitting the Logistic Regression Model</a></li>
 <li><a href="#predicted-probability-of-being-mature">Predicted Probability of Being Mature</a></li>
 <li><a href="#length-or-age-at-maturity">Length- or Age-at-Maturity</a></li>
-<li><a href="*a-summary-plot">A Summary Plot</a></li>
+<li><a href="#a-summary-plot">A Summary Plot</a></li>
 </ul></li>
-<li><a href="#modeling-with-summarized-data">Modeling with Summarized Data</a></li>
+<li><a href="#modeling-with-summarized-data">Modeling with Summarized Data</a>
+<ul>
+<li><a href="#model-fitting">Model Fitting</a></li>
+<li><a href="#comparing-lengths-or-ages-at-maturity">Comparing Lengths- or Ages-at-Maturity</a></li>
+<li><a href="#a-summary-plot-1">A Summary Plot</a></li>
+</ul></li>
 <li><a href="#comparing-logistic-regressions-between-groups">Comparing Logistic Regressions Between Groups</a></li>
 </ul>
 <hr />
@@ -97,8 +39,8 @@ img {
 <div id="data-used-in-this-supplement" class="section level3">
 <h3>Data Used in this Supplement</h3>
 <p>The total length (<code>length</code>; to the nearest cm), <code>age</code> (years), and <code>maturity</code> (<code>Immature</code> and <code>Mature</code>) state of female Yelloweye Rockfish (<em>Sebastes rubberimus</em>) collected from along the Oregon coast are recorded in <code>YERockFish.csv</code> (<a href="https://github.com/droglenc/FSAdata/blob/master/data-raw/YERockfish.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/YERockfish.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/YERockfish.html">meta-data</a>).</p>
-<pre class="r"><code>&gt; df &lt;- read.csv(&quot;YERockfish.csv&quot;)
-&gt; str(df)</code></pre>
+<pre class="r"><code>&gt; df &lt;- read.csv(&quot;YERockfish.csv&quot;)</code></pre>
+<pre class="r"><code>&gt; str(df)</code></pre>
 <pre><code>&#39;data.frame&#39;:   158 obs. of  5 variables:
  $ date    : Factor w/ 71 levels &quot;10/1/2003&quot;,&quot;10/2/2003&quot;,..: 66 9 38 25 60 6 3..
  $ length  : int  31 32 32 32 32 33 33 34 34 34 ...
@@ -134,7 +76,8 @@ img {
  $ stage   : Factor w/ 9 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 1 1 2 2 1 1 1 1 1 ...</code></pre>
 <p>The year of capture may then be extracted from <code>date</code> with <code>year()</code> from <code>lubridate</code> <span class="citation">(Grolemund and Wickham 2011)</span>. Note that the month could be extracted with <code>month()</code>, day of the month with <code>mday()</code>, and day of the year (1-366) with <code>yday()</code>. A variable (<code>era</code>) that indicates the era (<code>pre-2002</code> or <code>2002 and after</code>) is then added to the data.frame as a factor.</p>
 <pre class="r"><code>&gt; df %&lt;&gt;% mutate(year=year(date),
-                 era=factor(ifelse(year&lt;2002,&quot;pre-2002&quot;,&quot;2002 and after&quot;)))
+                 era=ifelse(year&lt;2002,&quot;pre-2002&quot;,&quot;2002 and after&quot;),
+                 era=factor(era,levels=c(&quot;pre-2002&quot;,&quot;2002 and after&quot;)))
 &gt; headtail(df)</code></pre>
 <pre><code>          date length age maturity stage year            era
 1   2003-09-02     31  10 Immature     1 2003 2002 and after
@@ -207,11 +150,11 @@ lcat2 Immature Mature
 <p>Logistic regressions are fit with <code>glm()</code>, rather than the <code>lm()</code> used in the IFAR book. As with <code>lm()</code>, the first argument to <code>glm()</code> is a formula of the form <code>factor~quant</code> where <code>factor</code> and <code>quant</code> generically reprsent factor and quantitative variables respectively. The data frame that contains <code>factor</code> and <code>quant</code> is given to <code>data=</code>. Finally, <code>glm()</code> is forced to use the logit transformation and fit a logistic regression by including <code>family=binomial</code>. For example, the <code>glm()</code> code below will model the log odds of being mature as a function of the length of the Rockfish.</p>
 <pre class="r"><code>&gt; glm1 &lt;- glm(maturity~length,data=df,family=binomial)</code></pre>
 <p>Parameter estimates are extracted from the <code>glm()</code> object with <code>coef()</code>. Confidence intervals for the parameters of a logistic regression are best estiamted with bootstrapping (rather than normal theory). Bootstrapping is performed with <code>bootCase()</code> from <code>car</code> as described in Chapter 12 of the IFAR book.</p>
-<pre class="r"><code>&gt; bcL &lt;- bootCase(glm1,B=100)  # B should be nearer to 1000
+<pre class="r"><code>&gt; bcL &lt;- bootCase(glm1,B=1000)
 &gt; cbind(Ests=coef(glm1),confint(bcL))</code></pre>
 <pre><code>                   Ests     95% LCI     95% UCI
-(Intercept) -16.9482593 -25.3832044 -11.7075698
-length        0.4371786   0.3045997   0.6561909</code></pre>
+(Intercept) -16.9482593 -29.0623105 -11.8152911
+length        0.4371786   0.3108028   0.7400613</code></pre>
 <p>The estimated slope indicates that a 1 cm increase in the length of the Yelloweye Rockfish will result in an 0.437 increase in the log odds that the Rockfish is mature. Changes in log odds are difficult to interpret. However, the back-transformed slope is interpreted as a multiplicative change in the odds of being mature. For example, a 1 cm increase in the length of the Yelloweye Rock fish will result in a 1.548 (i.e., <span class="math">\(e^{0.437}\)</span>) times increase in the odds that the Rockfish is mature.</p>
 <p> </p>
 </div>
@@ -227,9 +170,9 @@ length        0.4371786   0.3045997   0.6561909</code></pre>
 <pre class="r"><code>&gt; predP &lt;- function(cf,x) exp(cf[1]+cf[2]*x)/(1+exp(cf[1]+cf[2]*x))
 &gt; p32 &lt;- apply(bcL,1,predP,x=32)
 &gt; quantile(p32,c(0.025,0.975))</code></pre>
-<pre><code>       2.5%       97.5% 
-0.008220698 0.135679926 </code></pre>
-<p>Thus, the probability that a 32 cm Yelloweye Rockfish is mature is between 0.008 and 0.136.</p>
+<pre><code>      2.5%      97.5% 
+0.00313281 0.14033465 </code></pre>
+<p>Thus, the probability that a 32 cm Yelloweye Rockfish is mature is between 0.003 and 0.140.</p>
 <p> </p>
 </div>
 <div id="a-summary-plot" class="section level3">
@@ -266,12 +209,12 @@ length        0.4371786   0.3045997   0.6561909</code></pre>
 <pre class="r"><code>&gt; bL50 &lt;- apply(bcL,1,lrPerc,p=0.5)
 &gt; ( L50ci &lt;- quantile(bL50,c(0.025,0.975)) )</code></pre>
 <pre><code>    2.5%    97.5% 
-37.55139 40.18068 </code></pre>
+37.28749 40.10023 </code></pre>
 <pre class="r"><code>&gt; bL90 &lt;- apply(bcL,1,lrPerc,p=0.9)
 &gt; ( L90ci &lt;- quantile(bL90,c(0.025,0.975)) )</code></pre>
 <pre><code>    2.5%    97.5% 
-41.53966 46.41967 </code></pre>
-<p>Thus, for example, the predicted length at which 50% of the Yelloweye Rockfish are mature is between 37.6 and 40.2, with 95% confidence.</p>
+41.68692 45.92492 </code></pre>
+<p>Thus, for example, the predicted length at which 50% of the Yelloweye Rockfish are mature is between 37.3 and 40.1, with 95% confidence.</p>
 <p>The calculation of the <span class="math">\(L_{50}\)</span> may be illustrated on a fitted-line plot (Figure 3) by adding the code below to the code used above to construct Figure 2.</p>
 <pre class="r"><code>&gt; lines(c(0,L50),c(0.5,0.5),lty=2,lwd=2,col=&quot;red&quot;)
 &gt; lines(c(L50,L50),c(-0.2,0.5),lty=2,lwd=2,col=&quot;red&quot;)</code></pre>
@@ -299,25 +242,27 @@ length        0.4371786   0.3045997   0.6561909</code></pre>
 <p>Also note that this code is only used here to produce data to illustrate how to analyze summarized data. If one has raw data, as in this supplement, then the methods of the previous section should be used, though the technique used here provides identical answers.</p>
 <p>The appropriate logistic regression model is again fit with <code>glm()</code>. However, the left side of the formula is the proportion of “successes” variable and <code>weights=</code> is set equal to the sample size used to compute each proportion. Once the model is fit, the same extractor functions can be used to summarize the results. [<em>Note that <code>glm()</code> and <code>bootCase()</code> will return a warning about non-integer number of successes when used in this way.</em>]</p>
 <pre class="r"><code>&gt; glm2 &lt;- glm(pmat~length,data=df2,family=binomial,weights=n)
-&gt; bcL2 &lt;- bootCase(glm2,B=100)  # B should be closer to 1000
+&gt; bcL2 &lt;- bootCase(glm2,B=1000)
 &gt; cbind(Ests=coef(glm2),confint(bcL2))</code></pre>
 <pre><code>                   Ests     95% LCI     95% UCI
-(Intercept) -16.9482593 -27.3194053 -11.9291456
-length        0.4371786   0.3089678   0.7042806</code></pre>
+(Intercept) -16.9482593 -28.2429637 -12.1861359
+length        0.4371786   0.3175022   0.7179604</code></pre>
 <pre class="r"><code>&gt; predict(glm2,data.frame(length=c(32,42)),type=&quot;response&quot;)</code></pre>
 <pre><code>        1         2 
 0.0493342 0.8042766 </code></pre>
 <pre class="r"><code>&gt; p32a &lt;- apply(bcL2,1,predP,x=32)
 &gt; quantile(p32a,c(0.025,0.975))</code></pre>
 <pre><code>       2.5%       97.5% 
-0.006591464 0.131970830 </code></pre>
+0.005604308 0.126490127 </code></pre>
 <p>Note that the coefficients and predictions computed here are the same as in the results from using the raw data. The bootstrapped confidence intervals differ slightly due to the inherent randomization used in bootstrap resampling (and because a small number of bootstrap samples were used to produce this supplement.</p>
 <p>   </p>
 </div>
 <div id="comparing-logistic-regressions-between-groups" class="section level2">
 <h2>Comparing Logistic Regressions Between Groups</h2>
+<div id="model-fitting" class="section level3">
+<h3>Model Fitting</h3>
 <p>It may be important to determine if the fit of the logistic regression differs between two groups. For example, one may need to determine if the logistic regression parameters differ significantly between fish captured “pre-2002” and those captured in “2002 and after” (recall that these two “eras” are recorded in <code>era</code> in <code>df</code>).</p>
-<p>The model required to answer this type of question is a logistic regression version of the dummy variable regression introduced in Chapter X. Specifically, the right side of the formula in <code>glm</code> is modified to be <code>quantiative*factor</code> where <code>quantiative</code> is the covariate (usually length or age) and <code>factor</code> is the group factor variable that is used to identify the groups being compared. As noted in Chapter X, this formula is actually shorthand for a model with three terms – <code>quantivative</code> and <code>factor</code> main effects and the interaction between the <code>quantitative</code> and <code>factor</code> variables. In this case, the model is fit as shown below.</p>
+<p>The model required to answer this type of question is a logistic regression version of the dummy variable regression introduced in Chapter 7 of the IFAR book. Specifically, the right side of the formula in <code>glm</code> is modified to be <code>quant*factor</code> where <code>quant</code> is the covariate (usually length or age) and <code>factor</code> is the group factor variable that is used to identify the groups being compared. As noted in Chapter 7 of the IFAR book, this formula is actually shorthand for a model with three terms – <code>quant</code> and <code>factor</code> main effects and the interaction between the <code>quant</code> and <code>factor</code> variables. In this case, the model is fit as shown below.</p>
 <pre class="r"><code>&gt; glm3 &lt;- glm(maturity~length*era,data=df,family=binomial)</code></pre>
 <p>The significance of terms in a general linear model are computed with a chi-square distribution and summarized in an “Analysis of Deviance Table”, rather than with an F distribution and ANOVA table as with a linear model. Fortunately, the Analysis of Deviance table using Type II tests is also retrieved with <code>Anova()</code> from <code>car</code>.</p>
 <pre class="r"><code>&gt; Anova(glm3)</code></pre>
@@ -328,7 +273,56 @@ Response: maturity
 length       68.599  1    &lt; 2e-16
 era           0.005  1    0.94541
 length:era    3.100  1    0.07831</code></pre>
-<p>As with the ANOVA table in a dummy variable regression, the Analysis of Deviance table should be read from the bottom. In this case, the interaction term is not signficant which suggests that the slopes for the logit-transformed models do not differ between the eras. The <code>era</code> main effect is also not signficant, which suggests that the y-intercepts for the logit-transformed models do not differ between the eras. Thus, there is not signficant differ in the logistic regressions between fish captured in the two eras.</p>
+<p>As with the ANOVA table in a dummy variable regression, the Analysis of Deviance table should be read from the bottom. In this case, the interaction term is not signficant which suggests that the slopes for the logit-transformed models do not differ between the eras. The <code>era</code> main effect is also not signficant, which suggests that the y-intercepts for the logit-transformed models do not differ between the eras. Thus, there is no signficant difference in the logistic regressions between fish captured in the two eras.</p>
+</div>
+<div id="comparing-lengths--or-ages-at-maturity" class="section level3">
+<h3>Comparing Lengths- or Ages-at-Maturity</h3>
+<p>A p-value for testing whether the <span class="math">\(L_{50}\)</span> differed between groups may be computed from the bootstrapped sampled. However, this calculation requires several steps and a good understanding of the parameter estimates from the logistic regression model fit to both groups. Thus, the steps and the parameter estimates are described further below.</p>
+<p>Before building the hypothesis test, lets examine the parameter estimates for the logistic regression model.</p>
+<pre class="r"><code>&gt; coef(glm3)</code></pre>
+<pre><code>             (Intercept)                   length        era2002 and after 
+             -27.1314345                0.6956840               14.0137840 
+length:era2002 and after 
+              -0.3510082 </code></pre>
+<p>Note that the parameter estimates under the <code>(Intercept)</code> and <code>length</code> headings are the intercept and slope, respectively, for the “reference” group in the model. The reference group is the alphabetically first group, unless the levels of the factor variable were changed by the user as was done in this supplement. The order of the levels can be observed with <code>str()</code> or <code>levels()</code>.</p>
+<pre class="r"><code>&gt; levels(df$era)</code></pre>
+<pre><code>[1] &quot;pre-2002&quot;       &quot;2002 and after&quot;</code></pre>
+<p>Thus, the estimated intercept and slope of the logistic regression for the “pre-2002” era are -27.131 and 0.696, respectively.</p>
+<p>The parameter estimates under the <code>era2002 and after</code> and <code>length:era2002 and after</code> are the <strong>differences</strong> in intercept and slope between the two eras. Thus, these values need to be added to the intercept and slope for “pre-2000” era to estimate the intercept and slope for the “2002 and after” era. Thus, the estimated intercept and slope of the logistic regression for the “2002 and after” era are -13.118 and 0.345, respectively.</p>
+<p>The first step in building the hypothesis test for whether <span class="math">\(L_{50}\)</span> differs between eras is to construct the bootstrap samples from the <code>glm()</code> object.</p>
+<pre class="r"><code>&gt; bcL3 &lt;- bootCase(glm3,B=1000)  
+&gt; headtail(bcL3)</code></pre>
+<pre><code>        (Intercept)     length era2002 and after length:era2002 and after
+[1,]      -28.66650  0.7480834         17.630834              -0.44741290
+[2,]      -22.01427  0.5610905         -1.315964               0.05293831
+[3,]      -29.11699  0.7535871         17.701264              -0.46385684
+[998,]    -52.92599  1.2978597         43.104623              -1.04921293
+[999,]    -22.29335  0.5727242         11.420617              -0.27867057
+[1000,]  -610.63332 14.9158441        596.471707             -14.53849292</code></pre>
+<p>The <span class="math">\(L_{50}\)</span> for fish from the “pre-2002” era is computed for each sample using only the first two columns of the bootstrap sample results (i.e., the intercept and slope for the “pre-2002” era) and the <code>lrperc()</code> function created and used in a previous section. The <span class="math">\(L_{50}\)</span> for fish from the “2002 and after” era is computed similarly but the last two columns in the bootstrap sample results must be added to the first two columns (i.e., produce the intercept and slope for the “2002 and after” era).</p>
+<pre class="r"><code>&gt; L50.pre= apply(bcL3[,1:2],1,lrPerc,p=0.5)
+&gt; L50.post=apply(bcL3[,1:2]+bcL3[,3:4],1,lrPerc,p=0.5)</code></pre>
+<p>If there was no difference in <span class="math">\(L_{50}\)</span> between the two eras, then one would expect the means of these two groups to be the same or, equivalently, the mean of the differences in these two value to equal zero. The difference in <span class="math">\(L_{50}\)</span> for each bootstrap sample is computed below.</p>
+<pre class="r"><code>&gt; L50.diff &lt;- L50.pre-L50.post</code></pre>
+<p>A two-sided p-value may be computed as two times the smaller of the proportions of samples that are less than or greater than 0. [Note that the code below exploits the fact that R will treat a <code>TRUE</code> as a <code>1</code> and a <code>FALSE</code> as a <code>0</code> such that the mean of a vector of <code>TRUE</code>s and <code>FALSE</code>s will return the proportion of <code>TRUE</code>s.]</p>
+<pre class="r"><code>&gt; ( p.L50.diff &lt;- 2*min(c(mean(L50.diff&gt;0),mean(L50.diff&lt;0))) )</code></pre>
+<pre><code>[1] 0.556</code></pre>
+<p>This result suggests that there is no significant difference in the <span class="math">\(L_{50}\)</span> for fish captured in the two eras (not surprising given that the logistic regression parameters did not differ between eras).</p>
+<p>Confidence intervals for the difference in <span class="math">\(L_{50}\)</span> between the eras and athe <span class="math">\(L_{50}\)</span> for each era may be computed as before but making sure to use the correct vector of results.</p>
+<pre class="r"><code>&gt; ( ci.L50.diff &lt;- quantile(L50.diff,c(0.025,0.975)) )</code></pre>
+<pre><code>     2.5%     97.5% 
+-1.953197  4.214636 </code></pre>
+<pre class="r"><code>&gt; ( ci.L50.pre &lt;-  quantile(L50.pre,c(0.025,0.975)) )</code></pre>
+<pre><code>    2.5%    97.5% 
+37.24793 40.91101 </code></pre>
+<pre class="r"><code>&gt; ( ci.L50.post &lt;- quantile(L50.post,c(0.025,0.975)) )</code></pre>
+<pre><code>    2.5%    97.5% 
+34.97016 40.16213 </code></pre>
+<p>   </p>
+</div>
+<div id="a-summary-plot-1" class="section level3">
+<h3>A Summary Plot</h3>
+<p>The construction of a plot the illustrates the fitted logistic regression lines for both groups is left largely as an exercise for the reader. Note that the code below uses several of the same ideas shown previously and relies on directions given in Chapter 3 of the IFAR book.</p>
 <pre class="r"><code>&gt; ## Set-up colors
 &gt; clrs1 &lt;- c(&quot;black&quot;,&quot;red&quot;)
 &gt; clrs2 &lt;- col2rgbt(clrs1,1/5)
@@ -347,15 +341,16 @@ length:era    3.100  1    0.07831</code></pre>
 &gt; ## Add the two fitted lines
 &gt; lines(pa02~lens,lwd=2,col=clrs1[1])
 &gt; lines(pp02~lens,lwd=2,col=clrs1[2])</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-21-1.png" title="" alt="" width="336" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-30-1.png" title="" alt="" width="336" /></p>
 <p>Figure 4: Fitted logistic regression for the proportion of female Yelloweye Rockfish that are mature by total length separated by the “pre-2002” and “2002 and after” eras.</p>
 <hr />
+</div>
 </div>
 <div id="reproducibility-information" class="section level2">
 <h2>Reproducibility Information</h2>
 <ul>
 <li><strong>Compiled Date:</strong> Sun Oct 25 2015</li>
-<li><strong>Compiled Time:</strong> 10:13:30 AM</li>
+<li><strong>Compiled Time:</strong> 11:54:51 AM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>
