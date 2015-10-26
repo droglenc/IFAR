@@ -1,0 +1,570 @@
+------------------------------------------------------------------------
+
+-   [Data Used in this Supplement](#data-used-in-this-supplement)
+-   [Maturity Data](#maturity-data)
+-   [Modeling with Raw Data](#modeling-with-raw-data)
+    -   [Fitting the Logistic Regression Model](#fitting-the-logistic-regression-model)
+    -   [Predicted Probability of Being Mature](#predicted-probability-of-being-mature)
+    -   [Length- or Age-at-Maturity](#length-or-age-at-maturity)
+    -   [A Summary Plot](#a-summary-plot)
+-   [Modeling with Summarized Data](#modeling-with-summarized-data)
+    -   [Model Fitting](#model-fitting)
+    -   [Comparing Lengths- or Ages-at-Maturity](#comparing-lengths-or-ages-at-maturity)
+    -   [A Summary Plot](#a-summary-plot-1)
+-   [Comparing Logistic Regressions Between Groups](#comparing-logistic-regressions-between-groups)
+    -   [Model Fitting](#model-fitting-1)
+    -   [Comparing Lengths- or Ages-at-Maturity](#comparing-lengths-or-ages-at-maturity)
+    -   [A Summary Plot](#a-summary-plot-2)
+
+------------------------------------------------------------------------
+
+The length-, weight-, or age-at-maturity is important to monitor for fish populations because these metrics are closely tied to reproductive potential and respond to changes in inter- and intra-specific densities and resource availability (Pope et al. 2010). Methods for modeling the relationship between maturity stage and length is demonstrated in this supplement. Results from these modeled relationships are then used to calculate metrics such as length at 50% maturity. These methods extend directly to use with age or weight data.
+
+### Required Packages for this Supplement
+
+Functions used in this supplement require the packages shown below.
+
+``` r
+> library(FSA)
+> library(magrittr)
+> library(dplyr)
+> library(lubridate)
+> library(car)
+```
+
+### Data Used in this Supplement
+
+The total length (`length`; to the nearest cm), `age` (years), and `maturity` (`Immature` and `Mature`) state of female Yelloweye Rockfish (*Sebastes rubberimus*) collected from along the Oregon coast are recorded in `YERockFish.csv` ([view](https://github.com/droglenc/FSAdata/blob/master/data-raw/YERockfish.csv), [download](https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/YERockfish.csv), [meta-data](http://derekogle.com/fishR/data/data-html/YERockfish.html)).
+
+``` r
+> df <- read.csv("YERockfish.csv")
+```
+
+``` r
+> str(df)
+```
+
+    'data.frame':   158 obs. of  5 variables:
+     $ date    : Factor w/ 71 levels "10/1/2003","10/2/2003",..: 66 9 38 25 60 6 3..
+     $ length  : int  31 32 32 32 32 33 33 34 34 34 ...
+     $ age     : int  10 6 11 11 13 9 10 8 10 11 ...
+     $ maturity: Factor w/ 2 levels "Immature","Mature": 1 1 1 1 1 1 1 1 1 1 ...
+     $ stage   : Factor w/ 9 levels "1","2","3","4",..: 1 1 1 2 2 1 1 1 1 1 ...
+
+The date of capture was also recorded. A new variable that indicates whether the fish was captured before 2002 or in 2002 and after is needed for use in a later example that compares the relationship between maturity and length between two groups. This conversion requires that `date` be converted to a format that R will recognize as a date. The `as.POSIXct()` function does this conversion, taking the original dates as its first argument. Additionally, a string is given to `format=` that describes the format of the dates in the original variable. The codes that can be used are described in `?strptime`. Common codes used with fisheries data are
+
+-   `%m`: month as a number,
+-   `%b`: month as an abbreviated name (e.g., `Jan`, `Feb`),
+-   `%d`: day of the month,
+-   `%Y`: four-digit year (e.g., `2015`), and
+-   `%y`: two-digit (i.e., without the century) year (e.g., `15`).
+
+These format codes are separated by the characters that separate the fields in the original date variable (e.g., `/`, `-`).
+
+An examination of `date` shows that the dates are in month as a number, day of the month, and four digit year format separated by "forward slashes."
+
+``` r
+> headtail(df)
+```
+
+             date length age maturity stage
+    1    9/2/2003     31  10 Immature     1
+    2   10/7/2002     32   6 Immature     1
+    3   7/18/2000     32  11 Immature     1
+    156 8/18/2002     67  50   Mature     6
+    157 10/7/2002     68  88   Mature     6
+    158 4/23/2001     70  66   Mature     4
+
+Thus, `date` is converted below to a date format that R will recognize.
+
+``` r
+> df %<>% mutate(date=as.POSIXct(date,format="%m/%d/%Y"))
+> str(df)
+```
+
+    'data.frame':   158 obs. of  5 variables:
+     $ date    : POSIXct, format: "2003-09-02" "2002-10-07" ...
+     $ length  : int  31 32 32 32 32 33 33 34 34 34 ...
+     $ age     : int  10 6 11 11 13 9 10 8 10 11 ...
+     $ maturity: Factor w/ 2 levels "Immature","Mature": 1 1 1 1 1 1 1 1 1 1 ...
+     $ stage   : Factor w/ 9 levels "1","2","3","4",..: 1 1 1 2 2 1 1 1 1 1 ...
+
+The year of capture may then be extracted from `date` with `year()` from `lubridate` (Grolemund and Wickham 2011). Note that the month could be extracted with `month()`, day of the month with `mday()`, and day of the year (1-366) with `yday()`. A variable (`era`) that indicates the era (`pre-2002` or `2002 and after`) is then added to the data.frame as a factor.
+
+``` r
+> df %<>% mutate(year=year(date),
+                 era=ifelse(year<2002,"pre-2002","2002 and after"),
+                 era=factor(era,levels=c("pre-2002","2002 and after")))
+> headtail(df)
+```
+
+              date length age maturity stage year            era
+    1   2003-09-02     31  10 Immature     1 2003 2002 and after
+    2   2002-10-07     32   6 Immature     1 2002 2002 and after
+    3   2000-07-18     32  11 Immature     1 2000       pre-2002
+    156 2002-08-18     67  50   Mature     6 2002 2002 and after
+    157 2002-10-07     68  88   Mature     6 2002 2002 and after
+    158 2001-04-23     70  66   Mature     4 2001       pre-2002
+
+Finally, `maturity` was not recorded for several individuals, which were removed from further analysis.
+
+``` r
+> df %<>% filterD(!is.na(maturity))
+```
+
+    Loading required namespace: gdata
+
+Maturity Data
+-------------
+
+Raw maturity data generally consists of a maturity statement (either "mature" or "immature"), size (length or weight), age, sex, and other variables as needed (e.g., capture date, capture location) recorded for individual fish. The maturity variable may need to be derived from more specific data about the "stage of maturation" recorded for each fish. Often, maturity will be recorded as a dummy or indicator variable -- "0" for immature and "1" for mature -- but this is not required for most modern software. Sex is an important variable to record as maturity should be analyzed separately for each sex (Pope et al. 2010).
+
+Summarized maturity data consists of the proportion of individuals that are mature within each age or length category. Age categories are generally the recorded ages, whereas recorded lengths are often categorized into bins. Age or length categories should be as narrow as possible but include enough individuals such that the proportion mature in each bin is reliably estimated.
+
+In this supplement, the total length of the Rockfish was measured to the nearest cm. Length categories of 2 cm were chosen to summarize the data to provide reasonable sample sizes (\(>10\) fish) in the length ranges where the proportion of mature fish is most rapidly changing. These length categories are added to the data.frame with `lencat()` below.
+
+``` r
+> df %<>% mutate(lcat2=lencat(length,w=2))
+> headtail(df)
+```
+
+              date length age maturity stage year            era lcat2
+    1   2003-09-02     31  10 Immature     1 2003 2002 and after    30
+    2   2002-10-07     32   6 Immature     1 2002 2002 and after    32
+    3   2000-07-18     32  11 Immature     1 2000       pre-2002    32
+    146 2002-08-18     67  50   Mature     6 2002 2002 and after    66
+    147 2002-10-07     68  88   Mature     6 2002 2002 and after    68
+    148 2001-04-23     70  66   Mature     4 2001       pre-2002    70
+
+The frequency of mature and immature fish in each length category is computed with `xtabs()` below. The raw frequencies are converted to "row proportions" to see the proportion of fish within each length bin that are mature. Finally, a plot of the percentage of mature fish is constructed (Figure 1).
+
+``` r
+> freq <- xtabs(~lcat2+maturity,data=df)
+> props <- prop.table(freq,margin=1)
+> round(props,3)   # for display only
+```
+
+         maturity
+    lcat2 Immature Mature
+       30    1.000  0.000
+       32    1.000  0.000
+       34    1.000  0.000
+       36    0.556  0.444
+       38    0.625  0.375
+       40    0.333  0.667
+       42    0.077  0.923
+       44    0.077  0.923
+       46    0.036  0.964
+       48    0.062  0.938
+       50    0.000  1.000
+       52    0.000  1.000
+       54    0.000  1.000
+       56    0.000  1.000
+       58    0.000  1.000
+       60    0.000  1.000
+       62    0.000  1.000
+       64    0.000  1.000
+       66    0.000  1.000
+       68    0.000  1.000
+       70    0.000  1.000
+
+``` r
+> plot(props[,"Mature"]~as.numeric(rownames(props)),pch=19,
+       xlab="Total Length (cm)",ylab="Proportion Mature")
+```
+
+![](index_files/figure-markdown_github/sumLength-1.png)
+
+Figure 1: Proportion of female Yelloweye Rockfish that were mature in each 2-cm length category.
+
+These results show that the percentage of mature female Yellow Rockfish increases quickly between 34 and 42 cm.
+
+   
+
+Modeling with Raw Data
+----------------------
+
+### Fitting the Logistic Regression Model
+
+Raw maturity data is generally summarized with a logistic regression. A logistic regression is conducted with a binomial response variable and, generally, a quantitative explanatory variable. The relationship between the probability of "success" (\(p\)) and the explanatory variable (length or age) is generally not linear (primarily due to the constaint that the probability is between 0 and 1). This relationship can be linearized by first transforming \(p\) to the odds (i.e,. \(\frac{p}{1-p}\)). The odds related the probability of "successes" to "failures." For example, an odds of 1 indicates that there is an equal probability of success and failure, whereas and odds of 3 indicates that the probability of success is three times the probability of failure.
+
+The transformation to a linear relationship is completed by computing the logarithm of the odds (i.e., \(log(\frac{p}{1-p})\)). The complete transformation from \(p\) to \(log(\frac{p}{1-p})\) is called the the *logit* transformation.
+
+Thus, the linear model in a logistic regression models the log odds as a function of an explanatory variable, \(X\), with
+
+\[ logit(p) = log\left(\frac{p}{1-p}\right) = \alpha + \beta_{1}X \quad \quad \quad \quad \text{(1)} \]
+
+In maturity analyses, the logistic regression is used to model the log odds of being mature as a function of either length or age. It will be shown later in this supplement how the log odds of being mature are back-transformed to the probability of being mature.
+
+Logistic regressions are fit with `glm()`, rather than the `lm()` used in the IFAR book. As with `lm()`, the first argument to `glm()` is a formula of the form `factor~quant` where `factor` and `quant` generically reprsent factor and quantitative variables respectively. The data frame that contains `factor` and `quant` is given to `data=`. Finally, `glm()` is forced to use the logit transformation and fit a logistic regression by including `family=binomial`. For example, the `glm()` code below will model the log odds of being mature as a function of the length of the Rockfish.
+
+``` r
+> glm1 <- glm(maturity~length,data=df,family=binomial)
+```
+
+Parameter estimates are extracted from the `glm()` object with `coef()`. Confidence intervals for the parameters of a logistic regression are best estiamted with bootstrapping (rather than normal theory). Bootstrapping is performed with `bootCase()` from `car` as described in Chapter 12 of the IFAR book.
+
+``` r
+> bcL <- bootCase(glm1,B=1000)
+> cbind(Ests=coef(glm1),confint(bcL))
+```
+
+                       Ests     95% LCI     95% UCI
+    (Intercept) -16.9482593 -29.0623105 -11.8152911
+    length        0.4371786   0.3108028   0.7400613
+
+The estimated slope indicates that a 1 cm increase in the length of the Yelloweye Rockfish will result in an 0.437 increase in the log odds that the Rockfish is mature. Changes in log odds are difficult to interpret. However, the back-transformed slope is interpreted as a multiplicative change in the odds of being mature. For example, a 1 cm increase in the length of the Yelloweye Rock fish will result in a 1.548 (i.e., \(e^{0.437}\)) times increase in the odds that the Rockfish is mature.
+
+ 
+
+### Predicted Probability of Being Mature
+
+The probability of a fish being mature given the observed value of the explanatory variable (\(x\)) can be computed by solving Equation 1 for \(p\),
+
+\[ p = \frac{e^{\alpha + \beta_{1}x}}{1+e^{\alpha + \beta_{1}}} \quad \quad \quad \quad \text{(2)} \]
+
+This prediction is computed with `predict()`, which requires the `glm()` object as the first argument, a data.frame with the values of the explanatory variable for which to make the prediction as the second argument, and `type="response"` (which forces the prediction of the probability, rather than the log odds, of being mature). For example, the predicted probabilities of being mature for female Yelloweye Rockfish that are 32- and 42-cm total length are computed below.
+
+``` r
+> predict(glm1,data.frame(length=c(32,42)),type="response")
+```
+
+            1         2 
+    0.0493342 0.8042766 
+
+Confidence intervals for the predicted probability are formed by computing the prediction for each bootstrap sample and then extracting the values for the upper and lower 2.5% of these predictions. This process is most easily accomplished by forming a function that represents Equation 2 and then using `apply()` to apply that function to each row of the matrix containing the bootstrap samples. This is the same process as described in Chapter 12 of the IFAR book. The code below computes the 95% confidence intervals for the predicted probability of being mature for 32 cm long Yelloweye Rockfish.
+
+``` r
+> predP <- function(cf,x) exp(cf[1]+cf[2]*x)/(1+exp(cf[1]+cf[2]*x))
+> p32 <- apply(bcL,1,predP,x=32)
+> quantile(p32,c(0.025,0.975))
+```
+
+          2.5%      97.5% 
+    0.00313281 0.14033465 
+
+Thus, the probability that a 32 cm Yelloweye Rockfish is mature is between 0.003 and 0.140.
+
+ 
+
+### A Summary Plot
+
+A plot that illustrates the fit of the logistic regression (Figure 2) can be constructed in several steps. First, a base plot that depicts the raw data is constructed. Take special note here that `maturity` is forced to be numeric between 0 and 1 for the plot and transparent points (as described in Chapter 3 of the IFAR book) are used because there is considerable overplotting with the "discrete" maturity and length data.
+
+``` r
+> plot((as.numeric(maturity)-1)~length,data=df,
+       pch=19,col=rgb(0,0,0,1/8),
+       xlab="Total Length (cm)",ylab="Proportion Mature")
+```
+
+Second, the proportion mature for each 2-cm length bin are added with `points()` (recall that the summaries in `props` were constructed above). Note that `pch=3` plots the points with "plus signs."
+
+``` r
+> points(props[,"Mature"]~as.numeric(rownames(props)),pch=3)
+```
+
+Finally, the fitted line from the logistic regression is added by first using the `glm()` object to predict the probability of being mature for lengths that span the range of observed lengths and then plotting these points as a line with `lines()`.
+
+``` r
+> lens <- seq(30,70,length.out=99)
+> preds <- predict(glm1,data.frame(length=lens),type="response")
+> lines(preds~lens,lwd=2)
+```
+
+![](index_files/figure-markdown_github/LogisticFit1-1.png)
+
+Figure 2: Fitted logistic regression for the proportion of female Yelloweye Rockfish that are mature by total length.
+
+   
+
+### Length- or Age-at-Maturity
+
+A common metric in fisheries science is to find the length or age at which a certain percentage of the fish are mature. For example, it is common to ask "what is the length or age at which 50% of the fish have reached maturity?" A general formula for computing this metric is found by solving Equation 1 for \(X\),
+
+\[ x = \frac{log\left(\frac{p}{1-p}\right)-\alpha}{\beta_{1}} \quad \quad \quad \quad \text{(3)} \]
+
+In the common case of finding \(X\) for 50% maturity (i.e., \(p=0.5\)), Equation 3 reduces to
+
+\[ x = -\frac{\alpha}{\beta_{1}} \quad \quad \quad \quad \text{(4)} \]
+
+The age at which 50% of the fish are mature is commonly symbolized as \(A_{50}\). Similarly, the length at which 90% of the fish are mature would be \(L_{90}\).
+
+These calculations are simplified by creating a function to perform Equation 3.
+
+``` r
+> lrPerc <- function(cf,p) (log(p/(1-p))-cf[[1]])/cf[[2]]
+```
+
+This functions takes the coefficents from the `glm()` object as the first argument and the probability of interest (\(p\)) as the second argument. As examples, the lengths at which 50% and 90% of the female Yelloweye Rockfish are mature are computed below.
+
+``` r
+> ( L50 <- lrPerc(coef(glm1),0.5) )
+```
+
+    [1] 38.76736
+
+``` r
+> ( L90 <- lrPerc(coef(glm1),0.9) )
+```
+
+    [1] 43.79328
+
+Confidence intervals for these values are constructed from the bootstrap samples, similar to what was illustrated above for predicted values.
+
+``` r
+> bL50 <- apply(bcL,1,lrPerc,p=0.5)
+> ( L50ci <- quantile(bL50,c(0.025,0.975)) )
+```
+
+        2.5%    97.5% 
+    37.28749 40.10023 
+
+``` r
+> bL90 <- apply(bcL,1,lrPerc,p=0.9)
+> ( L90ci <- quantile(bL90,c(0.025,0.975)) )
+```
+
+        2.5%    97.5% 
+    41.68692 45.92492 
+
+Thus, for example, the predicted length at which 50% of the Yelloweye Rockfish are mature is between 37.3 and 40.1, with 95% confidence.
+
+The calculation of the \(L_{50}\) may be illustrated on a fitted-line plot (Figure 3) by adding the code below to the code used above to construct Figure 2.
+
+``` r
+> lines(c(0,L50),c(0.5,0.5),lty=2,lwd=2,col="red")
+> lines(c(L50,L50),c(-0.2,0.5),lty=2,lwd=2,col="red")
+```
+
+![](index_files/figure-markdown_github/LogisticFit2-1.png)
+
+Figure 3: Fitted logistic regression for the proportion of female Yelloweye Rockfish that are mature by total length with \(L_{50}\) shown.
+
+   
+
+Modeling with Summarized Data
+-----------------------------
+
+Sometimes maturity data is presented in summarized format -- that is, the proportion of fish for each length that were mature. Such data can be computed from the original data.frame with the code below. Note that there are two "tricks" in this code. First, the `maturity` factor variable is coerced to be a numeric variable, but 1 is subtracted from this result because values of 1 for immature and 2 for mature are returned. Second, the mean of this result is the proportion of ones in the data, which is the proportion of mature fish.
+
+``` r
+> df2 <- df %>%
+    group_by(length) %>%
+    summarize(pmat=mean(as.numeric(maturity)-1),
+              n=n()) %>%
+    as.data.frame()
+> headtail(df2)
+```
+
+       length pmat n
+    1      31    0 1
+    2      32    0 4
+    3      33    0 2
+    33     67    1 1
+    34     68    1 1
+    35     70    1 1
+
+Also note that this code is only used here to produce data to illustrate how to analyze summarized data. If one has raw data, as in this supplement, then the methods of the previous section should be used, though the technique used here provides identical answers.
+
+The appropriate logistic regression model is again fit with `glm()`. However, the left side of the formula is the proportion of "successes" variable and `weights=` is set equal to the sample size used to compute each proportion. Once the model is fit, the same extractor functions can be used to summarize the results. [*Note that `glm()` and `bootCase()` will return a warning about non-integer number of successes when used in this way.*]
+
+``` r
+> glm2 <- glm(pmat~length,data=df2,family=binomial,weights=n)
+> bcL2 <- bootCase(glm2,B=1000)
+> cbind(Ests=coef(glm2),confint(bcL2))
+```
+
+                       Ests     95% LCI     95% UCI
+    (Intercept) -16.9482593 -28.2429637 -12.1861359
+    length        0.4371786   0.3175022   0.7179604
+
+``` r
+> predict(glm2,data.frame(length=c(32,42)),type="response")
+```
+
+            1         2 
+    0.0493342 0.8042766 
+
+``` r
+> p32a <- apply(bcL2,1,predP,x=32)
+> quantile(p32a,c(0.025,0.975))
+```
+
+           2.5%       97.5% 
+    0.005604308 0.126490127 
+
+Note that the coefficients and predictions computed here are the same as in the results from using the raw data. The bootstrapped confidence intervals differ slightly due to the inherent randomization used in bootstrap resampling (and because a small number of bootstrap samples were used to produce this supplement.
+
+   
+
+Comparing Logistic Regressions Between Groups
+---------------------------------------------
+
+### Model Fitting
+
+It may be important to determine if the fit of the logistic regression differs between two groups. For example, one may need to determine if the logistic regression parameters differ significantly between fish captured "pre-2002" and those captured in "2002 and after" (recall that these two "eras" are recorded in `era` in `df`).
+
+The model required to answer this type of question is a logistic regression version of the dummy variable regression introduced in Chapter 7 of the IFAR book. Specifically, the right side of the formula in `glm` is modified to be `quant*factor` where `quant` is the covariate (usually length or age) and `factor` is the group factor variable that is used to identify the groups being compared. As noted in Chapter 7 of the IFAR book, this formula is actually shorthand for a model with three terms -- `quant` and `factor` main effects and the interaction between the `quant` and `factor` variables. In this case, the model is fit as shown below.
+
+``` r
+> glm3 <- glm(maturity~length*era,data=df,family=binomial)
+```
+
+The significance of terms in a general linear model are computed with a chi-square distribution and summarized in an "Analysis of Deviance Table", rather than with an F distribution and ANOVA table as with a linear model. Fortunately, the Analysis of Deviance table using Type II tests is also retrieved with `Anova()` from `car`.
+
+``` r
+> Anova(glm3)
+```
+
+    Analysis of Deviance Table (Type II tests)
+
+    Response: maturity
+               LR Chisq Df Pr(>Chisq)
+    length       68.599  1    < 2e-16
+    era           0.005  1    0.94541
+    length:era    3.100  1    0.07831
+
+As with the ANOVA table in a dummy variable regression, the Analysis of Deviance table should be read from the bottom. In this case, the interaction term is not signficant which suggests that the slopes for the logit-transformed models do not differ between the eras. The `era` main effect is also not signficant, which suggests that the y-intercepts for the logit-transformed models do not differ between the eras. Thus, there is no signficant difference in the logistic regressions between fish captured in the two eras.
+
+### Comparing Lengths- or Ages-at-Maturity
+
+A p-value for testing whether the \(L_{50}\) differed between groups may be computed from the bootstrapped sampled. However, this calculation requires several steps and a good understanding of the parameter estimates from the logistic regression model fit to both groups. Thus, the steps and the parameter estimates are described further below.
+
+Before building the hypothesis test, lets examine the parameter estimates for the logistic regression model.
+
+``` r
+> coef(glm3)
+```
+
+                 (Intercept)                   length        era2002 and after 
+                 -27.1314345                0.6956840               14.0137840 
+    length:era2002 and after 
+                  -0.3510082 
+
+Note that the parameter estimates under the `(Intercept)` and `length` headings are the intercept and slope, respectively, for the "reference" group in the model. The reference group is the alphabetically first group, unless the levels of the factor variable were changed by the user as was done in this supplement. The order of the levels can be observed with `str()` or `levels()`.
+
+``` r
+> levels(df$era)
+```
+
+    [1] "pre-2002"       "2002 and after"
+
+Thus, the estimated intercept and slope of the logistic regression for the "pre-2002" era are -27.131 and 0.696, respectively.
+
+The parameter estimates under the `era2002 and after` and `length:era2002 and after` are the **differences** in intercept and slope between the two eras. Thus, these values need to be added to the intercept and slope for "pre-2000" era to estimate the intercept and slope for the "2002 and after" era. Thus, the estimated intercept and slope of the logistic regression for the "2002 and after" era are -13.118 and 0.345, respectively.
+
+The first step in building the hypothesis test for whether \(L_{50}\) differs between eras is to construct the bootstrap samples from the `glm()` object.
+
+``` r
+> bcL3 <- bootCase(glm3,B=1000)  
+> headtail(bcL3)
+```
+
+            (Intercept)     length era2002 and after length:era2002 and after
+    [1,]      -28.66650  0.7480834         17.630834              -0.44741290
+    [2,]      -22.01427  0.5610905         -1.315964               0.05293831
+    [3,]      -29.11699  0.7535871         17.701264              -0.46385684
+    [998,]    -52.92599  1.2978597         43.104623              -1.04921293
+    [999,]    -22.29335  0.5727242         11.420617              -0.27867057
+    [1000,]  -610.63332 14.9158441        596.471707             -14.53849292
+
+The \(L_{50}\) for fish from the "pre-2002" era is computed for each sample using only the first two columns of the bootstrap sample results (i.e., the intercept and slope for the "pre-2002" era) and the `lrperc()` function created and used in a previous section. The \(L_{50}\) for fish from the "2002 and after" era is computed similarly but the last two columns in the bootstrap sample results must be added to the first two columns (i.e., produce the intercept and slope for the "2002 and after" era).
+
+``` r
+> L50.pre= apply(bcL3[,1:2],1,lrPerc,p=0.5)
+> L50.post=apply(bcL3[,1:2]+bcL3[,3:4],1,lrPerc,p=0.5)
+```
+
+If there was no difference in \(L_{50}\) between the two eras, then one would expect the means of these two groups to be the same or, equivalently, the mean of the differences in these two value to equal zero. The difference in \(L_{50}\) for each bootstrap sample is computed below.
+
+``` r
+> L50.diff <- L50.pre-L50.post
+```
+
+A two-sided p-value may be computed as two times the smaller of the proportions of samples that are less than or greater than 0. [Note that the code below exploits the fact that R will treat a `TRUE` as a `1` and a `FALSE` as a `0` such that the mean of a vector of `TRUE`s and `FALSE`s will return the proportion of `TRUE`s.]
+
+``` r
+> ( p.L50.diff <- 2*min(c(mean(L50.diff>0),mean(L50.diff<0))) )
+```
+
+    [1] 0.556
+
+This result suggests that there is no significant difference in the \(L_{50}\) for fish captured in the two eras (not surprising given that the logistic regression parameters did not differ between eras).
+
+Confidence intervals for the difference in \(L_{50}\) between the eras and athe \(L_{50}\) for each era may be computed as before but making sure to use the correct vector of results.
+
+``` r
+> ( ci.L50.diff <- quantile(L50.diff,c(0.025,0.975)) )
+```
+
+         2.5%     97.5% 
+    -1.953197  4.214636 
+
+``` r
+> ( ci.L50.pre <-  quantile(L50.pre,c(0.025,0.975)) )
+```
+
+        2.5%    97.5% 
+    37.24793 40.91101 
+
+``` r
+> ( ci.L50.post <- quantile(L50.post,c(0.025,0.975)) )
+```
+
+        2.5%    97.5% 
+    34.97016 40.16213 
+
+   
+
+### A Summary Plot
+
+The construction of a plot the illustrates the fitted logistic regression lines for both groups is left largely as an exercise for the reader. Note that the code below uses several of the same ideas shown previously and relies on directions given in Chapter 3 of the IFAR book.
+
+``` r
+> ## Set-up colors
+> clrs1 <- c("black","red")
+> clrs2 <- col2rgbt(clrs1,1/5)
+> ## Get predicted values for each era
+> lvls <- levels(df$era)
+> lens <- seq(30,70,length.out=99)
+> pa02 <- predict(glm3,type="response",
+                  data.frame(length=lens,era=factor("2002 and after",levels=lvls)))
+> pp02 <- predict(glm3,type="response",
+                  data.frame(length=lens,era=factor("pre-2002",levels=lvls)))
+> ## Make the base plot
+> plot((as.numeric(maturity)-1)~length,data=filterD(df,era==lvls[1]),
+       pch=19,col=clrs2[1],xlab="Total Length (cm)",ylab="Proportion Mature")
+> points((as.numeric(maturity)-1)~length,data=filterD(df,era==lvls[2]),
+       pch=19,col=clrs2[2])
+> ## Add the two fitted lines
+> lines(pa02~lens,lwd=2,col=clrs1[1])
+> lines(pp02~lens,lwd=2,col=clrs1[2])
+```
+
+![](index_files/figure-markdown_github/unnamed-chunk-30-1.png)
+
+Figure 4: Fitted logistic regression for the proportion of female Yelloweye Rockfish that are mature by total length separated by the "pre-2002" and "2002 and after" eras.
+
+------------------------------------------------------------------------
+
+Reproducibility Information
+---------------------------
+
+-   **Compiled Date:** Sun Oct 25 2015
+-   **Compiled Time:** 7:32:01 PM
+-   **R Version:** R version 3.2.2 (2015-08-14)
+-   **System:** Windows, i386-w64-mingw32/i386 (32-bit)
+-   **Base Packages:** base, datasets, graphics, grDevices, methods, stats, utils
+-   **Required Packages:** FSA, magrittr, dplyr, lubridate, car, captioner, knitr and their dependencies (assertthat, DBI, digest, evaluate, formatR, graphics, grDevices, highr, lazyeval, markdown, MASS, memoise, methods, mgcv, nnet, pbkrtest, plotrix, plyr, quantreg, R6, Rcpp, stats, stringr, tools, utils, yaml)
+-   **Other Packages:** captioner\_2.2.3, car\_2.1-0, dplyr\_0.4.3, extrafont\_0.17, FSA\_0.8.3, knitr\_1.11, lubridate\_1.3.3, magrittr\_1.5
+-   **Loaded-Only Packages:** assertthat\_0.1, codetools\_0.2-14, DBI\_0.3.1, digest\_0.6.8, evaluate\_0.8, extrafontdb\_1.0, formatR\_1.2.1, gdata\_2.17.0, grid\_3.2.2, gtools\_3.5.0, highr\_0.5.1, htmltools\_0.2.6, lattice\_0.20-33, lazyeval\_0.1.10, lme4\_1.1-10, MASS\_7.3-44, Matrix\_1.2-2, MatrixModels\_0.4-1, memoise\_0.2.1, mgcv\_1.8-7, minqa\_1.2.4, nlme\_3.1-122, nloptr\_1.0.4, nnet\_7.3-11, parallel\_3.2.2, pbkrtest\_0.4-2, plyr\_1.8.3, quantreg\_5.19, R6\_2.1.1, Rcpp\_0.12.1, rmarkdown\_0.8.1, Rttf2pt1\_1.3.3, SparseM\_1.7, splines\_3.2.2, stringi\_0.5-5, stringr\_1.0.0, tools\_3.2.2, yaml\_2.1.13
+-   **Links:** [Script](maturity.R) / [RMarkdown](index.Rmd)
+
+------------------------------------------------------------------------
+
+References
+----------
+
+Grolemund, G., and H. Wickham. 2011. Dates and times made easy with lubridate. Journal of Statistical Software 40(3).
+
+Pope, K. L., S. E. Lochmann, and M. K. Young. 2010. Methods for assessing fish populations. Pages 325–351 *in* W. A. Hubert and M. C. Quist, editors. Inland fisheries management in north americaThird. American Fisheries Society, Bethesda, MD.

@@ -6,10 +6,8 @@ author: Derek H. Ogle
 csl: ../american-fisheries-society.csl
 bibliography: ../IFARSupplement.bib
 output: 
-  html_document: 
-    fig_width: 3.5
-    fig_height: 3.5
-    self_contained: no
+  md_document: 
+    variant: markdown_github
 ---
 ```{r echo=FALSE, eval=FALSE}
 ##############################################################
@@ -38,6 +36,9 @@ if (require(FSA)) purl2("index.Rmd",newname="maturity",topnotes="User must set w
     * [Comparing Lengths- or Ages-at-Maturity](#comparing-lengths-or-ages-at-maturity)
     * [A Summary Plot](#a-summary-plot-1)
 * [Comparing Logistic Regressions Between Groups](#comparing-logistic-regressions-between-groups)
+    * [Model Fitting](#model-fitting-1)
+    * [Comparing Lengths- or Ages-at-Maturity](#comparing-lengths-or-ages-at-maturity)
+    * [A Summary Plot](#a-summary-plot-2)
 
 ----
 
