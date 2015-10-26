@@ -126,7 +126,7 @@ headtail(df)
 ```
 
 Finally, `maturity` was not recorded for several individuals, which were removed from further analysis.
-```{r}
+```{r message=FALSE}
 df %<>% filterD(!is.na(maturity))
 ```
 
@@ -423,7 +423,8 @@ lines(pp02~lens,lwd=2,col=clrs1[2])
 
 `r figcaps("LogisticFit3")`
 
-
+\ 
+\ 
 
 --------------------------------------------------------------
 
@@ -433,5 +434,7 @@ reproInfo(rqrdPkgs=rqrd,out="markdown",links=c(Script="maturity.R",RMarkdown="in
 
 --------------------------------------------------------------
 
+\ 
+\ 
 
 ## References
