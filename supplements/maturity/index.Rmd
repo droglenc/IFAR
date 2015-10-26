@@ -6,8 +6,10 @@ author: Derek H. Ogle
 csl: ../american-fisheries-society.csl
 bibliography: ../IFARSupplement.bib
 output: 
-  md_document: 
-    variant: markdown_github
+  html_document: 
+    fig_width: 3.5
+    fig_height: 3.5
+    self_contained: no
 ---
 ```{r echo=FALSE, eval=FALSE}
 ##############################################################
@@ -29,16 +31,13 @@ if (require(FSA)) purl2("index.Rmd",newname="maturity",topnotes="User must set w
 * [Modeling with Raw Data](#modeling-with-raw-data)
     * [Fitting the Logistic Regression Model](#fitting-the-logistic-regression-model)
     * [Predicted Probability of Being Mature](#predicted-probability-of-being-mature)
-    * [Length- or Age-at-Maturity](#length-or-age-at-maturity)
+    * [Length- or Age-at-Maturity](#length--or-age-at-maturity)
     * [A Summary Plot](#a-summary-plot)
 * [Modeling with Summarized Data](#modeling-with-summarized-data)
-    * [Model Fitting](#model-fitting)
-    * [Comparing Lengths- or Ages-at-Maturity](#comparing-lengths-or-ages-at-maturity)
-    * [A Summary Plot](#a-summary-plot-1)
 * [Comparing Logistic Regressions Between Groups](#comparing-logistic-regressions-between-groups)
-    * [Model Fitting](#model-fitting-1)
-    * [Comparing Lengths- or Ages-at-Maturity](#comparing-lengths-or-ages-at-maturity)
-    * [A Summary Plot](#a-summary-plot-2)
+    * [Model Fitting](#model-fitting)
+    * [Comparing Lengths- or Ages-at-Maturity](#comparing-lengths--or-ages-at-maturity)
+    * [A Summary Plot](#a-summary-plot-1)
 
 ----
 
