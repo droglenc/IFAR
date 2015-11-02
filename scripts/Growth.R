@@ -327,4 +327,4 @@ fitTypP <- nls(tl~vbTyp(otoage,Linf,K,t0),data=bdm,
                upper=list(Linf=1400,K=0.30,t0=1))
 
 
-# Script created at 2015-10-11 12:35:17
+# Script created at 2015-11-02 12:54:59
