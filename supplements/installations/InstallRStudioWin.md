@@ -7,7 +7,7 @@ css: /css/directions.css
 
 ----
 
-<p style="text-align: center;><a href="#installing-rstudio">Installing</a> / <a href="#configuring-rstudio">Configuring</a> / <a href="#introducing-rstudio">Introducing</a></p>
+<div style="text-align: center;><a href="#installing-rstudio">Installing</a> / <a href="#configuring-rstudio">Configuring</a> / <a href="#introducing-rstudio">Introducing</a></div>
 
 ----
 
