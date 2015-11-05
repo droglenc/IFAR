@@ -5,7 +5,7 @@ subtitle: For Windows
 css: /css/directions.css
 ---
 
-<div style="text-align: center;><a href="#installing-rstudio">Installing</a> / <a href="#configuring-rstudio">Configuring</a> / <a href="#introducing-rstudio">Introducing</a></div>
+<p style="text-align: center;"><a href="#installing-rstudio">Installing</a> / <a href="#configuring-rstudio">Configuring</a> / <a href="#introducing-rstudio">Introducing</a></p>
 
 ----
 
