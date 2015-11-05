@@ -115,7 +115,7 @@ These commands must be submitted to the *Console* to perform the requested calcu
 
 The RStudio layout after using the first method is shown in the figure above.
 
-The R Script in the *Script Editor* should now be saved by selecting the `File` menu and the `Save` item (alternatively, pressing `<CTRL>+S`).  RStudio can now be closed (do NOT save the workspace).  When RStudio is restarted later, the script can be reopened (choose the `File` menu and the `Open file ...` submenu if the file is not already in the *Script Editor*) and resubmitted to the *Console* to exactly repeat the analyses (Note that the results of commands are not saved in R or RStudio; rather the commands are saved and resubmitted to reperform the analysis).
+The R Script in the *Script Editor* should now be saved by selecting the `File` menu and the `Save` item (alternatively, pressing `<CTRL>+S`).  RStudio can now be closed (do NOT save the workspace).  When RStudio is restarted later, the script can be reopened (choose the `File` menu and the `Open file ...` submenu if the file is not already in the *Script Editor*) and resubmitted to the *Console* to exactly repeat the analyses.  (**Note that the results of commands are not saved in R or RStudio; rather the commands are saved and resubmitted to reperform the analysis.**)
 
 -----
 
