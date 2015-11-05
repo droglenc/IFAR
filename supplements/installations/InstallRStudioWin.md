@@ -5,23 +5,15 @@ subtitle: For Windows
 css: /css/directions.css
 ---
 
-The following directions may be used to install and configure RStudio on a Windows operating system.  [See these directions](InstallRStudioMac.html) for installing RStudio on a Macintosh operating system.
-
-1. [What is RStudio?](#what-is-rstudio)
-1. [RStudio Installation](#installing-rstudio)
-1. [Preparing RStudio](#preparing-rstudio)
-1. [Introducing RStudio](#introducing-rstudio)
-
-------
-
 ## What is RStudio?
 
-R is an open-source software environment for statistical computing and graphics that runs on Windows, Mac OS, and many UNIX platforms.  Unlike many other programs, users interact with R through a command line rather than through a graphical user interface.    While such an interface may be unfamiliar to many users, its primary strength is the ability for a user to develop scripts of commands to perform various analyses that can then be easily repeated.
+R is an open-source software environment for statistical computing and graphics that runs on Windows, Mac OS, and many UNIX platforms.  Unlike many other programs, users interact with R through a command line rather than through a graphical user interface.    While such an interface may be unfamiliar to many users, its primary strength is the ability for users to develop scripts of commands to perform various analyses that can then be easily repeated.
 
 RStudio is an open-source integrated development environment (IDE) that serves as a front-end "on top" of R.  RStudio eases the user's interaction with R by providing some of the conveniences of a GUI and, more importantly, a means for efficiently constructing and running R scripts.  Among other conveniences, RStudio provides a four-panel layout that includes a feature-rich source-code editor (includes syntax highlighting, parentheses completion, spell-checking, etc.), a tight link to the R console, a system for examining objects saved in R, an interface to R help, and extended features to examine and save plots.
 
-Using RStudio is easy to learn.  This document is a very brief introduction to RStudio.
+RStudio is easy to learn.  This page has directions for [installing](#installing-rstudio) and [configuring Rstudio](#configuring-rstudio) for use in a Windows operating system and a brief [introduction](#introducing-rstudio) to using RStudio.
 
+----
 
 ## Installing RStudio
 
@@ -55,7 +47,7 @@ Using RStudio is easy to learn.  This document is a very brief introduction to R
 
 ----
 
-## Preparing RStudio
+## Configuring RStudio
 
 1. Open RStudio.
 
