@@ -310,6 +310,7 @@ Additionally, the mean length at each back-calculated age computed separately fo
 sumTable(FL.len~agecap*agei,data=wb90r,digits=1)
 ```
 
+\ 
 
 --------------------------------------------------------------
 
@@ -319,5 +320,6 @@ reproInfo(rqrdPkgs=rqrd,out="markdown",links=c(Script="backcalculation.R",RMarkd
 
 --------------------------------------------------------------
 
+\ 
 
 ## References
