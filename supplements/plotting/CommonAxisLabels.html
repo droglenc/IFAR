@@ -1,8 +1,11 @@
 ---
 layout: page
+Several methods for modifying base graphics were shown in the book, including simple layouts (side-by-side, one-over-the-other) of multiple plots.  Creating common x- and y-axis labels for a grid of plots is described in this supplement.  More complex layouts (e.g., plot in first row spans two columns or unequal sized plots) are [described in a separate supplement](ComplexLayouts.html).
 title: Plotting Fundamentals
 subtitle: Common Axis Labels on a Grid of Subplots
+Each plot consists of three regions -- the plot area, the figure area, and the outer margin area `r figcaps("parEx1",display="cite")`.  The plot area is where the points or bars will be graphed.  The area between the plot area and the figure area is where the axis ticks, labels, and title will appear.  The area outside of the figure area is the outer margin area and is generally used to proivde extra space around the graphic or to place text.  In most instances (and the default), the width of the outer margin area is 0 on all sides of the figure area such that no outer margin area exists.  The size of the outer margin area is set with `oma=` in `par()`, which takes a vector of four values to serve as widths of the four sides of the outer margin area, beginning with the bottom and moving counter-clockwise.  The default is `par(oma=c(0,0,0,0))`, but margins that are two "lines" wide on the top and bottom and one "line" wide on the left and right are set with `par(oma=c(2,1,2,1))`.
 author: Derek H. Ogle
+css: "/css/codebox.css"
 ---
 
 
@@ -29,7 +32,7 @@ author: Derek H. Ogle
 <h2>Common Axis Labels on a Grid of Subplots</h2>
 <p>One common graphical desire is to plot multiple graphics in a grid-like format with one axis label that serves as the label for each graph. This can be accomplished with arguments to <code>par()</code>, but the regions of a plot must be undersood first (the description that follows is modified <a href="http://research.stowers-institute.org/efg/R/Graphics/Basics/mar-oma/index.htm">from here</a>).</p>
 <p>Each plot consists of three regions – the plot area, the figure area, and the outer margin area Figure 1. The plot area is where the points or bars will be graphed. The area between the plot area and the figure area is where the axis ticks, labels, and title will appear. The area outside of the figure area is the outer margin area and is generally used to proivde extra space around the graphic or to place text. In most instances (and the default), the width of the outer margin area is 0 on all sides of the figure area such that no outer margin area exists. The size of the outer margin area is set with <code>oma=</code> in <code>par()</code>, which takes a vector of four values to serve as widths of the four sides of the outer margin area, beginning with the bottom and moving counter-clockwise. The default is <code>par(oma=c(0,0,0,0))</code>, but margins that are two “lines” wide on the top and bottom and one “line” wide on the left and right are set with <code>par(oma=c(2,1,2,1))</code>.</p>
-<p><img src="CommonAxisLabels_files/figure-html/unnamed-chunk-5-1.png" title="" alt="" width="240" /></p>
+<p><img src="CommonAxisLabels_files/figure-html/unnamed-chunk-5-1.png" title="" alt="" width="336" /></p>
 <p>Figure 1: Schematic plot that illustrates the plotting area (inside the blue box), the figure area (inside the red box), and the outer margin area (between the dark gray and red boxes).</p>
 <p>Common axis labels for multiple graphs can be placed in the outer margin area. In the example below, a 2-by-2 grid is created with <code>mfrow()</code> (as described in the book) and the bottom and left outer margin areas are increased to be three “lines” wide to allow for common x- and y-axis labels.</p>
 <pre class="r"><code>&gt; par(mfrow=c(2,2),oma=c(2,2,0,0))</code></pre>
@@ -52,21 +55,21 @@ author: Derek H. Ogle
 <p>The code below adds common x- and y-axis labels to the plots constructed above. The final plot is shown in Figure 2.</p>
 <pre class="r"><code>&gt; mtext(&quot;Age (years)&quot;,side=1,line=0,outer=TRUE,cex=1.3)
 &gt; mtext(&quot;Fork Length (mm)&quot;,side=2,line=0,outer=TRUE,cex=1.3,las=0)</code></pre>
-<p><img src="CommonAxisLabels_files/figure-html/unnamed-chunk-6-1.png" title="" alt="" width="480" /></p>
+<p><img src="CommonAxisLabels_files/figure-html/unnamed-chunk-6-1.png" title="" alt="" width="672" /></p>
 <p>Figure 2: Grid of plots that uses the outer margin area to provide common axis labels.</p>
 <hr />
 </div>
 <div id="reproducibility-information" class="section level2">
 <h2>Reproducibility Information</h2>
 <ul>
-<li><strong>Compiled Date:</strong> Fri Sep 25 2015</li>
-<li><strong>Compiled Time:</strong> 10:12:55 AM</li>
+<li><strong>Compiled Date:</strong> Thu Nov 05 2015</li>
+<li><strong>Compiled Time:</strong> 12:31:37 PM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>
-<li><strong>Required Packages:</strong> FSAdata, FSA, dplyr, captioner, knitr and their dependencies (assertthat, DBI, digest, evaluate, formatR, graphics, grDevices, highr, lazyeval, magrittr, markdown, methods, plotrix, plyr, R6, Rcpp, stats, stringr, tools, utils, yaml)</li>
-<li><strong>Other Packages:</strong> captioner_2.2.3, dplyr_0.4.3, extrafont_0.17, FSA_0.7.10, FSAdata_0.2.1, knitr_1.11, magrittr_1.5, rmarkdown_0.8, stringr_1.0.0, tidyr_0.3.1</li>
-<li><strong>Loaded-Only Packages:</strong> assertthat_0.1, DBI_0.3.1, digest_0.6.8, evaluate_0.7.2, extrafontdb_1.0, formatR_1.2, gdata_2.17.0, gtools_3.5.0, highr_0.5, htmltools_0.2.6, lazyeval_0.1.10, parallel_3.2.2, plyr_1.8.3, R6_2.1.1, Rcpp_0.12.1, rsconnect_0.4.1.4, Rttf2pt1_1.3.3, stringi_0.5-5, tools_3.2.2, yaml_2.1.13</li>
+<li><strong>Required Packages:</strong> FSAdata, FSA, dplyr, captioner, knitr and their dependencies (assertthat, car, DBI, digest, evaluate, formatR, gdata, gplots, graphics, grDevices, highr, Hmisc, lazyeval, magrittr, markdown, methods, plotrix, plyr, R6, Rcpp, sciplot, stats, stringr, tools, utils, yaml)</li>
+<li><strong>Other Packages:</strong> captioner_2.2.3, dplyr_0.4.3, extrafont_0.17, FSA_0.8.4, FSAdata_0.3.2, knitr_1.11, magrittr_1.5, rmarkdown_0.8.1, stringr_1.0.0, tidyr_0.3.1</li>
+<li><strong>Loaded-Only Packages:</strong> assertthat_0.1, DBI_0.3.1, digest_0.6.8, evaluate_0.8, extrafontdb_1.0, formatR_1.2.1, gdata_2.17.0, gtools_3.5.0, highr_0.5.1, htmltools_0.2.6, lazyeval_0.1.10, parallel_3.2.2, plyr_1.8.3, R6_2.1.1, Rcpp_0.12.1, Rttf2pt1_1.3.3, stringi_1.0-1, tools_3.2.2, yaml_2.1.13</li>
 <li><strong>Links:</strong> <a href="CommonAxisLabels.R">Script</a> / <a href="CommonAxisLabels.Rmd">RMarkdown</a></li>
 </ul>
 <hr />
