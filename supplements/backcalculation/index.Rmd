@@ -88,6 +88,8 @@ wb90 <- filterD(SMBassWB,yearcap==1990) %>%
   select(-(species:gear),-(anu10:anu12))
 ```
 
+\ 
+
 ## Terminology
 Two types of measurements can be made on calcified structures.  A *radial* measurement is the total distance from the center of the structure (e.g., focus of scale or nucleus of otolith) to the edge of an annulus.  An *incremental* measurement is the distance between two successive annuli.  Radial measurements are required for back-calculation of fish length.
 
@@ -99,6 +101,8 @@ $$ E(L_{C}|S_{C})=c+dS_{C} \quad \quad \text{`r paste0("(",eqncaps("BackCalcELS"
 
 \noindent Fitting these regressions is demonstrated [below](#scale-length-relationships).
 
+
+\ 
 
 ## Common Back-Calculation Models
 The first back-calculation model was jointly developed by Knut Dahl and Einar Lea and appeared in @Lea1910.  The underlying concept of the *Dahl-Lea model* is that growth of the calcified structure is in exact proportion to growth in length of the fish.  With this, the ratio of $S_{i}$ to $S_{C}$ is the same as the ratio of $L_{i}$ to $L_{C}$.  Rearrangement of this equality yields the Dahl-Lea back-calculation model
@@ -197,9 +201,9 @@ addCalc(Si,Li,Sc,Lc,int)
 
 $$ L_{i}=\frac{S_{i}}{S_{C}}(L_{C}-c)+c \quad \quad \text{`r paste0("(",eqncaps("BackCalcFraserLee",display="num"),")")`} $$
 
-\noindent where $c$ comes from the length of the fish at the time of scale formation, the intercept of the length-scale relationship regression (e.g., from `r eqncaps("BackCalcELS",display="cite")`), or from published "standards" for a species (e.g., @Carlander1982).  The Fraser-Lee model describes a family of lines with an intercept of $c$ that pass through the ($S_{C},L_{C}$) point (@Francis1990; `r figcaps("BackCalcEx704",display="cite")`).
+\noindent where $c$ comes from the length of the fish at the time of scale formation, the intercept of the length-scale relationship regression (e.g., from `r eqncaps("BackCalcELS",display="cite")`), or from published "standards" for a species [@Carlander1982].  The Fraser-Lee model describes a family of lines with an intercept of $c$ that pass through the ($S_{C},L_{C}$) point (@Francis1990; `r figcaps("BackCalcEx704",display="cite")`).
 
-The *scale proportional hypothesis* (SPH) model was named by @Francis1990}, but was first recognized by @WhitneyCarlander1956 when they said "*{i}f the scale was 10 per cent larger when the fish was caught than the average scale for that size of fish, [then] the scale would be 10 per cent larger than normal throughout the life.*"  If "average" and "normal" are considered to be expected values, then this hypothesis can be written as
+The *scale proportional hypothesis* (SPH) model was named by @Francis1990, but was first recognized by @WhitneyCarlander1956 when they said "*{i}f the scale was 10 per cent larger when the fish was caught than the average scale for that size of fish, [then] the scale would be 10 per cent larger than normal throughout the life.*"  If "average" and "normal" are considered to be expected values, then this hypothesis can be written as
 
 $$ \frac{S_{i}}{E[S|L_{i}]}=\frac{S_{C}}{E[S|L_{C}]} $$
 
@@ -229,6 +233,8 @@ The linear BPH model produces a family of lines that have an intercept of $\frac
 
 @VigliolaMeekan2009 described 18 other models for the back-calculation of fish length.  Functions for each of these models can be created with `bcFuns()` from `FSA`.
 
+
+\ 
 
 ## Data Organization & Manipulation
 In *wide* or *one-fish-per-line* format, all information about a single fish, including all of the measurements from the calcified structure, is in one row of the data.frame.  The `wb90` data.frame contains radial measurments in the wide format (note that the portion shown below has four rows with columns that wrapped).
@@ -262,6 +268,8 @@ wb90r %<>% mutate(agei=as.numeric(agei)) %>%
   filterD(agei<=agecap)
 headtail(wb90r)
 ```
+
+\ 
 
 ## Computing Back-Calculated Lengths
 
