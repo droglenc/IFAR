@@ -242,23 +242,23 @@ In *wide* or *one-fish-per-line* format, all information about a single fish, in
 headtail(wb90,n=2)
 ```
 
-As mentioned previously, for the back-calculation of fish length, these data must be radial, and not incremental, measurements.  If the `wb90` data.frame had contained incremental measurements, then it could be converted to radial measurements with `gConvert()` from `FSA`.  The `gConvert()` function requires the data frame with the incremental measurements as the first argument, the prefix (in quotes) for the columns that contain the incremental measurements in `in.pre=`, and the type of measurement to **convert to** in `out.type=` (the options are `"rad"` (the default) or `"inc"`).  For example, the code below would create a new data.frame from `wb90` with radial measurements (IF `wb90` had incremental measurements).
+For the back-calculation of fish length, these data must be radial, and not incremental, measurements.  If the `wb90` data.frame had contained incremental measurements, then it could be converted to radial measurements with `gConvert()` from `FSA`.  The `gConvert()` function requires the data frame with the incremental measurements as the first argument, the prefix (in quotes) for the columns that contain the incremental measurements in `in.pre=`, and the type of measurement to **convert to** in `out.type=` (the options are `"rad"` (the default) or `"inc"`).  For example, the code below would create a new data.frame from `wb90` with radial measurements (**IF** `wb90` had incremental measurements).
 ```{r eval=FALSE}
 wb90A <- gConvert(wb90,in.pre="anu",out.type="rad")
 ```
 
-For efficient back-calculation, the data must also be converted to *long* or *one-measurement-per-line* format.  As demonstrated in the main chapter, wide data may be converted to long data with `gather()` from `tidyr`.  As a reminder, the arguments to `gather()` are the wide data.frame, a name for the new variable in the long format that will identify the individual (which radial measurement), a name for the new variable in the long format that will be the value for the individual (radial measurement), and the variables in the wide format that contain the measurements.
+For efficient back-calculation, the data must also be converted to *long* or *one-measurement-per-line* format.  As demonstrated in the **IFAR** book, wide data may be converted to long data with `gather()` from `tidyr`.  As a reminder, the arguments to `gather()` are the wide data.frame, a name for the new variable in the long format that will identify the individual (i.e., which radial measurement), a name for the new variable in the long format that will be the value for the individual (i.e., the radial measurement), and the variables in the wide format that contain the measurements.
 ```{r }
 wb90r <- gather(wb90,agei,radi,anu1:anu9) %>%
   arrange(fish,agei)
 headtail(wb90r)
 ```
 
-As noted in the main chapter, there are three potential problems with this result.  First, the new `agei` variable contains the names of the variables from the original wide format (e.g., `anu1`, `anu2`) rather than numbers that correspond to the age that the annulus was formed.  Converting these labels to numbers begins by replacing the "anu" prefix with blanks (or an empty string) using `str_sub()` with the vector of names as the first argument, `start=1` (because "anu" is a prefix) and `end=3` (because "anu" is three characters long).  The result from `str_sub()`, however, is a character that must then be converted to a numeric with `as.numeric()`.
+As noted in the **IFAR** book, there are three potential problems with this result.  First, the new `agei` variable contains the names of the variables from the original wide format data.frame (e.g., `anu1`, `anu2`) rather than numbers that correspond to the age that the annulus was formed.  Converting these labels to numbers begins by replacing the "anu" prefix with blanks (or an empty string) using `str_sub()` with the vector of names as the first argument, `start=1` (because "anu" is a prefix) and `end=3` (because "anu" is three characters long).  The result from `str_sub()`, however, is a character that must then be converted to a numeric with `as.numeric()`.
 
 The second problem is that several of the radial measurements contain `NA` values.  The non-`NA` values are found and retained by using `!is.na()` within `filterD()`.
 
-The third problem, while not an issue with these particular data, is that "plus growth" may have been recorded.  "Plus growth" is growth on the margin of the calcified structure that is not complete and does not represent a full year of growth.  If "plus growth" is present, then the new `agei} variable will have a value greater than the age-at-capture value.  These instances should be removed from the new long format data.frame.
+The third problem, while not an issue with these particular data, is that "plus growth" may have been recorded.  "Plus growth" is growth on the margin of the calcified structure that does not represent a complete year of growth.  If "plus growth" is present, then the new `agei` variable will have a value greater than the age-at-capture value.  These instances should be removed from the new long format data.frame.
 
 The following code adjusts for these three issues.
 ```{r }
@@ -274,7 +274,7 @@ headtail(wb90r)
 ## Computing Back-Calculated Lengths
 
 ### Scale-Length Relationships
-The scale-length (`r eqncaps("BackCalcESL",display="cite")`) and length-scale (`r eqncaps("BackCalcELS",display="cite")`) relationships required for all but the Dahl-Lea method are computed with the wide format data.  Thus, the wide data must contain the length of the fish (e.g., `lencap`) and the total radius of the calcified structure (e.g., `radcap`) at the time of capture.  Both linear relationships are fit with `lm()` and the coefficients are extracted with `coef()` and saved into objects.
+The scale-length (`r eqncaps("BackCalcESL",display="cite")`) and length-scale (`r eqncaps("BackCalcELS",display="cite")`) relationships required for all but the Dahl-Lea method are computed with the wide format data.  Thus, the wide format data.frame must contain the length of the fish (e.g., `lencap`) and the total radius of the calcified structure (e.g., `radcap`) at the time of capture.  Both linear relationships are fit with `lm()` and the coefficients should be extracted with `coef()` and saved into objects.
 ```{r }
 lm.sl <- lm(radcap~lencap,data=wb90)
 ( a <- coef(lm.sl)[[1]] )
@@ -287,7 +287,7 @@ lm.ls <- lm(lencap~radcap,data=wb90)
 
 ### Applying the Back-Calculation Models
 
-The $L_{i}$ estimated with a back-calculation model are most easily added to the long format data.  This is largely an exercise of adding a variable to the data.frame with `mutate()` from `dplyr`.  For example, $L_{i}$ computed with all four back-calculation models are added to `wb90r` below.
+The $L_{i}$ estimated with a back-calculation model are most easily added to the long format data.frame.  This is largely an exercise in adding a variable to the data.frame with `mutate()` from `dplyr`.  For example, the $L_{i}$ computed with all four back-calculation models are added to `wb90r` below.
 ```{r }
 wb90r %<>% mutate(DL.len=(radi/radcap)*lencap,
                   FL.len=(radi/radcap)*(lencap-c)+c,
@@ -298,13 +298,14 @@ headtail(wb90r,n=2)
 
 For example, the mean length-at-age may be computed from the back-calculated lengths (shown below for the Fraser-Lee results).
 ```{r }
-tmp <- wb90r %>% group_by(agei) %>%
+tmp <- wb90r %>%
+  group_by(agei) %>%
   summarize(n=validn(FL.len),mn=mean(FL.len),sd=sd(FL.len)) %>%
   as.data.frame()
 tmp
 ```
 
-Additionally, the mean length at each back-calculated age computed separately for each age-at-capture may be computed with `sumTable()` from `FSA`.
+Additionally, the mean length at each back-calculated age computed separately for each age-at-capture may be computed with `sumTable()` from `FSA`, where the left side of the formula is the quantitative variable to be summarized and the right side has grouping variables presented in `row*column` format.
 ```{r warning=FALSE}
 sumTable(FL.len~agecap*agei,data=wb90r,digits=1)
 ```

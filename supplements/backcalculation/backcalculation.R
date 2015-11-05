@@ -142,7 +142,8 @@ wb90r %<>% mutate(DL.len=(radi/radcap)*lencap,
                   BPH.len=lencap*(c+d*radi)/(c+d*radcap))
 headtail(wb90r,n=2)
 
-tmp <- wb90r %>% group_by(agei) %>%
+tmp <- wb90r %>%
+  group_by(agei) %>%
   summarize(n=validn(FL.len),mn=mean(FL.len),sd=sd(FL.len)) %>%
   as.data.frame()
 tmp
@@ -150,4 +151,4 @@ tmp
 sumTable(FL.len~agecap*agei,data=wb90r,digits=1)
 
 
-# Script created at 2015-11-05 12:01:30
+# Script created at 2015-11-05 12:29:30

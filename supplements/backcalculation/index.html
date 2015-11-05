@@ -87,9 +87,9 @@ css: "/css/codebox.css"
 2        NA      NA       NA  1.57989
 180 7.27807 8.08080  9.38096  9.38096
 181 8.32094 9.46362 10.43491 10.43491</code></pre>
-<p>As mentioned previously, for the back-calculation of fish length, these data must be radial, and not incremental, measurements. If the <code>wb90</code> data.frame had contained incremental measurements, then it could be converted to radial measurements with <code>gConvert()</code> from <code>FSA</code>. The <code>gConvert()</code> function requires the data frame with the incremental measurements as the first argument, the prefix (in quotes) for the columns that contain the incremental measurements in <code>in.pre=</code>, and the type of measurement to <strong>convert to</strong> in <code>out.type=</code> (the options are <code>&quot;rad&quot;</code> (the default) or <code>&quot;inc&quot;</code>). For example, the code below would create a new data.frame from <code>wb90</code> with radial measurements (IF <code>wb90</code> had incremental measurements).</p>
+<p>For the back-calculation of fish length, these data must be radial, and not incremental, measurements. If the <code>wb90</code> data.frame had contained incremental measurements, then it could be converted to radial measurements with <code>gConvert()</code> from <code>FSA</code>. The <code>gConvert()</code> function requires the data frame with the incremental measurements as the first argument, the prefix (in quotes) for the columns that contain the incremental measurements in <code>in.pre=</code>, and the type of measurement to <strong>convert to</strong> in <code>out.type=</code> (the options are <code>&quot;rad&quot;</code> (the default) or <code>&quot;inc&quot;</code>). For example, the code below would create a new data.frame from <code>wb90</code> with radial measurements (<strong>IF</strong> <code>wb90</code> had incremental measurements).</p>
 <pre class="r"><code>&gt; wb90A &lt;- gConvert(wb90,in.pre=&quot;anu&quot;,out.type=&quot;rad&quot;)</code></pre>
-<p>For efficient back-calculation, the data must also be converted to <em>long</em> or <em>one-measurement-per-line</em> format. As demonstrated in the main chapter, wide data may be converted to long data with <code>gather()</code> from <code>tidyr</code>. As a reminder, the arguments to <code>gather()</code> are the wide data.frame, a name for the new variable in the long format that will identify the individual (which radial measurement), a name for the new variable in the long format that will be the value for the individual (radial measurement), and the variables in the wide format that contain the measurements.</p>
+<p>For efficient back-calculation, the data must also be converted to <em>long</em> or <em>one-measurement-per-line</em> format. As demonstrated in the <strong>IFAR</strong> book, wide data may be converted to long data with <code>gather()</code> from <code>tidyr</code>. As a reminder, the arguments to <code>gather()</code> are the wide data.frame, a name for the new variable in the long format that will identify the individual (i.e., which radial measurement), a name for the new variable in the long format that will be the value for the individual (i.e., the radial measurement), and the variables in the wide format that contain the measurements.</p>
 <pre class="r"><code>&gt; wb90r &lt;- gather(wb90,agei,radi,anu1:anu9) %&gt;%
     arrange(fish,agei)
 &gt; headtail(wb90r)</code></pre>
@@ -100,9 +100,9 @@ css: "/css/codebox.css"
 1627    1990  998      7    298 8.54805 anu7 8.54805
 1628    1990  998      7    298 8.54805 anu8      NA
 1629    1990  998      7    298 8.54805 anu9      NA</code></pre>
-<p>As noted in the main chapter, there are three potential problems with this result. First, the new <code>agei</code> variable contains the names of the variables from the original wide format (e.g., <code>anu1</code>, <code>anu2</code>) rather than numbers that correspond to the age that the annulus was formed. Converting these labels to numbers begins by replacing the “anu” prefix with blanks (or an empty string) using <code>str_sub()</code> with the vector of names as the first argument, <code>start=1</code> (because “anu” is a prefix) and <code>end=3</code> (because “anu” is three characters long). The result from <code>str_sub()</code>, however, is a character that must then be converted to a numeric with <code>as.numeric()</code>.</p>
+<p>As noted in the <strong>IFAR</strong> book, there are three potential problems with this result. First, the new <code>agei</code> variable contains the names of the variables from the original wide format data.frame (e.g., <code>anu1</code>, <code>anu2</code>) rather than numbers that correspond to the age that the annulus was formed. Converting these labels to numbers begins by replacing the “anu” prefix with blanks (or an empty string) using <code>str_sub()</code> with the vector of names as the first argument, <code>start=1</code> (because “anu” is a prefix) and <code>end=3</code> (because “anu” is three characters long). The result from <code>str_sub()</code>, however, is a character that must then be converted to a numeric with <code>as.numeric()</code>.</p>
 <p>The second problem is that several of the radial measurements contain <code>NA</code> values. The non-<code>NA</code> values are found and retained by using <code>!is.na()</code> within <code>filterD()</code>.</p>
-<p>The third problem, while not an issue with these particular data, is that “plus growth” may have been recorded. “Plus growth” is growth on the margin of the calcified structure that is not complete and does not represent a full year of growth. If “plus growth” is present, then the new `agei} variable will have a value greater than the age-at-capture value. These instances should be removed from the new long format data.frame.</p>
+<p>The third problem, while not an issue with these particular data, is that “plus growth” may have been recorded. “Plus growth” is growth on the margin of the calcified structure that does not represent a complete year of growth. If “plus growth” is present, then the new <code>agei</code> variable will have a value greater than the age-at-capture value. These instances should be removed from the new long format data.frame.</p>
 <p>The following code adjusts for these three issues.</p>
 <pre class="r"><code>&gt; str_sub(wb90r$agei,start=1,end=3) &lt;- &quot;&quot;
 &gt; wb90r %&lt;&gt;% mutate(agei=as.numeric(agei)) %&gt;%
@@ -122,7 +122,7 @@ css: "/css/codebox.css"
 <h2>Computing Back-Calculated Lengths</h2>
 <div id="scale-length-relationships" class="section level3">
 <h3>Scale-Length Relationships</h3>
-<p>The scale-length (Equation 1) and length-scale (Equation 2) relationships required for all but the Dahl-Lea method are computed with the wide format data. Thus, the wide data must contain the length of the fish (e.g., <code>lencap</code>) and the total radius of the calcified structure (e.g., <code>radcap</code>) at the time of capture. Both linear relationships are fit with <code>lm()</code> and the coefficients are extracted with <code>coef()</code> and saved into objects.</p>
+<p>The scale-length (Equation 1) and length-scale (Equation 2) relationships required for all but the Dahl-Lea method are computed with the wide format data. Thus, the wide format data.frame must contain the length of the fish (e.g., <code>lencap</code>) and the total radius of the calcified structure (e.g., <code>radcap</code>) at the time of capture. Both linear relationships are fit with <code>lm()</code> and the coefficients should be extracted with <code>coef()</code> and saved into objects.</p>
 <pre class="r"><code>&gt; lm.sl &lt;- lm(radcap~lencap,data=wb90)
 &gt; ( a &lt;- coef(lm.sl)[[1]] )</code></pre>
 <pre><code>[1] -1.304391</code></pre>
@@ -136,7 +136,7 @@ css: "/css/codebox.css"
 </div>
 <div id="applying-the-back-calculation-models" class="section level3">
 <h3>Applying the Back-Calculation Models</h3>
-<p>The <span class="math">\(L_{i}\)</span> estimated with a back-calculation model are most easily added to the long format data. This is largely an exercise of adding a variable to the data.frame with <code>mutate()</code> from <code>dplyr</code>. For example, <span class="math">\(L_{i}\)</span> computed with all four back-calculation models are added to <code>wb90r</code> below.</p>
+<p>The <span class="math">\(L_{i}\)</span> estimated with a back-calculation model are most easily added to the long format data.frame. This is largely an exercise in adding a variable to the data.frame with <code>mutate()</code> from <code>dplyr</code>. For example, the <span class="math">\(L_{i}\)</span> computed with all four back-calculation models are added to <code>wb90r</code> below.</p>
 <pre class="r"><code>&gt; wb90r %&lt;&gt;% mutate(DL.len=(radi/radcap)*lencap,
                     FL.len=(radi/radcap)*(lencap-c)+c,
                     SPH.len=(-a/b)+(lencap+a/b)*(radi/radcap),
@@ -153,7 +153,8 @@ css: "/css/codebox.css"
 766 239.17509 241.01809
 767 298.00000 298.00000</code></pre>
 <p>For example, the mean length-at-age may be computed from the back-calculated lengths (shown below for the Fraser-Lee results).</p>
-<pre class="r"><code>&gt; tmp &lt;- wb90r %&gt;% group_by(agei) %&gt;%
+<pre class="r"><code>&gt; tmp &lt;- wb90r %&gt;%
+    group_by(agei) %&gt;%
     summarize(n=validn(FL.len),mn=mean(FL.len),sd=sd(FL.len)) %&gt;%
     as.data.frame()
 &gt; tmp</code></pre>
@@ -167,7 +168,7 @@ css: "/css/codebox.css"
 7    7  50 268.5969 25.286958
 8    8   2 283.2237 26.912010
 9    9   2 314.5000 20.506097</code></pre>
-<p>Additionally, the mean length at each back-calculated age computed separately for each age-at-capture may be computed with <code>sumTable()</code> from <code>FSA</code>.</p>
+<p>Additionally, the mean length at each back-calculated age computed separately for each age-at-capture may be computed with <code>sumTable()</code> from <code>FSA</code>, where the left side of the formula is the quantitative variable to be summarized and the right side has grouping variables presented in <code>row*column</code> format.</p>
 <pre class="r"><code>&gt; sumTable(FL.len~agecap*agei,data=wb90r,digits=1)</code></pre>
 <pre><code>     1     2     3     4     5     6     7     8     9
 1 73.7    NA    NA    NA    NA    NA    NA    NA    NA
@@ -184,7 +185,7 @@ css: "/css/codebox.css"
 <h2>Reproducibility Information</h2>
 <ul>
 <li><strong>Compiled Date:</strong> Thu Nov 05 2015</li>
-<li><strong>Compiled Time:</strong> 12:01:29 PM</li>
+<li><strong>Compiled Time:</strong> 12:29:29 PM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>
