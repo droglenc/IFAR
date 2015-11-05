@@ -10,7 +10,7 @@ rqrd <- c("FSAdata","FSA","dplyr","captioner","knitr")
 # setup figure, table, and equation captioning
 library(captioner)
 figcaps <- captioner(prefix="Figure")
-figcaps("Layout1","Illustration of 2x2 layout grid for graphics.")
+figcaps("Layout1","Illustration of 2x2 layout grid for graph.")
 figcaps("Layout2","Illustration of layout grid for graphics with one graph in first row and two in the second row.")
 figcaps("Layout3","Illustration of layout grid for graphics with one graph in first row and two in the second row.")
 figcaps("Layout4","Illustration of layout grid for graphics with differing row heights and column widths.")
@@ -133,4 +133,4 @@ plot(fl~age,data=BTO2,xlab="Age",ylab="",
      pch=19,xlim=xlmt,ylim=ylmt)
 
 
-# Script created at 2015-11-05 13:17:00
+# Script created at 2015-11-05 17:33:10

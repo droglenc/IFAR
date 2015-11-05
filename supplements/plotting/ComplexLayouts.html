@@ -7,7 +7,7 @@ css: "/css/codebox.css"
 ---
 
 
-<p>Several methods for modifying base graphics were shown in the book, including simple layouts (side-by-side, one-over-the-other) of multiple plots. More complex layouts (e.g., plot in first row spans two columns or unequal sized plots) are described in this supplement. Creating common x- and y-axis labels for a grid of plots is <a href="CommonAxisLabels.html">described in this supplement</a>.</p>
+<p>Several methods for modifying base graphics were shown in the <strong>IFAR</strong> book, including simple layouts (side-by-side, one-over-the-other) of multiple plots. More complex layouts (e.g., plot in first row spans two columns or unequal sized plots) are described in this supplement. Creating common x- and y-axis labels for a grid of plots is <a href="CommonAxisLabels.html">described in this supplement</a>.</p>
 <div id="required-packages-for-this-supplement" class="section level3">
 <h3>Required Packages for this Supplement</h3>
 <p>Functions used in this supplement require the packages shown below.</p>
@@ -17,7 +17,7 @@ css: "/css/codebox.css"
 </div>
 <div id="data-used-in-this-supplement" class="section level3">
 <h3>Data Used in this Supplement</h3>
-<p>The <code>BullTroutRML2</code> and <code>BloaterLH</code> data from <code>FSAdata</code> in the <strong>IFAR</strong> book are also used in this supplement.</p>
+<p>The <code>BullTroutRML2</code> and <code>BloaterLH</code> data from <code>FSAdata</code> used in the <strong>IFAR</strong> book are also used in this supplement.</p>
 <pre class="r"><code>&gt; data(BullTroutRML2)
 &gt; BT &lt;- BullTroutRML2
 &gt; headtail(BT)</code></pre>
@@ -42,17 +42,17 @@ css: "/css/codebox.css"
 </div>
 <div id="complex-grid-layouts-with-layout" class="section level2">
 <h2>Complex Grid Layouts with <code>layout()</code></h2>
-<p>The <code>layout()</code> function allows for more complicated organizations of graphics. The only required argument to <code>layout()</code> is a matrix that specifies the positions, as a grid, for a series of plots. The numbers in the matrix describe which graphic will appear in that position. For example, the following code constructs a 2x2 grid for four plots where the first plot will appear in the lower-right corner and the last plot will appear in the upper-left corner.</p>
+<p>The <code>layout()</code> function allows for more complicated organizations of graph. The only required argument to <code>layout()</code> is a matrix that specifies the positions, as a grid, for a series of plots. The numbers in the matrix describe which sequential graphs will appear in that position. For example, the following code constructs a 2x2 grid for four plots where the first plot will appear in the lower-right corner and the last (fourth) plot will appear in the upper-left corner.</p>
 <pre class="r"><code>&gt; ( m &lt;- matrix(4:1,nrow=2,byrow=TRUE) )</code></pre>
 <pre><code>     [,1] [,2]
 [1,]    4    3
 [2,]    2    1</code></pre>
 <pre class="r"><code>&gt; layout(m)</code></pre>
-<p>The <code>layout.show()</code> function is used to show the layout grid. Its only argument is the number of positions to show.</p>
+<p>The <code>layout.show()</code> function is used to show the layout grid. Its only argument is the number of positions to show. The example below illustrates the layout created above.</p>
 <pre class="r"><code>&gt; layout.show(4)</code></pre>
 <p><img src="ComplexLayouts_files/figure-html/Layout1-1.png" title="" alt="" width="336" /></p>
-<p>Figure 1: Illustration of 2x2 layout grid for graphics.</p>
-<p>The 2x2 grid in Figure 1 is not that interesting because that layout is just as easily constructed with <code>mfrow=</code> in <code>par()</code> (as shown in the <strong>IFAR</strong> book). Layouts, however, can also be constructed that are not “grids.” For example, the entire first row may be one graphic with a second row of two graphics. This layout grid is constructed by including a “1” in the first two positions of the layout matrix Figure 2.</p>
+<p>Figure 1: Illustration of 2x2 layout grid for graph.</p>
+<p>The 2x2 grid in Figure 1 is not that interesting because that layout is just as easily constructed with <code>mfrow=</code> in <code>par()</code> (as shown in the <strong>IFAR</strong> book). Layouts, however, can also be constructed that are not “grids.” For example, the entire first row may be one graph with a second row of two graph. This layout grid is constructed by including a “1” in the first two positions of the layout matrix Figure 2.</p>
 <pre class="r"><code>&gt; ( m &lt;- matrix(c(1,1,2,3),nrow=2,byrow=TRUE) )</code></pre>
 <pre><code>     [,1] [,2]
 [1,]    1    1
@@ -127,7 +127,7 @@ css: "/css/codebox.css"
 <h2>Reproducibility Information</h2>
 <ul>
 <li><strong>Compiled Date:</strong> Thu Nov 05 2015</li>
-<li><strong>Compiled Time:</strong> 1:16:57 PM</li>
+<li><strong>Compiled Time:</strong> 5:32:57 PM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>

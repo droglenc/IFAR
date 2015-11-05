@@ -22,7 +22,7 @@ if (require(FSA)) purl2("ComplexLayouts.Rmd",topnotes="User must set working dir
 ##############################################################
 ```
 
-Several methods for modifying base graphics were shown in the book, including simple layouts (side-by-side, one-over-the-other) of multiple plots.  More complex layouts (e.g., plot in first row spans two columns or unequal sized plots) are described in this supplement.  Creating common x- and y-axis labels for a grid of plots is [described in this supplement](CommonAxisLabels.html).
+Several methods for modifying base graphics were shown in the **IFAR** book, including simple layouts (side-by-side, one-over-the-other) of multiple plots.  More complex layouts (e.g., plot in first row spans two columns or unequal sized plots) are described in this supplement.  Creating common x- and y-axis labels for a grid of plots is [described in this supplement](CommonAxisLabels.html).
 
 ### Required Packages for this Supplement
 
@@ -39,7 +39,7 @@ rqrd <- c("FSAdata","FSA","dplyr","captioner","knitr")
 # setup figure, table, and equation captioning
 library(captioner)
 figcaps <- captioner(prefix="Figure")
-figcaps("Layout1","Illustration of 2x2 layout grid for graphics.")
+figcaps("Layout1","Illustration of 2x2 layout grid for graph.")
 figcaps("Layout2","Illustration of layout grid for graphics with one graph in first row and two in the second row.")
 figcaps("Layout3","Illustration of layout grid for graphics with one graph in first row and two in the second row.")
 figcaps("Layout4","Illustration of layout grid for graphics with differing row heights and column widths.")
@@ -56,7 +56,7 @@ library(dplyr)
 
 ### Data Used in this Supplement
 
-The `BullTroutRML2` and `BloaterLH` data from `FSAdata` in the **IFAR** book are also used in this supplement.
+The `BullTroutRML2` and `BloaterLH` data from `FSAdata` used in the **IFAR** book are also used in this supplement.
 
 ```{r warning=FALSE, message=FALSE}
 data(BullTroutRML2)
@@ -66,17 +66,18 @@ data(BloaterLH)
 BLH <- BloaterLH
 headtail(BLH)
 ```
+
 \ 
 
 ## Complex Grid Layouts with `layout()`
-The `layout()` function allows for more complicated organizations of graphics.  The only required argument to `layout()` is a matrix that specifies the positions, as a grid, for a series of plots.  The numbers in the matrix describe which graphic will appear in that position.  For example, the following code constructs a 2x2 grid for four plots where the first plot will appear in the lower-right corner and the last plot will appear in the upper-left corner.
+The `layout()` function allows for more complicated organizations of graph.  The only required argument to `layout()` is a matrix that specifies the positions, as a grid, for a series of plots.  The numbers in the matrix describe which sequential graphs will appear in that position.  For example, the following code constructs a 2x2 grid for four plots where the first plot will appear in the lower-right corner and the last (fourth) plot will appear in the upper-left corner.
 
 ```{r Layout1pre}
 ( m <- matrix(4:1,nrow=2,byrow=TRUE) )
 layout(m)
 ```
 
-The `layout.show()` function is used to show the layout grid.  Its only argument is the number of positions to show.
+The `layout.show()` function is used to show the layout grid.  Its only argument is the number of positions to show.  The example below illustrates the layout created above.
 
 ```{r Layout1, echo=-c(1:6), results='hide', fig.width=figsz, fig.height=figsz}
 # ############################################################
@@ -89,7 +90,7 @@ layout.show(4)
 
 `r figcaps("Layout1")`
 
-The 2x2 grid in `r figcaps("Layout1",display="cite")` is not that interesting because that layout is just as easily constructed with `mfrow=` in `par()` (as shown in the **IFAR** book).  Layouts, however, can also be constructed that are not "grids."  For example, the entire first row may be one graphic with a second row of two graphics.  This layout grid is constructed by including a "1" in the first two positions of the layout matrix `r figcaps("Layout2",display="cite")`.
+The 2x2 grid in `r figcaps("Layout1",display="cite")` is not that interesting because that layout is just as easily constructed with `mfrow=` in `par()` (as shown in the **IFAR** book).  Layouts, however, can also be constructed that are not "grids."  For example, the entire first row may be one graph with a second row of two graph.  This layout grid is constructed by including a "1" in the first two positions of the layout matrix `r figcaps("Layout2",display="cite")`.
 
 ```{r Layout2pre, echo=FALSE, results='hide'}
 # ############################################################
