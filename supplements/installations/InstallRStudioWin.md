@@ -5,6 +5,14 @@ subtitle: For Windows
 css: /css/directions.css
 ---
 
+----
+
+<p style="text-align: center;>
+[Installing](#installing-rstudio) / [Configuring](#configuring-rstudio) / [Introducing](#introducing-rstudio)
+</p>
+
+----
+
 ## What is RStudio?
 
 R is an open-source software environment for statistical computing and graphics that runs on Windows, Mac OS, and many UNIX platforms.  Unlike many other programs, users interact with R through a command line rather than through a graphical user interface.    While such an interface may be unfamiliar to many users, its primary strength is the ability for users to develop scripts of commands to perform various analyses that can then be easily repeated.

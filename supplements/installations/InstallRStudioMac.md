@@ -5,7 +5,12 @@ subtitle: For Mac OS
 css: /css/directions.css
 ---
 
-------
+----
+
+<p style="text-align: center;>
+[Installing](#installing-rstudio) / [Configuring](#configuring-rstudio) / [Introducing](#introducing-rstudio)
+</p>
+----
 
 ## What is RStudio?
 
