@@ -37,6 +37,8 @@ if (require(FSA)) purl2("index.Rmd",newname="backcalculation",topnotes="User mus
 
 @Francis1990 defined *back-calculation* as "*... a technique that uses a set of measurements made on a fish at one time to infer its length at an earlier time or times.  Specifically, the dimensions of one or more marks in some hard part of the fish, together with its current body length, are used to estimate its length at the time of formation of each of the marks. ... The marks are generally annual rings associated with growth checks, ... .*"  Thus, backcalculation is the reconstruction of the length of a fish at previous ages from measurements made on calcified structures.
 
+\ 
+
 ### Required Packages for this Supplement
 Functions used in this supplement require the packages shown below.
 ```{r echo=FALSE, results='hide', message=FALSE, warnings=FALSE}
@@ -72,6 +74,7 @@ library(tidyr)
 library(stringr)
 ```
 
+\ 
 
 ### Data Used in this Supplement
 All analyses in this supplement use the West Bearskin Lake Smallmouth Bass (*Micropterus dolomieu*) data from @Weisberg1993 in `SMBassWB` ([view](https://github.com/droglenc/FSA/blob/master/data-raw/SMBassWB.csv), [download](https://raw.githubusercontent.com/droglenc/FSA/master/data-raw/SMBassWB.csv), [meta-data](http://derekogle.com/fishR/data/data-html/SMBassWB.html)) of `FSA`.  The analysis in this supplement will focus on those fish captured in 1990.  Three variables that were constant and not used in this analysis and three measurement variables that corresponded to ages that did not exist after reducing to only 1990 were removed to save space.
