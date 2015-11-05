@@ -39,10 +39,10 @@ rqrd <- c("FSAdata","FSA","dplyr","captioner","knitr")
 # setup figure, table, and equation captioning
 library(captioner)
 figcaps <- captioner(prefix="Figure")
-figcaps("Layout1","Illustration of 2x2 layout grid for graph.")
-figcaps("Layout2","Illustration of layout grid for graphics with one graph in first row and two in the second row.")
-figcaps("Layout3","Illustration of layout grid for graphics with one graph in first row and two in the second row.")
-figcaps("Layout4","Illustration of layout grid for graphics with differing row heights and column widths.")
+figcaps("Layout1","Illustration of 2x2 layout grid for graphics.")
+figcaps("Layout2","Illustration of layout grid for graphics with one plot in the first row and two in the second row.")
+figcaps("Layout3","Illustration of a plot with one subplot in the first row and two in the second row.")
+figcaps("Layout4","Illustration of layout grid for plots with differing row heights and column widths.")
 figcaps("Layout5","Illustration of layout grid with differing heights and widths such that a scatterplot appears in the 'middle' with corresponding boxplots on the 'sides.'")
 figcaps("Layout6","Illustration of layout grid with differing heights and widths such that labels can be placed on the sides.")
 # == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
@@ -70,7 +70,7 @@ headtail(BLH)
 \ 
 
 ## Complex Grid Layouts with `layout()`
-The `layout()` function allows for more complicated organizations of graph.  The only required argument to `layout()` is a matrix that specifies the positions, as a grid, for a series of plots.  The numbers in the matrix describe which sequential graphs will appear in that position.  For example, the following code constructs a 2x2 grid for four plots where the first plot will appear in the lower-right corner and the last (fourth) plot will appear in the upper-left corner.
+The `layout()` function allows for more complicated organizations of plots.  The only required argument to `layout()` is a matrix that specifies the positions, as a grid, for a series of plots.  The numbers in the matrix describe which sequential plot will appear in that position.  For example, the following code constructs a 2x2 grid for four plots where the first plot will appear in the lower-right corner and the last (fourth) plot will appear in the upper-left corner.
 
 ```{r Layout1pre}
 ( m <- matrix(4:1,nrow=2,byrow=TRUE) )
@@ -90,7 +90,7 @@ layout.show(4)
 
 `r figcaps("Layout1")`
 
-The 2x2 grid in `r figcaps("Layout1",display="cite")` is not that interesting because that layout is just as easily constructed with `mfrow=` in `par()` (as shown in the **IFAR** book).  Layouts, however, can also be constructed that are not "grids."  For example, the entire first row may be one graph with a second row of two graph.  This layout grid is constructed by including a "1" in the first two positions of the layout matrix `r figcaps("Layout2",display="cite")`.
+The 2x2 grid in `r figcaps("Layout1",display="cite")` is not that interesting because that layout is just as easily constructed with `mfrow=` in `par()` (as shown in the **IFAR** book).  Layouts, however, can also be constructed that are not "grids."  For example, the entire first row may be one plot with a second row of two plots.  This layout grid is constructed by including a "1" in the first two positions of the layout matrix (`r figcaps("Layout2",display="cite")`).
 
 ```{r Layout2pre, echo=FALSE, results='hide'}
 # ############################################################
@@ -125,7 +125,7 @@ hist(~age3,data=BLH,xlab="Age-3 Relative Abundance")
 
 `r figcaps("Layout3")`
 
-The size of the grids in the layout may be controlled with `height=` and `width=`.  These arguments accept vectors that represent the **relative** heights and widths of the rows and columns in the layout grid, respectively.  For example, `height=c(3,1)` sets the height of the first row to be three times larger than the height of the second row.  Including the `respect=TRUE` argument will assure that "unit distances" in the horizontal and vertical directions are treated the same.  An example layout with different cell sizes is constructed below and shown in `r figcaps("Layout4",display="cite")`.  Also note in this example, that a zero in a cell means that that cell will not receive a plot.
+The size of the plots in the layout may be controlled with `height=` and `width=`.  These arguments accept vectors that represent the **relative** heights and widths of the rows and columns in the layout grid, respectively.  For example, `height=c(3,1)` sets the height of the first row to be three times larger than the height of the second row.  Including the `respect=TRUE` argument will assure that "unit distances" in the horizontal and vertical directions are treated the same.  An example layout with different cell sizes is constructed below and shown in `r figcaps("Layout4",display="cite")`.  Also note in this example, that a zero in a cell means that that cell will not receive a plot.
 
 ```{r Layout4pre, echo=FALSE, results='hide'}
 # ############################################################
@@ -163,7 +163,7 @@ boxplot(BLH$age3,axes=FALSE,ylim=c(0,240))
 
 `r figcaps("Layout5")`
 
-Finally, `layout()` can be used to make quite complex grids, as illustrated with the code below that produced `r figcaps("Layout6",display="cite")`.  Note that `plot.new()` creates a new blank plot in which the subsequent `text()` commands will place text (in this case marginal labels).
+Finally, `layout()` may be used to make quite complex grids, as illustrated with the code below that produced `r figcaps("Layout6",display="cite")`.  Note that `plot.new()` creates a new blank plot in which the subsequent `text()` commands will place text (in this case marginal labels).
 
 ```{r fig.width=2*figsz, fig.height=2*figsz}
 BTH1 <- BT %>% filterD(lake=="Harrison",era=="1977-80")

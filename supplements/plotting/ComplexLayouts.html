@@ -42,7 +42,7 @@ css: "/css/codebox.css"
 </div>
 <div id="complex-grid-layouts-with-layout" class="section level2">
 <h2>Complex Grid Layouts with <code>layout()</code></h2>
-<p>The <code>layout()</code> function allows for more complicated organizations of graph. The only required argument to <code>layout()</code> is a matrix that specifies the positions, as a grid, for a series of plots. The numbers in the matrix describe which sequential graphs will appear in that position. For example, the following code constructs a 2x2 grid for four plots where the first plot will appear in the lower-right corner and the last (fourth) plot will appear in the upper-left corner.</p>
+<p>The <code>layout()</code> function allows for more complicated organizations of plots. The only required argument to <code>layout()</code> is a matrix that specifies the positions, as a grid, for a series of plots. The numbers in the matrix describe which sequential plot will appear in that position. For example, the following code constructs a 2x2 grid for four plots where the first plot will appear in the lower-right corner and the last (fourth) plot will appear in the upper-left corner.</p>
 <pre class="r"><code>&gt; ( m &lt;- matrix(4:1,nrow=2,byrow=TRUE) )</code></pre>
 <pre><code>     [,1] [,2]
 [1,]    4    3
@@ -51,8 +51,8 @@ css: "/css/codebox.css"
 <p>The <code>layout.show()</code> function is used to show the layout grid. Its only argument is the number of positions to show. The example below illustrates the layout created above.</p>
 <pre class="r"><code>&gt; layout.show(4)</code></pre>
 <p><img src="ComplexLayouts_files/figure-html/Layout1-1.png" title="" alt="" width="336" /></p>
-<p>Figure 1: Illustration of 2x2 layout grid for graph.</p>
-<p>The 2x2 grid in Figure 1 is not that interesting because that layout is just as easily constructed with <code>mfrow=</code> in <code>par()</code> (as shown in the <strong>IFAR</strong> book). Layouts, however, can also be constructed that are not “grids.” For example, the entire first row may be one graph with a second row of two graph. This layout grid is constructed by including a “1” in the first two positions of the layout matrix Figure 2.</p>
+<p>Figure 1: Illustration of 2x2 layout grid for graphics.</p>
+<p>The 2x2 grid in Figure 1 is not that interesting because that layout is just as easily constructed with <code>mfrow=</code> in <code>par()</code> (as shown in the <strong>IFAR</strong> book). Layouts, however, can also be constructed that are not “grids.” For example, the entire first row may be one plot with a second row of two plots. This layout grid is constructed by including a “1” in the first two positions of the layout matrix (Figure 2).</p>
 <pre class="r"><code>&gt; ( m &lt;- matrix(c(1,1,2,3),nrow=2,byrow=TRUE) )</code></pre>
 <pre><code>     [,1] [,2]
 [1,]    1    1
@@ -60,15 +60,15 @@ css: "/css/codebox.css"
 <pre class="r"><code>&gt; layout(m)
 &gt; layout.show(3)</code></pre>
 <p><img src="ComplexLayouts_files/figure-html/Layout2-1.png" title="" alt="" width="336" /></p>
-<p>Figure 2: Illustration of layout grid for graphics with one graph in first row and two in the second row.</p>
+<p>Figure 2: Illustration of layout grid for graphics with one plot in the first row and two in the second row.</p>
 <p>The following code fills this layout grid to produce Figure 3.</p>
 <pre class="r"><code>&gt; plot(age3~eggs,data=BLH,pch=19,xlab=&quot;Millions of Eggs&quot;,
        ylab=&quot;Relative Abundance of Age-3 Fish&quot;)
 &gt; hist(~eggs,data=BLH,xlab=&quot;Millions of Eggs&quot;)
 &gt; hist(~age3,data=BLH,xlab=&quot;Age-3 Relative Abundance&quot;)</code></pre>
 <p><img src="ComplexLayouts_files/figure-html/unnamed-chunk-5-1.png" title="" alt="" width="672" /></p>
-<p>Figure 3: Illustration of layout grid for graphics with one graph in first row and two in the second row.</p>
-<p>The size of the grids in the layout may be controlled with <code>height=</code> and <code>width=</code>. These arguments accept vectors that represent the <strong>relative</strong> heights and widths of the rows and columns in the layout grid, respectively. For example, <code>height=c(3,1)</code> sets the height of the first row to be three times larger than the height of the second row. Including the <code>respect=TRUE</code> argument will assure that “unit distances” in the horizontal and vertical directions are treated the same. An example layout with different cell sizes is constructed below and shown in Figure 4. Also note in this example, that a zero in a cell means that that cell will not receive a plot.</p>
+<p>Figure 3: Illustration of a plot with one subplot in the first row and two in the second row.</p>
+<p>The size of the plots in the layout may be controlled with <code>height=</code> and <code>width=</code>. These arguments accept vectors that represent the <strong>relative</strong> heights and widths of the rows and columns in the layout grid, respectively. For example, <code>height=c(3,1)</code> sets the height of the first row to be three times larger than the height of the second row. Including the <code>respect=TRUE</code> argument will assure that “unit distances” in the horizontal and vertical directions are treated the same. An example layout with different cell sizes is constructed below and shown in Figure 4. Also note in this example, that a zero in a cell means that that cell will not receive a plot.</p>
 <pre class="r"><code>&gt; ( m &lt;- matrix(c(2,0,1,3),nrow=2,byrow=TRUE) )</code></pre>
 <pre><code>     [,1] [,2]
 [1,]    2    0
@@ -76,7 +76,7 @@ css: "/css/codebox.css"
 <pre class="r"><code>&gt; layout(m,height=c(1,4),width=c(4,1),respect=TRUE)
 &gt; layout.show(3)</code></pre>
 <p><img src="ComplexLayouts_files/figure-html/unnamed-chunk-6-1.png" title="" alt="" width="336" /></p>
-<p>Figure 4: Illustration of layout grid for graphics with differing row heights and column widths.</p>
+<p>Figure 4: Illustration of layout grid for plots with differing row heights and column widths.</p>
 <p>Figure 5 is an example that fills the layout shown in Figure 4.</p>
 <pre class="r"><code>&gt; par(mar=c(4,4,0,0))
 &gt; plot(age3~eggs,data=BLH,xlim=c(0,2.4),ylim=c(0,240),pch=19,
@@ -88,7 +88,7 @@ css: "/css/codebox.css"
 &gt; boxplot(BLH$age3,axes=FALSE,ylim=c(0,240))</code></pre>
 <p><img src="ComplexLayouts_files/figure-html/unnamed-chunk-7-1.png" title="" alt="" width="480" /></p>
 <p>Figure 5: Illustration of layout grid with differing heights and widths such that a scatterplot appears in the ‘middle’ with corresponding boxplots on the ‘sides.’</p>
-<p>Finally, <code>layout()</code> can be used to make quite complex grids, as illustrated with the code below that produced Figure 6. Note that <code>plot.new()</code> creates a new blank plot in which the subsequent <code>text()</code> commands will place text (in this case marginal labels).</p>
+<p>Finally, <code>layout()</code> may be used to make quite complex grids, as illustrated with the code below that produced Figure 6. Note that <code>plot.new()</code> creates a new blank plot in which the subsequent <code>text()</code> commands will place text (in this case marginal labels).</p>
 <pre class="r"><code>&gt; BTH1 &lt;- BT %&gt;% filterD(lake==&quot;Harrison&quot;,era==&quot;1977-80&quot;)
 &gt; BTO1 &lt;- BT %&gt;% filterD(lake==&quot;Osprey&quot;,era==&quot;1977-80&quot;)
 &gt; BTH2 &lt;- BT %&gt;% filterD(lake==&quot;Harrison&quot;,era==&quot;1997-01&quot;)
@@ -127,7 +127,7 @@ css: "/css/codebox.css"
 <h2>Reproducibility Information</h2>
 <ul>
 <li><strong>Compiled Date:</strong> Thu Nov 05 2015</li>
-<li><strong>Compiled Time:</strong> 5:32:57 PM</li>
+<li><strong>Compiled Time:</strong> 5:40:12 PM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>

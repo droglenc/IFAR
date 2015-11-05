@@ -10,10 +10,10 @@ rqrd <- c("FSAdata","FSA","dplyr","captioner","knitr")
 # setup figure, table, and equation captioning
 library(captioner)
 figcaps <- captioner(prefix="Figure")
-figcaps("Layout1","Illustration of 2x2 layout grid for graph.")
-figcaps("Layout2","Illustration of layout grid for graphics with one graph in first row and two in the second row.")
-figcaps("Layout3","Illustration of layout grid for graphics with one graph in first row and two in the second row.")
-figcaps("Layout4","Illustration of layout grid for graphics with differing row heights and column widths.")
+figcaps("Layout1","Illustration of 2x2 layout grid for graphics.")
+figcaps("Layout2","Illustration of layout grid for graphics with one plot in the first row and two in the second row.")
+figcaps("Layout3","Illustration of a plot with one subplot in the first row and two in the second row.")
+figcaps("Layout4","Illustration of layout grid for plots with differing row heights and column widths.")
 figcaps("Layout5","Illustration of layout grid with differing heights and widths such that a scatterplot appears in the 'middle' with corresponding boxplots on the 'sides.'")
 figcaps("Layout6","Illustration of layout grid with differing heights and widths such that labels can be placed on the sides.")
 # == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
@@ -133,4 +133,4 @@ plot(fl~age,data=BTO2,xlab="Age",ylab="",
      pch=19,xlim=xlmt,ylim=ylmt)
 
 
-# Script created at 2015-11-05 17:33:10
+# Script created at 2015-11-05 17:40:13
