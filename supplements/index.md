@@ -3,11 +3,6 @@ layout: page
 title: Supplements
 ---
 
-<div style="width=auto; max-width:300px; margin-left:auto; margin-right:auto;text-align:center">
-  <img src="../img/work-in-progress.png" alt="Work In Progress" width="100%">
-</div>
-
-
 <ol>
   <li><strong>(Very Brief) Introduction to R Basics</strong>
     <ul>
@@ -17,11 +12,15 @@ title: Supplements
       <li>Install Packages in R – <a href="installations/InstallPackagesRWin.html">Windows</a> / <a href="installations/InstallPackagesRMac.html">Mac OS</a></li>
     </ul>
   </li>
+</ol>
+<ol start="2">
   <li><strong>Loading Data and Basic Manipulations</strong>
     <ul>
       <li><a href="backcalculation/">Backcalculation of Previous Length</a></li>
     </ul>
   </li>
+</ol>
+<ol start="3">
   <li><strong>Plotting Fundamentals</strong>
     <ul>
       <li><a href="plotting/CommonAxisLabels.html">Common Axis Labels on a Grid of Subplots</a></li>
@@ -44,6 +43,8 @@ title: Supplements
       <li><a href="growth/OtherNLAlgorithms.html">Additional Nonlinear Regression Algorithms</a></li>
     </ul>
   </li>
+</ol>
+<ol start="13">
   <li><strong>Recruitment</strong>
     <ul>
       <li><a href="maturity/index.html">Maturity Schedules</a></li>
