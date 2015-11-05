@@ -60,7 +60,7 @@ modHTML <- function(f,need2render=TRUE) {
   tmp <- c(which(grepl("layout",r)),which(grepl("title",r)),which(grepl("author",r)),which(grepl("css",r)))
   r <- r[tmp]
   # Put it all together as a new html file
-  h <- c(r,"---",h)
+  h <- c("---",r,"---",h)
   # Remove Rstudio's ol styles
   tmp <- which(grepl("list-style-type: decimal",h))
   h[tmp] <- "<ol>"
