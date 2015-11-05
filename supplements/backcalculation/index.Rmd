@@ -37,8 +37,6 @@ if (require(FSA)) purl2("index.Rmd",newname="backcalculation",topnotes="User mus
 
 @Francis1990 defined *back-calculation* as "*... a technique that uses a set of measurements made on a fish at one time to infer its length at an earlier time or times.  Specifically, the dimensions of one or more marks in some hard part of the fish, together with its current body length, are used to estimate its length at the time of formation of each of the marks. ... The marks are generally annual rings associated with growth checks, ... .*"  Thus, backcalculation is the reconstruction of the length of a fish at previous ages from measurements made on calcified structures.
 
-\ 
-
 ### Required Packages for this Supplement
 Functions used in this supplement require the packages shown below.
 ```{r echo=FALSE, results='hide', message=FALSE, warnings=FALSE}
@@ -74,10 +72,8 @@ library(tidyr)
 library(stringr)
 ```
 
-\ 
-
 ### Data Used in this Supplement
-All analyses in this supplement use the West Bearskin Lake Smallmouth Bass (*Micropterus dolomieu*) data from @Weisberg1993 in `SMBassWB` ([view](https://github.com/droglenc/FSA/blob/master/data-raw/SMBassWB.csv), [download](https://raw.githubusercontent.com/droglenc/FSA/master/data-raw/SMBassWB.csv), [meta-data](http://derekogle.com/fishR/data/data-html/SMBassWB.html)) of `FSA`.  The analysis in this supplement will focus on those fish captured in 1990.  Three variables that were constant and not used in this analysis and three measurement variables that corresponded to ages that did not exist after reducing to only 1990 were removed to save space.
+All analyses in this supplement use the West Bearskin Lake (MN) Smallmouth Bass (*Micropterus dolomieu*) data from @Weisberg1993 found in `SMBassWB.csv` ([view](https://github.com/droglenc/FSA/blob/master/data-raw/SMBassWB.csv), [download](https://raw.githubusercontent.com/droglenc/FSA/master/data-raw/SMBassWB.csv), [meta-data](http://derekogle.com/fishR/data/data-html/SMBassWB.html)).  The analysis in this supplement will focus on those fish captured in 1990.  Three variables that were constant and not used in this analysis and three measurement variables that corresponded to ages that did not exist after reducing to only fish capted in 1990 were removed to save space.
 ```{r echo=FALSE}
 ##############################################################
 ## This is only used to make the supplement
@@ -93,7 +89,7 @@ wb90 <- filterD(SMBassWB,yearcap==1990) %>%
 ```
 
 ## Terminology
-Two types of measurements can be made on calcified structures.  A *radial* measurement is the total distance from the center of the structure (e.g., focus of scale or nucleus of otolith) to the anterior edge of an annulus.  An *incremental* measurement is the distance between two successive annuli.  Radial measurements are required for back-calculation of fish length.
+Two types of measurements can be made on calcified structures.  A *radial* measurement is the total distance from the center of the structure (e.g., focus of scale or nucleus of otolith) to the edge of an annulus.  An *incremental* measurement is the distance between two successive annuli.  Radial measurements are required for back-calculation of fish length.
 
 Back-calculation models estimate length at previous age $i$ (i.e., $L_{i}$) from known values of length at time of capture ($L_{C}$), scale radius to the $i$th annulus ($S_{i}$), and scale radius at time of capture ($S_{C}$).  Several back-calculation models rely on the relationship between $S_{C}$ and $L_{C}$.  Depending on the model, a function of mean $S_{C}$ for a given $L_{C}$ (i.e., $E(S_{C}|L_{C})$ ) or mean $L_{C}$ for a given $S_{C}$ (i.e., $E(L_{C}|S_{C})$) is used.  These functions are not required to be linear, but often are, and in their linear form are represented as
 
@@ -101,7 +97,7 @@ $$ E(S_{C}|L_{C})=a+bL_{C} \quad \quad \text{`r paste0("(",eqncaps("BackCalcESL"
 
 $$ E(L_{C}|S_{C})=c+dS_{C} \quad \quad \text{`r paste0("(",eqncaps("BackCalcELS",display="num"),")")`} $$
 
-\noindent Fitting these regressions is demonstrated below.
+\noindent Fitting these regressions is demonstrated [below](#scale-length-relationships).
 
 
 ## Common Back-Calculation Models
@@ -197,7 +193,7 @@ addCalc(Si,Li,Sc,Lc,int)
 
 `r figcaps("BackCalcEx704")`
 
-@Fraser1916 was the first to describe, but @Lee1920 was the first to formally derive, the back-calculation model from the concept that ``the growth *increment* of the scale is, on the average ..., a constant proportion of the growth *increment* of the fish" (@Francis1990).  In practice, the *Fraser-Lee model* modified the Dahl-Lea model by adjusting for the length of the fish when the calcified structure forms (i.e., $L=c$ when $S=0$), that is,
+@Fraser1916 was the first to describe, but @Lee1920 was the first to formally derive, the back-calculation model from the concept that "the growth *increment* of the scale is, on the average ..., a constant proportion of the growth *increment* of the fish" [@Francis1990].  In practice, the *Fraser-Lee model* modified the Dahl-Lea model by adjusting for the length of the fish when the calcified structure forms (i.e., $L=c$ when $S=0$), that is,
 
 $$ L_{i}=\frac{S_{i}}{S_{C}}(L_{C}-c)+c \quad \quad \text{`r paste0("(",eqncaps("BackCalcFraserLee",display="num"),")")`} $$
 
