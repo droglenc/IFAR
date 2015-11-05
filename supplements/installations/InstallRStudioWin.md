@@ -7,13 +7,23 @@ css: /css/directions.css
 
 The following directions may be used to install and configure RStudio on a Windows operating system.  [See these directions](InstallRStudioMac.html) for installing RStudio on a Macintosh operating system.
 
-1. [RStudio Installation](#rstudio-installation)
+1. [What is RStudio?](#what-is-rstudio)
+1. [RStudio Installation](#installing-rstudio)
 1. [Preparing RStudio](#preparing-rstudio)
 1. [Introducing RStudio](#introducing-rstudio)
 
 ------
 
-## RStudio Installation
+## What is RStudio?
+
+R is an open-source software environment for statistical computing and graphics that runs on Windows, Mac OS, and many UNIX platforms.  Unlike many other programs, users interact with R through a command line rather than through a graphical user interface.    While such an interface may be unfamiliar to many users, its primary strength is the ability for a user to develop scripts of commands to perform various analyses that can then be easily repeated.
+
+RStudio is an open-source integrated development environment (IDE) that serves as a front-end "on top" of R.  RStudio eases the user's interaction with R by providing some of the conveniences of a GUI and, more importantly, a means for efficiently constructing and running R scripts.  Among other conveniences, RStudio provides a four-panel layout that includes a feature-rich source-code editor (includes syntax highlighting, parentheses completion, spell-checking, etc.), a tight link to the R console, a system for examining objects saved in R, an interface to R help, and extended features to examine and save plots.
+
+Using RStudio is easy to learn.  This document is a very brief introduction to RStudio.
+
+
+## Installing RStudio
 
 1. Go to the R Studio download page at [https://www.rstudio.com/products/rstudio/#Desktop](https://www.rstudio.com/products/rstudio/#Desktop).  Press the `DOWNLOAD RSTUDIO DESKTOP` button/graphic (near bottom-left of the image below).
 
@@ -51,13 +61,13 @@ The following directions may be used to install and configure RStudio on a Windo
 
 1. Select the `Tools` menu and `Global Options` submenu.  In the ensuing dialog box select the `General` icon on the left (this should already be selected).
 
-    <div class="ctrstaticimg">
-    <img src="figures/RStudio_PrepWin_OptionsGeneral.PNG" width="100%">
-    </div>
-
     * Depending on your installation, the R version should read "[Default][32-bit]" followed by the path to the R program (as shown in the dialog box above).  If you installed the 64-bit version of R, then select the `Change...` button and then "use your machine's default version of R64 (64-bit)".
     
     * You can either leave the other selections at their defaults or change them as you see fit (my preferences are shown in the dialog box above).  However, I strongly urge you to deselect "Restore .RData into workspace at startup" and make sure "Save workspace to .RData on exit:" is set to "Never."
+
+    <div class="ctrstaticimg">
+    <img src="figures/RStudio_PrepWin_OptionsGeneral.PNG" width="100%">
+    </div>
 
 1. Select the `Packages` icon in the Global Options dialog box opened above.  It is useful to set a CRAN mirror in this dialog box.  I prefer the "Global (CDN) - Rstudio" option but you may want to choose a location nearer to you (through the `Change...` button).  All other options can remain at their defaults.
 
@@ -75,18 +85,9 @@ The following directions may be used to install and configure RStudio on a Windo
 
 1. No other options need to be set for most introductory purposes.  Press `OK`.
 
-
+----
 
 ## Introducing RStudio
-
-### What is RStudio?
-
-R is an open-source software environment for statistical computing and graphics that runs on Windows, Mac OS, and many UNIX platforms.  Unlike many other programs, users interact with R through a command line rather than through a graphical user interface.    While such an interface may be unfamiliar to many users, its primary strength is the ability for a user to develop scripts of commands to perform various analyses that can then be easily repeated.
-
-RStudio is an open-source integrated development environment (IDE) that serves as a front-end "on top" of R.  RStudio eases the user's interaction with R by providing some of the conveniences of a GUI and, more importantly, a means for efficiently constructing and running R scripts.  Among other conveniences, RStudio provides a four-panel layout that includes a feature-rich source-code editor (includes syntax highlighting, parentheses completion, spell-checking, etc.), a tight link to the R console, a system for examining objects saved in R, an interface to R help, and extended features to examine and save plots.
-
-Using RStudio is easy to learn.  This document is a very brief introduction to RStudio.
-
 
 ### RStudio Design
 
