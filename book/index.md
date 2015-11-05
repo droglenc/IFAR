@@ -50,7 +50,7 @@ title: Book Details
 ----
 
 ## How to Purchase
-*Introductory Fisheries Analyses with R* may be purchased at the following locations.
+*Introductory Fisheries Analyses with R* may be purchased from these sites.
 
 * [CRC Press](https://www.crcpress.com/Introductory-Fisheries-Analyses-with-R/Ogle/9781482235203)
 * Amazon - [US](http://www.amazon.com/Introductory-Fisheries-Analyses-Chapman-Hall/dp/148223520X/) / [UK](http://www.amazon.co.uk/Introductory-Fisheries-Analyses-Chapman-Hall/dp/148223520X)
@@ -62,7 +62,7 @@ title: Book Details
 
 I have been fortunate enough to have had three significant mentors during my career.
 
-* **Nicholas Bystrom** was my basketball coach and statistics and mathematics professor at Northland College.  "Coach"" helped me understand, very early in my career, the power, utility, and beauty of mathematics and statistics.
+* **Nicholas Bystrom** was my basketball coach and statistics and mathematics professor at Northland College.  "Coach" helped me understand, very early in my career, the power, utility, and beauty of mathematics and statistics.
 * **James Selgeby** was my boss for a work-study position with the U.S. Fish and Wildlife Service during my last two years at Northland College.  Jim trusted me as a fisheries scientist, fostered my passion for Great Lakes fisheries, and encouraged me to pursue an advanced degree in fisheries.
 * **George Spangler** was my doctoral advisor at the University of Minnesota.  George strongly encouraged advanced studies in statistics, supported my interest in programming, and provided an environment, as a graduate student and later while on sabbatical, where I could creatively mix statistics, programming, and fisheries.
 
