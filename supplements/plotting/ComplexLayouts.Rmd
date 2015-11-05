@@ -54,6 +54,8 @@ library(FSA)
 library(dplyr)
 ```
 
+### Data Used in this Supplement
+
 The `BullTroutRML2` and `BloaterLH` data from `FSAdata` are used in this supplement.
 
 ```{r warning=FALSE, message=FALSE}
@@ -64,6 +66,7 @@ data(BloaterLH)
 BLH <- BloaterLH
 headtail(BLH)
 ```
+\ 
 
 ## Complex Grid Layouts with `layout()`
 The `layout()` function allows for more complicated organizations of graphics.  The only required argument to `layout()` is a matrix that specifies the positions, as a grid, for a series of plots.  The numbers in the matrix describe which graphic will appear in that position.  For example, the following code constructs a 2x2 grid for four plots where the first plot will appear in the lower-right corner and the last plot will appear in the upper-left corner.
@@ -190,6 +193,8 @@ plot(fl~age,data=BTO2,xlab="Age",ylab="",
 ```
 
 `r figcaps("Layout6")`
+
+\ 
 
 --------------------------------------------------------------
 

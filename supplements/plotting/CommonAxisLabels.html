@@ -1,9 +1,7 @@
 ---
 layout: page
-Several methods for modifying base graphics were shown in the book, including simple layouts (side-by-side, one-over-the-other) of multiple plots.  Creating common x- and y-axis labels for a grid of plots is described in this supplement.  More complex layouts (e.g., plot in first row spans two columns or unequal sized plots) are [described in a separate supplement](ComplexLayouts.html).
 title: Plotting Fundamentals
 subtitle: Common Axis Labels on a Grid of Subplots
-Each plot consists of three regions -- the plot area, the figure area, and the outer margin area `r figcaps("parEx1",display="cite")`.  The plot area is where the points or bars will be graphed.  The area between the plot area and the figure area is where the axis ticks, labels, and title will appear.  The area outside of the figure area is the outer margin area and is generally used to proivde extra space around the graphic or to place text.  In most instances (and the default), the width of the outer margin area is 0 on all sides of the figure area such that no outer margin area exists.  The size of the outer margin area is set with `oma=` in `par()`, which takes a vector of four values to serve as widths of the four sides of the outer margin area, beginning with the bottom and moving counter-clockwise.  The default is `par(oma=c(0,0,0,0))`, but margins that are two "lines" wide on the top and bottom and one "line" wide on the left and right are set with `par(oma=c(2,1,2,1))`.
 author: Derek H. Ogle
 css: "/css/codebox.css"
 ---
@@ -16,6 +14,9 @@ css: "/css/codebox.css"
 <pre class="r"><code>&gt; library(FSAdata)
 &gt; library(FSA)
 &gt; library(dplyr)</code></pre>
+</div>
+<div id="data-used-in-this-supplement" class="section level3">
+<h3>Data Used in this Supplement</h3>
 <p>The <code>BullTroutRML2</code> data from <code>FSAdata</code> are used in this supplement.</p>
 <pre class="r"><code>&gt; data(BullTroutRML2)
 &gt; BT &lt;- BullTroutRML2
@@ -27,6 +28,7 @@ css: "/css/codebox.css"
 94   4 298   Osprey 1997-01
 95   3 279   Osprey 1997-01
 96   3 273   Osprey 1997-01</code></pre>
+<p> </p>
 </div>
 <div id="common-axis-labels-on-a-grid-of-subplots" class="section level2">
 <h2>Common Axis Labels on a Grid of Subplots</h2>
@@ -57,13 +59,14 @@ css: "/css/codebox.css"
 &gt; mtext(&quot;Fork Length (mm)&quot;,side=2,line=0,outer=TRUE,cex=1.3,las=0)</code></pre>
 <p><img src="CommonAxisLabels_files/figure-html/unnamed-chunk-6-1.png" title="" alt="" width="672" /></p>
 <p>Figure 2: Grid of plots that uses the outer margin area to provide common axis labels.</p>
+<p> </p>
 <hr />
 </div>
 <div id="reproducibility-information" class="section level2">
 <h2>Reproducibility Information</h2>
 <ul>
 <li><strong>Compiled Date:</strong> Thu Nov 05 2015</li>
-<li><strong>Compiled Time:</strong> 12:31:37 PM</li>
+<li><strong>Compiled Time:</strong> 12:40:05 PM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>
