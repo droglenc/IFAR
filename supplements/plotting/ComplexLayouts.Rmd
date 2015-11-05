@@ -22,7 +22,7 @@ if (require(FSA)) purl2("ComplexLayouts.Rmd",topnotes="User must set working dir
 ##############################################################
 ```
 
-Several methods for modifying base graphics were shown in the book, including simple layouts (side-by-side, one-over-the-other) of multiple plots.  More complex layouts (e.g., plot in first row spans two columns or unequal sized plots) are described in this supplement.  Creating common x- and y-axis labels for a grid of plots is [described in a separate supplement](CommonAxisLabels.html).
+Several methods for modifying base graphics were shown in the book, including simple layouts (side-by-side, one-over-the-other) of multiple plots.  More complex layouts (e.g., plot in first row spans two columns or unequal sized plots) are described in this supplement.  Creating common x- and y-axis labels for a grid of plots is [described in this supplement](CommonAxisLabels.html).
 
 ### Required Packages for this Supplement
 
@@ -56,7 +56,7 @@ library(dplyr)
 
 ### Data Used in this Supplement
 
-The `BullTroutRML2` and `BloaterLH` data from `FSAdata` are used in this supplement.
+The `BullTroutRML2` and `BloaterLH` data from `FSAdata` in the **IFAR** book are also used in this supplement.
 
 ```{r warning=FALSE, message=FALSE}
 data(BullTroutRML2)
@@ -89,7 +89,7 @@ layout.show(4)
 
 `r figcaps("Layout1")`
 
-The 2x2 grid in `r figcaps("Layout1",display="cite")` is not that interesting because that layout is just as easily constructed with `mfrow=` in `par()` (as shown in the book).  Layouts, however, can also be constructed that are not "grids."  For example, the entire first row may be one graphic with a second row of two graphics.  This layout grid is constructed by including a "1" in the first two positions of the layout matrix `r figcaps("Layout2",display="cite")`.
+The 2x2 grid in `r figcaps("Layout1",display="cite")` is not that interesting because that layout is just as easily constructed with `mfrow=` in `par()` (as shown in the **IFAR** book).  Layouts, however, can also be constructed that are not "grids."  For example, the entire first row may be one graphic with a second row of two graphics.  This layout grid is constructed by including a "1" in the first two positions of the layout matrix `r figcaps("Layout2",display="cite")`.
 
 ```{r Layout2pre, echo=FALSE, results='hide'}
 # ############################################################

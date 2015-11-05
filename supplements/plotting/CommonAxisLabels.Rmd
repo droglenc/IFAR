@@ -22,7 +22,7 @@ if (require(FSA)) purl2("CommonAxisLabels.Rmd",topnotes="User must set working d
 ##############################################################
 ```
 
-Several methods for modifying base graphics were shown in the book, including simple layouts (side-by-side, one-over-the-other) of multiple plots.  Creating common x- and y-axis labels for a grid of plots is described in this supplement.  More complex layouts (e.g., plot in first row spans two columns or unequal sized plots) are [described in a separate supplement](ComplexLayouts.html).
+Several methods for modifying base graphics were shown in the **IFAR** book, including simple layouts (side-by-side, one-over-the-other) of multiple plots.  Creating common x- and y-axis labels for a grid of plots is described in this supplement.  More complex layouts (e.g., plot in first row spans two columns or unequal sized plots) are [described in this supplement](ComplexLayouts.html).
 
 ### Required Packages for this Supplement
 
@@ -52,7 +52,7 @@ library(dplyr)
 
 ### Data Used in this Supplement
 
-The `BullTroutRML2` data from `FSAdata` are used in this supplement.
+The `BullTroutRML2` data from `FSAdata` used in the **IFAR** book are also used in this supplement.
 
 ```{r warning=FALSE, message=FALSE}
 data(BullTroutRML2)
@@ -64,9 +64,9 @@ headtail(BT)
 
 ## Common Axis Labels on a Grid of Subplots
 
-One common graphical desire is to plot multiple graphics in a grid-like format with one axis label that serves as the label for each graph.  This can be accomplished with arguments to `par()`, but the regions of a plot must be undersood first (the description that follows is modified [from here](http://research.stowers-institute.org/efg/R/Graphics/Basics/mar-oma/index.htm)).
+A common need is to plot multiple graphics in a grid-like format with one axis label that serves as the label for each graph.  This can be accomplished with arguments to `par()`, but the regions of a plot must be undersood first (the following description is modified [from here](http://research.stowers-institute.org/efg/R/Graphics/Basics/mar-oma/index.htm)).
 
-Each plot consists of three regions -- the plot area, the figure area, and the outer margin area `r figcaps("parEx1",display="cite")`.  The plot area is where the points or bars will be graphed.  The area between the plot area and the figure area is where the axis ticks, labels, and title will appear.  The area outside of the figure area is the outer margin area and is generally used to proivde extra space around the graphic or to place text.  In most instances (and the default), the width of the outer margin area is 0 on all sides of the figure area such that no outer margin area exists.  The size of the outer margin area is set with `oma=` in `par()`, which takes a vector of four values to serve as widths of the four sides of the outer margin area, beginning with the bottom and moving counter-clockwise.  The default is `par(oma=c(0,0,0,0))`, but margins that are two "lines" wide on the top and bottom and one "line" wide on the left and right are set with `par(oma=c(2,1,2,1))`.
+Each plot consists of three regions -- the plot area, the figure area, and the outer margin area (`r figcaps("parEx1",display="cite")`).  The plot area is where the points or bars will be graphed.  The area between the plot area and the figure area is where the axis ticks, labels, and title will appear.  The area outside of the figure area is the outer margin area and is generally used to provide extra space around the graphic or to place text.  In most instances (and the default), the width of the outer margin area is 0 on all sides of the figure area such that no outer margin area exists.  The size of the outer margin area is set with `oma=` in `par()`, which takes a vector of four values to serve as widths of the four sides of the outer margin area, beginning with the bottom and moving counter-clockwise.  The default is `par(oma=c(0,0,0,0))`.  For example, margins that are two "lines" wide on the top and bottom and one "line" wide on the left and right may be set with `par(oma=c(2,1,2,1))`.
 
 ```{r echo=FALSE, fig.width=figsz, fig.height=figsz}
 # ############################################################
@@ -88,7 +88,7 @@ mtext("Outer Margin Area",side=3,line=0.4,adj=0.0,cex=1.25,col="gray50",outer=TR
 
 `r figcaps("parEx1")`
 
-Common axis labels for multiple graphs can be placed in the outer margin area.  In the example below, a 2-by-2 grid is created with `mfrow()` (as described in the book) and the bottom and left outer margin areas are increased to be three "lines" wide to allow for common x- and y-axis labels.
+Common axis labels for multiple graphs can be placed in the outer margin area.  In the example below, a 2-by-2 grid is created with `mfrow()` (as described in the **IFAR** book) and the bottom and left outer margin areas are increased to be three "lines" wide to allow for common x- and y-axis labels.
 
 ```{r SetPar}
 par(mfrow=c(2,2),oma=c(2,2,0,0))
@@ -113,7 +113,7 @@ plot(fl~age,data=BTO2,main="Osprey, 1997-01",
      xlab="",ylab="",pch=19,xlim=xlmts,ylim=ylmts)
 ```
 
-The common x- and y-axis labels are then placed in the outer margin areas with `mtext()`.  In this capacity, `mtext()` requires the text to be written as the first argument, a number in `side=` that indicates the margin on which to print the text (note that the `side=` argument in `mtext()` uses the same numbering scheme as other functions -- 1=bottom, 2=left, 3=top, 4=right), a number in `line=` that indicates the line on which to print the text (defaults to 0), and `outer=TRUE` to force the text into the outer margin area.  Further note that `las=0` is used for the y-axis label to force the text to be parallel to the y-axis.  This is only needed because `las=1` was set globablly for producing this book.
+The common x- and y-axis labels are then placed in the outer margin areas with `mtext()`.  In this capacity, `mtext()` requires the text to be written as the first argument, a number in `side=` that indicates the margin on which to print the text (note that the `side=` argument in `mtext()` uses the same numbering scheme as other functions -- 1=bottom, 2=left, 3=top, 4=right), a number in `line=` that indicates the line on which to print the text (defaults to 0), and `outer=TRUE` to force the text into the outer margin area.  Further note that `las=0` is used for the y-axis label to force the text to be parallel to the y-axis.  This is only needed because `las=1` was set globally for producing this supplement.
 
 The code below adds common x- and y-axis labels to the plots constructed above.  The final plot is shown in `r figcaps("LayoutPar",display="cite")`.
 
