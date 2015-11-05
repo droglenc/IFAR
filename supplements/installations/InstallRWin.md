@@ -2,14 +2,14 @@
 layout: page
 title: Basic R Installation
 subtitle: For Windows
-css: /supplements/installations/directions.css
+css: /css/directions.css
 ---
 
-The following steps may be used to install R on Windows operating systems.  [See these directions](InstallRMac.html) for installing R on a Macintosh operating system.
+The following steps may be used to install R on a Windows operating system.  [See these directions](InstallRMac.html) for installing R on a Macintosh operating system.
 
-1. Go to the RStudio Comprehensive R Archive Network (CRAN) mirror at [https://cran.rstudio.com](https://cran.rstudio.com).  [*You can select a different mirror by going to [http://www.r-project.org](http://www.r-project.org), selecting the "download R" link in the "Getting Started" box and selecting a mirror location from the ensuing page.*]
+1. Go to the RStudio Comprehensive R Archive Network (CRAN) mirror at [https://cran.rstudio.com](https://cran.rstudio.com).  [*You can select a different mirror by going to [http://www.r-project.org](http://www.r-project.org), selecting the "download R" link in the "Getting Started" box, and selecting a mirror location from the ensuing page.*]
 
-1. Select the appropriate operating system for your computer.  The remainder of these steps will illustrate the installation of R for the WINDOWS environment.
+1. Select the "Download R for Windows" link.
 
     <div class="ctrstaticimg">
     <img src="figures/R_WinInstall_ChooseOS.PNG" width="100%">
@@ -39,7 +39,7 @@ The following steps may be used to install R on Windows operating systems.  [See
     <img src="figures/R_WinInstall_Directory.PNG" width="100%">
     </div>
 
-1. At this point you can choose to install 32- or 64-bit or both versions of R.  If you do not have a 64-bit computer, then you must install the 32-bit version.  If you do have a 64-bit computer, then I suggest, initially and for simplicity, installing only one version or the other.  I usually install the 32-bit version as it has some slight advantages when not working with extremely large data sets and with other software that I have installed on my machine (see this [R FAQ](http://streaming.stat.iastate.edu/CRAN/bin/windows/base/rw-FAQ.html#Should-I-run-32_002dbit-or-64_002dbit-R_003f)).  In this demonstration, I will install only the 32-bit version of R by deselecting the "64-bit Files" option.  Press `Next`.
+1. At this point you can choose to install 32- or 64-bit or both versions of R.  If you do not have a 64-bit computer, then you must install the 32-bit version.  If you do have a 64-bit computer, then I suggest, initially and for simplicity, installing only one version or the other.  I usually install the 32-bit version as it has some slight advantages when not working with extremely large data sets and with other software that I have installed on my machine (see this [R FAQ](http://streaming.stat.iastate.edu/CRAN/bin/windows/base/rw-FAQ.html#Should-I-run-32_002dbit-or-64_002dbit-R_003f)){:target="_blank"}.  In this demonstration, I will install only the 32-bit version of R by deselecting the "64-bit Files" option.  Press `Next`.
 
     <div class="ctrstaticimg">
     <img src="figures/R_WinInstall_32Bit.PNG" width="100%">
@@ -56,3 +56,5 @@ The following steps may be used to install R on Windows operating systems.  [See
     </div>
 
 1. R should then begin installing files into the directory you chose previously.  If everything goes well, then you should get one last dialog box noting such.  Press `Finish`.
+
+If you plan to use RStudio, then you can now install it [with these directions](InstallRStudioWin.html).

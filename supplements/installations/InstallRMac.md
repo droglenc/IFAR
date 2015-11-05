@@ -2,20 +2,20 @@
 layout: page
 title: Basic R Installation
 subtitle: For Mac OS
-css: /supplements/installations/directions.css
+css: /css/directions.css
 ---
 
-The following steps may be used to install R on Macintosh operating systems.  [See these directions](InstallRWin.html) for installing R on a Windows operating system.
+The following steps may be used to install R on a Macintosh operating system.  [See these directions](InstallRWin.html) for installing R on a Windows operating system.
 
-1. Go to the RStudio Comprehensive R Archive Network (CRAN) mirror at [https://cran.rstudio.com](https://cran.rstudio.com).  [*You can select a different mirror by going to [http://www.r-project.org](http://www.r-project.org), selecting the "download R" link in the "Getting Started" box and selecting a mirror location from the ensuing page.*]
+1. Go to the RStudio Comprehensive R Archive Network (CRAN) mirror at [https://cran.rstudio.com](https://cran.rstudio.com).  [*You can select a different mirror by going to [http://www.r-project.org](http://www.r-project.org), selecting the "download R" link in the "Getting Started" box, and selecting a mirror location from the ensuing page.*]
 
-1. Select the appropriate operating system for your computer.  The remainder of these steps will illustrate the installation of R for the Mac OS environment.
+1. Select the "Download R for (Mac) OS X" link.
 
     <div class="ctrstaticimg">
     <img src="figures/R_MacInstall_ChooseOS.png" width="100%">
     </div>
 
-1. Select the "R-3.2.2.pkg" option (or similar if the version number has changed) if running Mac OS 10.9 (Mavericks) and higher.  NOTE: the binary support for OS X before Mavericks is deprecated.
+1. Select the "R-3.2.2.pkg" option (or similar if the version number has changed) if running Mac OS 10.9 (Mavericks) and higher.  (*note that the binary support for OS X before Mavericks is deprecated.*)
 
     <div class="ctrstaticimg">
     <img src="figures/R_MacInstall_ChoosePKG.png" width="100%">
@@ -31,7 +31,7 @@ The following steps may be used to install R on Macintosh operating systems.  [S
     <img src="figures/R_MacInstall_UserAgreement.png" width="100%">
     </div>
 
-1. Select to install R for all users or on a specific disk (simply use the all users option unless you wish install R on a disk partition or external drive).  Press `Continue`.  NOTE: you must select an option before the `Continue` button will activate.
+1. Select to install R for all users or on a specific disk (simply use the all users option unless you wish to install R on a disk partition or external drive).  Press `Continue`.  (*Note that you must select an option before the `Continue` button will activate.*)
 
     <div class="ctrstaticimg">
     <img src="figures/R_MacInstall_InstallAllUsers.png" width="100%">
@@ -43,7 +43,7 @@ The following steps may be used to install R on Macintosh operating systems.  [S
     <img src="figures/R_MacInstall_Install.png" width="100%">
     </div>
 
-1. A dialog box will prompt you for your user account's password.  Input password and press `Install Software`.
+1. A dialog box will prompt you for the password to your user account.  Input your password and press `Install Software`.
 
     <div class="ctrstaticimg">
     <img src="figures/R_MacInstall_Password.png" width="100%">
@@ -54,6 +54,8 @@ The following steps may be used to install R on Macintosh operating systems.  [S
     <div class="ctrstaticimg">
     <img src="figures/R_MacInstall_Success.png" width="100%">
     </div>
+
+If you plan to use RStudio, then you can now install it [with these directions](InstallRStudioWin.html).
 
 -----
 
