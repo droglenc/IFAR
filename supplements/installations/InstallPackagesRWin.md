@@ -2,7 +2,7 @@
 layout: page
 title: Installing Packages
 subtitle: In R for Windows
-css: /supplements/installations/directions.css
+css: /css/directions.css
 ---
 
 ## Installing Packages from CRAN

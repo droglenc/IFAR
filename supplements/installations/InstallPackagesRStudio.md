@@ -2,7 +2,7 @@
 layout: page
 title: Installing Packages
 subtitle: In RStudio
-css: /supplements/installations/directions.css
+css: /css/directions.css
 ---
 
 ## Installing Packages from CRAN

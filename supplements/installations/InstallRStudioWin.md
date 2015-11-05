@@ -2,18 +2,16 @@
 layout: page
 title: RStudio Setup
 subtitle: For Windows
-css: /supplements/installations/directions.css
+css: /css/directions.css
 ---
 
-------
+The following directions may be used to install and configure RStudio on a Windows operating system.  [See these directions](InstallRStudioMac.html) for installing RStudio on a Macintosh operating system.
 
 1. [RStudio Installation](#rstudio-installation)
 1. [Preparing RStudio](#preparing-rstudio)
 1. [Introducing RStudio](#introducing-rstudio)
 
 ------
-
-The following steps may be used to install and configure RStudio on Windows operating systems.  [See these directions](InstallRStudioMac.html) for installing RStudio on a Macintosh operating system.
 
 ## RStudio Installation
 
@@ -23,7 +21,7 @@ The following steps may be used to install and configure RStudio on Windows oper
     <img src="figures/RStudio_WinInstall_Home.PNG" width="100%">
     </div>
 
-1. Select the link from the "Installers for Supported Platforms" list that corresponds to the operating system appropriate for your computer.  In the remainder of these directions I will demonstrate the installation for a WINDOWS operating system.  Either run the program or note where this executable program is saved on your computer.
+1. Select the link from the "Installers for Supported Platforms" list that corresponds to the operating system appropriate for your computer.  Either run the program or note where this executable program is saved on your computer.
 
     <div class="ctrstaticimg">
     <img src="figures/RStudio_WinInstall_ChooseOS.PNG" width="100%">
@@ -31,7 +29,7 @@ The following steps may be used to install and configure RStudio on Windows oper
 
 1. If you did not run the program, then locate and run the downloaded file (called "RStudio-0.99.484.exe" or similar if the version number has changed).
 
-1. Press `Next` on the first "Welcome" dialog box (depending on your version of Windows you may have received security warnings before this dialog box appears).
+1. Press `Next` on the first "Welcome" dialog box (depending on your version of Windows you may receive security warnings before this dialog box appears).
 
 1. Select a location to install RStudio (simply use the default location if the location is not important to you -- in the dialog box below I installed in a custom directory).  Press `Next`.
 
@@ -43,8 +41,9 @@ The following steps may be used to install and configure RStudio on Windows oper
 
 1. RStudio should then begin installing files into the directory you chose previously.  If everything goes well then you should get one last dialog box noting such.  Press `Finish.`
 
-1. If you did not create a shortcut above then you will need to locate the "rstudio.exe" file inside the "RStudio/bin" folders inside the folder you chose to install RStudio in.  On my computer, for example this file is inside of "C:/apps/RStudio/bin".
+1. If you did not create a shortcut above then you will need to locate the "rstudio.exe" file inside the "RStudio/bin" folders inside the folder you chose to install RStudio in.  On my computer, for example, this file is inside of "C:/apps/RStudio/bin".
 
+----
 
 ## Preparing RStudio
 
@@ -60,7 +59,7 @@ The following steps may be used to install and configure RStudio on Windows oper
     
     * You can either leave the other selections at their defaults or change them as you see fit (my preferences are shown in the dialog box above).  However, I strongly urge you to deselect "Restore .RData into workspace at startup" and make sure "Save workspace to .RData on exit:" is set to "Never."
 
-1. Select the `Packages` icon in the Global Options dialog box opened above.  It is useful to set a CRAN mirror in this dialog box.  I prefer the "Global (CDN) - Rstudio ..." option but you may want to choose a location nearer to you (through the `Change...` button).  All other options can remain at their defaults.
+1. Select the `Packages` icon in the Global Options dialog box opened above.  It is useful to set a CRAN mirror in this dialog box.  I prefer the "Global (CDN) - Rstudio" option but you may want to choose a location nearer to you (through the `Change...` button).  All other options can remain at their defaults.
 
     <div class="ctrstaticimg">
     <img src="figures/RStudio_PrepWin_OptionsCRAN.PNG" width="100%">

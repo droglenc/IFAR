@@ -2,18 +2,18 @@
 layout: page
 title: RStudio Setup
 subtitle: For Mac OS
-css: /supplements/installations/directions.css
+css: /css/directions.css
 ---
 
 ------
+
+The following directions may be used to install and configure RStudio on a Macintosh operating system.  [See these directions](InstallRStudioWin.html) for installing RStudio on a Windows operating system.
 
 1. [RStudio Installation](#rstudio-installation)
 1. [Preparing RStudio](#preparing-rstudio)
 1. [Introducing RStudio](#introducing-rstudio)
 
 ------
-
-The following steps may be used to install and configure RStudio on Macintosh operating systems.  [See these directions](InstallRStudioWin.html) for installing RStudio on a Windows operating system.
 
 ## RStudio Installation
 
@@ -23,7 +23,7 @@ The following steps may be used to install and configure RStudio on Macintosh op
     <img src="figures/RStudio_MacInstall_Home.png" width="100%">
     </div>
 
-1. Select the link from the "Installers for Supported Platforms" list that corresponds to the operating system appropriate for your computer.  In the remainder of these directions I will demonstrate the installation for Mac OS.
+1. Select the link from the "Installers for Supported Platforms" list that corresponds to the operating system appropriate for your computer.
 
     <div class="ctrstaticimg">
     <img src="figures/RStudio_MacInstall_ChooseOS.png" width="100%">

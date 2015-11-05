@@ -2,7 +2,7 @@
 layout: page
 title: Installing Packages
 subtitle: In R for Mac OS
-css: /supplements/installations/directions.css
+css: /css/directions.css
 ---
 
 ## Installing Packages from CRAN
