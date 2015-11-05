@@ -55,7 +55,7 @@ The following steps may be used to install R on a Macintosh operating system.  [
     <img src="figures/R_MacInstall_Success.png" width="100%">
     </div>
 
-If you plan to use RStudio, then you can now install it [with these directions](InstallRStudioWin.html).
+If you plan to use RStudio, then you can now install it [with these directions](InstallRStudioMac.html).
 
 -----
 
