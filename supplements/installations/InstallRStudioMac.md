@@ -93,13 +93,13 @@ The upper-left panel is the R *Script Editor*.  R commands are typed into this p
 
 The upper-right panel contains at least two tabs --- *Environment* and *History*.  Many items listed under the *Environment* tab can be double-clicked to open them for viewing as a tab in the *Script Editor*.  The *History* tab simply shows all of the commands that you have submitted to the *Console* during the current session.
 
-The lower-right panel contains at least five tabs -- *Files*, *Plots*, *Packages*, *Help*, and *Viewer*.  The *Plots* tab will show the high-level plots produced by commands submitted to the *Console*.  One can cycle through the history of constructed plots with the arrows on the left side of the plot toolbar and plots can be saved to external files using the "Export" tab on the plot toolbar (see figure above).  A list of all installed packages is seen by selecting the *Packages* tab (packages can also be installed through this tab as described in a separate document).  Help for each package can be obtained by clicking on the name of the package.  The help will then appear in the *Help* tab.
+The lower-right panel contains at least five tabs -- *Files*, *Plots*, *Packages*, *Help*, and *Viewer*.  The *Plots* tab will show the plots produced by commands submitted to the *Console*.  One can cycle through the history of constructed plots with the arrows on the left side of the plot toolbar and plots can be saved to external files using the "Export" tab on the plot toolbar (see figure above).  A list of all installed packages is seen by selecting the *Packages* tab (packages can also be installed through this tab as described in a separate document).  Help for each package can be obtained by clicking on the name of the package.  The help will then appear in the *Help* tab.
 
 
 ### Basic Usage
-Your primary interaction with RStudio will be through developing R scripts in the *Script Editor*, submitting those scripts to the *Console*, and viewing textual or tabular results in the *Console*, and graphical results in the *Plot* panel.  In this section, I briefly introduce how to construct and run R scripts in RStudio.
+Your primary interaction with RStudio will be through developing R scripts in the *Script Editor*, submitting those scripts to the *Console*, and viewing textual or tabular results in the *Console* and graphical results in the *Plot* panel.  In this section, I briefly introduce how to construct and run R scripts in RStudio.
 
-One opens a blank file for an R script by selecting the `New` icon (leftmost item on toolbar) and then `R Script`; selecting the `File` menu, `New` submenu, and `R Script` item; or with `<CTRL>+<Shift>+N`.  In the newly created *Script Editor* panel, type the three lines exactly as shown below (for the moment, don't worry about what these lines do.).
+One opens a blank file for an R script by selecting the `New` icon (![RStudio New Icon](figures/RStudio_Icon_New.PNG)) and then `R Script`; selecting the `File` menu, `New` submenu, and `R Script` item; or with `<CTRL>+<Shift>+N`.  In the newly created *Script Editor* panel, type the three lines exactly as shown below (for the moment, don't worry about what these lines do.).
 
 {% highlight r %}
 dat <- rnorm(100)    # create random normal data (n=100)
@@ -109,9 +109,9 @@ summary(dat)         # summary statistics
 
 These commands must be submitted to the *Console* to perform the requested calculations.  Commands may be submitted to the *Console* in a variety of ways:
 
-* Put the cursor on a line in the *Script Editor* and press the `Run` icon (right side of toolbar); altenatively press `<CTRL>+<Enter>`).  This will submit that line to the *Console* and move the cursor to the next line in the *Script Editor*.  Pressing `Run` again will submit this next line.  And so on.
+* Put the cursor on a line in the *Script Editor* and press the `Run` icon (![RStudio Run Icon](figures/RStudio_Icon_Run.PNG)); altenatively press `<CTRL>+<Enter>`).  This will submit that line to the *Console* and move the cursor to the next line in the *Script Editor*.  Pressing ![RStudio Run Icon](figures/RStudio_Icon_Run.PNG) (or `<CTRL>+<Enter>`) will submit this next line.  And so on.
 
-* Select all lines in the *Script Editor* that you wish to submit and press `Run` (or `<CTRL>+<Enter>`).
+* Select all lines in the *Script Editor* that you wish to submit and press ![RStudio Run Icon](figures/RStudio_Icon_Run.PNG) (or `<CTRL>+<Enter>`).
 
 The RStudio layout after using the first method is shown in the figure above.
 
