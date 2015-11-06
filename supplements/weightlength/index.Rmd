@@ -121,16 +121,26 @@ Substitution of appropriate values for the dummy variables into `r eqncaps("Full
 
 `r tabcaps("SubsetModels")`
 
-| Year | &nbsp;&nbsp;fYear1995 | fYear2000 | Submodel ($log_{10}(W_{i})=$) |
-|:----:|:---------:|:---------:|:--------:|
-| 1990 |     0     |     0     | $log_{10}(\alpha) + \beta log_{10}(L_{i})$ |
-| 1995 |     1     |     0     | $(log_{10}(\alpha) + \delta_{1}) + (\beta + \gamma_{1})*log_{10}(L_{i})$ |
-| 2000 |     0     |     1     | $(log_{10}(\alpha) + \delta_{2}) + (\beta + \gamma_{2})*log_{10}(L_{i})$ |
-
+<style>
+  th {
+    text-align: "center";
+    border-spacing: 5px;
+  }
+  td {
+    text-align: "center";
+    border-spacing: 5px;
+  }
+</style>
+<table>
+<tr><th>Year</th><th>fYear1995</th><th>fYear2000</th><th>Submodel ($log_{10}(W_{i})=$)</th><\tr>
+<tr><td>1990</td><td>0</td><td>0</td><td>$log_{10}(\alpha) + \beta log_{10}(L_{i})$</td></tr>
+<tr><td>1995</td><td>1</td><td>0</td><td>$(log_{10}(\alpha) + \delta_{1}) + (\beta + \gamma_{1})*log_{10}(L_{i})$</td></tr>
+<tr><td>2000</td><td>0</td><td>1</td><td>$(log_{10}(\alpha) + \delta_{2}) + (\beta + \gamma_{2})*log_{10}(L_{i})$</td></tr>
+</table>
 \ 
 \ 
 
-The model in `r eqncaps("FullModel",display="cite")` is fit with `lm()` using a formula of the form `y~x*factor` exactly as described in Chapter 7 (again noting that `lm()` will create the appropriate dummy and interaction variables).
+The model in `r eqncaps("FullModel",display="cite")` is fit with `lm()` using a formula of the form `y~x*factor` exactly as described in Chapter 7 of **IFAR** (again noting that `lm()` will create the appropriate dummy and interaction variables).
 ```{r}
 fit1 <- lm(logW~logL*fYear,data=ruf1)
 ```
@@ -142,7 +152,7 @@ residPlot(fit1,legend=FALSE)
 
 `r figcaps("FullResidPlot")`
 
-An ANOVA table is constructed (using `Anova()` from `car`) and interpreted (sequentially starting at the bottom of the table) as described in Chapter 7.
+An ANOVA table is constructed (using `Anova()` from `car`) and interpreted (sequentially starting at the bottom of the table) as described in Chapter 7 of **IFAR**.
 
 ```{r}
 Anova(fit1)

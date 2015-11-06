@@ -67,44 +67,82 @@ css: "/css/codebox.css"
 <p>Substitution of appropriate values for the dummy variables into Equation 1 shows how Equation 1 simultaneously represents the weight-length relationship regressions for all three years (Table 1). From these submodels, it is apparent that <span class="math">\(\alpha\)</span> is the y-intercept for the reference (e.g., 1990) group, <span class="math">\(\beta\)</span> is the slope for the reference group, <span class="math">\(\delta_{i}\)</span> is the difference in y-intercepts between the <span class="math">\(i\)</span>th and reference groups, and <span class="math">\(\gamma_{i}\)</span> is the difference in slopes between the <span class="math">\(i\)</span>th and reference groups. By extension, the interaction variables measure differences in slopes and the dummy variables measure differences in y-intercepts.</p>
 <p>   </p>
 <p>Table 1: The submodels by capture year represented by the full model.</p>
+<style>
+  th {
+    text-align: "center";
+    border-spacing: 5px;
+  }
+  td {
+    text-align: "center";
+    border-spacing: 5px;
+  }
+</style>
 <table>
-<thead>
-<tr class="header">
-<th align="center">Year</th>
-<th align="center">  fYear1995</th>
-<th align="center">fYear2000</th>
-<th align="center">Submodel (<span class="math">\(log_{10}(W_{i})=\)</span>)</th>
+<tr>
+<th>
+Year
+</th>
+<th>
+fYear1995
+</th>
+<th>
+fYear2000
+</th>
+<th>
+Submodel (<span class="math">\(log_{10}(W_{i})=\)</span>)
+</th>
+&lt;&gt;
+<tr>
+<td>
+1990
+</td>
+<td>
+0
+</td>
+<td>
+0
+</td>
+<td>
+<span class="math">\(log_{10}(\alpha) + \beta log_{10}(L_{i})\)</span>
+</td>
 </tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">1990</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center"><span class="math">\(log_{10}(\alpha) + \beta log_{10}(L_{i})\)</span></td>
+<tr>
+<td>
+1995
+</td>
+<td>
+1
+</td>
+<td>
+0
+</td>
+<td>
+<span class="math">\((log_{10}(\alpha) + \delta_{1}) + (\beta + \gamma_{1})*log_{10}(L_{i})\)</span>
+</td>
 </tr>
-<tr class="even">
-<td align="center">1995</td>
-<td align="center">1</td>
-<td align="center">0</td>
-<td align="center"><span class="math">\((log_{10}(\alpha) + \delta_{1}) + (\beta + \gamma_{1})*log_{10}(L_{i})\)</span></td>
+<tr>
+<td>
+2000
+</td>
+<td>
+0
+</td>
+<td>
+1
+</td>
+<td>
+<span class="math">\((log_{10}(\alpha) + \delta_{2}) + (\beta + \gamma_{2})*log_{10}(L_{i})\)</span>
+</td>
 </tr>
-<tr class="odd">
-<td align="center">2000</td>
-<td align="center">0</td>
-<td align="center">1</td>
-<td align="center"><span class="math">\((log_{10}(\alpha) + \delta_{2}) + (\beta + \gamma_{2})*log_{10}(L_{i})\)</span></td>
-</tr>
-</tbody>
 </table>
 <p>   </p>
-<p>The model in Equation 1 is fit with <code>lm()</code> using a formula of the form <code>y~x*factor</code> exactly as described in Chapter 7 (again noting that <code>lm()</code> will create the appropriate dummy and interaction variables).</p>
+<p>The model in Equation 1 is fit with <code>lm()</code> using a formula of the form <code>y~x*factor</code> exactly as described in Chapter 7 of <strong>IFAR</strong> (again noting that <code>lm()</code> will create the appropriate dummy and interaction variables).</p>
 <pre class="r"><code>&gt; fit1 &lt;- lm(logW~logL*fYear,data=ruf1)</code></pre>
 <p>The linearity and homoscedasticity assumptions (Figure 1-Left) and normality assumption (Figure 1-Right) are largely met with this model.</p>
 <pre class="r"><code>&gt; residPlot(fit1,legend=FALSE)</code></pre>
 <p><img src="index_files/figure-html/FullResidPlot-1.png" title="" alt="" width="672" /></p>
 <p>Figure 1: Modified residual plot (Left) and histogram of residuals (Right) from fitting a dummy variable regression to the log-transformed weights and lengths of Ruffe captured in 1990, 1995, and 2000.</p>
-<p>An ANOVA table is constructed (using <code>Anova()</code> from <code>car</code>) and interpreted (sequentially starting at the bottom of the table) as described in Chapter 7.</p>
+<p>An ANOVA table is constructed (using <code>Anova()</code> from <code>car</code>) and interpreted (sequentially starting at the bottom of the table) as described in Chapter 7 of <strong>IFAR</strong>.</p>
 <pre class="r"><code>&gt; Anova(fit1)</code></pre>
 <pre><code>Anova Table (Type II tests)
 
@@ -226,7 +264,7 @@ logL:fYear1993 logL:fYear1994 logL:fYear1995
 <h2>Reproducibility Information</h2>
 <ul>
 <li><strong>Compiled Date:</strong> Thu Nov 05 2015</li>
-<li><strong>Compiled Time:</strong> 7:28:21 PM</li>
+<li><strong>Compiled Time:</strong> 7:37:40 PM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>
