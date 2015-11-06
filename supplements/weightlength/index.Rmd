@@ -122,7 +122,7 @@ Substitution of appropriate values for the dummy variables into `r eqncaps("Full
 `r tabcaps("SubsetModels")`
 
 <table>
-<tr><th width="75px">Year</th><th width="100px">fYear1995</th><th width="100px">fYear2000</th><th width="200px">Submodel ($log_{10}(W_{i})=$)</th></tr>
+<tr><th width="75px" align="center">Year</th><th width="100px" align="center">fYear1995</th><th width="100px" align="center">fYear2000</th><th width="200px">Submodel ($log_{10}(W_{i})=$)</th></tr>
 <tr><td align="center">1990</td><td align="center">0</td><td align="center">0</td><td>$log_{10}(\alpha) + \beta log_{10}(L_{i})$</td></tr>
 <tr><td align="center">1995</td><td align="center">1</td><td align="center">0</td><td>$(log_{10}(\alpha) + \delta_{1}) + (\beta + \gamma_{1})*log_{10}(L_{i})$</td></tr>
 <tr><td align="center">2000</td><td align="center">0</td><td align="center">1</td><td>$(log_{10}(\alpha) + \delta_{2}) + (\beta + \gamma_{2})*log_{10}(L_{i})$</td></tr>
