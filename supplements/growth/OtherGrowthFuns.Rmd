@@ -25,7 +25,7 @@ if (require(FSA)) purl2("OtherGrowthFuns.Rmd",topnotes="User must set working di
 ##############################################################
 ```
 
-The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the model were illustrated in the [*Introductory Fisheries Analyses with R*](http://derekogle.com/IFAR/) (IFAR) book.  Other growth functions exist and are illustrated in this supplement.  Methods for [fitting other parameterizations of the VBGF are here](OtherVBGFParams.html) and [alternative nonlinear model fitting algorithms are illustrated here](OtherNLAlgorithms.html).
+The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the model were illustrated in Chapter 12 of the [*Introductory Fisheries Analyses with R*](http://derekogle.com/IFAR/) (IFAR) book.  Other growth functions exist and are illustrated in this supplement.  Other supplements demonstrate how to [fit other parameterizations of the VBGF](OtherVBGFParams.html) and [use alternative nonlinear model fitting algorithms](OtherNLAlgorithms.html).
 
 ### Required Packages for this Supplement
 Functions used in this supplement require the packages shown below.

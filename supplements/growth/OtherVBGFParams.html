@@ -7,7 +7,10 @@ css: "/css/codebox.css"
 ---
 
 
-<p>The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the model were illustrated in the <a href="http://derekogle.com/IFAR/"><em>Introductory Fisheries Analyses with R</em></a> (IFAR) book. The VBGF used there is from <span class="citation">Beverton and Holt (1957)</span> and is called the “Typical” parameterization of the VBGF. Other parameterizations exist and this supplement illustrates how to fit one of the other parameterizations of the VBGF. Methods for <a href="OtherGrowthFuns.html">fitting other growth functions are here</a> and <a href="OtherNLAlgorithms.html">alternative nonlinear model fitting algorithms are illustrated here</a>.</p>
+<p>The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the model were illustrated in Chapter 12 of the <a href="http://derekogle.com/IFAR/"><em>Introductory Fisheries Analyses with R</em></a> (IFAR) book. The VBGF used there is from <span class="citation">Beverton and Holt (1957)</span> and is called the “Typical” parameterization of the VBGF. The VBGF can be expressed in alternative forms that are called parameterizations. The most common parameterizations of the VBGF may be seen with <code>vbModels()</code> from <code>FSA</code>.</p>
+<p>Different parameterizations do not fit the data differently. In other words, all parameterizations of the VBGF have the same number of parameters and will produce the same predicted values and fitted model plots. However, different parameterizations will have different model parameters that are either of interest to the fisheries scientist or behave better with the model fitting algorithms. For example, the parameterizations of <span class="citation"><span>von <span>B</span>ertalanffy</span> (1938)</span> and <span class="citation">Mooij et al. (1999)</span> both use <span class="math">\(L_{0}\)</span>, which is the mean length at time 0 (i.e., at “hatch”). Thus, either of these parameterizations would be used if the <span class="math">\(L_{0}\)</span> parameter was of biological interest. In contrast, the parameterizations of <span class="citation">Schnute (1981)</span> and <span class="citation">Francis (1988)</span> are either largely or wholly based on expected values which are generally less correlated. Thus, if one wants to avoid the problems associated highly correlated parametes (as discussed in the <strong>IFAR</strong> book) and is not interested in the parameters of the other parameterizations, then either of these two parameterizations may be used.</p>
+<p>The parametarization of <span class="citation">Francis (1988)</span> will be fit in this supplement as an illustration of fitting other than the “Typical” parameterization that was demonstrated in Chapter 12 of the <strong>IFAR</strong> book. Other supplements demonstrate how to <a href="OtherGrowthFuns.html">fit other growth functions</a> and <a href="OtherNLAlgorithms.html">use alternative nonlinear model fitting algorithms</a>.</p>
+<p> </p>
 <div id="required-packages-for-this-supplement" class="section level3">
 <h3>Required Packages for this Supplement</h3>
 <p>Functions used in this supplement require the packages shown below.</p>
@@ -17,7 +20,7 @@ css: "/css/codebox.css"
 </div>
 <div id="data-used-in-this-supplement" class="section level3">
 <h3>Data Used in this Supplement</h3>
-<p>The male Black Drum data (<a href="https://github.com/droglenc/FSAdata/blob/master/data-raw/BlackDrum2001.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/BlackDrum2001.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/BlackDrum2001.html">meta-data</a>) used in the IFAR book will also be used in this supplement.</p>
+<p>The male Black Drum data (<a href="https://github.com/droglenc/FSAdata/blob/master/data-raw/BlackDrum2001.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/BlackDrum2001.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/BlackDrum2001.html">meta-data</a>) used in the <strong>IFAR</strong> book are also used in this supplement.</p>
 <pre class="r"><code>&gt; bdmf &lt;- read.csv(&quot;BlackDrum2001.csv&quot;) %&gt;%
     select(-c(spname,day,weight)) %&gt;%
     filterD(sex %in% c(&quot;male&quot;,&quot;female&quot;),otoage&lt;50)
@@ -34,8 +37,6 @@ css: "/css/codebox.css"
 </div>
 <div id="fitting-other-vbgf-parameterizations" class="section level2">
 <h2>Fitting Other VBGF Parameterizations</h2>
-<p>Fitting the most common “Typical” parameterization of the von Bertalanffy growth function (VBGF) was demonstrated in the main chapter. However, the VBGF has been expressed in a variety of parameterizations. The most common alternative parameterizations of the VBGF may be seen with <code>vbModels()</code> from <code>FSA</code>.</p>
-<p>Different parameterizations do not fit the data differently (i.e., the same number of parameters are used, predictions will be identical, and fitted model plots will look the same). However, different parameterizations may be used if the fisheries scientist is interesting in estimating different parameters. For example, one might use the “Original” <span class="citation">(<span>von <span>B</span>ertalanffy</span> 1938)</span> or “Mooij” <span class="citation">(Mooij et al. 1999)</span> parameterizations if interests is in <span class="math">\(L_{0}\)</span> the mean length at time 0 (i.e., at “hatch”). Two of the parameterizations, “Schnute” <span class="citation">(Schnute 1981)</span> and “Francis” <span class="citation">(Francis 1988)</span> are either largely or whole based on expected values. The parameters in expected value parameterizations are generally less correlated and, thus, the problems related to correlated parameters discussed in the main chapter may be ameliorated with these parameterizations. These two parameterizations are, however, slightly more work to fit because the scientists must choose two ages that will define two of the model parameters. Fitting the “Francis” parameterization of the VBGF to the Black Drum data will be demonstrated below.</p>
 <p>An R function for predicting length from a given age may be created by the user. However, similar to what was demonstrated in the main chapter for the “Typical” VBGF, <code>vbFuns()</code> from <code>FSA</code> may be used to create such a function for each parameterization displayed in <code>vbModels()</code>. A brief explanation of the parameters is given if <code>msg=TRUE</code> is included in <code>vbFuns()</code>. A function for the “Francis” parameterization is defined with <code>vbFuns()</code> below. Note that values for the three parameters may be included as a vector in <code>L1=</code> and that the youngest and oldest ages may be included as a vector in <code>t1=</code>.</p>
 <pre class="r"><code>&gt; ( vbF &lt;- vbFuns(&quot;Francis&quot;) )</code></pre>
 <pre><code>function(t,L1,L2=NULL,L3=NULL,t1,t3=NULL) {
@@ -44,7 +45,7 @@ css: "/css/codebox.css"
   r &lt;- (L3-L2)/(L2-L1)
   L1+(L3-L1)*((1-r^(2*((t-t1)/(t3-t1))))/(1-r^2))
 }
-&lt;environment: 0x051011cc&gt;</code></pre>
+&lt;environment: 0x05087e68&gt;</code></pre>
 <p>The three parameters in the “Francis” parameterizations are the expected (i.e., mean) lengths at three ages. Two of the ages are generally the youngest and oldest (or very close to those) ages in the data. The third age is, by definition, halfway between these two ages. Thus, the parameters will be the expected lengths at a young, old, and intermediate age. In this example, I have chosen to estimate expected lengths for the youngest and oldest ages in the data.</p>
 <pre class="r"><code>&gt; ( ages &lt;- range(bdm$otoage) )</code></pre>
 <pre><code>[1]  3 42</code></pre>
@@ -69,12 +70,12 @@ L3 1194.248 1176.6756 1212.7376</code></pre>
 <pre class="r"><code>&gt; bootF &lt;- nlsBoot(nlsF)
 &gt; cbind(Ests=coef(nlsF),confint(bootF))</code></pre>
 <pre><code>       Ests   95% LCI   95% UCI
-L1  572.975  537.8171  607.4067
-L2 1157.463 1146.2451 1168.6581
-L3 1194.248 1178.2801 1212.8557</code></pre>
+L1  572.975  533.4564  610.3141
+L2 1157.463 1146.8320 1168.3618
+L3 1194.248 1178.3286 1211.0759</code></pre>
 <pre class="r"><code>&gt; predict(bootF,vbF,t=3,t1=ages)</code></pre>
 <pre><code>prediction    95% LCI    95% UCI 
-  573.0361   537.8171   607.4067 </code></pre>
+  573.3623   533.4564   610.3141 </code></pre>
 <p>Note that the intra-parameter correlations are relatively low for this parameterization. Additionally, the scale of the parameters in the “Francis” parameterization are usually similar. Both of these characteristics may aid model convergence.</p>
 <pre class="r"><code>&gt; summary(nlsF,correlation=TRUE)</code></pre>
 <pre><code>
@@ -102,7 +103,7 @@ Achieved convergence tolerance: 3.023e-06</code></pre>
 <h2>Reproducibility Information</h2>
 <ul>
 <li><strong>Compiled Date:</strong> Fri Nov 06 2015</li>
-<li><strong>Compiled Time:</strong> 7:05:26 AM</li>
+<li><strong>Compiled Time:</strong> 8:22:05 AM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>
