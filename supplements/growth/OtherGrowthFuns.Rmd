@@ -25,7 +25,11 @@ if (require(FSA)) purl2("OtherGrowthFuns.Rmd",topnotes="User must set working di
 ##############################################################
 ```
 
-The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the model were illustrated in Chapter 12 of the [*Introductory Fisheries Analyses with R*](http://derekogle.com/IFAR/) (IFAR) book.  Other growth functions exist and are illustrated in this supplement.  Other supplements demonstrate how to [fit other parameterizations of the VBGF](OtherVBGFParams.html) and [use alternative nonlinear model fitting algorithms](OtherNLAlgorithms.html).
+The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the function were illustrated in Chapter 12 of the [*Introductory Fisheries Analyses with R*](http://derekogle.com/IFAR/) (IFAR) book.  Mean length-at-age has been modeled by functions other than the VBGF.  Common other functions are the exponential, logistic, and polynomial [@Ricker1975], as well as the specific functions of @Gompertz1825, @Richards1959, @Schnute1981, and @Richards1959. 
+
+Several of these functions are used in this supplement to demonstrate how to fit growth functions other than the VBGF.  Other supplements demonstrate how to [fit other parameterizations of the VBGF](OtherVBGFParams.html) and [use alternative nonlinear model fitting algorithms](OtherNLAlgorithms.html).
+
+\ 
 
 ### Required Packages for this Supplement
 Functions used in this supplement require the packages shown below.
@@ -68,16 +72,18 @@ headtail(bdm)
 
 ## Fitting Other Growth Functions
 
-Mean length-at-age has been modeled by functions other than the VBGF.  Common other functions are the exponential, logistic, and polynomial [@Ricker1975], as well as the specific functions of @Gompertz1825, @Richards1959, @Schnute1981, and @SchnuteRichards1990.  The "Schnute" model and several parameterizations of the logistic, Gompertz, and Richards models have been coded in convenience functions in `FSA`.  For example, the default parameterizations of the logistic, Gompertz, and Richards models are defined below.  Again, include `msg=TRUE` for definitions of the parameters.  Further note that the Richards model has four parameters.
+The "Schnute" model and several parameterizations of the logistic, Gompertz, and Richards models have been coded in convenience functions in `FSA`.  For example, the default parameterizations of the logistic, Gompertz, and Richards models are defined below.
 ```{r}
 l1 <- logisticFuns()
 g1 <- GompertzFuns()
 r1 <- RichardsFuns()
 ```
 
-Unfortunately, convenience functions for finding starting values for each of these functions do not exist.  Starting values can be obtained by iteratively superimposing a curve of the function at chosen values for the parameters onto a scatterplot of the raw data.  This is demonstrated below for the Richards function.  [Note that this may take considerable trial-and-error to find parameter values that provide a curve in the "neighborhood" of the data.  Starting values likely only need to provide a rough fit to the data.  However, I had considerable difficult finding starting values that would work with the Richards function for these data.]
+Unfortunately, convenience functions for finding starting values for each of these functions do not exist.  Starting values may be obtained by iteratively superimposing a curve of the function at chosen values for the parameters onto a scatterplot of the raw data.  This process may take considerable trial-and-error to find parameter values that provide a curve in the "neighborhood" of the data.  Starting values likely only need to provide a rough fit to the data.
 
-```{r}
+The code below demonstrates this process for the Richards function created above in `r1()`.  Note that the Richards function has four parameters -- $L_{\infty}$, $k$, $a$, and $b$.  Further note that I had considerable difficult finding starting values that would work with the Richards function for these data.
+
+```{r par1=TRUE}
 plot(tl~otoage,data=bdm,pch=19,col=rgb(0,0,0,1/4),
      xlab="Otolith Age",ylab="Total Length (mm)")
 svR1 <- list(Linf=1200,k=0.1,a=1.1,b=0.4)
@@ -105,7 +111,7 @@ svG1 <- list(Linf=1250,gi=0.15,ti=2)
 svL1 <- list(Linf=1250,gninf=0.15,ti=4)
 ```
 
-These models can be fit and summarized as illustrated above and in the book.
+These models may be fit and summarized as illustrated in the **IFAR** book.  The code below is for the Richards function.
 
 ```{r}
 fitR1 <- nls(tl~r1(otoage,Linf,k,a,b),data=bdm,start=svR1)
@@ -114,7 +120,7 @@ cbind(Ests=coef(fitR1),confint(bootR1))
 predict(bootR1,r1,t=3)
 ```
 
-Information criterion can be used to identify which of these models best fits the male Black Drum data.  First, the von Bertalanffy (as fit in the book), Gompertz, and logistic functions are fit to the data.
+Information criterion may be used to identify which of these models best fits the male Black Drum data.  First, the von Bertalanffy (as fit in the **IFAR** book), Gompertz, and logistic functions are fit to the data.
 
 ```{r}
 vbTyp <- vbFuns()
@@ -124,7 +130,7 @@ fitG1 <- nls(tl~g1(otoage,Linf,gi,ti),data=bdm,start=svG1)
 fitL1 <- nls(tl~l1(otoage,Linf,gninf,ti),data=bdm,start=svL1)
 ```
 
-These objects are then submitted to `AICctab` to provide a summary table.  From this, the Richards models is most supported followed by the VBGF.  The logistic and Gompertz models had little support, likely because they force an inflection point in the model which is not apparent in the data.
+These objects are then submitted to `AICctab` to provide a summary table.  From this, the Richards models is most supported followed by the VBGF.  The logistic and Gompertz models had little support, likely because they force an inflection point in the model which is not apparent in these data.
 
 ```{r}
 aictab(list(fitTyp,fitL1,fitG1,fitR1),c("VBGF","logistic","Gompertz","Richards"))
@@ -132,7 +138,7 @@ aictab(list(fitTyp,fitL1,fitG1,fitR1),c("VBGF","logistic","Gompertz","Richards")
 
 A plot of the best-fit model for each growth function (`r figcaps("OtherGFCompare",display="cite")`) shows, however, that there is likely very little difference in predicted values among the four models.
 
-```{r}
+```{r par1=TRUE}
 plot(tl~otoage,data=bdm,pch=19,col=rgb(0,0,0,1/4),
      xlab="Otolith Age",ylab="Total Length (mm)")
 curve(vbTyp(x,coef(fitTyp)),from=3,to=42,add=TRUE,lwd=6)

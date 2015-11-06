@@ -7,7 +7,9 @@ css: "/css/codebox.css"
 ---
 
 
-<p>The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the model were illustrated in the <a href="http://derekogle.com/IFAR/"><em>Introductory Fisheries Analyses with R</em></a> (IFAR) book. Other growth functions exist and are illustrated in this supplement. Methods for <a href="OtherVBGFParams.html">fitting other parameterizations of the VBGF are here</a> and <a href="OtherNLAlgorithms.html">alternative nonlinear model fitting algorithms are illustrated here</a>.</p>
+<p>The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the function were illustrated in Chapter 12 of the <a href="http://derekogle.com/IFAR/"><em>Introductory Fisheries Analyses with R</em></a> (IFAR) book. Mean length-at-age has been modeled by functions other than the VBGF. Common other functions are the exponential, logistic, and polynomial <span class="citation">(Ricker 1975)</span>, as well as the specific functions of <span class="citation">Gompertz (1825)</span>, <span class="citation">Richards (1959)</span>, <span class="citation">Schnute (1981)</span>, and <span class="citation">Richards (1959)</span>.</p>
+<p>Several of these functions are used in this supplement to demonstrate how to fit growth functions other than the VBGF. Other supplements demonstrate how to <a href="OtherVBGFParams.html">fit other parameterizations of the VBGF</a> and <a href="OtherNLAlgorithms.html">use alternative nonlinear model fitting algorithms</a>.</p>
+<p> </p>
 <div id="required-packages-for-this-supplement" class="section level3">
 <h3>Required Packages for this Supplement</h3>
 <p>Functions used in this supplement require the packages shown below.</p>
@@ -35,11 +37,12 @@ css: "/css/codebox.css"
 </div>
 <div id="fitting-other-growth-functions" class="section level2">
 <h2>Fitting Other Growth Functions</h2>
-<p>Mean length-at-age has been modeled by functions other than the VBGF. Common other functions are the exponential, logistic, and polynomial <span class="citation">(Ricker 1975)</span>, as well as the specific functions of <span class="citation">Gompertz (1825)</span>, <span class="citation">Richards (1959)</span>, <span class="citation">Schnute (1981)</span>, and <span class="citation">Schnute and Richards (1990)</span>. The “Schnute” model and several parameterizations of the logistic, Gompertz, and Richards models have been coded in convenience functions in <code>FSA</code>. For example, the default parameterizations of the logistic, Gompertz, and Richards models are defined below. Again, include <code>msg=TRUE</code> for definitions of the parameters. Further note that the Richards model has four parameters.</p>
+<p>The “Schnute” model and several parameterizations of the logistic, Gompertz, and Richards models have been coded in convenience functions in <code>FSA</code>. For example, the default parameterizations of the logistic, Gompertz, and Richards models are defined below.</p>
 <pre class="r"><code>&gt; l1 &lt;- logisticFuns()
 &gt; g1 &lt;- GompertzFuns()
 &gt; r1 &lt;- RichardsFuns()</code></pre>
-<p>Unfortunately, convenience functions for finding starting values for each of these functions do not exist. Starting values can be obtained by iteratively superimposing a curve of the function at chosen values for the parameters onto a scatterplot of the raw data. This is demonstrated below for the Richards function. [Note that this may take considerable trial-and-error to find parameter values that provide a curve in the “neighborhood” of the data. Starting values likely only need to provide a rough fit to the data. However, I had considerable difficult finding starting values that would work with the Richards function for these data.]</p>
+<p>Unfortunately, convenience functions for finding starting values for each of these functions do not exist. Starting values may be obtained by iteratively superimposing a curve of the function at chosen values for the parameters onto a scatterplot of the raw data. This process may take considerable trial-and-error to find parameter values that provide a curve in the “neighborhood” of the data. Starting values likely only need to provide a rough fit to the data.</p>
+<p>The code below demonstrates this process for the Richards function created above in <code>r1()</code>. Note that the Richards function has four parameters – <span class="math">\(L_{\infty}\)</span>, <span class="math">\(k\)</span>, <span class="math">\(a\)</span>, and <span class="math">\(b\)</span>. Further note that I had considerable difficult finding starting values that would work with the Richards function for these data.</p>
 <pre class="r"><code>&gt; plot(tl~otoage,data=bdm,pch=19,col=rgb(0,0,0,1/4),
        xlab=&quot;Otolith Age&quot;,ylab=&quot;Total Length (mm)&quot;)
 &gt; svR1 &lt;- list(Linf=1200,k=0.1,a=1.1,b=0.4)
@@ -49,27 +52,27 @@ css: "/css/codebox.css"
 <p>A similar process (not shown) was followed for the logistic and Gompertz models.</p>
 <pre class="r"><code>&gt; svG1 &lt;- list(Linf=1250,gi=0.15,ti=2)
 &gt; svL1 &lt;- list(Linf=1250,gninf=0.15,ti=4)</code></pre>
-<p>These models can be fit and summarized as illustrated above and in the book.</p>
+<p>These models may be fit and summarized as illustrated in the <strong>IFAR</strong> book. The code below is for the Richards function.</p>
 <pre class="r"><code>&gt; fitR1 &lt;- nls(tl~r1(otoage,Linf,k,a,b),data=bdm,start=svR1)
 &gt; bootR1 &lt;- nlsBoot(fitR1)</code></pre>
-<pre><code>Warning in nlsBoot(fitR1): The fit did not converge 99 times during
+<pre><code>Warning in nlsBoot(fitR1): The fit did not converge 97 times during
 bootstrapping</code></pre>
 <pre class="r"><code>&gt; cbind(Ests=coef(fitR1),confint(bootR1))</code></pre>
 <pre><code>             Ests      95% LCI      95% UCI
-Linf 1.216988e+03 1.188397e+03 1250.1589330
-k    9.419418e-02 6.580007e-02    0.1453786
-a    1.155605e+00 6.908280e-01    1.2228549
-b    3.793338e-01 2.741059e-01    1.1819328</code></pre>
+Linf 1.216988e+03 1188.7345431 1249.8129807
+k    9.419418e-02    0.0670484    0.1445181
+a    1.155605e+00    0.7394841    1.2185166
+b    3.793338e-01    0.2757284    1.0795204</code></pre>
 <pre class="r"><code>&gt; predict(bootR1,r1,t=3)</code></pre>
 <pre><code>prediction    95% LCI    95% UCI 
-  559.9245   515.7198   601.8223 </code></pre>
-<p>Information criterion can be used to identify which of these models best fits the male Black Drum data. First, the von Bertalanffy (as fit in the book), Gompertz, and logistic functions are fit to the data.</p>
+  559.9915   518.7943   599.4339 </code></pre>
+<p>Information criterion may be used to identify which of these models best fits the male Black Drum data. First, the von Bertalanffy (as fit in the <strong>IFAR</strong> book), Gompertz, and logistic functions are fit to the data.</p>
 <pre class="r"><code>&gt; vbTyp &lt;- vbFuns()
 &gt; svTyp &lt;- list(Linf=1193,K=0.13,t0=-2.0)
 &gt; fitTyp &lt;- nls(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp)
 &gt; fitG1 &lt;- nls(tl~g1(otoage,Linf,gi,ti),data=bdm,start=svG1)
 &gt; fitL1 &lt;- nls(tl~l1(otoage,Linf,gninf,ti),data=bdm,start=svL1)</code></pre>
-<p>These objects are then submitted to <code>AICctab</code> to provide a summary table. From this, the Richards models is most supported followed by the VBGF. The logistic and Gompertz models had little support, likely because they force an inflection point in the model which is not apparent in the data.</p>
+<p>These objects are then submitted to <code>AICctab</code> to provide a summary table. From this, the Richards models is most supported followed by the VBGF. The logistic and Gompertz models had little support, likely because they force an inflection point in the model which is not apparent in these data.</p>
 <pre class="r"><code>&gt; aictab(list(fitTyp,fitL1,fitG1,fitR1),c(&quot;VBGF&quot;,&quot;logistic&quot;,&quot;Gompertz&quot;,&quot;Richards&quot;))</code></pre>
 <pre><code>
 Model selection based on AICc :
@@ -95,7 +98,7 @@ logistic 4 790.33      10.73   0.00   1.00 -390.88</code></pre>
 <h2>Reproducibility Information</h2>
 <ul>
 <li><strong>Compiled Date:</strong> Fri Nov 06 2015</li>
-<li><strong>Compiled Time:</strong> 6:55:44 AM</li>
+<li><strong>Compiled Time:</strong> 9:26:01 AM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>
@@ -112,7 +115,6 @@ logistic 4 790.33      10.73   0.00   1.00 -390.88</code></pre>
 <p>Richards, F. 1959. A flexible growth function for empirical use. Journal of Experimental Botany 10:290–300.</p>
 <p>Ricker, W. E. 1975. Computation and interpretation of biological statistics of fish populations. Bulletin of the Fisheries Research Board of Canada.</p>
 <p>Schnute, J. 1981. A versatile growth model with statistically stable parameters. Canadian Journal of Fisheries and Aquatic Sciences 38:1128–1140.</p>
-<p>Schnute, J. T., and L. J. Richards. 1990. A unified approach to the analysis of fish growth, maturity, and survivorship data. Canadian Journal of Fisheries and Aquatic Sciences 47:24–40.</p>
 </div>
 </div>
 
