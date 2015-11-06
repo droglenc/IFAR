@@ -15,7 +15,7 @@ fnm <-"AKSlimySculpins_Growth_A"; modHTML(fnm)
 ```
 
 <img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/ToolikLake2.jpg" width="250px" />
-The total length (mm) and otolith age of [Slimy Sculpin](https://en.wikipedia.org/wiki/Slimy_sculpin) (*Cottus cognatus*) captured in the [Arctic Long-Term Ecological Research](http://ecosystems.mbl.edu/ARC/) area were recorded in [this CSV file](SculpinALTER.csv) (these data are also available in `SculpinALTER` from `FSAdata`.
+The total length (mm) and otolith age of [Slimy Sculpin](https://en.wikipedia.org/wiki/Slimy_sculpin) (*Cottus cognatus*) captured in the [Arctic Long-Term Ecological Research](http://ecosystems.mbl.edu/ARC/) area were recorded in SculpinALTER.csv ([view](https://github.com/droglenc/FSAdata/blob/master/data-raw/SculpinALTER.csv), [download](https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/SculpinALTER.csv), [metadata](http://derekogle.com/fishR/data/data-html/SculpinALTER.html)).
 
 Use these data to answer the following questions.
 
