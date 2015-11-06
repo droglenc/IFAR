@@ -25,7 +25,7 @@ css: "/css/codebox.css"
 </div>
 <div id="data-used-in-this-supplement" class="section level3">
 <h3>Data Used in this Supplement</h3>
-<p>Weights (g) and total lengths (mm) from Ruffe (<em>Gymnocephalus cernuus</em>) captured in the St. Louis River Harbor (Minnesota and Wisconsin) were used in Chapter 7 of <strong>IFAR</strong> and will also be used in this supplement. These data are from <span class="citation">Ogle and Winfield (2009)</span> and are in <code>RuffeSLRH.csv</code> (<a href="https://github.com/droglenc/FSA/blob/master/data-raw/RuffeSLRH.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSA/master/data-raw/RuffeSLRH.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/RuffeSLRH.html">meta-data</a>). To eliminate within-season variability, only Ruffe captured in July are used here. Additionally, a factored version of <code>year</code> was created, the common logarithms of weight and length were created, and the <code>fishID</code>, <code>month</code>, and <code>day</code> variables were removed to save space in the output.</p>
+<p>Weights (g) and total lengths (mm) from Ruffe (<em>Gymnocephalus cernuus</em>) captured in the St. Louis River Harbor (Minnesota and Wisconsin) were used in Chapter 7 of <strong>IFAR</strong> and will also be used in this supplement. These data are from <span class="citation">Ogle and Winfield (2009)</span> and are in <code>RuffeSLRH.csv</code> ( <a href="http://derekogle.com/IFAR/scripts/RuffeSLRH.csv">download</a>). To eliminate within-season variability, only Ruffe captured in July are used here. Additionally, a factored version of <code>year</code> was created, the common logarithms of weight and length were created, and the <code>fishID</code>, <code>month</code>, and <code>day</code> variables were removed to save space in the output.</p>
 <pre class="r"><code>&gt; ruf &lt;- read.csv(&quot;RuffeSLRH.csv&quot;) %&gt;%
     filterD(month==7) %&gt;%
     mutate(fYear=factor(year),logW=log10(wt),logL=log10(tl)) %&gt;%
@@ -71,7 +71,7 @@ css: "/css/codebox.css"
 <thead>
 <tr class="header">
 <th align="center">Year</th>
-<th align="center">fYear1995</th>
+<th align="center">  fYear1995</th>
 <th align="center">fYear2000</th>
 <th align="center">Submodel (<span class="math">\(log_{10}(W_{i})=\)</span>)</th>
 </tr>
@@ -226,7 +226,7 @@ logL:fYear1993 logL:fYear1994 logL:fYear1995
 <h2>Reproducibility Information</h2>
 <ul>
 <li><strong>Compiled Date:</strong> Thu Nov 05 2015</li>
-<li><strong>Compiled Time:</strong> 7:19:05 PM</li>
+<li><strong>Compiled Time:</strong> 7:28:21 PM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>

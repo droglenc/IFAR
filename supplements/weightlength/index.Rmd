@@ -68,7 +68,7 @@ library(car)
 
 
 ### Data Used in this Supplement
-Weights (g) and total lengths (mm) from Ruffe (*Gymnocephalus cernuus*) captured in the St. Louis River Harbor (Minnesota and Wisconsin) were used in Chapter 7 of **IFAR** and will also be used in this supplement.  These data are from @OgleWinfield2009 and are in `RuffeSLRH.csv` ([view](https://github.com/droglenc/FSA/blob/master/data-raw/RuffeSLRH.csv), [download](https://raw.githubusercontent.com/droglenc/FSA/master/data-raw/RuffeSLRH.csv), [meta-data](http://derekogle.com/fishR/data/data-html/RuffeSLRH.html)).  To eliminate within-season variability, only Ruffe captured in July are used here.  Additionally,  a factored version of `year` was created, the common logarithms of weight and length were created, and the `fishID`, `month`, and `day` variables were removed to save space in the output.
+Weights (g) and total lengths (mm) from Ruffe (*Gymnocephalus cernuus*) captured in the St. Louis River Harbor (Minnesota and Wisconsin) were used in Chapter 7 of **IFAR** and will also be used in this supplement.  These data are from @OgleWinfield2009 and are in `RuffeSLRH.csv` ( [download](http://derekogle.com/IFAR/scripts/RuffeSLRH.csv)).  To eliminate within-season variability, only Ruffe captured in July are used here.  Additionally,  a factored version of `year` was created, the common logarithms of weight and length were created, and the `fishID`, `month`, and `day` variables were removed to save space in the output.
 ```{r message=FALSE}
 ruf <- read.csv("RuffeSLRH.csv") %>%
   filterD(month==7) %>%
@@ -121,7 +121,7 @@ Substitution of appropriate values for the dummy variables into `r eqncaps("Full
 
 `r tabcaps("SubsetModels")`
 
-| Year | fYear1995 | fYear2000 | Submodel ($log_{10}(W_{i})=$) |
+| Year | &nbsp;&nbsp;fYear1995 | fYear2000 | Submodel ($log_{10}(W_{i})=$) |
 |:----:|:---------:|:---------:|:--------:|
 | 1990 |     0     |     0     | $log_{10}(\alpha) + \beta log_{10}(L_{i})$ |
 | 1995 |     1     |     0     | $(log_{10}(\alpha) + \delta_{1}) + (\beta + \gamma_{1})*log_{10}(L_{i})$ |
