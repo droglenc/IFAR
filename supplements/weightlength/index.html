@@ -69,16 +69,16 @@ css: "/css/codebox.css"
 <p>Table 1: The submodels by capture year represented by the full model.</p>
 <table>
 <tr>
-<th style="text-align: " center"; border-spacing: 5px;">
+<th align="center" width="100px">
 Year
 </th>
-<th style="text-align: " center"; border-spacing: 5px;">
+<th align="center" width="100px">
 fYear1995
 </th>
-<th style="text-align: " center"; border-spacing: 5px;">
+<th align="center" width="100px">
 fYear2000
 </th>
-<th style="text-align: " center"; border-spacing: 5px;">
+<th align="center" width="100px">
 Submodel (<span class="math">\(log_{10}(W_{i})=\)</span>)
 </th>
 &lt;&gt;
@@ -148,9 +148,9 @@ Residuals   0.971 497                    </code></pre>
 </div>
 <div id="pinpointing-specific-differences-among-slopes" class="section level2">
 <h2>Pinpointing Specific Differences Among Slopes</h2>
-<p>No simple method exists (such as Tukey’s Honestly Significant Difference (HSD) method) for comparing slopes among all pairs of groups while controlling for an increase in experimentwise error due to multiple comparisons. One strategy to perform these tests, though, is to fit the DVR as in the previous section and extract all of the p-values for comparisons of slopes to the reference level. Another model is then fit where the reference level has been changed and all p-values for comparisons of slopes to this level are extracted. This process is repeated until p-values for all pairwise comparisons has been extracted. The set of p-values from these comparisons is then submitted to procedures, such as one of the sequential Bonferroni or false discovery rate procedures, that are designed to adjust a set of p-values for multiple comparisons.</p>
+<p>No simple method exists (such as Tukey’s Honestly Significant Difference (HSD) method) for comparing slopes among all pairs of groups while controlling for an increase in experimentwise error due to multiple comparisons. One strategy to perform these tests, though, is to fit the DVR as in the previous section and extract all of the p-values for comparisons of slopes to the reference level. Another model is then fit where the reference level has been changed and all p-values for comparisons of slopes to this level are extracted. This process is repeated until p-values for all pairwise comparisons have been extracted. The set of p-values from these comparisons is then submitted to procedures, such as one of the sequential Bonferroni or false discovery rate procedures, that are designed to adjust a set of p-values for multiple comparisons.</p>
 <p>Controlling the experimentwise error rate for multiple comparisons is easily accomplished in R with <code>p.adjust()</code>. However, the sequential resetting of the reference level, fitting a new model, and extracting the p-values from all slope comparisons is tedious, especially for many groups. Fortunately, <code>compSlopes()</code> from <code>FSA</code> automates the tedious computation of the set of p-values and use of <code>p.adjust()</code> to control the experimentwise error rate.</p>
-<p>The <code>compSlopes()</code> function requires a DVR model fit with <code>lm()</code> as its first argument. The method to control for multiple comparisons may be set with <code>method=</code> and may be any of the methods returned by <code>p.adjust.methods()</code> (see <code>?p.adjust</code>).</p>
+<p>The <code>compSlopes()</code> function requires a DVR model fit from <code>lm()</code> as its first argument. The method to control for multiple comparisons is set with <code>method=</code> and may be any of the methods returned by <code>p.adjust.methods()</code> (see <code>?p.adjust</code>).</p>
 <pre class="r"><code>&gt; compSlopes(fit1)</code></pre>
 <pre><code>Multiple Slope Comparisons (using the &#39;holm&#39; adjustment)</code></pre>
 <pre><code>  comparison     diff  95% LCI  95% UCI p.unadj   p.adj
@@ -164,12 +164,12 @@ Slope Information (using the &#39;holm&#39; adjustment)</code></pre>
 2  1995 2.85330 2.77918 2.92743       0     0
 1  1990 3.02516 2.96011 3.09022       0     0</code></pre>
 <p>Two sets of results are returned by <code>compSlopes()</code>. The top set of results shows the difference in slopes (<code>diff</code>), unadjusted confidence interval for the difference in slopes (<code>95% LCI</code> and <code>95% UCI</code>), and unadjusted (<code>p.unadj</code>) and adjusted (<code>p.adj</code>) p-values for testing that the difference in slopes is not zero. These results show that the slope for 1990 is significantly greater than the slopes for 1995 and 2000, and that the slopes for 1995 and 2000 do not differ significantly.</p>
-<p>The bottom set of results shows the slope (<code>slope</code>), unadjusted confidence interval for the slope (<code>95% LCI</code> and <code>95% UCI</code>), and unadjusted (<code>p.unadj</code>) and adjusted (<code>p.adj</code>) p-values for testing that the slope is not equal to zero. In this case, this output is primarily for completeness as these hypothesis are not generally of interest with weight-length relationship regressions.</p>
+<p>The bottom set of results shows the slope (<code>slope</code>), unadjusted confidence interval for the slope (<code>95% LCI</code> and <code>95% UCI</code>), and unadjusted (<code>p.unadj</code>) and adjusted (<code>p.adj</code>) p-values for testing that the slope is not equal to zero. In this case, this output is primarily for completeness, as these hypothesis are not generally of interest with weight-length relationship regressions.</p>
 <p> </p>
 </div>
 <div id="a-summary-plot" class="section level2">
 <h2>A Summary Plot</h2>
-<p>A plot that shows the transformed weight-length data with best-fit lines for each year superimposed (Figure 2) is constructed with the code below. This code follows that found in the book with the exception that <code>col2rgbt()</code> from <code>FSA</code> is used to add transparency to each color in a vector of colors.</p>
+<p>A plot that shows the transformed weight-length data with best-fit lines for each year superimposed (Figure 2) is constructed with the code below. This code follows that found in the <strong>IFAR</strong> book with the exception that <code>col2rgbt()</code> from <code>FSA</code> is used to add transparency to each color in a vector of colors.</p>
 <pre class="r"><code>&gt; ## Base plot
 &gt; clrs1 &lt;- c(&quot;black&quot;,&quot;red&quot;,&quot;blue&quot;)
 &gt; clrs2 &lt;- col2rgbt(clrs1,1/4)
@@ -195,7 +195,7 @@ logL:fYear2000
 <div id="pinpointing-specific-differences-among-intercepts" class="section level2">
 <h2>Pinpointing Specific Differences Among Intercepts</h2>
 <p>When a difference in slopes exists, as in the previous example, it generally does not make sense to compare intercepts. However, if the slopes do not differ, then testing for differences in intercepts becomes important because, with parallel lines (i.e., same slopes), a difference in intercepts implies that the mean value of the response variable differs at <em>every</em> value of the explanatory variable.</p>
-<p>The example below fits a DVR of the weight-length relationship regressions for the years from 1992 to 1995 (data.frame constructed above). In this example, the interaction term is not a significant predictor which indicates that none of the slopes differ. However, the term related to the factor variable is significant, which implies that at least one of the <span class="math">\(\delta_{i}\)</span> is different from zero. Thus, the y-intercept for at least of 1993, 1994, or 1995 differs from the y-intercept for 1992 (the reference level).</p>
+<p>The example below fits a DVR of the weight-length relationship regressions for the years from 1992 to 1995 (data.frame constructed <a href="#data=used-in-this-supplement">above</a>). In this example, the interaction term is not a significant predictor which indicates that none of the slopes differ. However, the term related to the factor variable is significant, which implies that at least one of the <span class="math">\(\delta_{i}\)</span> is different from zero. Thus, the y-intercept for at least of 1993, 1994, or 1995 differs from the y-intercept for 1992 (the reference level).</p>
 <pre class="r"><code>&gt; fit2 &lt;- lm(logW~logL*fYear,data=ruf2)
 &gt; Anova(fit2)</code></pre>
 <pre><code>Anova Table (Type II tests)
@@ -207,7 +207,7 @@ fYear       0.326   3    65.4373 &lt;2e-16
 logL:fYear  0.008   3     1.6373 0.1793
 Residuals   1.235 743                  </code></pre>
 <p>The same problem of incomplete comparisons and increasing experimentwise error occurs here with the y-intercepts as occurred with the slopes above. The solution, however, is different here because the y-intercept is a point estimate, whereas the slope estimates a rate of change. In this case, Tukey’s HSD method can be used to determine which pairs of y-intercepts differ. However, the observed values need to be adjusted to a single values of the covariate.</p>
-<p>The adjusted value for an individual is computed by adding the individual’s residual to the predicted value of the response variable at a common covariate value based on the regression line for that individual. Visually, this adjustment may be thought of as sliding each point along its corresponding regression line to a common value along the x-axis.</p>
+<p>The adjusted value for an individual is computed by adding the individual’s residual from the full model to the predicted value of the response variable (from the full model gieven the individuals group) at a common covariate value. Visually, this adjustment may be thought of as sliding each point along the regression line (for the individual’s group) to a common value (for all groups) along the x-axis.</p>
 <p>The <code>compIntercepts()</code> function from <code>FSA</code> performs these adjustments and applies Tukey’s HSD procedure to the adjusted values. The <code>compIntercepts()</code> function requires the fitted DVR as the first argument. By default, the response variables are are adjusted to the mean value of the covariate unless a value is given to <code>common.cov=</code>. For example, the actual y-intercepts will be used if <code>common.cov=0</code>. Also note that a warning is given if the DVR model contains an interaction term, though <code>compIntercepts()</code> will adjust for this by fitting a new model without the nonsignificant interaction term.</p>
 <pre class="r"><code>&gt; compIntercepts(fit2)</code></pre>
 <pre><code>Warning: Removed an interaction term from &#39;mdl&#39; (i.e., assumed
@@ -254,7 +254,7 @@ logL:fYear1993 logL:fYear1994 logL:fYear1995
 <h2>Reproducibility Information</h2>
 <ul>
 <li><strong>Compiled Date:</strong> Thu Nov 05 2015</li>
-<li><strong>Compiled Time:</strong> 8:28:49 PM</li>
+<li><strong>Compiled Time:</strong> 8:45:46 PM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>

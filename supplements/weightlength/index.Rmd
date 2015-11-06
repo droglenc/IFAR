@@ -122,7 +122,7 @@ Substitution of appropriate values for the dummy variables into `r eqncaps("Full
 `r tabcaps("SubsetModels")`
 
 <table>
-<tr><th style="text-align: "center"; border-spacing: 5px;">Year</th><th style="text-align: "center"; border-spacing: 5px;">fYear1995</th><th style="text-align: "center"; border-spacing: 5px;">fYear2000</th><th style="text-align: "center"; border-spacing: 5px;">Submodel ($log_{10}(W_{i})=$)</th><\tr>
+<tr><th align="center" width="100px">Year</th><th align="center" width="100px">fYear1995</th><th align="center" width="100px">fYear2000</th><th align="center" width="100px">Submodel ($log_{10}(W_{i})=$)</th><\tr>
 <tr><td>1990</td><td>0</td><td>0</td><td>$log_{10}(\alpha) + \beta log_{10}(L_{i})$</td></tr>
 <tr><td>1995</td><td>1</td><td>0</td><td>$(log_{10}(\alpha) + \delta_{1}) + (\beta + \gamma_{1})*log_{10}(L_{i})$</td></tr>
 <tr><td>2000</td><td>0</td><td>1</td><td>$(log_{10}(\alpha) + \delta_{2}) + (\beta + \gamma_{2})*log_{10}(L_{i})$</td></tr>
@@ -157,24 +157,24 @@ The ANOVA table for the fit of the full model is useful for determining if there
 
 ## Pinpointing Specific Differences Among Slopes
 
-No simple method exists (such as Tukey's Honestly Significant Difference (HSD) method) for comparing slopes among all pairs of groups while controlling for an increase in experimentwise error due to multiple comparisons.  One strategy to perform these tests, though, is to fit the DVR as in the previous section and extract all of the p-values for comparisons of slopes to the reference level.  Another model is then fit where the reference level has been changed and all p-values for comparisons of slopes to this level are extracted.  This process is repeated until p-values for all pairwise comparisons has been extracted.  The set of p-values from these comparisons is then submitted to procedures, such as one of the sequential Bonferroni or false discovery rate procedures, that are designed to adjust a set of p-values for multiple comparisons.
+No simple method exists (such as Tukey's Honestly Significant Difference (HSD) method) for comparing slopes among all pairs of groups while controlling for an increase in experimentwise error due to multiple comparisons.  One strategy to perform these tests, though, is to fit the DVR as in the previous section and extract all of the p-values for comparisons of slopes to the reference level.  Another model is then fit where the reference level has been changed and all p-values for comparisons of slopes to this level are extracted.  This process is repeated until p-values for all pairwise comparisons have been extracted.  The set of p-values from these comparisons is then submitted to procedures, such as one of the sequential Bonferroni or false discovery rate procedures, that are designed to adjust a set of p-values for multiple comparisons.
 
 Controlling the experimentwise error rate for multiple comparisons is easily accomplished in R with `p.adjust()`.  However, the sequential resetting of the reference level, fitting a new model, and extracting the p-values from all slope comparisons is tedious, especially for many groups.  Fortunately, `compSlopes()` from `FSA` automates the tedious computation of the set of p-values and use of `p.adjust()` to control the experimentwise error rate.
 
-The `compSlopes()` function requires a DVR model fit with `lm()` as its first argument.  The method to control for multiple comparisons may be set with `method=` and may be any of the methods returned by `p.adjust.methods()` (see `?p.adjust`).
+The `compSlopes()` function requires a DVR model fit from `lm()` as its first argument.  The method to control for multiple comparisons is set with `method=` and may be any of the methods returned by `p.adjust.methods()` (see `?p.adjust`).
 ```{r}
 compSlopes(fit1)
 ```
 
 Two sets of results are returned by `compSlopes()`.  The top set of results shows the difference in slopes (`diff`), unadjusted confidence interval for the difference in slopes (`95% LCI` and `95% UCI`), and unadjusted (`p.unadj`) and adjusted (`p.adj`) p-values for testing that the difference in slopes is not zero.  These results show that the slope for 1990 is significantly greater than the slopes for 1995 and 2000, and that the slopes for 1995 and 2000 do not differ significantly.
 
-The bottom set of results shows the slope (`slope`), unadjusted confidence interval for the slope (`95% LCI` and `95% UCI`), and unadjusted (`p.unadj`) and adjusted (`p.adj`) p-values for testing that the slope is not equal to zero.  In this case, this output is primarily for completeness as these hypothesis are not generally of interest with weight-length relationship regressions.
+The bottom set of results shows the slope (`slope`), unadjusted confidence interval for the slope (`95% LCI` and `95% UCI`), and unadjusted (`p.unadj`) and adjusted (`p.adj`) p-values for testing that the slope is not equal to zero.  In this case, this output is primarily for completeness, as these hypothesis are not generally of interest with weight-length relationship regressions.
 
 \ 
 
 ## A Summary Plot
 
-A plot that shows the transformed weight-length data with best-fit lines for each year superimposed (`r figcaps("FitPlotSlopes",display="cite")`) is constructed with the code below.  This code follows that found in the book with the exception that `col2rgbt()` from `FSA` is used to add transparency to each color in a vector of colors.
+A plot that shows the transformed weight-length data with best-fit lines for each year superimposed (`r figcaps("FitPlotSlopes",display="cite")`) is constructed with the code below.  This code follows that found in the **IFAR** book with the exception that `col2rgbt()` from `FSA` is used to add transparency to each color in a vector of colors.
 
 ```{r}
 ## Base plot
@@ -201,7 +201,7 @@ legend("topleft",levels(ruf1$fYear),pch=19,col=clrs1)
 
 When a difference in slopes exists, as in the previous example, it generally does not make sense to compare intercepts.  However, if the slopes do not differ, then testing for differences in intercepts becomes important because, with parallel lines (i.e., same slopes), a difference in intercepts implies that the mean value of the response variable differs at *every* value of the explanatory variable.
 
-The example below fits a DVR of the weight-length relationship regressions for the years from 1992 to 1995 (data.frame constructed above).  In this example, the interaction term is not a significant predictor which indicates that none of the slopes differ.  However, the term related to the factor variable is significant, which implies that at least one of the $\delta_{i}$ is different from zero.  Thus, the y-intercept for at least of 1993, 1994, or 1995 differs from the y-intercept for 1992 (the reference level).
+The example below fits a DVR of the weight-length relationship regressions for the years from 1992 to 1995 (data.frame constructed [above](#data=used-in-this-supplement)).  In this example, the interaction term is not a significant predictor which indicates that none of the slopes differ.  However, the term related to the factor variable is significant, which implies that at least one of the $\delta_{i}$ is different from zero.  Thus, the y-intercept for at least of 1993, 1994, or 1995 differs from the y-intercept for 1992 (the reference level).
 
 ```{r}
 fit2 <- lm(logW~logL*fYear,data=ruf2)
@@ -210,7 +210,7 @@ Anova(fit2)
 
 The same problem of incomplete comparisons and increasing experimentwise error occurs here with the y-intercepts as occurred with the slopes above.  The solution, however, is different here because the y-intercept is a point estimate, whereas the slope estimates a rate of change.  In this case, Tukey's HSD method can be used to determine which pairs of y-intercepts differ.  However, the observed values need to be adjusted to a single values of the covariate.
 
-The adjusted value for an individual is computed by adding the individual's residual to the predicted value of the response variable at a common covariate value based on the regression line for that individual.  Visually, this adjustment may be thought of as sliding each point along its corresponding regression line to a common value along the x-axis.
+The adjusted value for an individual is computed by adding the individual's residual from the full model to the predicted value of the response variable (from the full model gieven the individuals group) at a common covariate value.  Visually, this adjustment may be thought of as sliding each point along the regression line (for the individual's group) to a common value (for all groups) along the x-axis.
 
 The `compIntercepts()` function from `FSA` performs these adjustments and applies Tukey's HSD procedure to the adjusted values.  The `compIntercepts()` function requires the fitted DVR as the first argument.  By default, the response variables are are adjusted to the mean value of the covariate unless a value is given to `common.cov=`.  For example, the actual y-intercepts will be used if `common.cov=0`.  Also note that a warning is given if the DVR model contains an interaction term, though `compIntercepts()` will adjust for this by fitting a new model without the nonsignificant interaction term.
 
