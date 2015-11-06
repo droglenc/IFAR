@@ -3,6 +3,7 @@ layout: page
 title: Weight-Length Relationships
 subtitle: DVR with More than Two Groups
 author: Derek H. Ogle
+css: "/css/code_highlight.css"
 csl: ../american-fisheries-society.csl
 bibliography: ../IFARSupplement.bib
 output: 
@@ -22,6 +23,15 @@ if (require(FSA)) purl2("index.Rmd",newname="weightlengthDVR",topnotes="User mus
 # == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 ##############################################################
 ```
+
+<script src="index_files/highlight/highlight.js"></script>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
 
 ----
 
