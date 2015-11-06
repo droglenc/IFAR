@@ -131,12 +131,14 @@ Substitution of appropriate values for the dummy variables into `r eqncaps("Full
     border-spacing: 5px;
   }
 </style>
+
 <table>
 <tr><th>Year</th><th>fYear1995</th><th>fYear2000</th><th>Submodel ($log_{10}(W_{i})=$)</th><\tr>
 <tr><td>1990</td><td>0</td><td>0</td><td>$log_{10}(\alpha) + \beta log_{10}(L_{i})$</td></tr>
 <tr><td>1995</td><td>1</td><td>0</td><td>$(log_{10}(\alpha) + \delta_{1}) + (\beta + \gamma_{1})*log_{10}(L_{i})$</td></tr>
 <tr><td>2000</td><td>0</td><td>1</td><td>$(log_{10}(\alpha) + \delta_{2}) + (\beta + \gamma_{2})*log_{10}(L_{i})$</td></tr>
 </table>
+
 \ 
 \ 
 
