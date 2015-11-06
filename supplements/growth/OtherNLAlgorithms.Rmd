@@ -69,9 +69,9 @@ headtail(bdm)
 
 ## Levenberg-Marquardt Algorithm
 
-The Levenberg-Marquardt (L-M) algorithm is a powerful and common method that switches between two other algorithms depending on when those algorithms perform most optimally.  Most practically, the L-M algorithm appears to be quite robust to "poor" starting values.
+The Levenberg-Marquardt (L-M) algorithm is a powerful and common method that switches between two other algorithms depending on when those algorithms perform most optimally [@MotulskyRansnas1987].  Most practically, the L-M algorithm appears to be quite robust to "poor" starting values.
 
-The L-M algorithm is implemented in `nlsLM()` from `minpack.lm` and uses the same main arguments as `nls()`.  For example, the "Typical" VBGF is fit (and parameter estimates, likelihood profile confidence intervals, and predictions are extracted) to the male Black Drum data below using the L-M algorithm.
+The L-M algorithm is implemented in `nlsLM()` from `minpack.lm` [@Elzhovetalminpack.lm] and uses the same main arguments as `nls()`.  For example, the "Typical" VBGF is fit (and parameter estimates, likelihood profile confidence intervals, and predictions are extracted) to the male Black Drum data below using the L-M algorithm.
 
 ```{r warning=FALSE}
 vbTyp <- vbFuns()
@@ -94,7 +94,7 @@ clwr <- c(Linf=1,  K=0.0001,t0=-Inf)
 cupr <- c(Linf=Inf,K=Inf,   t0=Inf)
 ```
 
-These constraints may be provided to `lower=` and `upper=`, respectively, of `nlsLM()`.  In this instance, these bounds had no noticeable effect until bootstapping, where there were fewer instances of a lack of convergence.
+These constraints may be provided to `lower=` and `upper=`, respectively, of `nlsLM()`.  In this instance, these bounds had no noticeable effect until bootstapping, where there were fewer instances of lack of convergence.
 ```{r warning=FALSE}
 fitLM1 <- nlsLM(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp,lower=clwr,upper=cupr)
 bootLM1 <- nlsBoot(fitLM1)
@@ -113,7 +113,7 @@ cbind(Ests=coef(fitP),confint(bootP))
 
 ## Other Algorithms
 
-Still other algorithms are found in `nlxb()` from `nlmrt` and `nls2()` from `nls2`.
+Still other algorithms are found in `nlxb()` from `nlmrt` [@Nashnlmrt] and `nls2()` from `nls2` [@Grothendiecknls2].
 
 \ 
 
