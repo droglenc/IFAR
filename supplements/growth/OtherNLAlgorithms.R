@@ -46,4 +46,4 @@ bootP <- nlsBoot(fitP)
 cbind(Ests=coef(fitP),confint(bootP))
 
 
-# Script created at 2015-11-06 06:59:08
+# Script created at 2015-11-06 09:31:33
