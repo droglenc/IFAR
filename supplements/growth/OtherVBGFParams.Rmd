@@ -3,6 +3,7 @@ layout: page
 title: Individual Growth
 subtitle: Other VBGF Parameterizations
 author: Derek H. Ogle
+css: "/css/codebox.css"
 csl: ../american-fisheries-society.csl
 bibliography: ../IFARSupplement.bib
 output: 
@@ -17,13 +18,14 @@ output:
 # Second line makes the script file
 # RUN BOTH MANUALLY (following using Knit HTML button)
 setwd("C:/aaaWork/Web/GitHub/IFAR/supplements/growth")
-source("../../rhelpers/modHTML.R"); modHTML2("OtherVBGFParams")
+source("../../rhelpers/IFARhelpers.R")
+modHTML2("OtherVBGFParams",need2render=FALSE)
 if (require(FSA)) purl2("OtherVBGFParams.Rmd",topnotes="User must set working directory appropriately.")
 # == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 ##############################################################
 ```
 
-The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the model were illustrated in the book.  The VBGF used there is from @BevertonHolt1957 and is called the "Typical" parameterizatin of the VBGF.  Other parameterizations exist and this supplement illustrates how to fit one of the other parameterizations of the VBGF.  Methods for [fitting other growth functions are here](OtherGrowthFuns.html) and [alternative nonlinear model fitting algorithms are illustrated here](OtherNLAlgorithms.html).
+The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the model were illustrated in the [*Introductory Fisheries Analyses with R*](http://derekogle.com/IFAR/) (IFAR) book.  The VBGF used there is from @BevertonHolt1957 and is called the "Typical" parameterization of the VBGF.  Other parameterizations exist and this supplement illustrates how to fit one of the other parameterizations of the VBGF.  Methods for [fitting other growth functions are here](OtherGrowthFuns.html) and [alternative nonlinear model fitting algorithms are illustrated here](OtherNLAlgorithms.html).
 
 ### Required Packages for this Supplement
 Functions used in this supplement require the packages shown below.
@@ -51,7 +53,7 @@ library(nlstools)
 
 ### Data Used in this Supplement
   
-The male Black Drum data ([view](https://github.com/droglenc/FSAdata/blob/master/data-raw/BlackDrum2001.csv), [download](https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/BlackDrum2001.csv), [meta-data](http://derekogle.com/fishR/data/data-html/BlackDrum2001.html)) used in the book will also be used here.
+The male Black Drum data ([view](https://github.com/droglenc/FSAdata/blob/master/data-raw/BlackDrum2001.csv), [download](https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/BlackDrum2001.csv), [meta-data](http://derekogle.com/fishR/data/data-html/BlackDrum2001.html)) used in the IFAR book will also be used in this supplement.
 ```{r}
 bdmf <- read.csv("BlackDrum2001.csv") %>%
   select(-c(spname,day,weight)) %>%
@@ -60,11 +62,12 @@ bdm <- filterD(bdmf,sex=="male")
 headtail(bdm)
 ```
 
+\ 
 
 ## Fitting Other VBGF Parameterizations
 Fitting the most common "Typical" parameterization of the von Bertalanffy growth function (VBGF) was demonstrated in the main chapter.  However, the VBGF has been expressed in a variety of parameterizations.  The most common alternative parameterizations of the VBGF may be seen with `vbModels()` from `FSA`.
 
-Different parameterizations do not fit the data differently (i.e., the same number of parameters are used, predictions will be identical, and fitted model plots will look the same).  However, different parameterizations may be used if the fisheries scientist is interesting in estimating different parameters.  For example, one might use the "Original" (@vonBertalanffy1938) or "Mooij" (@Mooijetal1999) parameterizations if interests is in $L_{0}$ the mean length at time 0 (i.e., at "hatch").  Two of the parameterizations, "Schnute" (@Schnute1981) and "Francis" (@Francis1988) are either largely or whole based on expected values.  The parameters in expected value parameterizations are generally less correlated and, thus, the problems related to correlated parameters discussed in the main chapter may be ameliorated with these parameterizations.  These two parameterizations are, however, slightly more work to fit because the scientists must choose two ages that will define two of the model parameters.  Fitting the "Francis" parameterization of the VBGF to the Black Drum data will be demonstrated below.
+Different parameterizations do not fit the data differently (i.e., the same number of parameters are used, predictions will be identical, and fitted model plots will look the same).  However, different parameterizations may be used if the fisheries scientist is interesting in estimating different parameters.  For example, one might use the "Original" [@vonBertalanffy1938] or "Mooij" [@Mooijetal1999] parameterizations if interests is in $L_{0}$ the mean length at time 0 (i.e., at "hatch").  Two of the parameterizations, "Schnute" [@Schnute1981] and "Francis" [@Francis1988] are either largely or whole based on expected values.  The parameters in expected value parameterizations are generally less correlated and, thus, the problems related to correlated parameters discussed in the main chapter may be ameliorated with these parameterizations.  These two parameterizations are, however, slightly more work to fit because the scientists must choose two ages that will define two of the model parameters.  Fitting the "Francis" parameterization of the VBGF to the Black Drum data will be demonstrated below.
 
 An R function for predicting length from a given age may be created by the user.  However, similar to what was demonstrated in the main chapter for the "Typical" VBGF,  `vbFuns()` from `FSA` may be used to create such a function for each parameterization displayed in `vbModels()`.  A brief explanation of the parameters is given if `msg=TRUE` is included in `vbFuns()`.  A function for the "Francis" parameterization is defined with `vbFuns()` below.  Note that values for the three parameters may be included as a vector in `L1=` and that the youngest and oldest ages may be included as a vector in `t1=`.
 
@@ -72,7 +75,7 @@ An R function for predicting length from a given age may be created by the user.
 ( vbF <- vbFuns("Francis") )
 ```
 
-The three parameters in the "Francis" parameterizations are the expected (i.e., mean) lengths at three ages.  Two of the ages are generally the youngest and oldest (or very close to those) ages in the data.  The third age is, by definitition, halfway between these two ages.  Thus, the parameters will be the expected lengths at a young, old, and intermediate age.  In this example, I have chosen to estimate expected lengths for the youngest and oldest ages in the data.
+The three parameters in the "Francis" parameterizations are the expected (i.e., mean) lengths at three ages.  Two of the ages are generally the youngest and oldest (or very close to those) ages in the data.  The third age is, by definition, halfway between these two ages.  Thus, the parameters will be the expected lengths at a young, old, and intermediate age.  In this example, I have chosen to estimate expected lengths for the youngest and oldest ages in the data.
 ```{r}
 ( ages <- range(bdm$otoage) )
 ```
@@ -97,6 +100,8 @@ Note that the intra-parameter correlations are relatively low for this parameter
 summary(nlsF,correlation=TRUE)
 ```
 
+\ 
+
 --------------------------------------------------------------
 
 ```{r echo=FALSE, results='asis'}
@@ -105,5 +110,6 @@ reproInfo(rqrdPkgs=rqrd,out="markdown",links=c(Script="OtherVBGFParams.R",RMarkd
 
 --------------------------------------------------------------
 
+\ 
 
 ## References

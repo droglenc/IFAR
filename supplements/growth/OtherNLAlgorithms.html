@@ -1,12 +1,76 @@
----
-layout: page
-title: Individual Growth
-subtitle: Other Nonlinear Model Fitting Algorithms
-author: Derek H. Ogle
----
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="author" content="Derek H. Ogle" />
 
 
-<p>The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the model were illustrated in the book. That description used one common nonlinear model fitting algorithm. Alternative algorithms for fitting nonlinear models are introduced here. Methods for <a href="OtherVBGFParams.html">fitting other parameterizations of the VBGF are here</a> and <a href="OtherNLAlgorithms.html">alternative nonlinear model fitting algorithms are illustrated here</a>.</p>
+<title>Individual Growth</title>
+
+<script src="OtherNLAlgorithms_files/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="OtherNLAlgorithms_files/bootstrap-3.3.1/css/bootstrap.min.css" rel="stylesheet" />
+<script src="OtherNLAlgorithms_files/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="OtherNLAlgorithms_files/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="OtherNLAlgorithms_files/bootstrap-3.3.1/shim/respond.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="OtherNLAlgorithms_files/highlight/default.css"
+      type="text/css" />
+<script src="OtherNLAlgorithms_files/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+<link rel="stylesheet" href="/css/codebox.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+
+
+<div id="header">
+<h1 class="title">Individual Growth</h1>
+<h3 class="subtitle"><em>Other Nonlinear Model Fitting Algorithms</em></h3>
+<h4 class="author"><em>Derek H. Ogle</em></h4>
+</div>
+
+
+<p>The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the model were illustrated in the <a href="http://derekogle.com/IFAR/"><em>Introductory Fisheries Analyses with R</em></a> (IFAR) book. That description used one common nonlinear model fitting algorithm. Alternative algorithms for fitting nonlinear models are introduced here. Methods for <a href="OtherVBGFParams.html">fitting other parameterizations of the VBGF are here</a> and <a href="OtherNLAlgorithms.html">alternative nonlinear model fitting algorithms are illustrated here</a>.</p>
 <div id="required-packages-for-this-supplement" class="section level3">
 <h3>Required Packages for this Supplement</h3>
 <p>Functions used in this supplement require the packages shown below.</p>
@@ -17,12 +81,11 @@ author: Derek H. Ogle
 </div>
 <div id="data-used-in-this-supplement" class="section level3">
 <h3>Data Used in this Supplement</h3>
-<p>The male Black Drum data (<a href="https://github.com/droglenc/FSAdata/blob/master/data-raw/BlackDrum2001.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/BlackDrum2001.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/BlackDrum2001.html">meta-data</a>) used in the book will also be used here.</p>
+<p>The male Black Drum data (<a href="https://github.com/droglenc/FSAdata/blob/master/data-raw/BlackDrum2001.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/BlackDrum2001.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/BlackDrum2001.html">meta-data</a>) used in the IFAR book will also be used in this supplement.</p>
 <pre class="r"><code>&gt; bdmf &lt;- read.csv(&quot;BlackDrum2001.csv&quot;) %&gt;%
     select(-c(spname,day,weight)) %&gt;%
-    filterD(sex %in% c(&quot;male&quot;,&quot;female&quot;),otoage&lt;50)</code></pre>
-<pre><code>Loading required namespace: gdata</code></pre>
-<pre class="r"><code>&gt; bdm &lt;- filterD(bdmf,sex==&quot;male&quot;)
+    filterD(sex %in% c(&quot;male&quot;,&quot;female&quot;),otoage&lt;50)
+&gt; bdm &lt;- filterD(bdmf,sex==&quot;male&quot;)
 &gt; headtail(bdm)</code></pre>
 <pre><code>   year agid month     tl  sex otoage
 1  2001    1     4  787.5 male      6
@@ -31,6 +94,7 @@ author: Derek H. Ogle
 72 2001  122     5 1175.0 male     39
 73 2001  125     6  590.0 male      4
 74 2001  127     6  530.0 male      3</code></pre>
+<p> </p>
 </div>
 <div id="additional-nonlinear-regression-algorithms" class="section level2">
 <h2>Additional Nonlinear Regression Algorithms</h2>
@@ -42,12 +106,12 @@ author: Derek H. Ogle
 &gt; bootLM &lt;- nlsBoot(fitLM)
 &gt; cbind(Ests=coef(fitLM),confint(bootLM))</code></pre>
 <pre><code>             Ests      95% LCI      95% UCI
-Linf 1196.7193456 1179.6028978 1215.6669111
-K       0.1418266    0.1225443    0.1619347
-t0     -1.5943403   -2.6400334   -0.8167980</code></pre>
+Linf 1196.7193456 1180.3212655 1215.1421973
+K       0.1418266    0.1232804    0.1622211
+t0     -1.5943403   -2.5688629   -0.8093780</code></pre>
 <pre class="r"><code>&gt; predict(bootLM,vbTyp,t=3)</code></pre>
 <pre><code>prediction    95% LCI    95% UCI 
-  572.0099   537.7862   613.0122 </code></pre>
+  572.5991   533.8374   610.3113 </code></pre>
 <p>One may also put constraints on the parameters when using <code>nlsLM()</code>. The lower and upper bounds are entered into separate named <strong>vectors</strong> with the same structure as the list used for starting values. These lists are then provided to <code>lower=</code> and <code>upper=</code>, respectively. Infinite bounds are the default but may be specifically defined for some parameters with <code>Inf</code> and <code>-Inf</code> (where <code>Inf</code> represents infinity). For example, <span class="math">\(L_\infty\)</span> and <span class="math">\(K\)</span> are constrained to be positive values in the model fitting below. In this instance, these bounds had no noticeable effect until bootstapping (fewer lack of convergences). In other instances, the constraints may substantively impact the parameter estimates. Bounds should be set as widely (as conservatively) as possible.</p>
 <pre class="r"><code>&gt; fitLM1 &lt;- nlsLM(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp,
                  lower=c(Linf=1,K=0.0001,t0=-Inf),
@@ -55,9 +119,9 @@ t0     -1.5943403   -2.6400334   -0.8167980</code></pre>
 &gt; bootLM1 &lt;- nlsBoot(fitLM1)
 &gt; cbind(Ests=coef(fitLM1),confint(bootLM1))</code></pre>
 <pre><code>             Ests      95% LCI      95% UCI
-Linf 1196.7193456 1179.5432953 1217.6035538
-K       0.1418266    0.1226069    0.1635497
-t0     -1.5943403   -2.5703654   -0.7634763</code></pre>
+Linf 1196.7193456 1181.4118360 1215.1392387
+K       0.1418266    0.1247859    0.1601023
+t0     -1.5943403   -2.4824539   -0.8610521</code></pre>
 <p>Parameter constraints may also be used with <code>nls()</code> but the optimization algorithm must be changed to “Port” with <code>algorithm=&quot;port&quot;</code>. With this argument the constraints are added as shown above for <code>nlsLM()</code>.</p>
 <pre class="r"><code>&gt; fitP &lt;- nls(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp,
               algorithm=&quot;port&quot;,
@@ -66,26 +130,28 @@ t0     -1.5943403   -2.5703654   -0.7634763</code></pre>
 &gt; bootP &lt;- nlsBoot(fitP)
 &gt; cbind(Ests=coef(fitP),confint(bootP))</code></pre>
 <pre><code>             Ests      95% LCI      95% UCI
-Linf 1196.7188609 1178.4207100 1217.0334388
-K       0.1418273    0.1227621    0.1617873
-t0     -1.5943118   -2.5577980   -0.8174185</code></pre>
+Linf 1196.7188609 1180.6050517 1214.8007060
+K       0.1418273    0.1245092    0.1605235
+t0     -1.5943118   -2.5111410   -0.8358536</code></pre>
 <p>Still other algorithms are found in <code>nlxb()</code> from <code>nlmrt</code> and <code>nls2()</code> from <code>nls2</code>.</p>
+<p> </p>
 <hr />
 </div>
 <div id="reproducibility-information" class="section level2">
 <h2>Reproducibility Information</h2>
 <ul>
-<li><strong>Compiled Date:</strong> Sun Oct 25 2015</li>
-<li><strong>Compiled Time:</strong> 8:44:34 AM</li>
+<li><strong>Compiled Date:</strong> Fri Nov 06 2015</li>
+<li><strong>Compiled Time:</strong> 6:58:55 AM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>
-<li><strong>Required Packages:</strong> FSA, dplyr, nlstools, minpack.lm, captioner, knitr and their dependencies (assertthat, DBI, digest, evaluate, formatR, graphics, grDevices, highr, lazyeval, magrittr, markdown, methods, plotrix, plyr, R6, Rcpp, stats, stringr, tools, utils, yaml)</li>
-<li><strong>Other Packages:</strong> captioner_2.2.3, dplyr_0.4.3, extrafont_0.17, FSA_0.8.3, knitr_1.11, minpack.lm_1.1-9, nlstools_1.0-2</li>
-<li><strong>Loaded-Only Packages:</strong> assertthat_0.1, DBI_0.3.1, digest_0.6.8, evaluate_0.8, extrafontdb_1.0, formatR_1.2.1, gdata_2.17.0, gtools_3.5.0, htmltools_0.2.6, lazyeval_0.1.10, magrittr_1.5, parallel_3.2.2, plyr_1.8.3, R6_2.1.1, Rcpp_0.12.1, rmarkdown_0.8.1, Rttf2pt1_1.3.3, stringi_0.5-5, stringr_1.0.0, tools_3.2.2, yaml_2.1.13</li>
+<li><strong>Required Packages:</strong> FSA, dplyr, nlstools, minpack.lm, captioner, knitr and their dependencies (assertthat, car, DBI, digest, evaluate, formatR, gdata, gplots, graphics, grDevices, highr, Hmisc, lazyeval, magrittr, markdown, methods, plotrix, plyr, R6, Rcpp, sciplot, stats, stringr, tools, utils, yaml)</li>
+<li><strong>Other Packages:</strong> captioner_2.2.3, dplyr_0.4.3, extrafont_0.17, FSA_0.8.4, knitr_1.11, minpack.lm_1.1-9, nlstools_1.0-2</li>
+<li><strong>Loaded-Only Packages:</strong> assertthat_0.1, DBI_0.3.1, digest_0.6.8, evaluate_0.8, extrafontdb_1.0, formatR_1.2.1, gdata_2.17.0, gtools_3.5.0, htmltools_0.2.6, lazyeval_0.1.10, magrittr_1.5, parallel_3.2.2, plyr_1.8.3, R6_2.1.1, Rcpp_0.12.1, rmarkdown_0.8.1, Rttf2pt1_1.3.3, stringi_1.0-1, stringr_1.0.0, tools_3.2.2, yaml_2.1.13</li>
 <li><strong>Links:</strong> <a href="OtherNLAlgorithms.R">Script</a> / <a href="OtherNLAlgorithms.Rmd">RMarkdown</a></li>
 </ul>
 <hr />
+<p> </p>
 <div class="references">
 <h2>References</h2>
 </div>

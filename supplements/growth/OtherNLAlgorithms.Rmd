@@ -3,6 +3,7 @@ layout: page
 title: Individual Growth
 subtitle: Other Nonlinear Model Fitting Algorithms
 author: Derek H. Ogle
+css: "/css/codebox.css"
 csl: ../american-fisheries-society.csl
 bibliography: ../IFARSupplement.bib
 output: 
@@ -17,13 +18,14 @@ output:
 # Second line makes the script file
 # RUN BOTH MANUALLY (following using Knit HTML button)
 setwd("C:/aaaWork/Web/GitHub/IFAR/supplements/growth")
-source("../../rhelpers/modHTML.R"); modHTML2("OtherNLAlgorithms")
+source("../../rhelpers/IFARhelpers.R")
+modHTML2("OtherNLAlgorithms",need2render=FALSE)
 if (require(FSA)) purl2("OtherNLAlgorithms.Rmd",topnotes="User must set working directory appropriately.")
 # == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 ##############################################################
 ```
 
-The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the model were illustrated in the book.  That description used one common nonlinear model fitting algorithm.  Alternative algorithms for fitting nonlinear models are introduced here.  Methods for [fitting other parameterizations of the VBGF are here](OtherVBGFParams.html) and [alternative nonlinear model fitting algorithms are illustrated here](OtherNLAlgorithms.html).
+The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the model were illustrated in the [*Introductory Fisheries Analyses with R*](http://derekogle.com/IFAR/) (IFAR) book.  That description used one common nonlinear model fitting algorithm.  Alternative algorithms for fitting nonlinear models are introduced here.  Methods for [fitting other parameterizations of the VBGF are here](OtherVBGFParams.html) and [alternative nonlinear model fitting algorithms are illustrated here](OtherNLAlgorithms.html).
 
 ### Required Packages for this Supplement
 Functions used in this supplement require the packages shown below.
@@ -52,7 +54,7 @@ library(minpack.lm)
 
 ### Data Used in this Supplement
   
-The male Black Drum data ([view](https://github.com/droglenc/FSAdata/blob/master/data-raw/BlackDrum2001.csv), [download](https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/BlackDrum2001.csv), [meta-data](http://derekogle.com/fishR/data/data-html/BlackDrum2001.html)) used in the book will also be used here.
+The male Black Drum data ([view](https://github.com/droglenc/FSAdata/blob/master/data-raw/BlackDrum2001.csv), [download](https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/BlackDrum2001.csv), [meta-data](http://derekogle.com/fishR/data/data-html/BlackDrum2001.html)) used in the IFAR book will also be used in this supplement.
 ```{r}
 bdmf <- read.csv("BlackDrum2001.csv") %>%
   select(-c(spname,day,weight)) %>%
@@ -60,6 +62,8 @@ bdmf <- read.csv("BlackDrum2001.csv") %>%
 bdm <- filterD(bdmf,sex=="male")
 headtail(bdm)
 ```
+
+\ 
 
 ## Additional Nonlinear Regression Algorithms
 
@@ -97,6 +101,8 @@ cbind(Ests=coef(fitP),confint(bootP))
 
 Still other algorithms are found in `nlxb()` from `nlmrt` and `nls2()` from `nls2`.
 
+\ 
+
 --------------------------------------------------------------
 
 ```{r echo=FALSE, results='asis'}
@@ -104,5 +110,7 @@ reproInfo(rqrdPkgs=rqrd,out="markdown",links=c(Script="OtherNLAlgorithms.R",RMar
 ```
 
 --------------------------------------------------------------
+
+\ 
 
 ## References

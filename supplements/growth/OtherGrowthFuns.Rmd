@@ -3,6 +3,7 @@ layout: page
 title: Individual Growth
 subtitle: Other Growth Functions
 author: Derek H. Ogle
+css: "/css/codebox.css"
 csl: ../american-fisheries-society.csl
 bibliography: ../IFARSupplement.bib
 output: 
@@ -17,13 +18,14 @@ output:
 # Second line makes the script file
 # RUN BOTH MANUALLY (following using Knit HTML button)
 setwd("C:/aaaWork/Web/GitHub/IFAR/supplements/growth")
-source("../../rhelpers/modHTML.R"); modHTML2("OtherGrowthFuns")
+source("../../rhelpers/IFARhelpers.R")
+modHTML("OtherGrowthFuns",need2render=FALSE)
 if (require(FSA)) purl2("OtherGrowthFuns.Rmd",topnotes="User must set working directory appropriately.")
 # == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 ##############################################################
 ```
 
-The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the model were illustrated in the book.  Other growth functions exist and are illustrated in this supplement.  Methods for [fitting other parameterizations of the VBGF are here](OtherVBGFParams.html) and [alternative nonlinear model fitting algorithms are illustrated here](OtherNLAlgorithms.html).
+The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the model were illustrated in the [*Introductory Fisheries Analyses with R*](http://derekogle.com/IFAR/) (IFAR) book.  Other growth functions exist and are illustrated in this supplement.  Methods for [fitting other parameterizations of the VBGF are here](OtherVBGFParams.html) and [alternative nonlinear model fitting algorithms are illustrated here](OtherNLAlgorithms.html).
 
 ### Required Packages for this Supplement
 Functions used in this supplement require the packages shown below.
@@ -53,7 +55,7 @@ library(AICcmodavg)
 
 ### Data Used in this Supplement
   
-The male Black Drum ([view](https://github.com/droglenc/FSAdata/blob/master/data-raw/BlackDrum2001.csv), [download](https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/BlackDrum2001.csv), [meta-data](http://derekogle.com/fishR/data/data-html/BlackDrum2001.html)) data used in the book will also be used here.
+The male Black Drum ([view](https://github.com/droglenc/FSAdata/blob/master/data-raw/BlackDrum2001.csv), [download](https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/BlackDrum2001.csv), [meta-data](http://derekogle.com/fishR/data/data-html/BlackDrum2001.html)) data used in the IFAR book will also be used in this supplement.
 ```{r}
 bdmf <- read.csv("BlackDrum2001.csv") %>%
   select(-c(spname,day,weight)) %>%
@@ -62,10 +64,11 @@ bdm <- filterD(bdmf,sex=="male")
 headtail(bdm)
 ```
 
+\ 
 
 ## Fitting Other Growth Functions
 
-Mean length-at-age has been modeled by functions other than the VBGF.  Common other functions are the exponential, logistic, and polynomial (@Ricker1975), as well as the specific functions of @Gompertz1825, @Richards1959, @Schnute1981, and @SchnuteRichards1990.  The "Schnute" model and several parameterizations of the logistic, Gompertz, and Richards models have been coded in convenience functions in `FSA`.  For example, the default parameterizations of the logistic, Gompertz, and Richards models are defined below.  Again, include `msg=TRUE` for definitions of the parameters.  Further note that the Richards model has four parameters.
+Mean length-at-age has been modeled by functions other than the VBGF.  Common other functions are the exponential, logistic, and polynomial [@Ricker1975], as well as the specific functions of @Gompertz1825, @Richards1959, @Schnute1981, and @SchnuteRichards1990.  The "Schnute" model and several parameterizations of the logistic, Gompertz, and Richards models have been coded in convenience functions in `FSA`.  For example, the default parameterizations of the logistic, Gompertz, and Richards models are defined below.  Again, include `msg=TRUE` for definitions of the parameters.  Further note that the Richards model has four parameters.
 ```{r}
 l1 <- logisticFuns()
 g1 <- GompertzFuns()
@@ -140,6 +143,8 @@ curve(l1(x,coef(fitL1)),from=3,to=42,add=TRUE,col="orange")
 
 `r figcaps("OtherGFCompare")`
 
+\ 
+
 --------------------------------------------------------------
 
 ```{r echo=FALSE, results='asis'}
@@ -147,5 +152,7 @@ reproInfo(rqrdPkgs=rqrd,out="markdown",links=c(Script="OtherGrowthFuns.R",RMarkd
 ```
 
 --------------------------------------------------------------
+
+\ 
 
 ## References

@@ -70,4 +70,4 @@ curve(g1(x,coef(fitG1)),from=3,to=42,add=TRUE,lwd=2,col="red")
 curve(l1(x,coef(fitL1)),from=3,to=42,add=TRUE,col="orange")
 
 
-# Script created at 2015-10-25 08:45:31
+# Script created at 2015-11-06 06:57:34
