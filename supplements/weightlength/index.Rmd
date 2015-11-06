@@ -17,7 +17,7 @@ output:
 # Second line makes the script file
 # RUN BOTH MANUALLY
 setwd("C:/aaaWork/Web/GitHub/IFAR/supplements/weightlength")
-source("../../rhelpers/modHTML.R"); modHTML("index")
+source("../../rhelpers/IFARhelpers.R"); modHTML("index")
 if (require(FSA)) purl2("index.Rmd",newname="weightlengthDVR",topnotes="User must set working directory appropriately.")
 # == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 ##############################################################
@@ -80,6 +80,8 @@ For the first example below, only fish from 1990, 1995, and 2000 were examined. 
 ruf1 <- filterD(ruf,year %in% c(1990,1995,2000))
 ruf2 <- filterD(ruf,year %in% 1992:1995)
 ```
+
+\ 
 
 ## Full Model
 
@@ -149,6 +151,8 @@ From these results it is apparent that the interaction term is a significant pre
 
 The ANOVA table for the fit of the full model is useful for determining if there is some difference in the regression model parameters among groups, but it cannot specifically identify where those differences occur.  Specific differences are identified in the next section.
 
+\ 
+
 ## Pinpointing Specific Differences Among Slopes
 
 No simple method exists (such as Tukey's Honestly Significant Difference (HSD) method) for comparing slopes among all pairs of groups while controlling for an increase in experimentwise error due to multiple comparisons.  One strategy to perform these tests, though, is to fit the DVR as in the previous section and extract all of the p-values for comparisons of slopes to the reference level.  Another model is then fit where the reference level has been changed and all p-values for comparisons of slopes to this level are extracted.  This process is repeated until p-values for all pairwise comparisons has been extracted.  The set of p-values from these comparisons is then submitted to procedures, such as one of the sequential Bonferroni or false discovery rate procedures, that are designed to adjust a set of p-values for multiple comparisons.
@@ -163,6 +167,8 @@ compSlopes(fit1)
 Two sets of results are returned by `compSlopes()`.  The top set of results shows the difference in slopes (`diff`), unadjusted confidence interval for the difference in slopes (`95% LCI` and `95% UCI`), and unadjusted (`p.unadj`) and adjusted (`p.adj`) p-values for testing that the difference in slopes is not zero.  These results show that the slope for 1990 is significantly greater than the slopes for 1995 and 2000, and that the slopes for 1995 and 2000 do not differ significantly.
 
 The bottom set of results shows the slope (`slope`), unadjusted confidence interval for the slope (`95% LCI` and `95% UCI`), and unadjusted (`p.unadj`) and adjusted (`p.adj`) p-values for testing that the slope is not equal to zero.  In this case, this output is primarily for completeness as these hypothesis are not generally of interest with weight-length relationship regressions.
+
+\ 
 
 ## A Summary Plot
 
@@ -186,6 +192,8 @@ legend("topleft",levels(ruf1$fYear),pch=19,col=clrs1)
 ```
 
 `r figcaps("FitPlotSlopes")`
+
+\ 
 
 ## Pinpointing Specific Differences Among Intercepts
 
@@ -235,6 +243,8 @@ legend("topleft",levels(ruf2$fYear),pch=19,col=clrs1)
 
 `r figcaps("FitPlotIntercepts")`
 
+\ 
+
 --------------------------------------------------------------
 
 ```{r echo=FALSE, results='asis'}
@@ -243,5 +253,6 @@ reproInfo(rqrdPkgs=rqrd,out="markdown",links=c(Script="weightlengthDVR.R",RMarkd
 
 --------------------------------------------------------------
 
+\ 
 
 ## References

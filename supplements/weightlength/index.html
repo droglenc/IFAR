@@ -40,6 +40,7 @@ author: Derek H. Ogle
 <p>For the first example below, only fish from 1990, 1995, and 2000 were examined. In the second example below, fish from 1992 to 1995 were examined.</p>
 <pre class="r"><code>&gt; ruf1 &lt;- filterD(ruf,year %in% c(1990,1995,2000))
 &gt; ruf2 &lt;- filterD(ruf,year %in% 1992:1995)</code></pre>
+<p> </p>
 </div>
 <div id="full-model" class="section level2">
 <h2>Full Model</h2>
@@ -114,6 +115,7 @@ logL:fYear  0.052   2    13.395 2.159e-06
 Residuals   0.971 497                    </code></pre>
 <p>From these results it is apparent that the interaction term is a significant predictor in the model. In relation to Equation 1 this suggests that at least one of <span class="math">\(\gamma_{1}\)</span> or <span class="math">\(\gamma_{2}\)</span> is significantly different than zero, which implies that the slope of the relationship for fish captured in 1995, 2000, or both differs significantly from the slope for fish captured in 1990. Additionally, it is possible that the slopes for fish captured in 1995 and 2000 also differ, but this cannot be assessed with this model.</p>
 <p>The ANOVA table for the fit of the full model is useful for determining if there is some difference in the regression model parameters among groups, but it cannot specifically identify where those differences occur. Specific differences are identified in the next section.</p>
+<p> </p>
 </div>
 <div id="pinpointing-specific-differences-among-slopes" class="section level2">
 <h2>Pinpointing Specific Differences Among Slopes</h2>
@@ -134,6 +136,7 @@ Slope Information (using the &#39;holm&#39; adjustment)</code></pre>
 1  1990 3.02516 2.96011 3.09022       0     0</code></pre>
 <p>Two sets of results are returned by <code>compSlopes()</code>. The top set of results shows the difference in slopes (<code>diff</code>), unadjusted confidence interval for the difference in slopes (<code>95% LCI</code> and <code>95% UCI</code>), and unadjusted (<code>p.unadj</code>) and adjusted (<code>p.adj</code>) p-values for testing that the difference in slopes is not zero. These results show that the slope for 1990 is significantly greater than the slopes for 1995 and 2000, and that the slopes for 1995 and 2000 do not differ significantly.</p>
 <p>The bottom set of results shows the slope (<code>slope</code>), unadjusted confidence interval for the slope (<code>95% LCI</code> and <code>95% UCI</code>), and unadjusted (<code>p.unadj</code>) and adjusted (<code>p.adj</code>) p-values for testing that the slope is not equal to zero. In this case, this output is primarily for completeness as these hypothesis are not generally of interest with weight-length relationship regressions.</p>
+<p> </p>
 </div>
 <div id="a-summary-plot" class="section level2">
 <h2>A Summary Plot</h2>
@@ -158,6 +161,7 @@ logL:fYear2000
 &gt; legend(&quot;topleft&quot;,levels(ruf1$fYear),pch=19,col=clrs1)</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-9-1.png" title="" alt="" width="480" /></p>
 <p>Figure 2: Log-transformed weight versus log-transformed length of Ruffe separated by capture year.</p>
+<p> </p>
 </div>
 <div id="pinpointing-specific-differences-among-intercepts" class="section level2">
 <h2>Pinpointing Specific Differences Among Intercepts</h2>
@@ -214,13 +218,14 @@ logL:fYear1993 logL:fYear1994 logL:fYear1995
 &gt; legend(&quot;topleft&quot;,levels(ruf2$fYear),pch=19,col=clrs1)</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-13-1.png" title="" alt="" width="480" /></p>
 <p>Figure 3: Log-transformed weight versus log-transformed length of Ruffe separated by capture year.</p>
+<p> </p>
 <hr />
 </div>
 <div id="reproducibility-information" class="section level2">
 <h2>Reproducibility Information</h2>
 <ul>
 <li><strong>Compiled Date:</strong> Thu Nov 05 2015</li>
-<li><strong>Compiled Time:</strong> 6:50:57 PM</li>
+<li><strong>Compiled Time:</strong> 6:52:42 PM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>
@@ -230,6 +235,7 @@ logL:fYear1993 logL:fYear1994 logL:fYear1995
 <li><strong>Links:</strong> <a href="weightlengthDVR.R">Script</a> / <a href="index.Rmd">RMarkdown</a></li>
 </ul>
 <hr />
+<p> </p>
 <div class="references">
 <h2>References</h2>
 <p>Ogle, D. H., and I. J. Winfield. 2009. Ruffe length-weight relationships with a proposed standard weight equation. North American Journal of Fisheries Management 29:850–858.</p>
