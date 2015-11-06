@@ -32,18 +32,17 @@ bootLM <- nlsBoot(fitLM)
 cbind(Ests=coef(fitLM),confint(bootLM))
 predict(bootLM,vbTyp,t=3)
 
-fitLM1 <- nlsLM(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp,
-               lower=c(Linf=1,K=0.0001,t0=-Inf),
-               upper=c(Linf=Inf,K=Inf,t0=Inf))
+clwr <- c(Linf=1,  K=0.0001,t0=-Inf)
+cupr <- c(Linf=Inf,K=Inf,   t0=Inf)
+
+fitLM1 <- nlsLM(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp,lower=clwr,upper=cupr)
 bootLM1 <- nlsBoot(fitLM1)
 cbind(Ests=coef(fitLM1),confint(bootLM1))
 
 fitP <- nls(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp,
-            algorithm="port",
-            lower=c(Linf=1,K=0.0001,t0=-Inf),
-            upper=c(Linf=Inf,K=Inf,t0=Inf))
+            algorithm="port",lower=clwr,upper=cupr)
 bootP <- nlsBoot(fitP)
 cbind(Ests=coef(fitP),confint(bootP))
 
 
-# Script created at 2015-11-06 09:31:33
+# Script created at 2015-11-06 09:52:12

@@ -7,7 +7,7 @@ css: "/css/codebox.css"
 ---
 
 
-<p>The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the function were illustrated in Chapter 12 of the <a href="http://derekogle.com/IFAR/"><em>Introductory Fisheries Analyses with R</em></a> (IFAR) book. That description used one common nonlinear model fitting algorithm. Alternative algorithms for fitting nonlinear models are introduced here. Other supplements demonstrate how to <a href="OtherVBGFParams.html">fit other parameterizations of the VBGF</a> and <a href="OtherGrowthFuns.html">other growth functions</a>.</p>
+<p>The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the function were illustrated in Chapter 12 of the <a href="http://derekogle.com/IFAR/"><em>Introductory Fisheries Analyses with R</em></a> (IFAR) book. The <code>nls()</code> function demonstrated in the <strong>IFAR</strong> book uses the Gauss-Newton algorithm by default. However, there are many other algorithms for fitting nonlinear functions. Two of the several algorithms coded in R are demonstrated in this supplement. Other supplements demonstrate how to <a href="OtherVBGFParams.html">fit other parameterizations of the VBGF</a> and <a href="OtherGrowthFuns.html">other growth functions</a>.</p>
 <p> </p>
 <div id="required-packages-for-this-supplement" class="section level3">
 <h3>Required Packages for this Supplement</h3>
@@ -19,7 +19,7 @@ css: "/css/codebox.css"
 </div>
 <div id="data-used-in-this-supplement" class="section level3">
 <h3>Data Used in this Supplement</h3>
-<p>The male Black Drum data (<a href="https://github.com/droglenc/FSAdata/blob/master/data-raw/BlackDrum2001.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/BlackDrum2001.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/BlackDrum2001.html">meta-data</a>) used in the IFAR book will also be used in this supplement.</p>
+<p>The male Black Drum data (<a href="https://github.com/droglenc/FSAdata/blob/master/data-raw/BlackDrum2001.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/BlackDrum2001.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/BlackDrum2001.html">meta-data</a>) used in the <strong>IFAR</strong> book will also be used in this supplement.</p>
 <pre class="r"><code>&gt; bdmf &lt;- read.csv(&quot;BlackDrum2001.csv&quot;) %&gt;%
     select(-c(spname,day,weight)) %&gt;%
     filterD(sex %in% c(&quot;male&quot;,&quot;female&quot;),otoage&lt;50)
@@ -34,43 +34,51 @@ css: "/css/codebox.css"
 74 2001  127     6  530.0 male      3</code></pre>
 <p> </p>
 </div>
-<div id="additional-nonlinear-regression-algorithms" class="section level2">
-<h2>Additional Nonlinear Regression Algorithms</h2>
-<p>The <code>nls()</code> function uses the Gauss-Newton algorithm by default. However, there are many other algorithms for fitting nonlinear functions. Several of these algorithms are coded in R. Two of these algorithms are highlighted here.</p>
-<p>The Levenberg-Marquardt (L-M) is a powerful and common algorithm that is implemented in <code>nlsLM()</code> from <code>minpack.lm</code>. The L-M algorithm is a hybrid that switches between two other algorithms depending on when those algorithms perform optimally. Most practically, the L-M algorithm appears to be quite robust to “poor” starting values The main arguments to <code>nlsLM()</code> are the same as those to <code>nls()</code>. For example, the “Typical” VBGF is fit to the male Black Drum data below using the L-M algorithm.</p>
+<div id="levenberg-marquardt-algorithm" class="section level2">
+<h2>Levenberg-Marquardt Algorithm</h2>
+<p>The Levenberg-Marquardt (L-M) algorithm is a powerful and common method that switches between two other algorithms depending on when those algorithms perform most optimally. Most practically, the L-M algorithm appears to be quite robust to “poor” starting values.</p>
+<p>The L-M algorithm is implemented in <code>nlsLM()</code> from <code>minpack.lm</code> and uses the same main arguments as <code>nls()</code>. For example, the “Typical” VBGF is fit (and parameter estimates, likelihood profile confidence intervals, and predictions are extracted) to the male Black Drum data below using the L-M algorithm.</p>
 <pre class="r"><code>&gt; vbTyp &lt;- vbFuns()
 &gt; svTyp &lt;- list(Linf=1193,K=0.13,t0=-2.0)
 &gt; fitLM &lt;- nlsLM(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp)
 &gt; bootLM &lt;- nlsBoot(fitLM)
 &gt; cbind(Ests=coef(fitLM),confint(bootLM))</code></pre>
 <pre><code>             Ests      95% LCI      95% UCI
-Linf 1196.7193456 1179.8952511 1215.8819677
-K       0.1418266    0.1230785    0.1618399
-t0     -1.5943403   -2.5644397   -0.8325217</code></pre>
+Linf 1196.7193456 1179.8004238 1216.0946820
+K       0.1418266    0.1233566    0.1625104
+t0     -1.5943403   -2.6413536   -0.8024845</code></pre>
 <pre class="r"><code>&gt; predict(bootLM,vbTyp,t=3)</code></pre>
 <pre><code>prediction    95% LCI    95% UCI 
-  572.2519   535.9184   611.0992 </code></pre>
-<p>One may also put constraints on the parameters when using <code>nlsLM()</code>. The lower and upper bounds are entered into separate named <strong>vectors</strong> with the same structure as the list used for starting values. These lists are then provided to <code>lower=</code> and <code>upper=</code>, respectively. Infinite bounds are the default but may be specifically defined for some parameters with <code>Inf</code> and <code>-Inf</code> (where <code>Inf</code> represents infinity). For example, <span class="math">\(L_\infty\)</span> and <span class="math">\(K\)</span> are constrained to be positive values in the model fitting below. In this instance, these bounds had no noticeable effect until bootstapping (fewer lack of convergences). In other instances, the constraints may substantively impact the parameter estimates. Bounds should be set as widely (as conservatively) as possible.</p>
-<pre class="r"><code>&gt; fitLM1 &lt;- nlsLM(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp,
-                 lower=c(Linf=1,K=0.0001,t0=-Inf),
-                 upper=c(Linf=Inf,K=Inf,t0=Inf))
+  571.7218   534.9411   610.7191 </code></pre>
+<p> </p>
+</div>
+<div id="algorithms-that-allow-parameter-constraints" class="section level2">
+<h2>Algorithms that Allow Parameter Constraints</h2>
+<p>In some instances, the user may want to constrain the model fitting algorithms to only consider parameter values within a certain range. For example, the user may want to constrain the <span class="math">\(L_{\infty}\)</span> and <span class="math">\(K\)</span> parameters of the “Typical” VBGF to be positive. Parameter constraints may substantively effect the results of the model fitting. Thus, they should be used rarely and, when used, set liberally.</p>
+<p>Parameter constraints can be used with at least two algorithms in R. In either case, the lower and upper bounds for each parameter are entered into separate named <strong>vectors</strong> in the same order as the list used for starting values. Infinite bounds are the default ,but may be specifically defined for some parameters with <code>Inf</code> and <code>-Inf</code> (where <code>Inf</code> represents infinity). For example, vectors that define constraints for the parameters in the “Typical” VBGF are defined below, with <span class="math">\(L_\infty\)</span> and <span class="math">\(K\)</span> constrained to be positive values and <span class="math">\(t_{0}\)</span> left unconstrained.</p>
+<pre class="r"><code>&gt; clwr &lt;- c(Linf=1,  K=0.0001,t0=-Inf)
+&gt; cupr &lt;- c(Linf=Inf,K=Inf,   t0=Inf)</code></pre>
+<p>These constraints may be provided to <code>lower=</code> and <code>upper=</code>, respectively, of <code>nlsLM()</code>. In this instance, these bounds had no noticeable effect until bootstapping, where there were fewer instances of a lack of convergence.</p>
+<pre class="r"><code>&gt; fitLM1 &lt;- nlsLM(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp,lower=clwr,upper=cupr)
 &gt; bootLM1 &lt;- nlsBoot(fitLM1)
 &gt; cbind(Ests=coef(fitLM1),confint(bootLM1))</code></pre>
 <pre><code>             Ests      95% LCI      95% UCI
-Linf 1196.7193456 1179.7856136 1216.4974484
-K       0.1418266    0.1227109    0.1610772
-t0     -1.5943403   -2.6324801   -0.8493806</code></pre>
-<p>Parameter constraints may also be used with <code>nls()</code> but the optimization algorithm must be changed to “Port” with <code>algorithm=&quot;port&quot;</code>. With this argument the constraints are added as shown above for <code>nlsLM()</code>.</p>
+Linf 1196.7193456 1181.0417064 1217.9214964
+K       0.1418266    0.1225369    0.1623903
+t0     -1.5943403   -2.4970561   -0.8062622</code></pre>
+<p>Parameter constraints may be used similarly with <code>nls()</code>, but the optimization algorithm must be changed to “Port” with <code>algorithm=&quot;port&quot;</code>.</p>
 <pre class="r"><code>&gt; fitP &lt;- nls(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp,
-              algorithm=&quot;port&quot;,
-              lower=c(Linf=1,K=0.0001,t0=-Inf),
-              upper=c(Linf=Inf,K=Inf,t0=Inf))
+              algorithm=&quot;port&quot;,lower=clwr,upper=cupr)
 &gt; bootP &lt;- nlsBoot(fitP)
 &gt; cbind(Ests=coef(fitP),confint(bootP))</code></pre>
 <pre><code>             Ests      95% LCI      95% UCI
-Linf 1196.7188609 1179.7180672 1215.7616031
-K       0.1418273    0.1235808    0.1624384
-t0     -1.5943118   -2.5359457   -0.7936775</code></pre>
+Linf 1196.7188609 1179.2654667 1214.6266713
+K       0.1418273    0.1236307    0.1633420
+t0     -1.5943118   -2.5633965   -0.7491509</code></pre>
+<p> </p>
+</div>
+<div id="other-algorithms" class="section level2">
+<h2>Other Algorithms</h2>
 <p>Still other algorithms are found in <code>nlxb()</code> from <code>nlmrt</code> and <code>nls2()</code> from <code>nls2</code>.</p>
 <p> </p>
 <hr />
@@ -79,7 +87,7 @@ t0     -1.5943118   -2.5359457   -0.7936775</code></pre>
 <h2>Reproducibility Information</h2>
 <ul>
 <li><strong>Compiled Date:</strong> Fri Nov 06 2015</li>
-<li><strong>Compiled Time:</strong> 9:31:26 AM</li>
+<li><strong>Compiled Time:</strong> 9:52:05 AM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>
