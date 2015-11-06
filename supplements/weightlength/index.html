@@ -119,7 +119,7 @@ Residuals   0.971 497                    </code></pre>
 <h2>Pinpointing Specific Differences Among Slopes</h2>
 <p>No simple method exists (such as Tukey’s Honestly Significant Difference (HSD) method) for comparing slopes among all pairs of groups while controlling for an increase in experimentwise error due to multiple comparisons. One strategy to perform these tests, though, is to fit the DVR as in the previous section and extract all of the p-values for comparisons of slopes to the reference level. Another model is then fit where the reference level has been changed and all p-values for comparisons of slopes to this level are extracted. This process is repeated until p-values for all pairwise comparisons has been extracted. The set of p-values from these comparisons is then submitted to procedures, such as one of the sequential Bonferroni or false discovery rate procedures, that are designed to adjust a set of p-values for multiple comparisons.</p>
 <p>Controlling the experimentwise error rate for multiple comparisons is easily accomplished in R with <code>p.adjust()</code>. However, the sequential resetting of the reference level, fitting a new model, and extracting the p-values from all slope comparisons is tedious, especially for many groups. Fortunately, <code>compSlopes()</code> from <code>FSA</code> automates the tedious computation of the set of p-values and use of <code>p.adjust()</code> to control the experimentwise error rate.</p>
-<p>The <code>compSlopes()</code> function requires a DVR model fit with <code>lm()</code> as its first argument. The method to conrol for multiple comparisions may be set with <code>method=</code> and may be any of the methods returned by <code>p.adjust.methods()</code> (see <code>?p.adjust</code>).</p>
+<p>The <code>compSlopes()</code> function requires a DVR model fit with <code>lm()</code> as its first argument. The method to control for multiple comparisons may be set with <code>method=</code> and may be any of the methods returned by <code>p.adjust.methods()</code> (see <code>?p.adjust</code>).</p>
 <pre class="r"><code>&gt; compSlopes(fit1)</code></pre>
 <pre><code>Multiple Slope Comparisons (using the &#39;holm&#39; adjustment)</code></pre>
 <pre><code>  comparison     diff  95% LCI  95% UCI p.unadj   p.adj
@@ -174,7 +174,7 @@ fYear       0.326   3    65.4373 &lt;2e-16
 logL:fYear  0.008   3     1.6373 0.1793
 Residuals   1.235 743                  </code></pre>
 <p>The same problem of incomplete comparisons and increasing experimentwise error occurs here with the y-intercepts as occurred with the slopes above. The solution, however, is different here because the y-intercept is a point estimate, whereas the slope estimates a rate of change. In this case, Tukey’s HSD method can be used to determine which pairs of y-intercepts differ. However, the observed values need to be adjusted to a single values of the covariate.</p>
-<p>The adjusted value for an individual is computed by adding the indivdiual’s residual to the predicted value of the response variable at a common covariate value based on the regression line for that individual. Visually, this adjustment may be thought of as sliding each point along its corresponding regression line to a common value along the x-axis.</p>
+<p>The adjusted value for an individual is computed by adding the individual’s residual to the predicted value of the response variable at a common covariate value based on the regression line for that individual. Visually, this adjustment may be thought of as sliding each point along its corresponding regression line to a common value along the x-axis.</p>
 <p>The <code>compIntercepts()</code> function from <code>FSA</code> performs these adjustments and applies Tukey’s HSD procedure to the adjusted values. The <code>compIntercepts()</code> function requires the fitted DVR as the first argument. By default, the response variables are are adjusted to the mean value of the covariate unless a value is given to <code>common.cov=</code>. For example, the actual y-intercepts will be used if <code>common.cov=0</code>. Also note that a warning is given if the DVR model contains an interaction term, though <code>compIntercepts()</code> will adjust for this by fitting a new model without the nonsignificant interaction term.</p>
 <pre class="r"><code>&gt; compIntercepts(fit2)</code></pre>
 <pre><code>Warning: Removed an interaction term from &#39;mdl&#39; (i.e., assumed
@@ -219,14 +219,14 @@ logL:fYear1993 logL:fYear1994 logL:fYear1995
 <div id="reproducibility-information" class="section level2">
 <h2>Reproducibility Information</h2>
 <ul>
-<li><strong>Compiled Date:</strong> Sun Oct 25 2015</li>
-<li><strong>Compiled Time:</strong> 8:28:46 AM</li>
+<li><strong>Compiled Date:</strong> Thu Nov 05 2015</li>
+<li><strong>Compiled Time:</strong> 6:50:57 PM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>
-<li><strong>Required Packages:</strong> FSA, dplyr, car, captioner, knitr and their dependencies (assertthat, DBI, digest, evaluate, formatR, graphics, grDevices, highr, lazyeval, magrittr, markdown, MASS, methods, mgcv, nnet, pbkrtest, plotrix, plyr, quantreg, R6, Rcpp, stats, stringr, tools, utils, yaml)</li>
-<li><strong>Other Packages:</strong> captioner_2.2.3, car_2.1-0, dplyr_0.4.3, extrafont_0.17, FSA_0.8.3, knitr_1.11, magrittr_1.5, rmarkdown_0.8.1, stringr_1.0.0, tidyr_0.3.1</li>
-<li><strong>Loaded-Only Packages:</strong> assertthat_0.1, DBI_0.3.1, digest_0.6.8, evaluate_0.8, extrafontdb_1.0, formatR_1.2.1, gdata_2.17.0, grid_3.2.2, gtools_3.5.0, highr_0.5.1, htmltools_0.2.6, lattice_0.20-33, lazyeval_0.1.10, lme4_1.1-10, MASS_7.3-44, Matrix_1.2-2, MatrixModels_0.4-1, mgcv_1.8-7, minqa_1.2.4, nlme_3.1-122, nloptr_1.0.4, nnet_7.3-11, parallel_3.2.2, pbkrtest_0.4-2, plyr_1.8.3, quantreg_5.19, R6_2.1.1, Rcpp_0.12.1, Rttf2pt1_1.3.3, SparseM_1.7, splines_3.2.2, stringi_0.5-5, tools_3.2.2, yaml_2.1.13</li>
+<li><strong>Required Packages:</strong> FSA, dplyr, car, captioner, knitr and their dependencies (assertthat, DBI, digest, evaluate, formatR, gdata, gplots, graphics, grDevices, highr, Hmisc, lazyeval, magrittr, markdown, MASS, methods, mgcv, nnet, pbkrtest, plotrix, plyr, quantreg, R6, Rcpp, sciplot, stats, stringr, tools, utils, yaml)</li>
+<li><strong>Other Packages:</strong> captioner_2.2.3, car_2.1-0, dplyr_0.4.3, extrafont_0.17, FSA_0.8.4, FSAdata_0.3.2, knitr_1.11, magrittr_1.5, rmarkdown_0.8.1, stringr_1.0.0, tidyr_0.3.1</li>
+<li><strong>Loaded-Only Packages:</strong> assertthat_0.1, DBI_0.3.1, digest_0.6.8, evaluate_0.8, extrafontdb_1.0, formatR_1.2.1, gdata_2.17.0, grid_3.2.2, gtools_3.5.0, highr_0.5.1, htmltools_0.2.6, lattice_0.20-33, lazyeval_0.1.10, lme4_1.1-10, MASS_7.3-44, Matrix_1.2-2, MatrixModels_0.4-1, mgcv_1.8-8, minqa_1.2.4, nlme_3.1-122, nloptr_1.0.4, nnet_7.3-11, parallel_3.2.2, pbkrtest_0.4-2, plyr_1.8.3, quantreg_5.19, R6_2.1.1, Rcpp_0.12.1, Rttf2pt1_1.3.3, SparseM_1.7, splines_3.2.2, stringi_1.0-1, tools_3.2.2, yaml_2.1.13</li>
 <li><strong>Links:</strong> <a href="weightlengthDVR.R">Script</a> / <a href="index.Rmd">RMarkdown</a></li>
 </ul>
 <hr />

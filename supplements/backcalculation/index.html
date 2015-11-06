@@ -89,7 +89,7 @@ css: "/css/codebox.css"
 181 8.32094 9.46362 10.43491 10.43491</code></pre>
 <p>For the back-calculation of fish length, these data must be radial, and not incremental, measurements. If the <code>wb90</code> data.frame had contained incremental measurements, then it could be converted to radial measurements with <code>gConvert()</code> from <code>FSA</code>. The <code>gConvert()</code> function requires the data frame with the incremental measurements as the first argument, the prefix (in quotes) for the columns that contain the incremental measurements in <code>in.pre=</code>, and the type of measurement to <strong>convert to</strong> in <code>out.type=</code> (the options are <code>&quot;rad&quot;</code> (the default) or <code>&quot;inc&quot;</code>). For example, the code below would create a new data.frame from <code>wb90</code> with radial measurements (<strong>IF</strong> <code>wb90</code> had incremental measurements).</p>
 <pre class="r"><code>&gt; wb90A &lt;- gConvert(wb90,in.pre=&quot;anu&quot;,out.type=&quot;rad&quot;)</code></pre>
-<p>For efficient back-calculation, the data must also be converted to <em>long</em> or <em>one-measurement-per-line</em> format. As demonstrated in the <strong>IFAR</strong> book, wide data may be converted to long data with <code>gather()</code> from <code>tidyr</code>. As a reminder, the arguments to <code>gather()</code> are the wide data.frame, a name for the new variable in the long format that will identify the individual (i.e., which radial measurement), a name for the new variable in the long format that will be the value for the individual (i.e., the radial measurement), and the variables in the wide format that contain the measurements.</p>
+<p>For efficient back-calculation, the data must also be converted to <em>long</em> or <em>one-measurement-per-line</em> format. As demonstrated in <a href="http://derekogle.com/IFAR/"><em>Introductory Fisheries Analyses with R</em></a>, wide data may be converted to long data with <code>gather()</code> from <code>tidyr</code>. As a reminder, the arguments to <code>gather()</code> are the wide data.frame, a name for the new variable in the long format that will identify the individual (i.e., which radial measurement), a name for the new variable in the long format that will be the value for the individual (i.e., the radial measurement), and the variables in the wide format that contain the measurements.</p>
 <pre class="r"><code>&gt; wb90r &lt;- gather(wb90,agei,radi,anu1:anu9) %&gt;%
     arrange(fish,agei)
 &gt; headtail(wb90r)</code></pre>
@@ -186,7 +186,7 @@ css: "/css/codebox.css"
 <h2>Reproducibility Information</h2>
 <ul>
 <li><strong>Compiled Date:</strong> Thu Nov 05 2015</li>
-<li><strong>Compiled Time:</strong> 12:33:25 PM</li>
+<li><strong>Compiled Time:</strong> 6:48:50 PM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>

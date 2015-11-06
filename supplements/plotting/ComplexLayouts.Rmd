@@ -22,7 +22,7 @@ if (require(FSA)) purl2("ComplexLayouts.Rmd",topnotes="User must set working dir
 ##############################################################
 ```
 
-Several methods for modifying base graphics were shown in the **IFAR** book, including simple layouts (side-by-side, one-over-the-other) of multiple plots.  More complex layouts (e.g., plot in first row spans two columns or unequal sized plots) are described in this supplement.  Creating common x- and y-axis labels for a grid of plots is [described in this supplement](CommonAxisLabels.html).
+Several methods for modifying base graphics were shown in Chapter 3 of [*Introductory Fisheries Analyses with R*](http://derekogle.com/IFAR/) (IFAR), including simple layouts (side-by-side, one-over-the-other) of multiple plots.  More complex layouts (e.g., plot in first row spans two columns or unequal sized plots) are described in this supplement.  Creating common x- and y-axis labels for a grid of plots is [described in this supplement](CommonAxisLabels.html).
 
 ### Required Packages for this Supplement
 

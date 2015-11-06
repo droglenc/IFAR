@@ -155,7 +155,7 @@ No simple method exists (such as Tukey's Honestly Significant Difference (HSD) m
 
 Controlling the experimentwise error rate for multiple comparisons is easily accomplished in R with `p.adjust()`.  However, the sequential resetting of the reference level, fitting a new model, and extracting the p-values from all slope comparisons is tedious, especially for many groups.  Fortunately, `compSlopes()` from `FSA` automates the tedious computation of the set of p-values and use of `p.adjust()` to control the experimentwise error rate.
 
-The `compSlopes()` function requires a DVR model fit with `lm()` as its first argument.  The method to conrol for multiple comparisions may be set with `method=` and may be any of the methods returned by `p.adjust.methods()` (see `?p.adjust`).
+The `compSlopes()` function requires a DVR model fit with `lm()` as its first argument.  The method to control for multiple comparisons may be set with `method=` and may be any of the methods returned by `p.adjust.methods()` (see `?p.adjust`).
 ```{r}
 compSlopes(fit1)
 ```
@@ -200,7 +200,7 @@ Anova(fit2)
 
 The same problem of incomplete comparisons and increasing experimentwise error occurs here with the y-intercepts as occurred with the slopes above.  The solution, however, is different here because the y-intercept is a point estimate, whereas the slope estimates a rate of change.  In this case, Tukey's HSD method can be used to determine which pairs of y-intercepts differ.  However, the observed values need to be adjusted to a single values of the covariate.
 
-The adjusted value for an individual is computed by adding the indivdiual's residual to the predicted value of the response variable at a common covariate value based on the regression line for that individual.  Visually, this adjustment may be thought of as sliding each point along its corresponding regression line to a common value along the x-axis.
+The adjusted value for an individual is computed by adding the individual's residual to the predicted value of the response variable at a common covariate value based on the regression line for that individual.  Visually, this adjustment may be thought of as sliding each point along its corresponding regression line to a common value along the x-axis.
 
 The `compIntercepts()` function from `FSA` performs these adjustments and applies Tukey's HSD procedure to the adjusted values.  The `compIntercepts()` function requires the fitted DVR as the first argument.  By default, the response variables are are adjusted to the mean value of the covariate unless a value is given to `common.cov=`.  For example, the actual y-intercepts will be used if `common.cov=0`.  Also note that a warning is given if the DVR model contains an interaction term, though `compIntercepts()` will adjust for this by fitting a new model without the nonsignificant interaction term.
 

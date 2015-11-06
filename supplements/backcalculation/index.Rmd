@@ -247,7 +247,7 @@ For the back-calculation of fish length, these data must be radial, and not incr
 wb90A <- gConvert(wb90,in.pre="anu",out.type="rad")
 ```
 
-For efficient back-calculation, the data must also be converted to *long* or *one-measurement-per-line* format.  As demonstrated in the **IFAR** book, wide data may be converted to long data with `gather()` from `tidyr`.  As a reminder, the arguments to `gather()` are the wide data.frame, a name for the new variable in the long format that will identify the individual (i.e., which radial measurement), a name for the new variable in the long format that will be the value for the individual (i.e., the radial measurement), and the variables in the wide format that contain the measurements.
+For efficient back-calculation, the data must also be converted to *long* or *one-measurement-per-line* format.  As demonstrated in [*Introductory Fisheries Analyses with R*](http://derekogle.com/IFAR/), wide data may be converted to long data with `gather()` from `tidyr`.  As a reminder, the arguments to `gather()` are the wide data.frame, a name for the new variable in the long format that will identify the individual (i.e., which radial measurement), a name for the new variable in the long format that will be the value for the individual (i.e., the radial measurement), and the variables in the wide format that contain the measurements.
 ```{r }
 wb90r <- gather(wb90,agei,radi,anu1:anu9) %>%
   arrange(fish,agei)
