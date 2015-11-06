@@ -1,73 +1,10 @@
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-
-<meta charset="utf-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="pandoc" />
-
-<meta name="author" content="Derek H. Ogle" />
-
-
-<title>Individual Growth</title>
-
-<script src="OtherVBGFParams_files/jquery-1.11.0/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="OtherVBGFParams_files/bootstrap-3.3.1/css/bootstrap.min.css" rel="stylesheet" />
-<script src="OtherVBGFParams_files/bootstrap-3.3.1/js/bootstrap.min.js"></script>
-<script src="OtherVBGFParams_files/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
-<script src="OtherVBGFParams_files/bootstrap-3.3.1/shim/respond.min.js"></script>
-
-<style type="text/css">code{white-space: pre;}</style>
-<link rel="stylesheet"
-      href="OtherVBGFParams_files/highlight/default.css"
-      type="text/css" />
-<script src="OtherVBGFParams_files/highlight/highlight.js"></script>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
-<script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
-}
-</script>
-
-
-<link rel="stylesheet" href="/css/codebox.css" type="text/css" />
-
-</head>
-
-<body>
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img { 
-  max-width:100%; 
-  height: auto; 
-}
-</style>
-<div class="container-fluid main-container">
-
-
-<div id="header">
-<h1 class="title">Individual Growth</h1>
-<h3 class="subtitle"><em>Other VBGF Parameterizations</em></h3>
-<h4 class="author"><em>Derek H. Ogle</em></h4>
-</div>
+---
+layout: page
+title: Individual Growth
+subtitle: Other VBGF Parameterizations
+author: Derek H. Ogle
+css: "/css/codebox.css"
+---
 
 
 <p>The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the model were illustrated in the <a href="http://derekogle.com/IFAR/"><em>Introductory Fisheries Analyses with R</em></a> (IFAR) book. The VBGF used there is from <span class="citation">Beverton and Holt (1957)</span> and is called the “Typical” parameterization of the VBGF. Other parameterizations exist and this supplement illustrates how to fit one of the other parameterizations of the VBGF. Methods for <a href="OtherGrowthFuns.html">fitting other growth functions are here</a> and <a href="OtherNLAlgorithms.html">alternative nonlinear model fitting algorithms are illustrated here</a>.</p>
@@ -107,7 +44,7 @@ img {
   r &lt;- (L3-L2)/(L2-L1)
   L1+(L3-L1)*((1-r^(2*((t-t1)/(t3-t1))))/(1-r^2))
 }
-&lt;environment: 0x0510081c&gt;</code></pre>
+&lt;environment: 0x051011cc&gt;</code></pre>
 <p>The three parameters in the “Francis” parameterizations are the expected (i.e., mean) lengths at three ages. Two of the ages are generally the youngest and oldest (or very close to those) ages in the data. The third age is, by definition, halfway between these two ages. Thus, the parameters will be the expected lengths at a young, old, and intermediate age. In this example, I have chosen to estimate expected lengths for the youngest and oldest ages in the data.</p>
 <pre class="r"><code>&gt; ( ages &lt;- range(bdm$otoage) )</code></pre>
 <pre><code>[1]  3 42</code></pre>
@@ -132,12 +69,12 @@ L3 1194.248 1176.6756 1212.7376</code></pre>
 <pre class="r"><code>&gt; bootF &lt;- nlsBoot(nlsF)
 &gt; cbind(Ests=coef(nlsF),confint(bootF))</code></pre>
 <pre><code>       Ests   95% LCI   95% UCI
-L1  572.975  535.8767  606.8408
-L2 1157.463 1146.4781 1168.7580
-L3 1194.248 1177.7327 1212.0007</code></pre>
+L1  572.975  537.8171  607.4067
+L2 1157.463 1146.2451 1168.6581
+L3 1194.248 1178.2801 1212.8557</code></pre>
 <pre class="r"><code>&gt; predict(bootF,vbF,t=3,t1=ages)</code></pre>
 <pre><code>prediction    95% LCI    95% UCI 
-  571.5865   535.8767   606.8408 </code></pre>
+  573.0361   537.8171   607.4067 </code></pre>
 <p>Note that the intra-parameter correlations are relatively low for this parameterization. Additionally, the scale of the parameters in the “Francis” parameterization are usually similar. Both of these characteristics may aid model convergence.</p>
 <pre class="r"><code>&gt; summary(nlsF,correlation=TRUE)</code></pre>
 <pre><code>
@@ -165,7 +102,7 @@ Achieved convergence tolerance: 3.023e-06</code></pre>
 <h2>Reproducibility Information</h2>
 <ul>
 <li><strong>Compiled Date:</strong> Fri Nov 06 2015</li>
-<li><strong>Compiled Time:</strong> 6:59:20 AM</li>
+<li><strong>Compiled Time:</strong> 7:05:26 AM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>

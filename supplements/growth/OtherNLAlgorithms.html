@@ -1,73 +1,10 @@
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-
-<meta charset="utf-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="pandoc" />
-
-<meta name="author" content="Derek H. Ogle" />
-
-
-<title>Individual Growth</title>
-
-<script src="OtherNLAlgorithms_files/jquery-1.11.0/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="OtherNLAlgorithms_files/bootstrap-3.3.1/css/bootstrap.min.css" rel="stylesheet" />
-<script src="OtherNLAlgorithms_files/bootstrap-3.3.1/js/bootstrap.min.js"></script>
-<script src="OtherNLAlgorithms_files/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
-<script src="OtherNLAlgorithms_files/bootstrap-3.3.1/shim/respond.min.js"></script>
-
-<style type="text/css">code{white-space: pre;}</style>
-<link rel="stylesheet"
-      href="OtherNLAlgorithms_files/highlight/default.css"
-      type="text/css" />
-<script src="OtherNLAlgorithms_files/highlight/highlight.js"></script>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
-<script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
-}
-</script>
-
-
-<link rel="stylesheet" href="/css/codebox.css" type="text/css" />
-
-</head>
-
-<body>
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img { 
-  max-width:100%; 
-  height: auto; 
-}
-</style>
-<div class="container-fluid main-container">
-
-
-<div id="header">
-<h1 class="title">Individual Growth</h1>
-<h3 class="subtitle"><em>Other Nonlinear Model Fitting Algorithms</em></h3>
-<h4 class="author"><em>Derek H. Ogle</em></h4>
-</div>
+---
+layout: page
+title: Individual Growth
+subtitle: Other Nonlinear Model Fitting Algorithms
+author: Derek H. Ogle
+css: "/css/codebox.css"
+---
 
 
 <p>The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the model were illustrated in the <a href="http://derekogle.com/IFAR/"><em>Introductory Fisheries Analyses with R</em></a> (IFAR) book. That description used one common nonlinear model fitting algorithm. Alternative algorithms for fitting nonlinear models are introduced here. Methods for <a href="OtherVBGFParams.html">fitting other parameterizations of the VBGF are here</a> and <a href="OtherNLAlgorithms.html">alternative nonlinear model fitting algorithms are illustrated here</a>.</p>
@@ -106,12 +43,12 @@ img {
 &gt; bootLM &lt;- nlsBoot(fitLM)
 &gt; cbind(Ests=coef(fitLM),confint(bootLM))</code></pre>
 <pre><code>             Ests      95% LCI      95% UCI
-Linf 1196.7193456 1180.3212655 1215.1421973
-K       0.1418266    0.1232804    0.1622211
-t0     -1.5943403   -2.5688629   -0.8093780</code></pre>
+Linf 1196.7193456 1178.2559797 1217.0716079
+K       0.1418266    0.1242164    0.1623974
+t0     -1.5943403   -2.5108179   -0.7818219</code></pre>
 <pre class="r"><code>&gt; predict(bootLM,vbTyp,t=3)</code></pre>
 <pre><code>prediction    95% LCI    95% UCI 
-  572.5991   533.8374   610.3113 </code></pre>
+  571.2468   535.9051   610.6111 </code></pre>
 <p>One may also put constraints on the parameters when using <code>nlsLM()</code>. The lower and upper bounds are entered into separate named <strong>vectors</strong> with the same structure as the list used for starting values. These lists are then provided to <code>lower=</code> and <code>upper=</code>, respectively. Infinite bounds are the default but may be specifically defined for some parameters with <code>Inf</code> and <code>-Inf</code> (where <code>Inf</code> represents infinity). For example, <span class="math">\(L_\infty\)</span> and <span class="math">\(K\)</span> are constrained to be positive values in the model fitting below. In this instance, these bounds had no noticeable effect until bootstapping (fewer lack of convergences). In other instances, the constraints may substantively impact the parameter estimates. Bounds should be set as widely (as conservatively) as possible.</p>
 <pre class="r"><code>&gt; fitLM1 &lt;- nlsLM(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp,
                  lower=c(Linf=1,K=0.0001,t0=-Inf),
@@ -119,9 +56,9 @@ t0     -1.5943403   -2.5688629   -0.8093780</code></pre>
 &gt; bootLM1 &lt;- nlsBoot(fitLM1)
 &gt; cbind(Ests=coef(fitLM1),confint(bootLM1))</code></pre>
 <pre><code>             Ests      95% LCI      95% UCI
-Linf 1196.7193456 1181.4118360 1215.1392387
-K       0.1418266    0.1247859    0.1601023
-t0     -1.5943403   -2.4824539   -0.8610521</code></pre>
+Linf 1196.7193456 1179.4617163 1215.6388683
+K       0.1418266    0.1238286    0.1626350
+t0     -1.5943403   -2.4891784   -0.8011143</code></pre>
 <p>Parameter constraints may also be used with <code>nls()</code> but the optimization algorithm must be changed to “Port” with <code>algorithm=&quot;port&quot;</code>. With this argument the constraints are added as shown above for <code>nlsLM()</code>.</p>
 <pre class="r"><code>&gt; fitP &lt;- nls(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp,
               algorithm=&quot;port&quot;,
@@ -130,9 +67,9 @@ t0     -1.5943403   -2.4824539   -0.8610521</code></pre>
 &gt; bootP &lt;- nlsBoot(fitP)
 &gt; cbind(Ests=coef(fitP),confint(bootP))</code></pre>
 <pre><code>             Ests      95% LCI      95% UCI
-Linf 1196.7188609 1180.6050517 1214.8007060
-K       0.1418273    0.1245092    0.1605235
-t0     -1.5943118   -2.5111410   -0.8358536</code></pre>
+Linf 1196.7188609 1179.5459615 1215.5435432
+K       0.1418273    0.1233835    0.1624254
+t0     -1.5943118   -2.4972735   -0.7931736</code></pre>
 <p>Still other algorithms are found in <code>nlxb()</code> from <code>nlmrt</code> and <code>nls2()</code> from <code>nls2</code>.</p>
 <p> </p>
 <hr />
@@ -141,7 +78,7 @@ t0     -1.5943118   -2.5111410   -0.8358536</code></pre>
 <h2>Reproducibility Information</h2>
 <ul>
 <li><strong>Compiled Date:</strong> Fri Nov 06 2015</li>
-<li><strong>Compiled Time:</strong> 6:58:55 AM</li>
+<li><strong>Compiled Time:</strong> 7:06:57 AM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>

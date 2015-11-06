@@ -19,7 +19,7 @@ output:
 # RUN BOTH MANUALLY (following using Knit HTML button)
 setwd("C:/aaaWork/Web/GitHub/IFAR/supplements/growth")
 source("../../rhelpers/IFARhelpers.R")
-modHTML2("OtherNLAlgorithms",need2render=FALSE)
+modHTML("OtherNLAlgorithms",need2render=FALSE)
 if (require(FSA)) purl2("OtherNLAlgorithms.Rmd",topnotes="User must set working directory appropriately.")
 # == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 ##############################################################
