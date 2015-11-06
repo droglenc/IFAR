@@ -67,7 +67,7 @@ library(car)
 
 
 ### Data Used in this Supplement
-Weights (g) and total lengths (mm) from Ruffe (*Gymnocephalus cernuus*) captured in the St. Louis River Harbor (Minnesota and Wisconsin) were used in Chapter 7 and will also be used in this supplement.  These data are from @OgleWinfield2009 and are in `RuffeSLRH.csv`.  To eliminate within-season variability, only Ruffe captured in July are used here.  Additionally,  a factored version of `year` was created, the common logarithms of weight and length were created, and the `fishID`, `month`, and `day` variables were removed to save space in the output.
+Weights (g) and total lengths (mm) from Ruffe (*Gymnocephalus cernuus*) captured in the St. Louis River Harbor (Minnesota and Wisconsin) were used in Chapter 7 of **IFAR** and will also be used in this supplement.  These data are from @OgleWinfield2009 and are in `RuffeSLRH.csv`.  To eliminate within-season variability, only Ruffe captured in July are used here.  Additionally,  a factored version of `year` was created, the common logarithms of weight and length were created, and the `fishID`, `month`, and `day` variables were removed to save space in the output.
 ```{r message=FALSE}
 ruf <- read.csv("RuffeSLRH.csv") %>%
   filterD(month==7) %>%
@@ -85,7 +85,7 @@ ruf2 <- filterD(ruf,year %in% 1992:1995)
 
 ## Full Model
 
-The number of dummy variables required to represent $k$ groups is $k-1$.  Thus, in Chapter 7, only one dummy variable was required to represent the two groups.  In this example, three groups (the years) are being examined and, thus, two dummy variables are needed.  For example, `lm()` will ultimately treat the "1990" group as the reference group and create two dummy variables as follows
+The number of dummy variables required to represent $k$ groups is $k-1$.  Thus, in Chapter 7 of **IFAR**, only one dummy variable was required to represent the two groups.  In this example, three groups (the years) are being examined and, thus, two dummy variables are needed.  For example, `lm()` will ultimately treat the "1990" group as the reference group and create two dummy variables as follows
 
 \ 
 
