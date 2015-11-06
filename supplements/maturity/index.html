@@ -3,6 +3,7 @@ layout: page
 title: Recruitment
 subtitle: Maturity Analyses
 author: Derek H. Ogle
+css: "/css/codebox.css"
 ---
 
 
@@ -27,6 +28,7 @@ author: Derek H. Ogle
 </ul>
 <hr />
 <p>The length-, weight-, or age-at-maturity is important to monitor for fish populations because these metrics are closely tied to reproductive potential and respond to changes in inter- and intra-specific densities and resource availability <span class="citation">(Pope et al. 2010)</span>. Methods for modeling the relationship between maturity stage and length is demonstrated in this supplement. Results from these modeled relationships are then used to calculate metrics such as length at 50% maturity. These methods extend directly to use with age or weight data.</p>
+<p> </p>
 <div id="required-packages-for-this-supplement" class="section level3">
 <h3>Required Packages for this Supplement</h3>
 <p>Functions used in this supplement require the packages shown below.</p>
@@ -88,6 +90,7 @@ author: Derek H. Ogle
 158 2001-04-23     70  66   Mature     4 2001       pre-2002</code></pre>
 <p>Finally, <code>maturity</code> was not recorded for several individuals, which were removed from further analysis.</p>
 <pre class="r"><code>&gt; df %&lt;&gt;% filterD(!is.na(maturity))</code></pre>
+<p> </p>
 </div>
 <div id="maturity-data" class="section level2">
 <h2>Maturity Data</h2>
@@ -135,7 +138,7 @@ lcat2 Immature Mature
 <p><img src="index_files/figure-html/sumLength-1.png" title="" alt="" width="336" /></p>
 <p>Figure 1: Proportion of female Yelloweye Rockfish that were mature in each 2-cm length category.</p>
 <p>These results show that the percentage of mature female Yellow Rockfish increases quickly between 34 and 42 cm.</p>
-<p>   </p>
+<p> </p>
 </div>
 <div id="modeling-with-raw-data" class="section level2">
 <h2>Modeling with Raw Data</h2>
@@ -342,25 +345,25 @@ length:era2002 and after
 &gt; lines(pp02~lens,lwd=2,col=clrs1[2])</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-30-1.png" title="" alt="" width="336" /></p>
 <p>Figure 4: Fitted logistic regression for the proportion of female Yelloweye Rockfish that are mature by total length separated by the “pre-2002” and “2002 and after” eras.</p>
-<p>   </p>
+<p> </p>
 <hr />
 </div>
 </div>
 <div id="reproducibility-information" class="section level2">
 <h2>Reproducibility Information</h2>
 <ul>
-<li><strong>Compiled Date:</strong> Sun Oct 25 2015</li>
-<li><strong>Compiled Time:</strong> 7:49:01 PM</li>
+<li><strong>Compiled Date:</strong> Fri Nov 06 2015</li>
+<li><strong>Compiled Time:</strong> 10:33:33 AM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>
-<li><strong>Required Packages:</strong> FSA, magrittr, dplyr, lubridate, car, captioner, knitr and their dependencies (assertthat, DBI, digest, evaluate, formatR, graphics, grDevices, highr, lazyeval, markdown, MASS, memoise, methods, mgcv, nnet, pbkrtest, plotrix, plyr, quantreg, R6, Rcpp, stats, stringr, tools, utils, yaml)</li>
-<li><strong>Other Packages:</strong> captioner_2.2.3, car_2.1-0, dplyr_0.4.3, extrafont_0.17, FSA_0.8.3, knitr_1.11, lubridate_1.3.3, magrittr_1.5</li>
-<li><strong>Loaded-Only Packages:</strong> assertthat_0.1, DBI_0.3.1, digest_0.6.8, evaluate_0.8, extrafontdb_1.0, formatR_1.2.1, gdata_2.17.0, grid_3.2.2, gtools_3.5.0, highr_0.5.1, htmltools_0.2.6, lattice_0.20-33, lazyeval_0.1.10, lme4_1.1-10, MASS_7.3-44, Matrix_1.2-2, MatrixModels_0.4-1, memoise_0.2.1, mgcv_1.8-7, minqa_1.2.4, nlme_3.1-122, nloptr_1.0.4, nnet_7.3-11, parallel_3.2.2, pbkrtest_0.4-2, plyr_1.8.3, quantreg_5.19, R6_2.1.1, Rcpp_0.12.1, rmarkdown_0.8.1, Rttf2pt1_1.3.3, SparseM_1.7, splines_3.2.2, stringi_0.5-5, stringr_1.0.0, tools_3.2.2, yaml_2.1.13</li>
+<li><strong>Required Packages:</strong> FSA, magrittr, dplyr, lubridate, car, captioner, knitr and their dependencies (assertthat, DBI, digest, evaluate, formatR, gdata, gplots, graphics, grDevices, highr, Hmisc, lazyeval, markdown, MASS, memoise, methods, mgcv, nnet, pbkrtest, plotrix, plyr, quantreg, R6, Rcpp, sciplot, stats, stringr, tools, utils, yaml)</li>
+<li><strong>Other Packages:</strong> captioner_2.2.3, car_2.1-0, dplyr_0.4.3, extrafont_0.17, FSA_0.8.4, knitr_1.11, lubridate_1.3.3, magrittr_1.5</li>
+<li><strong>Loaded-Only Packages:</strong> assertthat_0.1, DBI_0.3.1, digest_0.6.8, evaluate_0.8, extrafontdb_1.0, formatR_1.2.1, gdata_2.17.0, grid_3.2.2, gtools_3.5.0, highr_0.5.1, htmltools_0.2.6, lattice_0.20-33, lazyeval_0.1.10, lme4_1.1-10, MASS_7.3-44, Matrix_1.2-2, MatrixModels_0.4-1, memoise_0.2.1, mgcv_1.8-8, minqa_1.2.4, nlme_3.1-122, nloptr_1.0.4, nnet_7.3-11, parallel_3.2.2, pbkrtest_0.4-2, plyr_1.8.3, quantreg_5.19, R6_2.1.1, Rcpp_0.12.1, rmarkdown_0.8.1, Rttf2pt1_1.3.3, SparseM_1.7, splines_3.2.2, stringi_1.0-1, stringr_1.0.0, tools_3.2.2, yaml_2.1.13</li>
 <li><strong>Links:</strong> <a href="maturity.R">Script</a> / <a href="index.Rmd">RMarkdown</a></li>
 </ul>
 <hr />
-<p>   </p>
+<p> </p>
 <div class="references">
 <h2>References</h2>
 <p>Grolemund, G., and H. Wickham. 2011. Dates and times made easy with lubridate. Journal of Statistical Software 40(3):1–25.</p>

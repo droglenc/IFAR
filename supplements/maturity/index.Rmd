@@ -3,6 +3,7 @@ layout: page
 title: Recruitment
 subtitle: Maturity Analyses
 author: Derek H. Ogle
+css: "/css/codebox.css"
 csl: ../american-fisheries-society.csl
 bibliography: ../IFARSupplement.bib
 output: 
@@ -18,7 +19,8 @@ output:
 # Second line makes the script file
 # RUN BOTH MANUALLY (following using Knit HTML button)
 setwd("C:/aaaWork/Web/GitHub/IFAR/supplements/maturity")
-source("../../rhelpers/modHTML.R"); modHTML2("index")
+source("../../rhelpers/IFARhelpers.R")
+modHTML("index",need2render=FALSE)
 if (require(FSA)) purl2("index.Rmd",newname="maturity",topnotes="User must set working directory appropriately.")
 # == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
 ##############################################################
@@ -43,6 +45,7 @@ if (require(FSA)) purl2("index.Rmd",newname="maturity",topnotes="User must set w
 
 The length-, weight-, or age-at-maturity is important to monitor for fish populations because these metrics are closely tied to reproductive potential and respond to changes in inter- and intra-specific densities and resource availability [@Popeetal2010].  Methods for modeling the relationship between maturity stage and length is demonstrated in this supplement.  Results from these modeled relationships are then used to calculate metrics such as length at 50% maturity.  These methods extend directly to use with age or weight data.
 
+\ 
 
 ### Required Packages for this Supplement
 Functions used in this supplement require the packages shown below.
@@ -130,6 +133,7 @@ Finally, `maturity` was not recorded for several individuals, which were removed
 df %<>% filterD(!is.na(maturity))
 ```
 
+\ 
 
 ## Maturity Data
 
@@ -155,7 +159,6 @@ plot(props[,"Mature"]~as.numeric(rownames(props)),pch=19,
 
 These results show that the percentage of mature female Yellow Rockfish increases quickly between 34 and 42 cm.
 
-\ 
 \ 
 
 ## Modeling with Raw Data
@@ -424,7 +427,6 @@ lines(pp02~lens,lwd=2,col=clrs1[2])
 `r figcaps("LogisticFit3")`
 
 \ 
-\ 
 
 --------------------------------------------------------------
 
@@ -434,7 +436,6 @@ reproInfo(rqrdPkgs=rqrd,out="markdown",links=c(Script="maturity.R",RMarkdown="in
 
 --------------------------------------------------------------
 
-\ 
 \ 
 
 ## References
