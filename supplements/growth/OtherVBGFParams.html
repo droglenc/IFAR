@@ -42,7 +42,8 @@ css: "/css/codebox.css"
 <p>where</p>
 <p><span class="math">\[ r=\frac{L_{3}-L_{2}}{L_{2}-L_{1}} \]</span></p>
 <p>The function parameters are <span class="math">\(L_{1}\)</span>, <span class="math">\(L_{2}\)</span>, and <span class="math">\(L_{3}\)</span>, which represent the mean lengths at ages <span class="math">\(t_{1}\)</span>, <span class="math">\(t_{2}\)</span>, and <span class="math">\(t_{3}\)</span>, respectively, where <span class="math">\(t_{1}\)</span> and <span class="math">\(t_{3}\)</span> are relatively young and old ages chosen by the user and <span class="math">\(t_{2}\)</span> is the average of <span class="math">\(t_{1}\)</span> and <span class="math">\(t_{3}\)</span>.</p>
-<p>As demonstrated in the <strong>IFAR</strong> chapter for the “Typical” VBGF, an R function that uses the VBGF to predict length from a given age is needed. This R function may be created by the user, but for the common parameterizations shown in <code>vbModels()</code> it is easier to use <code>vbFuns()</code> from <code>FSA</code>. As a reminder, <code>vbFuns()</code> requires the name for the parameterization to use in quotes as the first argument. A brief explanation of the parameters is also returned if <code>msg=TRUE</code> is included in <code>vbFuns()</code>. An R function called <code>vbF()</code> is created for the “Francis” parameterization below. Note with this function that values for the three parameters may be included as a vector in <code>L1=</code> and that the youngest and oldest ages may be included as a vector in <code>t1=</code>.</p>
+<p>As demonstrated in the <strong>IFAR</strong> chapter for the “Typical” VBGF, an R function that uses the VBGF to predict length from a given age is needed. This R function may be created by the user, but for the common parameterizations shown in <code>vbModels()</code> it is easier to use <code>vbFuns()</code> from <code>FSA</code>. As a reminder, <code>vbFuns()</code> requires the name for the parameterization to use in quotes as the first argument. A brief explanation of the parameters is also returned if <code>msg=TRUE</code> is included in <code>vbFuns()</code>.</p>
+<p>An R function called <code>vbF()</code> is created for the “Francis” parameterization below. Note with this function that values for the three parameters may be included as a vector in <code>L1=</code> and that the youngest and oldest ages may be included as a vector in <code>t1=</code>.</p>
 <pre class="r"><code>&gt; ( vbF &lt;- vbFuns(&quot;Francis&quot;) )</code></pre>
 <pre><code>function(t,L1,L2=NULL,L3=NULL,t1,t3=NULL) {
   if (length(L1)==3) { L2 &lt;- L1[[2]]; L3 &lt;- L1[[3]]; L1 &lt;- L1[[1]] }
@@ -50,11 +51,11 @@ css: "/css/codebox.css"
   r &lt;- (L3-L2)/(L2-L1)
   L1+(L3-L1)*((1-r^(2*((t-t1)/(t3-t1))))/(1-r^2))
 }
-&lt;environment: 0x050fbe18&gt;</code></pre>
+&lt;environment: 0x050faa7c&gt;</code></pre>
 <p>As stated above, the user must choose values for <span class="math">\(t_{1}\)</span> and <span class="math">\(t_{3}\)</span>. In this example, I have chosen to use the youngest and oldest ages in the data (as found with <code>range()</code>).</p>
 <pre class="r"><code>&gt; ( ages &lt;- range(bdm$otoage) )</code></pre>
 <pre><code>[1]  3 42</code></pre>
-<p>Starting values are obtained with <code>vbStarts()</code> as described in the main chapter. However, with the “Francis” parameterization, the ages that define the youngest and oldest age must also be provided in <code>ages2use=</code>.</p>
+<p>Starting values are obtained with <code>vbStarts()</code> as described in the <strong>IFAR</strong> chapter. However, with the “Francis” parameterization, the ages that define <span class="math">\(t_{1}\)</span> and <span class="math">\(t_{3}\)</span> must also be provided in <code>ages2use=</code>.</p>
 <pre class="r"><code>&gt; ( svF &lt;- vbStarts(tl~otoage,data=bdm,type=&quot;Francis&quot;,ages2use=ages) )</code></pre>
 <pre><code>$L1
 [1] 572.775
@@ -64,7 +65,7 @@ $L2
 
 $L3
 [1] 1205</code></pre>
-<p>The model is fit and parameter estimates with likelihood profile are obtained as described in the book, with the exception that the vector that defines the youngest and oldest ages must be supplied when <code>vbF()</code> is used. Bootstrapped confidence intervals and predictions may also be obtained as described in the book.</p>
+<p>The VBGF is fit and parameter estimates with likelihood profile confidence intervals are obtained as described in the <strong>IFAR</strong> book, with the exception that the vector that defines the youngest and oldest ages must be supplied to <code>vbF()</code>. Bootstrapped confidence intervals and predictions may also be obtained as described in the <strong>IFAR</strong> book.</p>
 <pre class="r"><code>&gt; nlsF &lt;- nls(tl~vbF(otoage,L1,L2,L3,t1=ages),data=bdm,start=svF)
 &gt; cbind(Ests=coef(nlsF),confint(nlsF))</code></pre>
 <pre><code>Waiting for profiling to be done...</code></pre>
@@ -75,12 +76,12 @@ L3 1194.248 1176.6756 1212.7376</code></pre>
 <pre class="r"><code>&gt; bootF &lt;- nlsBoot(nlsF)
 &gt; cbind(Ests=coef(nlsF),confint(bootF))</code></pre>
 <pre><code>       Ests   95% LCI   95% UCI
-L1  572.975  536.9568  611.3407
-L2 1157.463 1145.2307 1168.9497
-L3 1194.248 1178.0837 1210.2408</code></pre>
+L1  572.975  533.7766  609.4586
+L2 1157.463 1145.7926 1168.1054
+L3 1194.248 1177.3276 1211.8082</code></pre>
 <pre class="r"><code>&gt; predict(bootF,vbF,t=3,t1=ages)</code></pre>
 <pre><code>prediction    95% LCI    95% UCI 
-  573.8251   536.9568   611.3407 </code></pre>
+  572.5095   533.7766   609.4586 </code></pre>
 <p>Note that the intra-parameter correlations are relatively low for this parameterization. Additionally, the scale of the parameters in the “Francis” parameterization are usually similar. Both of these characteristics may aid model convergence.</p>
 <pre class="r"><code>&gt; summary(nlsF,correlation=TRUE)</code></pre>
 <pre><code>
@@ -108,7 +109,7 @@ Achieved convergence tolerance: 3.023e-06</code></pre>
 <h2>Reproducibility Information</h2>
 <ul>
 <li><strong>Compiled Date:</strong> Fri Nov 06 2015</li>
-<li><strong>Compiled Time:</strong> 9:00:33 AM</li>
+<li><strong>Compiled Time:</strong> 9:06:37 AM</li>
 <li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>
