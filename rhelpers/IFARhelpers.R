@@ -83,5 +83,5 @@ addDataLinks <- function(f,view=TRUE,download=TRUE,metadata=TRUE) {
   if ((view | download) & metadata) res <- paste0(res,", ")
   if (metadata) res <- paste0(res,"[meta](http://derekogle.com/fishR/data/data-html/",f,".html)")
   if (view | download | metadata) res <- paste0(res,")")
-  cat(res)
+  res
 }

@@ -8,6 +8,9 @@ output:
     fig_width: 5
     self_contained: no
 ---
+```{r echo=FALSE}
+source("../rhelpers/IFARhelpers.R")
+```
 
 <img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/ToolikLake.jpg" width="250px" />
 The total length (mm) and otolith age of [Slimy Sculpin](https://en.wikipedia.org/wiki/Slimy_sculpin) (*Cottus cognatus*) captured in the [Arctic Long-Term Ecological Research](http://ecosystems.mbl.edu/ARC/) area were recorded in `r addDataLinks("SculpinALTER")`.
@@ -25,5 +28,5 @@ Use these data, and results from [this exercise](AKSlimySculpins_Growth_A.html),
 
 ---
 ```{r echo=FALSE, results="asis"}
-exercise_footer("AKSlimySculpins_Growth_A")
+exercise_footer("AKSlimySculpins_Growth_B")
 ```
