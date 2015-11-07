@@ -1,27 +1,4 @@
 ##############################################################
-# Creates a footer for the bottom of the exercises
-#   f: filename without the extension
-#   author: author name
-##############################################################
-exercise_footer <- function(f,author="Derek H. Ogle") {
-  # get file info
-  info <- file.info(paste0(f,".Rmd"))
-  # set the date format
-  dfmt <- "%d-%b-%y"
-  ## start making footer string
-  ftr <- '<p style="font-size: 0.75em; color: c6c6c6;">from'
-  ftr <- paste(ftr,author,', created ',format(info$ctime,format=dfmt))
-  ftr <- paste0(ftr,', updated ',format(info$mtime,format=dfmt))
-  ftr <- paste0(ftr,', <a href="mailto:fishr@derekogle.com?subject=')
-  ftr <- paste0(ftr,f,' exercise">Comments/Suggestions</a>.</p>')
-  cat(ftr)
-  ## Add CSS directives
-  cat('<style type="text/css">')
-  cat('ol ol { list-style-type: lower-alpha; }')
-  cat('</style>')
-}
-
-##############################################################
 # Creates (if need2render=TRUE) and modifies the created HTML
 #   file to better utilize GitHub's abilities.
 # Modifications are ...
@@ -66,4 +43,45 @@ modHTML <- function(f,need2render=TRUE) {
   h[tmp] <- "<ol>"
   # Write out the new file
   writeLines(h,paste0(f,".html"))
+}
+
+##############################################################
+# Creates a footer for the bottom of the exercises
+#   f: filename without the extension
+#   author: author name
+##############################################################
+exercise_footer <- function(f,author="Derek H. Ogle") {
+  # get file info
+  info <- file.info(paste0(f,".Rmd"))
+  # set the date format
+  dfmt <- "%d-%b-%y"
+  ## start making footer string
+  ftr <- '<p style="font-size: 0.75em; color: c6c6c6;">from'
+  ftr <- paste(ftr,author,', created ',format(info$ctime,format=dfmt))
+  ftr <- paste0(ftr,', updated ',format(info$mtime,format=dfmt))
+  ftr <- paste0(ftr,', <a href="mailto:fishr@derekogle.com?subject=')
+  ftr <- paste0(ftr,f,' exercise">Comments/Suggestions</a>.</p>')
+  cat(ftr)
+  ## Add CSS directives
+  cat('<style type="text/css">')
+  cat('ol ol { list-style-type: lower-alpha; }')
+  cat('</style>')
+}
+
+##############################################################
+# Adds links to information about data files found on the
+#   fishR webpage.
+#   f: filename without the extension
+#   author: author name
+##############################################################
+addDataLinks <- function(f,view=TRUE,download=TRUE,metadata=TRUE) {
+  res <- paste0("**",f,".csv**")
+  if (view | download | metadata) res <- paste0(res," (")
+  if (view) res <- paste0(res,"[view](https://github.com/droglenc/FSAdata/blob/master/data-raw/",f,".csv)")
+  if (view & download) res <- paste0(res,", ")
+  if (download) res <- paste0(res,"[download](https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/",f,".csv)")
+  if ((view | download) & metadata) res <- paste0(res,", ")
+  if (metadata) res <- paste0(res,"[meta](http://derekogle.com/fishR/data/data-html/",f,".html)")
+  if (view | download | metadata) res <- paste0(res,")")
+  cat(res)
 }
