@@ -3,3 +3,5 @@ source("../rhelpers/IFARhelpers.R")
 
 modHTML("AKSlimySculpins_Growth_A")
 modHTML("AKSlimySculpins_Growth_B")
+
+modHTML("Inch_DataManip")
