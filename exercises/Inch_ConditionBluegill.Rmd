@@ -8,14 +8,12 @@ output:
     fig_width: 5
     self_contained: no
 ---
-```{r echo=FALSE, eval=FALSE}
-# Renders an appropriate HTML file for the webpage
-setwd("C:/aaaWork/Web/GitHub/IFAR/exercises"); source("../rhelpers/IFARhelpers.R")
-fnm <-"Inch_ConditionBluegill"; modHTML(fnm)
+```{r echo=FALSE}
+source("../rhelpers/IFARhelpers.R")
 ```
 
 <img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/bluegill-1.jpg" width="250px" />
-[Inch Lake](http://dnr.wi.gov/lakes/lakepages/LakeDetail.aspx?wbic=2764300&page=facts) is a 12.5 ha inland lake in northern Wisconsin that has been managed as catch-and-release for all species since 2006.  Researchers at Northland College have monitored fish populations in Inch Lake since 2007.  The total lengths (inches) and weights (g) for subsamples of several species of fish collected from Inch Lake in May of 2007 and 2008 are recorded in [this CSV file](data/InchLake2.csv) (these data are also available in `InchLake2` from `FSAdata`).
+[Inch Lake](http://dnr.wi.gov/lakes/lakepages/LakeDetail.aspx?wbic=2764300&page=facts) is a 12.5 ha inland lake in northern Wisconsin that has been managed as catch-and-release for all species since 2006.  Researchers at Northland College have monitored fish populations in Inch Lake since 2007.  The total lengths (inches) and weights (g) for subsamples of several species of fish collected from Inch Lake in May of 2007 and 2008 are recorded in `r addDataLinks("InchLake2")`.
 
 1. Complete [this Data Manipulation exercise](Inch_DataManip.html) to create a Bluegill only data.frame.
 1. Further prepare the data.frame for computation of relative weights (i.e., add a variable of relative weights and filter the data.frame to only those lengths for which the relative weights should be computed).
@@ -28,5 +26,5 @@ fnm <-"Inch_ConditionBluegill"; modHTML(fnm)
 
 ---
 ```{r echo=FALSE, results="asis"}
-exercise_footer(fnm)
+exercise_footer("Inch_ConditionBluegill")
 ```
