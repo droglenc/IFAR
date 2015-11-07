@@ -8,14 +8,9 @@ output:
     fig_width: 5
     self_contained: no
 ---
-```{r echo=FALSE, eval=FALSE}
-# Renders an appropriate HTML file for the webpage
-setwd("C:/aaaWork/Web/GitHub/IFAR/exercises"); source("../rhelpers/IFARhelpers.R")
-fnm <-"AKSlimySculpins_Growth_A"; modHTML(fnm)
-```
 
 <img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/ToolikLake2.jpg" width="250px" />
-The total length (mm) and otolith age of [Slimy Sculpin](https://en.wikipedia.org/wiki/Slimy_sculpin) (*Cottus cognatus*) captured in the [Arctic Long-Term Ecological Research](http://ecosystems.mbl.edu/ARC/) area were recorded in SculpinALTER.csv ([view](https://github.com/droglenc/FSAdata/blob/master/data-raw/SculpinALTER.csv), [download](https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/SculpinALTER.csv), [metadata](http://derekogle.com/fishR/data/data-html/SculpinALTER.html)).
+The total length (mm) and otolith age of [Slimy Sculpin](https://en.wikipedia.org/wiki/Slimy_sculpin) (*Cottus cognatus*) captured in the [Arctic Long-Term Ecological Research](http://ecosystems.mbl.edu/ARC/) area were recorded in `r addDataLinks("SculpinALTER")`.
 
 Use these data to answer the following questions.
 
@@ -35,5 +30,5 @@ Use these data to answer the following questions.
 
 ---
 ```{r echo=FALSE, results="asis"}
-exercise_footer(fnm)
+exercise_footer("AKSlimySculpins_Growth_A")
 ```
