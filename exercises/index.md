@@ -15,7 +15,8 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
 1. **Plotting Fundamentals**
     * [Inch Lake](Inch_Plotting.html)
 1. **Age Comparisons**
-    * [Lake Champlain Lake Whitefish](AgeComp_LCLWhitefish.html)
+    * [Lake Champlain Lake Whitefish](AgeComp_LCLWhitefish.html).
+    * [Pymatuning Sanctuary Walleye](AgeComp_PSWalleye.html)
 1. **Age-Length Keys**
     * Lake Ontario Rock Bass -- [A](LORockBass_ALK_A.html) / [B](LORockBass_ALK_B.html)
 1. **Size Structure**

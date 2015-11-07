@@ -8,14 +8,12 @@ output:
     fig_width: 5
     self_contained: no
 ---
-```{r echo=FALSE, eval=FALSE}
-# Renders an appropriate HTML file for the webpage
-setwd("C:/aaaWork/Web/GitHub/IFAR/exercises"); source("../rhelpers/IFARhelpers.R")
-fnm <-"AgeComp_LCLWhitefish"; modHTML(fnm)
+```{r echo=FALSE}
+source("../rhelpers/IFARhelpers.R")
 ```
 
 <img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/lake-whitefish-on-the-bottom-pic.jpg" width="250px" />
-[Herbst and Marsden (2011)](http://www.uvm.edu/rsenr/emarsden/documents/Herbst%20and%20Marsden%20whitefish%20age%20structure%20comparison.pdf) compared the precision, bias, and reader uncertainty of ages estimated from the scales, dorsal fin rays, and otoliths of 151 [Lake Whitefish](https://en.wikipedia.org/wiki/Lake_whitefish) (*Coregonus clupeaformis*) captured from [Lake Champlain](https://en.wikipedia.org/wiki/Lake_Champlain) in 2009.  The inital age assessments for two readers and a consensus age between the two readers from each of the three structures (variables are the structure name with a "1" or "2" appended to denote the reader or "C" for the consensus ages) are in `data(WhitefishLC)` in `FSA`.
+[Herbst and Marsden (2011)](http://www.uvm.edu/rsenr/emarsden/documents/Herbst%20and%20Marsden%20whitefish%20age%20structure%20comparison.pdf) compared the precision, bias, and reader uncertainty of ages estimated from the [scales](https://en.wikipedia.org/wiki/Fish_scale), dorsal fin rays, and [otoliths](https://en.wikipedia.org/wiki/Otolith) of 151 [Lake Whitefish](https://en.wikipedia.org/wiki/Lake_whitefish) (*Coregonus clupeaformis*) captured from [Lake Champlain](https://en.wikipedia.org/wiki/Lake_Champlain) in 2009.  The inital age estimates from two readers and a consensus age between the two readers from each of the three structures (variables are the structure name with a "1" or "2" appended to denote the reader or "C" for the consensus age) are in `r addDataLinks("WhitefishLC")`.
 
 1. Use tabular, graphical, and statistical methods to describe any apparent bias between scale and otolith *consensus* age estimates.
 1. Describe any apparent bias in otolith age estimates between the two readers.
@@ -28,5 +26,5 @@ fnm <-"AgeComp_LCLWhitefish"; modHTML(fnm)
 
 ---
 ```{r echo=FALSE, results="asis"}
-exercise_footer(fnm)
+exercise_footer("AgeComp_LCLWhitefish")
 ```
