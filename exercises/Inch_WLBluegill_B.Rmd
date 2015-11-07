@@ -17,10 +17,13 @@ source("../rhelpers/IFARhelpers.R")
 
 Load these data, isolate [Bluegill](https://en.wikipedia.org/wiki/Bluegill), and answer the following questions.  [Note that this is a continuation of [this exercise](Inch_WLBluegill_A.html).]
 
-1. Complete [this Plotting exercise](Inch_Plotting.html).  Qualitatively assess if the weight-length (in mm here and throughout) relationship differs between the two years.
-1. Determine if there is a statistically signficant difference in the weight-length relationship between the two years.  Provide evidence for your findings and carefully interpret the final result.
-1. Use the results from above (and without fitting separate regressions for the two sample years) to express the weight-length relationships on the raw scale for both years.
-1. Construct a plot that illustrates your findings.
+1. Complete [this Plotting exercise](Inch_Plotting.html).
+    1. Qualitatively assess if the weight-length (in mm here and throughout) relationship differs between the two years.
+1. Fit a model that will allow you to determine if there is a statistically signficant difference in the weight-length relationship between the two years.
+    1. Construct a residual plot for this model.  Comment.
+    1. Is there a statistically signficant difference in the weight-length relationship between the two years?  Provide evidence for your findings and be very specific with your conclusions.
+    1. Without fitting separate regressions for the two sample years, express the weight-length relationships on the raw scale for both years (i.e., write two specific equations).
+    1. Construct a plot that illustrates your findings.
 
 Continue with this data set for [this condition exercise](Inch_ConditionBluegill.html).
 

@@ -21,14 +21,15 @@ Load these data, isolate [Bluegill](https://en.wikipedia.org/wiki/Bluegill), and
     1. Describe the relationship between weight and length (in mm here and throughout).
     1. Describe the relationship between log-transformed weight and length.
 1. Compute the weight-length relationship with an appropriate linear regression.
+    1. Plot the results (data and the fitted relationship) on both the transformed and raw scales.  Comment on the fit.
+    1. Construct a residual plot.  Comment.
     1. Express your results as an equation on the transformed scale.
     1. Express your results as an equation on the raw scale.
-    1. Plot the results (data and the fitted relationship) on both the transformed and raw scales.
     1. Carefully interpret the meaning of the slope of the weight-length relationship.
     1. Is there statistical evidence for isometric or allometric growth?
-1. Recompute the weight-length relationship using the original length in inches.  How do the slope and y-intercept from this model fitting compare to the results from above?
+1. Recompute the weight-length relationship using the original length in inches.  How do the slope and y-intercept from this model compare to the results from the previous question?
 
-Continue with this data set for [weight-length comparisons](Inch_WLBluegill_B.html) and [condition](Inch_ConditionBluegill.html) exercises.
+Continue with these data for [weight-length comparisons](Inch_WLBluegill_B.html) and [condition](Inch_ConditionBluegill.html) exercises.
 
 ---
 ```{r echo=FALSE, results="asis"}
