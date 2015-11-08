@@ -32,3 +32,4 @@ modHTML("StripedBass_ALK_B")
 modHTML("StripedBass_ALK_C")
 
 modHTML("YPTroutLake_DataManip")
+modHTML("YPTroutLake_Plotting")

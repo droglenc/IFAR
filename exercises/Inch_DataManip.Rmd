@@ -26,7 +26,7 @@ source("../rhelpers/IFARhelpers.R")
 1. Create two new variables that are the [common logarithms](https://en.wikipedia.org/wiki/Common_logarithm) of the lengths (in mm) and weights.
 1. Add appropriate five-cell Gabelhouse length categories to the Bluegill and Largemouth Bass only data.frames.
 
-Save the script from this exercise as these data will be used in [this plotting](Inch_Plotting.html), these weight-length relationhip ([A](Inch_WLBluegill_A.html) and [B](Inch_WLLargemouthBass_A.html)), and these condition ([A](Inch_ConditionBluegill.html) and [B](Inch_ConditionLargemouthBass.html)) exercises.
+Save the script from this exercise as these data will be used in [this plotting](Inch_Plotting.html), [this weight-length relationhip](Inch_WLBluegill_A.html), and [this condition](Inch_ConditionBluegill.html) exercise.
 
 ---
 ```{r echo=FALSE, results="asis"}

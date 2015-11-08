@@ -1,0 +1,57 @@
+---
+layout: page
+title: Basic Plotting
+subtitle: Trout Lake Yellow Perch
+author: Derek H. Ogle
+---
+
+
+<p><img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/yellow-perch=2.jpg" width="250px" /> Researchers for the <a href="https://lter.limnology.wisc.edu/">North Temperate Lakes Long-Term Ecological Research</a> program have collected fish from a number of lakes in Wisconsin since 1981. The total lengths and weights of <a href="https://en.wikipedia.org/wiki/Yellow_perch">Yellow Perch</a> (<em>Perca flavescens</em>) captured from <a href="https://lter.limnology.wisc.edu/researchsite/trout-lake">Trout Lake</a> from 1981-2006 are recorded in <strong>YPerchTL.csv</strong> (<a href="https://github.com/droglenc/FSAdata/blob/master/data-raw/YPerchTL.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/YPerchTL.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/YPerchTL.html">meta</a>). Use these data to answer the following questions. [<em>Note that these data came from <a href="https://lter.limnology.wisc.edu/dataset/north-temperate-lakes-lter-fish-lengths-and-weights-1981-current">this website</a>. See the site for more information about the sampling protocol that produced these data.</em>]</p>
+<p>Complete <a href="YPTroutLake_DataManip.html">this Data Manipulation exercise</a> to create the required data.frames used in the following questions.</p>
+<ol>
+<li>Describe the following from plots constructed with the data.frame that contains only Yellow Perch captured in fyke nets in 1997.
+<ol>
+<li>The distribution of lengths.</li>
+<li>The distribution of weights.</li>
+<li>The relationship between weight and length.</li>
+<li>The relationship between the natural logs of weight and length.</li>
+</ol></li>
+<li>Describe the following from plots constructed with the data.frame that contains only Yellow Perch captured in fyke nets in 1998.
+<ol>
+<li>The distribution of lengths separately for each gear (using only one command to make separate plots).</li>
+<li>The relationship between the natural logs of weight and length separately for each gear (using only one plot).</li>
+<li>The difference in mean lengths among the gears (plot should include confidence intervals).</li>
+<li>Describe the difference in numbers caught among the gears.</li>
+</ol></li>
+</ol>
+<p>Save the script from this exercise as these data will be used in <a href="YPTroutLake_WL_A.html">this weight-length relationship</a>, <a href="YPTroutLake_SizeStrux.html">size structure</a>, and <a href="YPTroutLake_Condition">this condition</a> exercise.</p>
+<hr />
+<p style="font-size: 0.75em; color: c6c6c6;">
+from Derek H. Ogle , created 01-Oct-15, updated 08-Nov-15, <a href="mailto:fishr@derekogle.com?subject=Inch_Plotting exercise">Comments/Suggestions</a>.
+</p>
+<style type="text/css">ol ol { list-style-type: lower-alpha; }</style>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

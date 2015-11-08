@@ -28,7 +28,7 @@ Complete [this Data Manipulation exercise](Inch_DataManip.html) to create the re
 1. Repeat the previous question but using [Largemouth Bass](https://en.wikipedia.org/wiki/Largemouth_bass).
 1. Describe the species distribution of (only) non-game species.
 
-Save the script from this exercise as these data will be used in these weight-length relationhip ([A](Inch_WLBluegill_A.html) and [B](Inch_WLLargemouthBass_A.html)) and these condition ([A](Inch_ConditionBluegill.html) and [B](Inch_ConditionLargemouthBass.html)) exercises.
+Save the script from this exercise as these data will be used in [this weight-length relationship](Inch_WLBluegill_A.html) and [this condition](Inch_ConditionBluegill.html) exercise.
 
 ---
 ```{r echo=FALSE, results="asis"}
