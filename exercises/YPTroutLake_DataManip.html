@@ -1,0 +1,57 @@
+---
+layout: page
+title: Data Manipulation
+subtitle: Trout Lake Yellow Perch
+author: Derek H. Ogle
+---
+
+
+<p><img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/yellow-perch-1.jpg" width="250px" /> Researchers for the <a href="https://lter.limnology.wisc.edu/">North Temperate Lakes Long-Term Ecological Research</a> program have collected fish from a number of lakes in Wisconsin since 1981. The total lengths and weights of <a href="https://en.wikipedia.org/wiki/Yellow_perch">Yellow Perch</a> (<em>Perca flavescens</em>) captured on <a href="https://lter.limnology.wisc.edu/researchsite/trout-lake">Trout Lake</a> from 1981-2006 is recorded in <strong>YPerchTL.csv</strong> (<a href="https://github.com/droglenc/FSAdata/blob/master/data-raw/YPerchTL.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/YPerchTL.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/YPerchTL.html">meta</a>). Use these data to answer the following questions. [Note that these data came from <a href="https://lter.limnology.wisc.edu/dataset/north-temperate-lakes-lter-fish-lengths-and-weights-1981-current">this website</a>. See the site for more information about the sampling protocol that produced these data.]</p>
+<ol>
+<li>Remove the <code>lakeid</code> and <code>spname</code> variables from the data.frame (these are constant for all records). Use this data.frame for the remaining questions.</li>
+<li>Create a new data.frame of Yellow Perch captured in just fyke nets.</li>
+<li>Create a new data.frame of Yellow Perch captured in fyke nets and beach seines.</li>
+<li>Create a new data.frame of Yellow Perch captured after 1999.</li>
+<li>Create a new data.frame of Yellow Perch captured in the 1990s.</li>
+<li>Use the data.frame of Yellow Perch capture in fyke nets and beach seines for the following questions.
+<ol>
+<li>Sort the data by capture year.</li>
+<li>Sort the data by total length within capture year.</li>
+<li>Change the name of the <code>length</code> and <code>weight</code> variables to <code>len</code> and <code>wt</code>, respectively.</li>
+<li>Create a new variable that is the total length in inches.</li>
+<li>Create two new variables that are the <a href="https://en.wikipedia.org/wiki/Common_logarithm">common logarithms</a> of the lengths (in mm) and weights.</li>
+<li>Add a variable that contains 10 mm wide length categories.</li>
+<li>Add a variable that contains the appropriate five-cell Gabelhouse length categories.</li>
+</ol></li>
+</ol>
+<p>Save the script from this exercise as these data will be used in <a href="YPTroutLake_Plotting.html">this plotting</a>, <a href="YPTroutLake_SizeStrux_A.html">this size structure</a>, <a href="YPTroutLake_WL_A.html">this weight-length relationship</a>, and <a href="YPTroutLake_Condition.html">this condition</a> exercise.</p>
+<hr />
+<p style="font-size: 0.75em; color: c6c6c6;">
+from Derek H. Ogle , created 08-Nov-15, updated 08-Nov-15, <a href="mailto:fishr@derekogle.com?subject=YPTroutLake_DataManip exercise">Comments/Suggestions</a>.
+</p>
+<style type="text/css">ol ol { list-style-type: lower-alpha; }</style>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

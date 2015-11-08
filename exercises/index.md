@@ -12,6 +12,7 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
 1. **(Very Brief) Introduction to R Basics**
 1. **Loading Data and Basic Manipulations**
     * [Inch Lake](Inch_DataManip.html)
+    * [Trout Lake Yellow Perch](YPTroutLake_DataManip.html)
 1. **Plotting Fundamentals**
     * [Inch Lake](Inch_Plotting.html)
 1. **Age Comparisons**

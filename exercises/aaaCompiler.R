@@ -30,3 +30,5 @@ modHTML("LORockBass_Growth_B")
 modHTML("StripedBass_ALK_A")
 modHTML("StripedBass_ALK_B")
 modHTML("StripedBass_ALK_C")
+
+modHTML("YPTroutLake_DataManip")

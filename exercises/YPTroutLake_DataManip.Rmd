@@ -1,0 +1,37 @@
+---
+layout: page
+title: Data Manipulation
+subtitle: Trout Lake Yellow Perch
+author: Derek H. Ogle
+output: 
+  html_document: 
+    fig_width: 5
+    self_contained: no
+---
+```{r echo=FALSE}
+source("../rhelpers/IFARhelpers.R")
+```
+
+<img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/yellow-perch-1.jpg" width="250px" />
+Researchers for the [North Temperate Lakes Long-Term Ecological Research](https://lter.limnology.wisc.edu/) program have collected fish from a number of lakes in Wisconsin since 1981.  The total lengths and weights of [Yellow Perch](https://en.wikipedia.org/wiki/Yellow_perch) (*Perca flavescens*) captured on [Trout Lake](https://lter.limnology.wisc.edu/researchsite/trout-lake) from 1981-2006 is recorded in `r addDataLinks("YPerchTL")`.  Use these data to answer the following questions.  [Note that these data came from [this website](https://lter.limnology.wisc.edu/dataset/north-temperate-lakes-lter-fish-lengths-and-weights-1981-current).  See the site for more information about the sampling protocol that produced these data.]
+
+1. Remove the `lakeid` and `spname` variables from the data.frame (these are constant for all records).  Use this data.frame for the remaining questions.
+1. Create a new data.frame of Yellow Perch captured in just fyke nets.
+1. Create a new data.frame of Yellow Perch captured in fyke nets and beach seines.
+1. Create a new data.frame of Yellow Perch captured after 1999.
+1. Create a new data.frame of Yellow Perch captured in the 1990s.
+1. Use the data.frame of Yellow Perch capture in fyke nets and beach seines for the following questions.
+    1. Sort the data by capture year.
+    1. Sort the data by total length within capture year.
+    1. Change the name of the `length` and `weight` variables to `len` and `wt`, respectively.
+    1. Create a new variable that is the total length in inches.
+    1. Create two new variables that are the [common logarithms](https://en.wikipedia.org/wiki/Common_logarithm) of the lengths (in mm) and weights.
+    1. Add a variable that contains 10 mm wide length categories.
+    1. Add a variable that contains the appropriate five-cell Gabelhouse length categories.
+
+Save the script from this exercise as these data will be used in [this plotting](YPTroutLake_Plotting.html), [this size structure](YPTroutLake_SizeStrux_A.html), [this weight-length relationship](YPTroutLake_WL_A.html), and [this condition ](YPTroutLake_Condition.html) exercise.
+
+---
+```{r echo=FALSE, results="asis"}
+exercise_footer("YPTroutLake_DataManip")
+```
