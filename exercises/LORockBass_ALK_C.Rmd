@@ -24,7 +24,7 @@ source("../rhelpers/IFARhelpers.R")
     1. What is the mean TL of age-5 fish?
     1. Plot the length-at-age with the mean length-at-age superimposed for all fish.
 1. Compare your results to someone else's results (or repeat the steps above).  Did you both get the *exact* same results?  Why or why not?  If not, how different were they?
-1. Compare your results using the "classical" method here to your results from using the Isermann and Knight (2007) method in [this exercise](LORockBass_ALK_B.html) (assuming that you completed that exercise).
+1. Compare your results using the "classical" method here to your results from using the Isermann and Knight (2005) method in [this exercise](LORockBass_ALK_B.html) (assuming that you completed that exercise).
 
 These data are also used in [this growth exercise](LORockBass_Growth_A.html).
 

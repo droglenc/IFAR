@@ -1,0 +1,56 @@
+---
+layout: page
+title: Age-Length Keys
+subtitle: Lake Erie Freshwater Drum C
+author: Derek H. Ogle
+---
+
+
+<p><img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/drum-1.jpg" width="250px" /> <a href="http://www.sciencedirect.com/science/article/pii/S0380133084718065">Bur (1984)</a> examined the population dynamics of <a href="https://en.wikipedia.org/wiki/Freshwater_drum">Freshwater Drum</a> (<em>Aplodinotus grunniens</em>) in <a href="https://en.wikipedia.org/wiki/Lake_Erie">Lake Erie</a> in the late 1970s. In one part of his study, he measured the total length (TL) of all 1577 drum sampled and extracted <a href="https://en.wikipedia.org/wiki/Fish_scale">scales</a> for age estimation from a proportionate sample from each 10 mm length interval. The length and age data are recorded in <strong>FWDrumLE2.csv</strong> (<a href="https://github.com/droglenc/FSAdata/blob/master/data-raw/FWDrumLE2.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/FWDrumLE2.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/FWDrumLE2.html">meta</a>).</p>
+<ol>
+<li>Separate the observed data into age- and length-samples. Construct an <strong>observed</strong> age-length key. [This step would have been accomplished in <a href="LEFWrum_ALK_A.html">this exercise</a>.]</li>
+<li>Use the “classical” method to estimate the age distribution (with standard errors) for all sampled fish.
+<ol>
+<li>How many fish are estimated to be age 3?</li>
+<li>How many fish are estimated to be age 8?</li>
+<li>Plot the age distribution for all fish.</li>
+</ol></li>
+<li>Use the “classical” method to estimate the mean length-at-age (with standard deviations) for all sampled fish.
+<ol>
+<li>What is the mean TL of age-4 fish?</li>
+<li>Plot the length-at-age with the mean length-at-age superimposed for all fish.</li>
+</ol></li>
+<li>Compare your results to someone else’s results (or repeat the steps above). Did you both get the <em>exact</em> same results? Why or why not? If not, how different were they?</li>
+<li>Compare your results using the “classical” method here to your results from using the Isermann and Knight (2005) method in <a href="LEFWDrum_ALK_B.html">this exercise</a> (assuming that you completed that exercise).</li>
+</ol>
+<p><a href="LEFWDrum_ALK_C.html">Continue with these data here</a>.</p>
+<hr />
+<p style="font-size: 0.75em; color: c6c6c6;">
+from Derek H. Ogle , created 08-Nov-15, updated 08-Nov-15, <a href="mailto:fishr@derekogle.com?subject=LEFWDrum_ALK_B exercise">Comments/Suggestions</a>.
+</p>
+<style type="text/css">ol ol { list-style-type: lower-alpha; }</style>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

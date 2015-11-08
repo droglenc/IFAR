@@ -19,7 +19,7 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
     * [Pymatuning Sanctuary Walleye](AgeComp_PSWalleye.html)
 1. **Age-Length Keys**
     * Lake Ontario Rock Bass -- [A](LORockBass_ALK_A.html) / [B](LORockBass_ALK_B.html) / [C](LORockBass_ALK_C.html)
-    * Lake Erie Freshwater Drum -- [A](LEFWDrum_ALK_A.html) / [A](LEFWDrum_ALK_B.html) / [A](LEFWDrum_ALK_C.html)
+    * Lake Erie Freshwater Drum -- [A](LEFWDrum_ALK_A.html) / [B](LEFWDrum_ALK_B.html) / [C](LEFWDrum_ALK_C.html)
 1. **Size Structure**
 1. **Weight-Length Relationships**
     * Inch Lake Bluegill - [A](Inch_WLBluegill_A.html) / [B](Inch_WLBluegill_B.html)
