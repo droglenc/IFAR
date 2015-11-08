@@ -13,7 +13,7 @@ source("../rhelpers/IFARhelpers.R")
 ```
 
 <img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/striped-bass-2.jpg" width="250px" />
-Researchers at the [Center for Quantitative Fisheries Ecology at Old Dominion University](http://www.odu.edu/sci/research/cqfe/research/ageing-lab) in collaboration with the [Virginia Marine Resources Commission](http://www.mrc.virginia.gov/) annually collect [Stiped Bass](https://en.wikipedia.org/wiki/Striped_bass) (*Morone saxatilis*) from Virginia waters of the Atlantic Ocean for age assessments.  The total lengths of 1201 Stiped Bass collected in 2003 and the ages estimated from [otoliths](https://en.wikipedia.org/wiki/Otolith) for as many as 10 fish per 1 inch length interval are recorded in `r addDataLinks("StripedBass3")`
+Researchers at the [Center for Quantitative Fisheries Ecology at Old Dominion University](http://www.odu.edu/sci/research/cqfe/research/ageing-lab) in collaboration with the [Virginia Marine Resources Commission](http://www.mrc.virginia.gov/) annually collect [Striped Bass](https://en.wikipedia.org/wiki/Striped_bass) (*Morone saxatilis*) from Virginia waters of the Atlantic Ocean for age assessments.  The total lengths of 1201 Stiped Bass collected in 2003 and the ages estimated from [otoliths](https://en.wikipedia.org/wiki/Otolith) for as many as 10 fish per 1 inch length interval are recorded in `r addDataLinks("StripedBass3")`
 
 1. Separate the observed data into age- and length-samples.  Construct an **observed** age-length key.  [This step would have been accomplished in [this exercise](StripedBass_ALK_A.html).]
 1. Use the semi-random age assignment technique from Isermann and Knight (2005) and the **observed** age-length key to assign ages to the unaged fish in the length-sample.  Combine the age-sample and the age-assigned length-sample into a single data frame, add a variable to this data.frame that contains the 1 inch TL categories, and use the combined data frame to answer the following questions.
@@ -25,7 +25,7 @@ Researchers at the [Center for Quantitative Fisheries Ecology at Old Dominion Un
     1. Plot the length-at-age with the mean length-at-age superimposed for all fish.
 1. Compare your results from the previous question to someone else's results (or repeat the previous question).  Did you both get the *exact* same results? Why or why not?  If not, how different were they?
 
-[Continue with these data here](StripedBass_ALK_C.html).  These data also used in [this growth exercise](StripedBass_Growth_A.html).
+[Continue with these data here](StripedBass_ALK_C.html).
 
 ---
 ```{r echo=FALSE, results="asis"}
