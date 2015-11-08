@@ -17,6 +17,8 @@ modHTML("Inch_WLLargemouthBass_A")
 modHTML("Inch_WLLargemouthBass_B")
 modHTML("Inch_ConditionBluegill")
 
+modHTML("LEFWDrum_ALK_A")
+
 modHTML("LORockBass_ALK_A")
 modHTML("LORockBass_ALK_B")
 modHTML("LORockBass_ALK_C")
