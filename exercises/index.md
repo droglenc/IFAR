@@ -18,7 +18,7 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
     * Lake Champlain Lake Whitefish -- [A](AgeComp_LCLWhitefish_A.html) / [B](AgeComp_LCLWhitefish_B.html) / [C](AgeComp_LCLWhitefish_C.html)
     * [Pymatuning Sanctuary Walleye](AgeComp_PSWalleye.html)
 1. **Age-Length Keys**
-    * Lake Ontario Rock Bass -- [A](LORockBass_ALK_A.html) / [B](LORockBass_ALK_B.html)
+    * Lake Ontario Rock Bass -- [A](LORockBass_ALK_A.html) / [B](LORockBass_ALK_B.html) / [C](LORockBass_ALK_C.html)
 1. **Size Structure**
 1. **Weight-Length Relationships**
     * Inch Lake Bluegill - [A](Inch_WLBluegill_A.html) / [B](Inch_WLBluegill_B.html)
