@@ -15,6 +15,7 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
     * [Trout Lake Yellow Perch](YPTroutLake_DataManip.html)
 1. **Plotting Fundamentals**
     * [Inch Lake](Inch_Plotting.html)
+    * [Trout Lake Yellow Perch](YPTroutLake_Plotting.html)
 1. **Age Comparisons**
     * Lake Champlain Lake Whitefish -- [A](AgeComp_LCLWhitefish_A.html) / [B](AgeComp_LCLWhitefish_B.html) / [C](AgeComp_LCLWhitefish_C.html)
     * [Pymatuning Sanctuary Walleye](AgeComp_PSWalleye.html)
@@ -23,6 +24,7 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
     * Lake Erie Freshwater Drum -- [A](LEFWDrum_ALK_A.html) / [B](LEFWDrum_ALK_B.html) / [C](LEFWDrum_ALK_C.html)
     * Atlantic Ocean Striped Bass -- [A](StripedBass_ALK_A.html) / [B](StripedBass_ALK_B.html) / [C](StripedBass_ALK_C.html)
 1. **Size Structure**
+    * [Trout Lake Yellow Perch](YPTroutLake_SizeStrux.html)
 1. **Weight-Length Relationships**
     * Inch Lake Bluegill - [A](Inch_WLBluegill_A.html) / [B](Inch_WLBluegill_B.html)
     * Inch Lake Largemouth Bass - [A](Inch_WLLargemouthBass_A.html) / [B](Inch_WLLargemouthBass_B.html)
