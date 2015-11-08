@@ -1,0 +1,37 @@
+---
+layout: page
+title: Age-Length Keys
+subtitle: Striped Bass A
+author: Derek H. Ogle
+output: 
+  html_document: 
+    fig_width: 5
+    self_contained: no
+---
+```{r echo=FALSE}
+source("../rhelpers/IFARhelpers.R")
+```
+
+<img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/striped-bass-1.jpg" width="250px" />
+Researchers at the [Center for Quantitative Fisheries Ecology at Old Dominion University](http://www.odu.edu/sci/research/cqfe/research/ageing-lab) in collaboration with the [Virginia Marine Resources Commission](http://www.mrc.virginia.gov/) annually collect [Stiped Bass](https://en.wikipedia.org/wiki/Striped_bass) (*Morone saxatilis*) from Virginia waters of the Atlantic Ocean for age assessments.  The total lengths of 1201 Stiped Bass collected in 2003 and the ages estimated from [otoliths](https://en.wikipedia.org/wiki/Otolith) for as many as 10 fish per 1 inch length interval are recorded in `r addDataLinks("StribedBass3")`
+
+1. Separate the observed data into age- and length-samples.  How many fish are in each sample?
+1. Add a variable to the age-sample that contains the 1 inch TL categories.  Construct a table of the **number** (not proportion) of fish in each age and 1 inch TL category in the age-sample.  From these results, compute each of the following *by hand* (i.e., not using R).
+    1. How many fish in the age-sample are in the 30 in TL category?
+    1. How many age-10 fish are in the age-sample?
+    1. What proportion of fish in the 35 in TL category are age 9?
+    1. What proportion of fish in the 31 in TL category are age 11?
+1. Construct an **observed** age-length key from the table above (using R).  From these results answer the following questions.
+    1. What proportion of fish in the 30 in TL category should be assigned age 10?
+    1. How many of fourty fish in the 25 mm TL category should be assigned age 5?
+    1. Construct a plot of the **observed** age-length key.  Are there any potential anomalies in the plot that would suggest that a smoothed age-length key could be appropriate?
+1. Construct a **smoothed** age-length key.  From these results answer the following questions.
+    1. What proportion of fish in the 30 in TL category should be assigned age 10?
+    1. How many of fourty fish in the 25 mm TL category should be assigned age 5?
+
+[Continue with these data here](StripedBass_ALK_B.html).
+
+---
+```{r echo=FALSE, results="asis"}
+exercise_footer("StripedBass_ALK_A")
+```

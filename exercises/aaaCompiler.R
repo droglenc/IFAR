@@ -26,3 +26,7 @@ modHTML("LORockBass_ALK_B")
 modHTML("LORockBass_ALK_C")
 modHTML("LORockBass_Growth_A")
 modHTML("LORockBass_Growth_B")
+
+modHTML("StripedBass_ALK_A")
+modHTML("StripedBass_ALK_B")
+modHTML("StripedBass_ALK_C")
