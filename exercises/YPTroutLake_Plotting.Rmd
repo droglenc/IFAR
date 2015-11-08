@@ -12,17 +12,17 @@ output:
 source("../rhelpers/IFARhelpers.R")
 ```
 
-<img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/yellow-perch=2.jpg" width="250px" />
+<img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/yellow-perch-2.jpg" width="250px" />
 Researchers for the [North Temperate Lakes Long-Term Ecological Research](https://lter.limnology.wisc.edu/) program have collected fish from a number of lakes in Wisconsin since 1981.  The total lengths and weights of [Yellow Perch](https://en.wikipedia.org/wiki/Yellow_perch) (*Perca flavescens*) captured from [Trout Lake](https://lter.limnology.wisc.edu/researchsite/trout-lake) from 1981-2006 are recorded in `r addDataLinks("YPerchTL")`.  Use these data to answer the following questions.  [*Note that these data came from [this website](https://lter.limnology.wisc.edu/dataset/north-temperate-lakes-lter-fish-lengths-and-weights-1981-current).  See the site for more information about the sampling protocol that produced these data.*]
 
 Complete [this Data Manipulation exercise](YPTroutLake_DataManip.html) to create the required data.frames used in the following questions.
 
-1. Describe the following from plots constructed with the data.frame that contains only Yellow Perch captured in fyke nets in 1997.
+1. Describe the following from plots constructed with the data.frame that contains only Yellow Perch captured in fyke nets in 2005.
     1. The distribution of lengths.
     1. The distribution of weights.
     1. The relationship between weight and length.
     1. The relationship between the natural logs of weight and length.
-1. Describe the following from plots constructed with the data.frame that contains only Yellow Perch captured in fyke nets in 1998.
+1. Describe the following from plots constructed with the data.frame that contains only Yellow Perch captured in 1998.
     1. The distribution of lengths separately for each gear (using only one command to make separate plots).
     1. The relationship between the natural logs of weight and length separately for each gear (using only one plot).
     1. The difference in mean lengths among the gears (plot should include confidence intervals).
