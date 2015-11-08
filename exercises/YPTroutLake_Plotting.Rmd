@@ -32,5 +32,5 @@ Save the script from this exercise as these data will be used in [this weight-le
 
 ---
 ```{r echo=FALSE, results="asis"}
-exercise_footer("Inch_Plotting")
+exercise_footer("YPTroutLake_Plotting")
 ```
