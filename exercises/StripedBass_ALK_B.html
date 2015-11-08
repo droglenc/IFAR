@@ -1,0 +1,53 @@
+---
+layout: page
+title: Age-Length Keys
+subtitle: Atlantic Ocean Striped Bass B
+author: Derek H. Ogle
+---
+
+
+<p><img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/striped-bass-2.jpg" width="250px" /> Researchers at the <a href="http://www.odu.edu/sci/research/cqfe/research/ageing-lab">Center for Quantitative Fisheries Ecology at Old Dominion University</a> in collaboration with the <a href="http://www.mrc.virginia.gov/">Virginia Marine Resources Commission</a> annually collect <a href="https://en.wikipedia.org/wiki/Striped_bass">Stiped Bass</a> (<em>Morone saxatilis</em>) from Virginia waters of the Atlantic Ocean for age assessments. The total lengths of 1201 Stiped Bass collected in 2003 and the ages estimated from <a href="https://en.wikipedia.org/wiki/Otolith">otoliths</a> for as many as 10 fish per 1 inch length interval are recorded in <strong>StripedBass3.csv</strong> (<a href="https://github.com/droglenc/FSAdata/blob/master/data-raw/StripedBass3.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/StripedBass3.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/StripedBass3.html">meta</a>)</p>
+<ol>
+<li>Separate the observed data into age- and length-samples. Construct an <strong>observed</strong> age-length key. [This step would have been accomplished in <a href="StripedBass_ALK_A.html">this exercise</a>.]</li>
+<li>Use the semi-random age assignment technique from Isermann and Knight (2005) and the <strong>observed</strong> age-length key to assign ages to the unaged fish in the length-sample. Combine the age-sample and the age-assigned length-sample into a single data frame, add a variable to this data.frame that contains the 1 inch TL categories, and use the combined data frame to answer the following questions.
+<ol>
+<li>How many fish are estimated to be age 8?</li>
+<li>How many fish are estimated to be age 14?</li>
+<li>Plot the age distribution for all fish.</li>
+<li>How many fish are in the 30 in TL interval?</li>
+<li>What is the mean TL of age-9 fish?</li>
+<li>Plot the length-at-age with the mean length-at-age superimposed for all fish.</li>
+</ol></li>
+<li>Compare your results from the previous question to someone else’s results (or repeat the previous question). Did you both get the <em>exact</em> same results? Why or why not? If not, how different were they?</li>
+</ol>
+<p><a href="StripedBass_ALK_C.html">Continue with these data here</a>. These data also used in <a href="StripedBass_Growth_A.html">this growth exercise</a>.</p>
+<hr />
+<p style="font-size: 0.75em; color: c6c6c6;">
+from Derek H. Ogle , created 08-Nov-15, updated 08-Nov-15, <a href="mailto:fishr@derekogle.com?subject=StripedBass_ALK_B exercise">Comments/Suggestions</a>.
+</p>
+<style type="text/css">ol ol { list-style-type: lower-alpha; }</style>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
