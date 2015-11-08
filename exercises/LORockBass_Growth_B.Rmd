@@ -13,7 +13,7 @@ source("../rhelpers/IFARhelpers.R")
 ```
 
 <img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/rock-bass-4.jpg" width="250px" />
-[Wolfert (1980)](https://pubs.er.usgs.gov/publication/1000461) measured the total length (TL) of 1288 [Rock Bass](https://en.wikipedia.org/wiki/Rock_bass) (*Ambloplites rupestris*) from Eastern [Lake Ontario](https://en.wikipedia.org/wiki/Lake_Ontario) in the late 1970s.  In addition, scales were removed for age estimation from as many as 10 specimens from each 10 mm length interval.  All data are recorded in `r addDataLinks("RockBass_LO2")`. [*Note that the filename contains an "oh" not a "zero."*].
+[Wolfert (1980)](https://pubs.er.usgs.gov/publication/1000461) measured the total length (TL) of 1288 [Rock Bass](https://en.wikipedia.org/wiki/Rock_bass) (*Ambloplites rupestris*) from Eastern [Lake Ontario](https://en.wikipedia.org/wiki/Lake_Ontario) in the late 1970s.  In addition, [scales](https://en.wikipedia.org/wiki/Fish_scale) were removed for age estimation from as many as 10 specimens from each 10 mm length interval.  All data are recorded in `r addDataLinks("RockBass_LO2")`. [*Note that the filename contains an "oh" not a "zero."*].
 
 In an [Age-Length Key exercise](LORockBass_ALK_B.html), a data.frame was produced that had age assignments for all 1288 fish.  Use that data.frame and results from [this exercise](LORockBass_Growth_A.html) to answer the questions below (i.e., open and run your script from that exercise and then continue with an analysis for the questions below.)
 
