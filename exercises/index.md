@@ -4,7 +4,7 @@ title: Exercises
 ---
 
 <div style="width=auto; max-width:300px; margin-left:auto; margin-right:auto;text-align:center">
-  <img src="../img/work-in-progress.png" alt="Work In Progress" width="100%">
+  <img src="../img/work-in-progress.png" alt="Work In Progress" width="50%">
 </div>
 
 Exercises for each chapter are listed below.  Please send me ideas for new exercises to include here.
