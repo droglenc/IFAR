@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Age Comparisons
-subtitle: Lake Champlain Lake Whitefish
+subtitle: Lake Champlain Lake Whitefish B
 author: Derek H. Ogle
 output: 
   html_document: 
