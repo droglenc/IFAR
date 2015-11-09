@@ -1,0 +1,53 @@
+---
+layout: page
+title: Weight-Length
+subtitle: Trout Lake Yellow Perch B
+author: Derek H. Ogle
+---
+
+
+<p><img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/yellow-perch-5.jpg" width="250px" /> Researchers for the <a href="https://lter.limnology.wisc.edu/">North Temperate Lakes Long-Term Ecological Research</a> program have collected fish from a number of lakes in Wisconsin since 1981. The total lengths and weights of <a href="https://en.wikipedia.org/wiki/Yellow_perch">Yellow Perch</a> (<em>Perca flavescens</em>) captured from <a href="https://lter.limnology.wisc.edu/researchsite/trout-lake">Trout Lake</a> from 1981-2006 are recorded in <strong>YPerchTL.csv</strong> (<a href="https://github.com/droglenc/FSAdata/blob/master/data-raw/YPerchTL.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/YPerchTL.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/YPerchTL.html">meta</a>). Use these data to answer the following questions. [<em>Note that these data came from <a href="https://lter.limnology.wisc.edu/dataset/north-temperate-lakes-lter-fish-lengths-and-weights-1981-current">this website</a>. See the site for more information about the sampling protocol that produced these data.</em>]</p>
+<p>Load these data, isolate Yellow Perch captured with only beach seines and fyke nets in 1997, and answer the following questions. [Note that this is a continuation of <a href="YPTroutLake_WL_A.html">this exercise</a>.]</p>
+<ol>
+<li>Complete <a href="YPTroutLake_Plotting.html">this Plotting exercise</a>.
+<ol>
+<li>Qualitatively assess if the weight-length relationship differs between the two years.</li>
+</ol></li>
+<li>Fit a model that will allow you to determine if there is a statistically signficant difference in the weight-length relationship between the two years.
+<ol>
+<li>Construct a residual plot for this model. Comment.</li>
+<li>Is there a statistically signficant difference in the weight-length relationship between the two years? Provide evidence for your findings and be very specific with your conclusions.</li>
+<li>Without fitting separate regressions for the two sample years, express the weight-length relationships on the raw scale for both years (i.e., write two specific equations).</li>
+<li>Construct a plot that illustrates your findings.</li>
+</ol></li>
+</ol>
+<hr />
+<p style="font-size: 0.75em; color: c6c6c6;">
+from Derek H. Ogle , created 09-Nov-15, updated 09-Nov-15, <a href="mailto:fishr@derekogle.com?subject=YPTroutLake_WL_B exercise">Comments/Suggestions</a>.
+</p>
+<style type="text/css">ol ol { list-style-type: lower-alpha; }</style>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

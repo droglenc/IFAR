@@ -26,8 +26,9 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
 1. **Size Structure**
     * [Trout Lake Yellow Perch](YPTroutLake_SizeStrux.html)
 1. **Weight-Length Relationships**
-    * Inch Lake Bluegill - [A](Inch_WLBluegill_A.html) / [B](Inch_WLBluegill_B.html)
+    * Inch Lake Bluegill -- [A](Inch_WLBluegill_A.html) / [B](Inch_WLBluegill_B.html)
     * Inch Lake Largemouth Bass - [A](Inch_WLLargemouthBass_A.html) / [B](Inch_WLLargemouthBass_B.html)
+    * Trout Lake Yellow Perch -- [A](YPTroutLake_WL_A.html) / [B](YPTroutLake_WL_A.html)
 1. **Condition**
     * [Inch Lake Bluegill](Inch_ConditionBluegill.html)
 1. **Abundance from Capture-Recapture Data**

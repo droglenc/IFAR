@@ -34,4 +34,5 @@ modHTML("StripedBass_ALK_C")
 modHTML("YPTroutLake_DataManip")
 modHTML("YPTroutLake_Plotting")
 modHTML("YPTroutLake_SizeStrux")
-
+modHTML("YPTroutLake_WL_A")
+modHTML("YPTroutLake_WL_B")

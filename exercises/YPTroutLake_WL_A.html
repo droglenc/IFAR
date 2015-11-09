@@ -1,0 +1,57 @@
+---
+layout: page
+title: Weight-Length
+subtitle: Trout Lake Yellow Perch A
+author: Derek H. Ogle
+---
+
+
+<p><img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/yellow-perch-4.jpg" width="250px" /> Researchers for the <a href="https://lter.limnology.wisc.edu/">North Temperate Lakes Long-Term Ecological Research</a> program have collected fish from a number of lakes in Wisconsin since 1981. The total lengths and weights of <a href="https://en.wikipedia.org/wiki/Yellow_perch">Yellow Perch</a> (<em>Perca flavescens</em>) captured from <a href="https://lter.limnology.wisc.edu/researchsite/trout-lake">Trout Lake</a> from 1981-2006 are recorded in <strong>YPerchTL.csv</strong> (<a href="https://github.com/droglenc/FSAdata/blob/master/data-raw/YPerchTL.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/YPerchTL.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/YPerchTL.html">meta</a>). Use these data to answer the following questions. [<em>Note that these data came from <a href="https://lter.limnology.wisc.edu/dataset/north-temperate-lakes-lter-fish-lengths-and-weights-1981-current">this website</a>. See the site for more information about the sampling protocol that produced these data.</em>]</p>
+<p>Load these data, isolate Yellow Perch captured with only fyke nets in 2005, and answer the following questions.</p>
+<ol>
+<li>Complete <a href="YPTroutLake_Plotting.html">this Plotting exercise</a>.
+<ol>
+<li>Describe the relationship between weight and length.</li>
+<li>Describe the relationship between log-transformed weight and length.</li>
+</ol></li>
+<li>Compute the weight-length relationship with an appropriate linear regression.
+<ol>
+<li>Plot the results (data and the fitted relationship) on both the transformed and raw scales. Comment on the fit.</li>
+<li>Construct a residual plot. Comment.</li>
+<li>Express your results as an equation on the transformed scale.</li>
+<li>Express your results as an equation on the raw scale.</li>
+<li>Carefully interpret the meaning of the slope of the weight-length relationship.</li>
+<li>Is there statistical evidence for isometric or allometric growth?</li>
+</ol></li>
+</ol>
+<p>Continue with these data for <a href="YPTroutLake_WL_B.html">weight-length comparisons</a>.</p>
+<hr />
+<p style="font-size: 0.75em; color: c6c6c6;">
+from Derek H. Ogle , created 09-Nov-15, updated 09-Nov-15, <a href="mailto:fishr@derekogle.com?subject=YPTroutLake_WL_A exercise">Comments/Suggestions</a>.
+</p>
+<style type="text/css">ol ol { list-style-type: lower-alpha; }</style>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
