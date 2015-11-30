@@ -18,7 +18,7 @@ avatar: "/img/IFARLogo.jpg"
 # List of links in the navigation bar
 navbar-links:
   Contents: "book"
-  Purchase: "https://www.crcpress.com/Introductory-Fisheries-Analyses-with-R/Ogle/9781482235203"
+  Purchase: https://www.crcpress.com/Introductory-Fisheries-Analyses-with-R/Ogle/9781482235203
   Supplements: "supplements"
   Exercises: "exercises"
   Scripts: "scripts"
