@@ -17,8 +17,8 @@ avatar: "/img/IFARLogo.jpg"
 
 # List of links in the navigation bar
 navbar-links:
-  Contents: "book"
   Purchase: "book/#how-to-purchase"
+  Contents: "book"
   Supplements: "supplements"
   Exercises: "exercises"
   Scripts: "scripts"
