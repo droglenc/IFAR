@@ -37,7 +37,7 @@ This book would not exist without each of these great men.  I dedicate this work
       </div>
     </div>
 
-    <div class="item active">
+    <div class="item">
       <img src="../img/Selgeby-1.jpg" alt="Jim Selgeby">
       <div class="carousel-caption">
         <p>Jim at his desk, ca. 1990.</p>
