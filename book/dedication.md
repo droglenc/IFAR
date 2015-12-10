@@ -37,7 +37,6 @@ This book would not exist without each of these great men.  I dedicate this work
       </div>
     </div>
 
-  <div class="carousel-inner" role="listbox">
     <div class="item active">
       <img src="../img/Selgeby-1.jpg" alt="Jim Selgeby">
       <div class="carousel-caption">
