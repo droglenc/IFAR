@@ -43,6 +43,11 @@ This book would not exist without each of these great men.  I dedicate this work
       <img src="../img/Ogle-Spangler-2.jpg" alt="Ogle & Spangler">
       <div class="carousel-caption"><p>Derek and George, December, 2015.</p></div>
     </div>
+
+    <div class="item">
+      <img src="../img/Spangler-sailing-2008.jpg" alt="Spangler Sailing">
+      <div class="carousel-caption"><p>George sailing on Lake Pepin, ca. 2008.</p></div>
+    </div>
   </div>
   
 </div>
