@@ -6,6 +6,7 @@ title: Book Details
 * [How to Purchase](#how-to-purchase)
 * [Brief Description](#brief-description)
 * [Table of Contents](#table-of-contents)
+* [Preview](#preview)
 * [Dedication](dedication.html)
 
 ----
@@ -18,7 +19,6 @@ title: Book Details
 ## Brief Description
 <img style="float: right; margin: 5px 5px 15px 20px; padding-left: 20px" src="../img/IFARCover_large.JPG" height="300px" />
 *Introductory Fisheries Analyses with R* provides detailed instructions on how to perform basic fisheries stock assessment analyses in the R environment. The analyses covered are typical analyses for many working fisheries scientists and, thus, also occur in most upper-level undergraduate and graduate level fisheries science, analysis, or management courses. The book begins with three foundational chapters (R basics, data manipulation, and plotting) that help the reader become familiar with R within the context of basic fisheries analyses and examples.  The remaining chapters build upon these foundational skills with analytical techniques specific to fisheries stock assessments (see the [Table of Contents](#table-of-contents) below).
-
 
 ----
 
@@ -52,3 +52,13 @@ title: Book Details
     * Estimate parameters for the Beverton-Holt and Ricker stock-recruitment models, compute spawning potential ratios, and estimate year-class strengths from catch data.
 
 ----
+
+## Preview
+
+A preview of the Table of Contents and Chapter 1 is available from [Google Books](https://books.google.com/books?id=KTo0CwAAQBAJ&printsec=frontcover#v=onepage&q&f=false).  This service allows you to search within the book, though it does not provide a full preview of the pages returned by the search.
+
+----
+
+## Dedication
+
+The book is dedicated to my three professional mentors.  Please [goto this page to see my dedication to them](dedication.html).
