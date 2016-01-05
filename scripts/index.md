@@ -7,7 +7,7 @@ Scripts and data files used to produce each chapter are linked to below.  *Some 
 
 1. [**(Very Brief) Introduction to R Basics**](RBasics.R)
 1. [**Loading Data and Basic Manipulations**](DataManip.R)
-    * Data -- [BGHRfish.csv](BGHRfish.csv), [BGHRsample.csv](BGHRsample.csv), [inchAge.csv](inchAge.csv), [inchBio.csv](inchBio.csv), [inchBio07.csv](inchBio07.csv), [inchBio08.csv](inchBio08.csv), [inchGear.csv](inchGear.csv)
+    * Data -- [BGHRfish.csv](BGHRfish.csv), [BGHRsample.csv](BGHRsample.csv), [InchAge.csv](InchAge.csv), [InchBio.csv](inchBio.csv), [InchBio07.csv](InchBio07.csv), [InchBio08.csv](InchBio08.csv), [InchGear.csv](InchGear.csv)
 1. [**Plotting Fundamentals**](Plotting.R)
 1. [**Age Comparisons**](AgeComparisons.R)
     * Data -- [ShadCR.csv](ShadCR.csv)
