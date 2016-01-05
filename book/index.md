@@ -12,7 +12,7 @@ title: Book Details
 ----
 
 ## How to Purchase
-*Introductory Fisheries Analyses with R* may be purchased from [CRC Press](https://www.crcpress.com/Introductory-Fisheries-Analyses-with-R/Ogle/9781482235203) (**20% off through end-of-year**) or [Amazon](http://www.amazon.com/Introductory-Fisheries-Analyses-Chapman-Hall/dp/148223520X/).
+*Introductory Fisheries Analyses with R* may be purchased from [CRC Press](https://www.crcpress.com/Introductory-Fisheries-Analyses-with-R/Ogle/9781482235203) or [Amazon](http://www.amazon.com/Introductory-Fisheries-Analyses-Chapman-Hall/dp/148223520X/).
 
 ----
 
