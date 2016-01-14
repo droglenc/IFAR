@@ -29,7 +29,7 @@ This book would not exist without each of these great men.  I dedicate this work
   <div class="carousel-inner" role="listbox">
     <div class="item active">
       <img src="../img/Nick-Board.jpg" alt="Nick at his best">
-      <div class="carousel-caption"><p>Nick at the board at Northland College, ca. 1995.</p></div>
+      <div class="carousel-caption"><p>Nick at the board, Northland College ca. 1995.</p></div>
     </div>
 
     <div class="item">
@@ -42,9 +42,9 @@ This book would not exist without each of these great men.  I dedicate this work
       <div class="carousel-caption"><p>Derek and George, December, 2015.</p></div>
     </div>
 
-    <div class="item active">
+    <div class="item">
       <img src="../img/Nick-Coaching.jpg" alt="Nick coahcing">
-      <div class="carousel-caption"><p>Nick coaching basketball at Northland College, ca. 1986.</p></div>
+      <div class="carousel-caption"><p>Nick coaching basketball, Northland College ca. 1986.</p></div>
     </div>
 
     <div class="item">
@@ -54,7 +54,7 @@ This book would not exist without each of these great men.  I dedicate this work
 
     <div class="item">
       <img src="../img/Ogle-Spangler-1.jpg" alt="Ogle & Spangler">
-      <div class="carousel-caption"><p>George, Don Pereira, Shannon Davis-Foust, and Derek at the national AFS meeting in Minneapolis.</p></div>
+      <div class="carousel-caption"><p>George, Don Pereira, Shannon Davis-Foust, and Derek at the national AFS meeting in Minneapolis, 2012.</p></div>
     </div>
 
     <div class="item">
