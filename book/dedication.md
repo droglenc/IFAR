@@ -21,18 +21,30 @@ This book would not exist without each of these great men.  I dedicate this work
     <li data-target="#mentorCarousel" data-slide-to="2"></li>
     <li data-target="#mentorCarousel" data-slide-to="3"></li>
     <li data-target="#mentorCarousel" data-slide-to="4"></li>
+    <li data-target="#mentorCarousel" data-slide-to="5"></li>
+    <li data-target="#mentorCarousel" data-slide-to="6"></li>
   </ol>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img src="../img/Nick-Board.jpg" alt="Nick at his best">
+      <div class="carousel-caption"><p>Nick at the board at Northland College, ca. 1995.</p></div>
+    </div>
+
     <div class="item active">
       <img src="../img/Ogle-Selgeby-1.jpg" alt="Ogle & Selgeby">
       <div class="carousel-caption"><p>Derek and Jim following Jim's honorary degree reception at Northland College, 2007.</p></div>
     </div>
 
     <div class="item">
-      <img src="../img/Ogle-Spangler-1.jpg" alt="Ogle & Spangler">
-      <div class="carousel-caption"><p>George, Don Pereira, Shannon Davis-Foust, and Derek at the national AFS meeting in Minneapolis.</p></div>
+      <img src="../img/Ogle-Spangler-2.jpg" alt="Ogle & Spangler">
+      <div class="carousel-caption"><p>Derek and George, December, 2015.</p></div>
+    </div>
+
+    <div class="item active">
+      <img src="../img/Nick-Coaching.jpg" alt="Nick coahcing">
+      <div class="carousel-caption"><p>Nick coaching basketball at Northland College, ca. 1986.</p></div>
     </div>
 
     <div class="item">
@@ -41,8 +53,8 @@ This book would not exist without each of these great men.  I dedicate this work
     </div>
 
     <div class="item">
-      <img src="../img/Ogle-Spangler-2.jpg" alt="Ogle & Spangler">
-      <div class="carousel-caption"><p>Derek and George, December, 2015.</p></div>
+      <img src="../img/Ogle-Spangler-1.jpg" alt="Ogle & Spangler">
+      <div class="carousel-caption"><p>George, Don Pereira, Shannon Davis-Foust, and Derek at the national AFS meeting in Minneapolis.</p></div>
     </div>
 
     <div class="item">
