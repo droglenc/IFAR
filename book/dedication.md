@@ -32,7 +32,7 @@ This book would not exist without each of these great men.  I dedicate this work
       <div class="carousel-caption"><p>Nick at the board at Northland College, ca. 1995.</p></div>
     </div>
 
-    <div class="item active">
+    <div class="item">
       <img src="../img/Ogle-Selgeby-1.jpg" alt="Ogle & Selgeby">
       <div class="carousel-caption"><p>Derek and Jim following Jim's honorary degree reception at Northland College, 2007.</p></div>
     </div>
