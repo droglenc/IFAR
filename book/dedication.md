@@ -45,7 +45,7 @@ This book would not exist without each of these great men.  I dedicate this work
 
     <div class="item">
       <img src="../img/Nick-Coaching.jpg" alt="Nick coahcing">
-      <div class="carousel-caption"><p>Nick coaching basketball, Northland College ca. 1986.</p></div>
+      <div class="carousel-caption"><p>Nick coaching basketball, Northland College ca. 1987.</p></div>
     </div>
 
     <div class="item">
