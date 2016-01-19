@@ -62,7 +62,6 @@ This book would not exist without each of these great men.  I dedicate this work
       <img src="../img/Nick-Team.jpg" alt="Nick with Basketball Team">
       <div class="carousel-caption"><p>Nick and I (#15) with the Rest of the Team, 1986.</p></div>
     </div>
-  </div>
 
     <div class="item">
       <img src="../img/Spangler-sailing-2008.jpg" alt="Spangler Sailing">
