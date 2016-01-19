@@ -23,6 +23,7 @@ This book would not exist without each of these great men.  I dedicate this work
     <li data-target="#mentorCarousel" data-slide-to="4"></li>
     <li data-target="#mentorCarousel" data-slide-to="5"></li>
     <li data-target="#mentorCarousel" data-slide-to="6"></li>
+    <li data-target="#mentorCarousel" data-slide-to="7"></li>
   </ol>
 
   <!-- Wrapper for slides -->
@@ -56,6 +57,12 @@ This book would not exist without each of these great men.  I dedicate this work
       <img src="../img/Ogle-Spangler-1.jpg" alt="Ogle & Spangler">
       <div class="carousel-caption"><p>George, Don Pereira, Shannon Davis-Foust, and Derek at the national AFS meeting in Minneapolis, 2012.</p></div>
     </div>
+
+    <div class="item">
+      <img src="../img/Nick-Team.jpg" alt="Nick with Basketball Team">
+      <div class="carousel-caption"><p>Nick and I (#15) with the Rest of the Team, 1986.</p></div>
+    </div>
+  </div>
 
     <div class="item">
       <img src="../img/Spangler-sailing-2008.jpg" alt="Spangler Sailing">
