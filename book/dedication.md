@@ -73,6 +73,6 @@ This book would not exist without each of these great men.  I dedicate this work
 
 <style>
 .carousel-caption{
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.3);
 }
 </style>
