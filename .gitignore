@@ -1,6 +1,7 @@
 _site/
 .sass-cache/
 .Rproj.user
+.Rhistory
 
 ## Exercise unneeded files
 exercises/*_files
