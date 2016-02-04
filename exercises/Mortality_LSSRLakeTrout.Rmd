@@ -7,7 +7,8 @@ output:
   html_document: 
     fig_width: 5
     self_contained: no
-    css: css/exercises.css
+    css: "/css/exercises.css"
+    
 ---
 ```{r echo=FALSE, eval=FALSE}
 # Renders an appropriate HTML file for the webpage
