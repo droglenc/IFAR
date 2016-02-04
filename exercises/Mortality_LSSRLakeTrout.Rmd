@@ -42,17 +42,17 @@ Use these results to answer the following questions.
   
 1. What year-class of fish is represented by the 339 age-VII fish caught in 1963?
 1. Identify the vectors of catches and ages that would be used to estimate the instantaneous total mortality rates for the following situations.
-   1. For fish captured in 1963.
-   1. For fish of the 1963 year-class.
-   1. The *earliest* year-class that is **fully** represented for ages IX through XII.
-   1. The *latest* year-class that is **fully** represented for ages IX through XII.
+    1. For fish captured in 1963.
+    1. For fish of the 1963 year-class.
+    1. The *earliest* year-class that is **fully** represented for ages IX through XII.
+    1. The *latest* year-class that is **fully** represented for ages IX through XII.
 1. For the data in each vector created above.
-   1. Identify whether these data represent a cross-sectional or longitudinal catch curve?
-   1. Identify the descending limb of each catch-curve.  Explain your reasoning.
-   1. Estimate, with 95% confidence interval, the instantaneous total mortality rate using the regression method.  Carefully interpret this result.
-   1. Convert the point estimate from above to an annual rate.
-   1. Estimate, with 95% confidence interval, the instantaneous total mortality rate using the Chapman-Robson method.  Carefully interpret this result.
-   1. Convert the point estimate from above to an annual rate.
+    1. Identify whether these data represent a cross-sectional or longitudinal catch curve?
+    1. Identify the descending limb of each catch-curve.  Explain your reasoning.
+    1. Estimate, with 95% confidence interval, the instantaneous total mortality rate using the regression method.  Carefully interpret this result.
+    1. Convert the point estimate from above to an annual rate.
+    1. Estimate, with 95% confidence interval, the instantaneous total mortality rate using the Chapman-Robson method.  Carefully interpret this result.
+    1. Convert the point estimate from above to an annual rate.
 1. Determine if the instantaneous mortality rate is significantly different between the earliest and latest year-classes that are fully represented for ages IX through XII.
 
 ---
