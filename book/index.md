@@ -7,6 +7,7 @@ title: Book Details
 * [Brief Description](#brief-description)
 * [Table of Contents](#table-of-contents)
 * [Preview](#preview)
+* [Errata](errata.html)
 * [Dedication](dedication.html)
 
 ----
@@ -56,6 +57,12 @@ title: Book Details
 ## Preview
 
 A preview of the Table of Contents and Chapter 1 is available from [Google Books](https://books.google.com/books?id=KTo0CwAAQBAJ&printsec=frontcover#v=onepage&q&f=false).  This service allows you to search within the book, though it does not provide a full preview of the pages returned by the search.
+
+----
+
+## Errata
+
+An errata and post-production notes are [maintained here](errata.html).
 
 ----
 

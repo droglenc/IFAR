@@ -5,6 +5,7 @@ title: Errata & Notes
 
 ## Errata
 
+* **Page 86, Footnote 7** -- "Ager C" should be "Ager B".
 
 ----
 
