@@ -49,4 +49,4 @@ predict(bootF,vbF,t=3,t1=ages)
 summary(nlsF,correlation=TRUE)
 
 
-# Script created at 2016-02-13 09:31:25
+# Script created at 2016-02-13 09:51:12

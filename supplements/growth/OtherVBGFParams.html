@@ -51,7 +51,7 @@ css: "/css/codebox.css"
                          Linf &lt;- Linf[[1]] }
   Linf-(Linf-L0)*exp(-K*t)
 }
-&lt;environment: 0x03f3c9f0&gt;</code></pre>
+&lt;environment: 0x03f1e4d0&gt;</code></pre>
 <p>Starting values are obtained with <code>vbStarts()</code> as described in the <strong>IFAR</strong> chapter.</p>
 <pre class="r"><code>&gt; ( svO &lt;- vbStarts(tl~otoage,data=bdm,type=&quot;Original&quot;) )</code></pre>
 <pre><code>$Linf
@@ -72,13 +72,13 @@ L0    242.1882291  133.1636548  338.4767316
 K       0.1418268    0.1214678    0.1649841</code></pre>
 <pre class="r"><code>&gt; bootO &lt;- nlsBoot(nlsO)
 &gt; cbind(Ests=coef(nlsO),confint(bootO))</code></pre>
-<pre><code>             Ests      95% LCI      95% UCI
-Linf 1196.7192108 1179.3139847 1214.7053323
-L0    242.1882291  149.0993136  328.6632660
-K       0.1418268    0.1239723    0.1632254</code></pre>
+<pre><code>             Ests     95% LCI     95% UCI
+Linf 1196.7192108 1180.856750 1215.089792
+L0    242.1882291  147.578306  325.960829
+K       0.1418268    0.124511    0.161096</code></pre>
 <pre class="r"><code>&gt; predict(bootO,vbO,t=3)</code></pre>
 <pre><code>prediction    95% LCI    95% UCI 
-  573.4274   537.1742   607.7267 </code></pre>
+  572.5216   535.9480   610.3373 </code></pre>
 <p> </p>
 </div>
 <div id="francis-parameterization" class="section level3">
@@ -96,7 +96,7 @@ K       0.1418268    0.1239723    0.1632254</code></pre>
   r &lt;- (L3-L2)/(L2-L1)
   L1+(L3-L1)*((1-r^(2*((t-t1)/(t3-t1))))/(1-r^2))
 }
-&lt;environment: 0x073cf994&gt;</code></pre>
+&lt;environment: 0x073c2010&gt;</code></pre>
 <p>As stated above, the user must choose values for <span class="math inline">\(t_{1}\)</span> and <span class="math inline">\(t_{3}\)</span>. In this example, I have chosen to use the youngest and oldest ages in the data (as found with <code>range()</code>).</p>
 <pre class="r"><code>&gt; ( ages &lt;- range(bdm$otoage) )</code></pre>
 <pre><code>[1]  3 42</code></pre>
@@ -121,12 +121,12 @@ L3 1194.248 1176.6756 1212.7376</code></pre>
 <pre class="r"><code>&gt; bootF &lt;- nlsBoot(nlsF)
 &gt; cbind(Ests=coef(nlsF),confint(bootF))</code></pre>
 <pre><code>       Ests   95% LCI   95% UCI
-L1  572.975  535.5848  611.2394
-L2 1157.463 1146.3825 1168.5041
-L3 1194.248 1177.9517 1211.6942</code></pre>
+L1  572.975  534.7997  613.7465
+L2 1157.463 1146.7695 1168.4532
+L3 1194.248 1177.5684 1210.2266</code></pre>
 <pre class="r"><code>&gt; predict(bootF,vbF,t=3,t1=ages)</code></pre>
 <pre><code>prediction    95% LCI    95% UCI 
-  572.5732   535.5848   611.2394 </code></pre>
+  573.0725   534.7997   613.7465 </code></pre>
 <p>Note that the intra-parameter correlations are relatively low for this parameterization. Additionally, the scale of the parameters in the “Francis” parameterization are usually similar. Both of these characteristics may aid model convergence.</p>
 <pre class="r"><code>&gt; summary(nlsF,correlation=TRUE)</code></pre>
 <pre><code>
@@ -155,7 +155,7 @@ Achieved convergence tolerance: 3.023e-06</code></pre>
 <h2>Reproducibility Information</h2>
 <ul>
 <li><strong>Compiled Date:</strong> Sat Feb 13 2016</li>
-<li><strong>Compiled Time:</strong> 9:31:13 AM</li>
+<li><strong>Compiled Time:</strong> 9:50:14 AM</li>
 <li><strong>R Version:</strong> R version 3.2.3 (2015-12-10)</li>
 <li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
 <li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>
