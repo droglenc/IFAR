@@ -72,6 +72,41 @@ headtail(bdm)
 
 ## Fitting Other VBGF Parameterizations
 
+### Original Parameterization
+
+The parameterization originally proposed by @vonBertalanffy1938 is defined as
+
+$$ E[L|t] = L_{\infty} - (L_{\infty}-L_{0})e^{-Kt} $$
+
+where $L_{\infty}$ and $K$ are as defined for the typical parameterization and $L_{0}$ is the mean length at $t=0$.
+
+As demonstrated in the **IFAR** chapter for the "Typical" VBGF, an R function that uses the VBGF to predict length from a given age is needed.  This R function may be created by the user, but for the common parameterizations shown in `vbModels()` it is easier to use `vbFuns()` from `FSA`.  As a reminder, `vbFuns()` requires the name for the parameterization to use in quotes as the first argument.  A brief explanation of the parameters is also returned if `msg=TRUE` is included in `vbFuns()`.
+
+An R function called `vbO()` is created for the "original" parameterization below.  Note with this function that values for the three parameters may be included as a vector in `Ling=`.
+
+```{r}
+( vbO <- vbFuns("Original") )
+```
+
+
+Starting values are obtained with `vbStarts()` as described in the **IFAR** chapter.
+```{r}
+( svO <- vbStarts(tl~otoage,data=bdm,type="Original") )
+```
+
+The VBGF is fit and parameter estimates with likelihood profile confidence intervals are obtained as described in the **IFAR** book.  Bootstrapped confidence intervals and predictions may also be obtained as described in the **IFAR** book.
+```{r}
+nlsO <- nls(tl~vbO(otoage,Linf,L0,K),data=bdm,start=svO)
+cbind(Ests=coef(nlsO),confint(nlsO))
+bootO <- nlsBoot(nlsO)
+cbind(Ests=coef(nlsO),confint(bootO))
+predict(bootO,vbO,t=3)
+```
+
+\ 
+
+### Francis Parameterization
+
 The @Francis1988 parameterization is defined as
 
 $$ E[L|t] = L_{1} + (L_{3}-L_{1})\frac{1-r^{2\frac{t-t_{1}}{t_{3}-t_{1}}}}{1-r^{2}} $$
@@ -82,9 +117,7 @@ $$ r=\frac{L_{3}-L_{2}}{L_{2}-L_{1}} $$
 
 The function parameters are $L_{1}$, $L_{2}$, and $L_{3}$, which represent the mean lengths at ages $t_{1}$, $t_{2}$, and $t_{3}$, respectively, where $t_{1}$ and $t_{3}$ are relatively young and old ages chosen by the user and $t_{2}$ is the average of $t_{1}$ and $t_{3}$.
 
-As demonstrated in the **IFAR** chapter for the "Typical" VBGF, an R function that uses the VBGF to predict length from a given age is needed.  This R function may be created by the user, but for the common parameterizations shown in `vbModels()` it is easier to use `vbFuns()` from `FSA`.  As a reminder, `vbFuns()` requires the name for the parameterization to use in quotes as the first argument.  A brief explanation of the parameters is also returned if `msg=TRUE` is included in `vbFuns()`.
-
-An R function called `vbF()` is created for the "Francis" parameterization below.  Note with this function that values for the three parameters may be included as a vector in `L1=` and that the youngest and oldest ages may be included as a vector in `t1=`.
+Similar to above, an R function called `vbF()` is created for the "Francis" parameterization below.  Note with this function that values for the three parameters may be included as a vector in `L1=` and that the youngest and oldest ages may be included as a vector in `t1=`.
 
 ```{r}
 ( vbF <- vbFuns("Francis") )
@@ -95,7 +128,7 @@ As stated above, the user must choose values for $t_{1}$ and $t_{3}$.  In this e
 ( ages <- range(bdm$otoage) )
 ```
 
-Starting values are obtained with `vbStarts()` as described in the **IFAR** chapter.  However, with the "Francis" parameterization, the ages that define $t_{1}$ and $t_{3}$ must also be provided in `ages2use=`.
+Starting values are obtained with `vbStarts()` as described in the **IFAR** chapter and above.  However, with the "Francis" parameterization, the ages that define $t_{1}$ and $t_{3}$ must also be provided in `ages2use=`.
 
 ```{r}
 ( svF <- vbStarts(tl~otoage,data=bdm,type="Francis",ages2use=ages) )

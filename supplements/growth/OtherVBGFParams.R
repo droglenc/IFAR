@@ -24,6 +24,16 @@ bdmf <- read.csv("BlackDrum2001.csv") %>%
 bdm <- filterD(bdmf,sex=="male")
 headtail(bdm)
 
+( vbO <- vbFuns("Original") )
+
+( svO <- vbStarts(tl~otoage,data=bdm,type="Original") )
+
+nlsO <- nls(tl~vbO(otoage,Linf,L0,K),data=bdm,start=svO)
+cbind(Ests=coef(nlsO),confint(nlsO))
+bootO <- nlsBoot(nlsO)
+cbind(Ests=coef(nlsO),confint(bootO))
+predict(bootO,vbO,t=3)
+
 ( vbF <- vbFuns("Francis") )
 
 ( ages <- range(bdm$otoage) )
@@ -39,4 +49,4 @@ predict(bootF,vbF,t=3,t1=ages)
 summary(nlsF,correlation=TRUE)
 
 
-# Script created at 2015-11-06 09:06:49
+# Script created at 2016-02-13 09:31:25
