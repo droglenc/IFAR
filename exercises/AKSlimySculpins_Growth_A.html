@@ -1,23 +1,86 @@
----
-layout: page
-title: Individual Growth
-subtitle: Alaskan Slimy Sculpins A
-author: Derek H. Ogle
----
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="author" content="Derek H. Ogle" />
+
+
+<title>Individual Growth</title>
+
+<script src="AKSlimySculpins_Growth_A_files/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="AKSlimySculpins_Growth_A_files/bootstrap-3.3.1/css/bootstrap.min.css" rel="stylesheet" />
+<script src="AKSlimySculpins_Growth_A_files/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="AKSlimySculpins_Growth_A_files/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="AKSlimySculpins_Growth_A_files/bootstrap-3.3.1/shim/respond.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="AKSlimySculpins_Growth_A_files/highlight/default.css"
+      type="text/css" />
+<script src="AKSlimySculpins_Growth_A_files/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+
+
+<div id="header">
+<h1 class="title">Individual Growth</h1>
+<h3 class="subtitle"><em>Alaskan Slimy Sculpins A</em></h3>
+<h4 class="author"><em>Derek H. Ogle</em></h4>
+</div>
 
 
 <p><img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/ToolikLake2.jpg" width="250px" /> The total length (mm) and otolith age of <a href="https://en.wikipedia.org/wiki/Slimy_sculpin">Slimy Sculpin</a> (<em>Cottus cognatus</em>) captured in the <a href="http://ecosystems.mbl.edu/ARC/">Arctic Long-Term Ecological Research</a> area were recorded in <strong>SculpinALTER.csv</strong> (<a href="https://github.com/droglenc/FSAdata/blob/master/data-raw/SculpinALTER.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/SculpinALTER.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/SculpinALTER.html">meta</a>).</p>
 <p>Use these data to answer the following questions.</p>
-<ol>
+<ol style="list-style-type: decimal">
 <li>Plot TL versus age. Observe the “shape” of the data (do the results look linear or like a von Bertalanffy growth curve, is there an obvious asymptote, are young fish well represented, how variable are lengths within ages).</li>
 <li>Fit the typical parameterization of the von Bertalanffy growth function (VBGF).
-<ol>
+<ol style="list-style-type: decimal">
 <li>Plot TL versus age and superimpose the best-fit VBGF. Comment on model fit.</li>
 <li>Construct a residual plot. Comment on model fit.</li>
 <li>Write the equation for the typical VBGF with parameters replaced by their estimated values.</li>
-<li>How realistic do the point estimates of <span class="math">\(L_{\infty}\)</span>, <span class="math">\(K\)</span>, and <span class="math">\(t_{0}\)</span> seem?</li>
-<li>Construct 95% bootstrapped confidence intervals for each parameter. Comment on the widths of these confidence intervals. What explains this?</li>
+<li>How realistic do the point estimates of <span class="math inline">\(L_{\infty}\)</span>, <span class="math inline">\(K\)</span>, and <span class="math inline">\(t_{0}\)</span> seem?</li>
 <li>Carefully interpret the meaning of each parameter.</li>
+<li>Construct 95% bootstrapped confidence intervals for each parameter. Comment on the widths of these confidence intervals. What explains this?</li>
 <li>Predict the mean TL, with 95% confidence interval, for an age-3 Slimy Sculpin. Comment on the width of this confidence interval. What explains this?</li>
 <li>Predict the age at which the Slimy Sculpins will have reached half of the asymptotic mean TL.</li>
 <li>Compute the correlation between parameter values. Comment.</li>
@@ -26,7 +89,7 @@ author: Derek H. Ogle
 <p><a href="AKSlimySculpins_Growth_B.html">Continue with this data set here</a>.</p>
 <hr />
 <p style="font-size: 0.75em; color: c6c6c6;">
-from Derek H. Ogle , created 01-Oct-15, updated 07-Nov-15, <a href="mailto:fishr@derekogle.com?subject=AKSlimySculpins_Growth_A exercise">Comments/Suggestions</a>.
+from Derek H. Ogle , created 21-Jan-16, updated 13-Feb-16, <a href="mailto:fishr@derekogle.com?subject=AKSlimySculpins_Growth_A exercise">Comments/Suggestions</a>.
 </p>
 <style type="text/css">ol ol { list-style-type: lower-alpha; }</style>
 
