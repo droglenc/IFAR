@@ -6,6 +6,7 @@ title: Errata & Notes
 ## Errata
 
 * **Page 86, Footnote 7** -- "Ager C" should be "Ager B".
+* **Page 207, Equation for $\hat{Z}$** -- $N$ should be $n$ in the denominator.
 
 ----
 
