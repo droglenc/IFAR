@@ -1,0 +1,32 @@
+---
+layout: page
+title: Errata & Notes
+author: Derek H. Ogle
+output: 
+  html_document:
+    self_contained: no
+---
+```{r echo=FALSE, eval=FALSE}
+# RUN MANUALLY (following using Knit HTML button)
+setwd("C:/aaaWork/Web/GitHub/IFAR/book")
+source("../rhelpers/IFARhelpers.R")
+modHTML("errata",need2render=FALSE)
+```
+
+----
+
+## Errata
+
+<ol>
+<li><b>Page 86, Footnote 7</b> -- "Ager C" should be "Ager B".</li>
+<li><b>Page 207, Equation for $\hat{Z}$</b> -- $N$ should be $n$ in the denominator.  Thus, the new equation should be ...
+
+\[ \widehat{Z} = -log(\widehat{S}) - \frac{(n-1)(n-2)}{n(T+1)(n+T-1)} \]
+</li>
+</ol>
+
+----
+
+## Post-Production Notes
+
+* **Page xvi** -- All code found in the book still produces the same results when using version 0.8.4 of `FSA`.
