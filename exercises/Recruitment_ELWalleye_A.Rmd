@@ -23,9 +23,7 @@ Load these data into R to answer the following questions.
 1. Describe the relationship between "recruits" versus "stock."  Do you expect a stock-recruitment model to fit these data well?
 1. Fit the following recruitment functions to these data, assuming a multiplicative error structure.  Show your results by expressing the recruitment function with estimated values in place of the parameters.
     1. Density-independence.
-    1. Beverton-Holt.
     1. Ricker.
-    1. Shepherd.
 1. Construct a single plot that shows how well each recruitment function fits these data.
 1. Estimate recruitment for the mean stock level with each recruitment function.  How variable are the results among models?
 1. Determine if the density-dependent parameter is statistically significant in the Ricker model.
