@@ -8,17 +8,20 @@ output:
     fig_width: 5
     self_contained: no
 ---
-```{r echo=FALSE,eval=-2}
+```{r echo=FALSE,eval=-5}
+## knit HTML from RStudio first
+setwd("C:/aaaWork/Web/GitHub/IFAR/exercises")
 source("../rhelpers/IFARhelpers.R")
-modHTML("LORockBass_Growth_A",need2render=FALSE)
+fnm <- "LORockBass_Growth_A"
+modHTML(fnm,need2render=FALSE)
 ```
 
 <img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/rock-bass-3.jpg" width="250px" />
 [Wolfert (1980)](https://pubs.er.usgs.gov/publication/1000461) measured the total length (TL) of 1288 [Rock Bass](https://en.wikipedia.org/wiki/Rock_bass) (*Ambloplites rupestris*) from Eastern [Lake Ontario](https://en.wikipedia.org/wiki/Lake_Ontario) in the late 1970s.  In addition, [scales](https://en.wikipedia.org/wiki/Fish_scale) were removed for age estimation from as many as 10 specimens from each 10 mm length interval.  All data are recorded in `r addDataLinks("RockBassLO2")`. [*Note that the filename contains an "oh" not a "zero."*].
 
-In this [age-length key exercise](ALK_LORockBass_B.html), a data.frame was produced that had age assignments for all 1288 fish.  Use that data.frame to answer the questions below (i.e., open and run your script from that exercise and then continue with an analysis for the questions below.)
+In this [age-length key exercise](LORockBass_ALK_B.html), a data.frame was produced that had age assignments for all 1288 fish.  Use that data.frame to answer the questions below (i.e., open and run your script from that exercise and then continue with an analysis for the questions below.)
 
-1. Plot TL versus age.  Observe the "shape" of the data (do the results look linear or like a von Bertalanffy growth curve, is there an obvious asymptote, are young fish well represented, how variable are lengths within ages).
+1. Examine the plot of TL versus age.  Observe the "shape" of the data (do the results look linear or like a von Bertalanffy growth curve, is there an obvious asymptote, are young fish well represented, how variable are lengths within ages).
 1. Fit the typical parameterization of the von Bertalanffy growth function (VBGF).
     1. How realistic do the point estimates of $L_{\infty}$, $K$, and $t_{0}$ seem?
     1. Write the typical VBGF with parameters replaced by their estimated values.
@@ -33,5 +36,5 @@ In this [age-length key exercise](ALK_LORockBass_B.html), a data.frame was produ
 
 ---
 ```{r echo=FALSE, results="asis"}
-exercise_footer("LORockBass_Growth_A")
+exercise_footer(fnm)
 ```
