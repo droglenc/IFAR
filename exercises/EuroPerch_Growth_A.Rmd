@@ -8,10 +8,11 @@ output:
     fig_width: 5
     self_contained: no
 ---
-```{r echo=FALSE, eval=FALSE}
-# Renders an appropriate HTML file for the webpage
-setwd("C:/aaaWork/Web/GitHub/IFAR/exercises"); source("../rhelpers/IFARhelpers.R")
-fnm <-"EuroPerch_Growth_A"; modHTML(fnm)
+```{r echo=FALSE, eval=-4}
+setwd("C:/aaaWork/Web/GitHub/IFAR/exercises")
+source("../rhelpers/IFARhelpers.R")
+fnm <- "EuroPerch_Growth_A"
+modHTML(fnm,need2render=FALSE)
 ```
 
 <img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/perch-photo.jpg" width="250px" />

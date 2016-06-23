@@ -5,27 +5,28 @@ subtitle: Lake Ontario Rock Bass B
 author: Derek H. Ogle
 ---
 
-
-<p><img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/rock-bass-4.jpg" width="250px" /> <a href="https://pubs.er.usgs.gov/publication/1000461">Wolfert (1980)</a> measured the total length (TL) of 1288 <a href="https://en.wikipedia.org/wiki/Rock_bass">Rock Bass</a> (<em>Ambloplites rupestris</em>) from Eastern <a href="https://en.wikipedia.org/wiki/Lake_Ontario">Lake Ontario</a> in the late 1970s. In addition, scales were removed for age estimation from as many as 10 specimens from each 10 mm length interval. All data are recorded in <strong>RockBass_LO2.csv</strong> (<a href="https://github.com/droglenc/FSAdata/blob/master/data-raw/RockBass_LO2.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/RockBass_LO2.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/RockBass_LO2.html">meta</a>). [<em>Note that the filename contains an “oh” not a “zero.”</em>].</p>
+<p><img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/rock-bass-4.jpg" width="250px" /> <a href="https://pubs.er.usgs.gov/publication/1000461">Wolfert (1980)</a> measured the total length (TL) of 1288 <a href="https://en.wikipedia.org/wiki/Rock_bass">Rock Bass</a> (<em>Ambloplites rupestris</em>) from Eastern <a href="https://en.wikipedia.org/wiki/Lake_Ontario">Lake Ontario</a> in the late 1970s. In addition, <a href="https://en.wikipedia.org/wiki/Fish_scale">scales</a> were removed for age estimation from as many as 10 specimens from each 10 mm length interval. All data are recorded in <strong>RockBass_LO2.csv</strong> (<a href="https://github.com/droglenc/FSAdata/blob/master/data-raw/RockBass_LO2.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/RockBass_LO2.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/RockBass_LO2.html">meta</a>). [<em>Note that the filename contains an “oh” not a “zero.”</em>].</p>
 <p>In an <a href="LORockBass_ALK_B.html">Age-Length Key exercise</a>, a data.frame was produced that had age assignments for all 1288 fish. Use that data.frame and results from <a href="LORockBass_Growth_A.html">this exercise</a> to answer the questions below (i.e., open and run your script from that exercise and then continue with an analysis for the questions below.)</p>
 <ol>
 <li>Plot TL versus age. Observe the “shape” of the data (do the results look linear or like a von Bertalanffy growth curve, is there an obvious asymptote, are young fish well represented, how variable are lengths within ages).</li>
 <li>Fit the Gallucci and Quinn (1979) parameterization (see <code>vbModels()</code>).
 <ol>
-<li>Interpret the interval estimate for the <span class="math">\(\omega\)</span> parameter.</li>
+<li>Interpret the interval estimate for the <span class="math inline">\(\omega\)</span> parameter.</li>
 <li>Write the Gallucci and Quinn VBGF with parameters replaced by their estimated values.</li>
 <li>Construct 95% bootstrapped confidence intervals for each parameter. Comment on the widths of these confidence intervals. What explains this?</li>
 <li>Predict the mean TL, with 95% confidence interval, for an age-6 Rock Bass. Comment on the width of this confidence interval. What explains this?</li>
 <li>Plot TL versus age and superimpose the best-fit VBGF. Comment on model fit.</li>
 <li>Compute the correlation between parameter values. Comment</li>
-<li>How does the estimate of <span class="math">\(K\)</span> from fitting this parameterization compare to that from the typical VBGF fit in <a href="LORockBass_Growth_A.html">this exercise</a>. Explain your observation.</li>
+<li>How does the estimate of <span class="math inline">\(K\)</span> from fitting this parameterization compare to that from the typical VBGF fit in <a href="LORockBass_Growth_A.html">this exercise</a>. Explain your observation.</li>
 </ol></li>
 </ol>
 <hr />
 <p style="font-size: 0.75em; color: c6c6c6;">
-from Derek H. Ogle , created 01-Oct-15, updated 08-Nov-15, <a href="mailto:fishr@derekogle.com?subject=LORockBass_Growth_B exercise">Comments/Suggestions</a>.
+from Derek H. Ogle , created 21-Jan-16, updated 23-Jun-16, <a href="mailto:fishr@derekogle.com?subject=LORockBass_Growth_B exercise">Comments/Suggestions</a>.
 </p>
 <style type="text/css">ol ol { list-style-type: lower-alpha; }</style>
+
+
 
 
 </div>
