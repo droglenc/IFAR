@@ -8,8 +8,9 @@ output:
     fig_width: 5
     self_contained: no
 ---
-```{r echo=FALSE}
+```{r echo=FALSE,eval=-2}
 source("../rhelpers/IFARhelpers.R")
+modHTML("AKSlimySculpins_Growth_A",need2render=FALSE)
 ```
 
 <img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/ToolikLake2.jpg" width="250px" />

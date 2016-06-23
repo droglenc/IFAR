@@ -1,135 +1,18 @@
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-
-<meta charset="utf-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="pandoc" />
-
-
-<meta name="author" content="Derek H. Ogle" />
-
-
-<title>Individual Growth</title>
-
-<script src="AKSlimySculpins_Growth_A_files/jquery-1.11.3/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="AKSlimySculpins_Growth_A_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
-<script src="AKSlimySculpins_Growth_A_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="AKSlimySculpins_Growth_A_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="AKSlimySculpins_Growth_A_files/bootstrap-3.3.5/shim/respond.min.js"></script>
-
-<style type="text/css">code{white-space: pre;}</style>
-<link rel="stylesheet"
-      href="AKSlimySculpins_Growth_A_files/highlight/default.css"
-      type="text/css" />
-<script src="AKSlimySculpins_Growth_A_files/highlight/highlight.js"></script>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
-<script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
-}
-</script>
-
-
-
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
-
-
-</head>
-
-<body>
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
-}
-.tabbed-pane {
-  padding-top: 12px;
-}
-button.code-folding-btn:focus {
-  outline: none;
-}
-</style>
-
-
-<div class="container-fluid main-container">
-
-<!-- tabsets -->
-<script src="AKSlimySculpins_Growth_A_files/navigation-1.0/tabsets.js"></script>
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
-
-<!-- code folding -->
-
-
-
-
-
-
-<div class="fluid-row" id="header">
-
-
-
-<h1 class="title toc-ignore">Individual Growth</h1>
-<h3 class="subtitle"><em>Alaskan Slimy Sculpins A</em></h3>
-<h4 class="author"><em>Derek H. Ogle</em></h4>
-
+---
+layout: page
+title: Individual Growth
+subtitle: Alaskan Slimy Sculpins A
+author: Derek H. Ogle
+---
 </div>
 
 
 <p><img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/ToolikLake2.jpg" width="250px" /> The total length (mm) and otolith age of <a href="https://en.wikipedia.org/wiki/Slimy_sculpin">Slimy Sculpin</a> (<em>Cottus cognatus</em>) captured in the <a href="http://ecosystems.mbl.edu/ARC/">Arctic Long-Term Ecological Research</a> area were recorded in <strong>SculpinALTER.csv</strong> (<a href="https://github.com/droglenc/FSAdata/blob/master/data-raw/SculpinALTER.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/SculpinALTER.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/SculpinALTER.html">meta</a>).</p>
 <p>Use these data to answer the following questions.</p>
-<ol style="list-style-type: decimal">
+<ol>
 <li>Plot TL versus age. Observe the “shape” of the data (do the results look linear or like a von Bertalanffy growth curve, is there an obvious asymptote, are young fish well represented, how variable are lengths within ages).</li>
 <li>Fit the typical parameterization of the von Bertalanffy growth function (VBGF).
-<ol style="list-style-type: decimal">
+<ol>
 <li>Plot TL versus age and superimpose the best-fit VBGF. Comment on model fit.</li>
 <li>Construct a residual plot. Comment on model fit.</li>
 <li>Write the equation for the typical VBGF with parameters replaced by their estimated values.</li>
