@@ -10,6 +10,7 @@ output:
 ---
 ```{r echo=FALSE}
 source("../rhelpers/IFARhelpers.R")
+modHTML("YPTroutLake_SizeStrux",need2render=FALSE)
 ```
 
 <img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/yellow-perch-3.jpg" width="250px" />
