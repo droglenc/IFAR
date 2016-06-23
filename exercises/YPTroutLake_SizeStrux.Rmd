@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Basic Plotting
+title: Size Structure
 subtitle: Trout Lake Yellow Perch
 author: Derek H. Ogle
 output: 
