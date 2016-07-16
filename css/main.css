@@ -559,6 +559,8 @@ table tr td :last-child {
 }
 
 
+/* --- Fixes problem related to header and internal anchor --- */
+/* --- from https://www.itsupportguides.com/tech-tips-tricks/how-to-offset-anchor-tag-link-using-css/ --- */
 :target:before {
 content:"";
 display:block;
