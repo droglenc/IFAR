@@ -562,6 +562,6 @@ table tr td :last-child {
 :target:before {
 content:"";
 display:block;
-height:80px; /* fixed header height*/
-margin:-80px 0 0; /* negative fixed header height */
+height:100px; /* fixed header height*/
+margin:-100px 0 0; /* negative fixed header height */
 }
