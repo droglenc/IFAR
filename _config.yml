@@ -23,7 +23,7 @@ navbar-links:
   Exercises: "exercises"
   Scripts: "scripts"
 #  Errata: "errata"
-#  Reviews: "reviews"
+  Reviews: "reviews"
   Author: "author"
 
 # --- Footer options --- #
