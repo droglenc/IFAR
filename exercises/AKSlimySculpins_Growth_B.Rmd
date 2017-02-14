@@ -18,7 +18,7 @@ The total length (mm) and otolith age of [Slimy Sculpin](https://en.wikipedia.or
 
 Use these data, and results from [this exercise](AKSlimySculpins_Growth_A.html), to answer the following questions.
 
-1. Fit von Bertalanffy's original parameterization.  [**Hint:** See `vbModels()` and [this supplement](../supplements/OtherVBGFParams.html).]
+1. Fit von Bertalanffy's original parameterization.  [**Hint:** See `vbModels()` and [this supplement](../supplements/growth/OtherVBGFParams.html).]
     1. Plot TL versus age and superimpose the best-fit VBGF.  Comment on model fit.
     1. Construct a residual plot.  Comment on model fit.
     1. Write the equation for the "original" VBGF with parameters replaced by their estimated values.
