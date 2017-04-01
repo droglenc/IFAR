@@ -24,6 +24,7 @@ This book would not exist without each of these great men.  I dedicate this work
     <li data-target="#mentorCarousel" data-slide-to="5"></li>
     <li data-target="#mentorCarousel" data-slide-to="6"></li>
     <li data-target="#mentorCarousel" data-slide-to="7"></li>
+    <li data-target="#mentorCarousel" data-slide-to="8"></li>
   </ol>
 
   <!-- Wrapper for slides -->
@@ -66,6 +67,11 @@ This book would not exist without each of these great men.  I dedicate this work
     <div class="item">
       <img src="../img/Spangler-sailing-2008.jpg" alt="Spangler Sailing">
       <div class="carousel-caption"><p>George sailing on Lake Pepin, ca. 2008.</p></div>
+    </div>
+
+    <div class="item">
+      <img src="../img/Nick-AndI.jpg" alt="Nick and I">
+      <div class="carousel-caption"><p>Nick and I in deep discussion, ca. 1998.</p></div>
     </div>
   </div>
   
