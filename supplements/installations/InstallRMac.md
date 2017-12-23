@@ -15,7 +15,7 @@ The following steps may be used to install R on a Macintosh operating system.  [
     <img src="figures/R_MacInstall_ChooseOS.png" width="100%">
     </div>
 
-1. Select the "R-3.2.2.pkg" option (or similar if the version number has changed) if running Mac OS 10.9 (Mavericks) and higher.  (*note that the binary support for OS X before Mavericks is deprecated.*)
+1. Select the "R-3.2.2.pkg" option (or similar if the version number has changed ... the version is now at least 3.4.3) if running Mac OS 10.9 (Mavericks) and higher.  (*note that the binary support for OS X before Mavericks is deprecated.*)
 
     <div class="ctrstaticimg">
     <img src="figures/R_MacInstall_ChoosePKG.png" width="100%">

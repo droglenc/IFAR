@@ -21,7 +21,7 @@ The following steps may be used to install R on a Windows operating system.  [Se
     <img src="figures/R_WinInstall_ChooseBase.PNG" width="100%">
     </div>
 
-1. Select the "Download R 3.2.2 for Windows" option (or similar if the version number has changed).  Either run the program or note where you saved this executable program on your computer.
+1. Select the "Download R 3.2.2 for Windows" option (or similar if the version number has changed ... the version is now at least 3.4.3).  Either run the program or note where you saved this executable program on your computer.
 
     <div class="ctrstaticimg">
     <img src="figures/R_WinInstall_Download.PNG" width="100%">

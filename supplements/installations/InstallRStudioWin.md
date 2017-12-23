@@ -29,7 +29,7 @@ RStudio is easy to learn. This page has directions for [installing](#installing-
     <img src="figures/RStudio_WinInstall_ChooseOS.PNG" width="100%">
     </div>
 
-1. If you did not run the program, then locate and run the downloaded file (called "RStudio-0.99.484.exe" or similar if the version number has changed ... the version is now at least 1.0.153).
+1. If you did not run the program, then locate and run the downloaded file (called "RStudio-0.99.484.exe" or similar if the version number has changed ... the version is now at least 1.1.383).
 
 1. Press `Next` on the first "Welcome" dialog box (depending on your version of Windows you may receive security warnings before this dialog box appears).
 

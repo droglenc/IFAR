@@ -29,7 +29,7 @@ RStudio is easy to learn. This page has directions for [installing](#installing-
     <img src="figures/RStudio_MacInstall_ChooseOS.png" width="100%">
     </div>
 
-1. Locate and open the downloaded disk image (called "RStudio-0.99.484.dmg" or similar if the version number has changed ... the version is now at least 1.0.153).
+1. Locate and open the downloaded disk image (called "RStudio-0.99.484.dmg" or similar if the version number has changed ... the version is now at least 1.1.383).
 
     <div class="ctrstaticimg">
     <img src="figures/RStudio_MacInstall_DiskImage.png" width="100%">
