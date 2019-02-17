@@ -5,8 +5,7 @@ subtitle: Lake Champlain Lake Whitefish B
 author: Derek H. Ogle
 ---
 
-
-<p><img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/lake-whitefish-2.jpg" width="250px" /> <a href="http://www.uvm.edu/rsenr/emarsden/documents/Herbst%20and%20Marsden%20whitefish%20age%20structure%20comparison.pdf">Herbst and Marsden (2011)</a> compared the precision, bias, and reader uncertainty of ages estimated from the <a href="https://en.wikipedia.org/wiki/Fish_scale">scales</a>, dorsal fin rays, and <a href="https://en.wikipedia.org/wiki/Otolith">otoliths</a> of 151 <a href="https://en.wikipedia.org/wiki/Lake_whitefish">Lake Whitefish</a> (<em>Coregonus clupeaformis</em>) captured from <a href="https://en.wikipedia.org/wiki/Lake_Champlain">Lake Champlain</a> in 2009. The inital age estimates from two readers and a consensus age between the two readers from each of the three structures (variables are the structure name with a “1” or “2” appended to denote the reader or “C” for the consensus age) are in <strong>WhitefishLC.csv</strong> (<a href="https://github.com/droglenc/FSAdata/blob/master/data-raw/WhitefishLC.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/WhitefishLC.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/WhitefishLC.html">meta</a>).</p>
+<p><img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/lake-whitefish-2.jpg" width="250px" /> <a href="http://www.uvm.edu/rsenr/emarsden/documents/Herbst%20and%20Marsden%20whitefish%20age%20structure%20comparison.pdf">Herbst and Marsden (2011)</a> compared the precision, bias, and reader uncertainty of ages estimated from the <a href="https://en.wikipedia.org/wiki/Fish_scale">scales</a>, dorsal fin rays, and <a href="https://en.wikipedia.org/wiki/Otolith">otoliths</a> of 151 <a href="https://en.wikipedia.org/wiki/Lake_whitefish">Lake Whitefish</a> (<em>Coregonus clupeaformis</em>) captured from <a href="https://en.wikipedia.org/wiki/Lake_Champlain">Lake Champlain</a> in 2009. The inital age estimates from two readers and a consensus age between the two readers from each of the three structures (variables are the structure name with a “1” or “2” appended to denote the reader or “C” for the consensus age) are in <strong>WhitefishLC.csv</strong> (<a href="https://github.com/droglenc/FSA/blob/master/data-raw/WhitefishLC.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSA/master/data-raw/WhitefishLC.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/WhitefishLC.html">meta</a>).</p>
 <ol>
 <li>Use tabular, graphical, and statistical methods to describe any apparent bias in age estimates from scales between the two readers.</li>
 <li>Describe precision in age estimates between the two readers for scales.</li>
@@ -15,9 +14,11 @@ author: Derek H. Ogle
 <p>This excericise may be continued <a href="AgeComp_LCLWhitefish_A.html">here</a> or <a href="AgeComp_LCLWhitefish_C.html">here</a>.</p>
 <hr />
 <p style="font-size: 0.75em; color: c6c6c6;">
-from Derek H. Ogle , created 08-Nov-15, updated 08-Nov-15, <a href="mailto:fishr@derekogle.com?subject=AgeComp_LCLWhitefish_B exercise">Comments/Suggestions</a>.
+from Derek H. Ogle , created 25-Apr-18, updated 17-Feb-19, <a href="mailto:fishr@derekogle.com?subject=AgeComp_LCLWhitefish_B exercise">Comments/Suggestions</a>.
 </p>
 <style type="text/css">ol ol { list-style-type: lower-alpha; }</style>
+
+
 
 
 </div>
@@ -25,9 +26,13 @@ from Derek H. Ogle , created 08-Nov-15, updated 08-Nov-15, <a href="mailto:fishr
 <script>
 
 // add bootstrap table styles to pandoc tables
-$(document).ready(function () {
+function bootstrapStylePandocTables() {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
 });
+
 
 </script>
 
@@ -36,7 +41,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
