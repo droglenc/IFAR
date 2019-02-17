@@ -69,17 +69,21 @@ exercise_footer <- function(f,author="Derek H. Ogle") {
 }
 
 ##############################################################
-# Adds links to information about data files found on the
-#   fishR webpage.
+# Adds links to information about data files found on the fishR webpage.
 #   f: filename without the extension
-#   author: author name
+#   pkg: package name
 ##############################################################
-addDataLinks <- function(f,view=TRUE,download=TRUE,metadata=TRUE) {
+addDataLinks <- function(f,pkg=c("FSAdata","FSA"),view=TRUE,download=TRUE,metadata=TRUE) {
+  pkg <- match.arg(pkg)
   res <- paste0("**",f,".csv**")
   if (view | download | metadata) res <- paste0(res," (")
-  if (view) res <- paste0(res,"[view](https://github.com/droglenc/FSAdata/blob/master/data-raw/",f,".csv)")
+  if (view) res <- paste0(res,
+                          "[view](https://github.com/droglenc/",pkg,
+                          "/blob/master/data-raw/",f,".csv)")
   if (view & download) res <- paste0(res,", ")
-  if (download) res <- paste0(res,"[download](https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/",f,".csv)")
+  if (download) res <- paste0(res,
+                              "[download](https://raw.githubusercontent.com/droglenc/",pkg,
+                              "/master/data-raw/",f,".csv)")
   if ((view | download) & metadata) res <- paste0(res,", ")
   if (metadata) res <- paste0(res,"[meta](http://derekogle.com/fishR/data/data-html/",f,".html)")
   if (view | download | metadata) res <- paste0(res,")")

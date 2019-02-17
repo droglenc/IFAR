@@ -1,13 +1,198 @@
----
-layout: page
-title: Age Comparisons
-subtitle: Lake Champlain Lake Whitefish A
-author: Derek H. Ogle
----
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
 
 
-<p><img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/lake-whitefish-on-the-bottom-pic.jpg" width="250px" /> <a href="http://www.uvm.edu/rsenr/emarsden/documents/Herbst%20and%20Marsden%20whitefish%20age%20structure%20comparison.pdf">Herbst and Marsden (2011)</a> compared the precision, bias, and reader uncertainty of ages estimated from the <a href="https://en.wikipedia.org/wiki/Fish_scale">scales</a>, dorsal fin rays, and <a href="https://en.wikipedia.org/wiki/Otolith">otoliths</a> of 151 <a href="https://en.wikipedia.org/wiki/Lake_whitefish">Lake Whitefish</a> (<em>Coregonus clupeaformis</em>) captured from <a href="https://en.wikipedia.org/wiki/Lake_Champlain">Lake Champlain</a> in 2009. The inital age estimates from two readers and a consensus age between the two readers from each of the three structures (variables are the structure name with a “1” or “2” appended to denote the reader or “C” for the consensus age) are in <strong>WhitefishLC.csv</strong> (<a href="https://github.com/droglenc/FSAdata/blob/master/data-raw/WhitefishLC.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/WhitefishLC.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/WhitefishLC.html">meta</a>).</p>
-<ol>
+<meta name="author" content="Derek H. Ogle" />
+
+
+<title>Age Comparisons</title>
+
+<script src="AgeComp_LCLWhitefish_A_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="AgeComp_LCLWhitefish_A_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="AgeComp_LCLWhitefish_A_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="AgeComp_LCLWhitefish_A_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="AgeComp_LCLWhitefish_A_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="AgeComp_LCLWhitefish_A_files/navigation-1.1/tabsets.js"></script>
+<link href="AgeComp_LCLWhitefish_A_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="AgeComp_LCLWhitefish_A_files/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Age Comparisons</h1>
+<h3 class="subtitle"><em>Lake Champlain Lake Whitefish A</em></h3>
+<h4 class="author"><em>Derek H. Ogle</em></h4>
+
+</div>
+
+
+<p><img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/lake-whitefish-on-the-bottom-pic.jpg" width="250px" /> <a href="http://www.uvm.edu/rsenr/emarsden/documents/Herbst%20and%20Marsden%20whitefish%20age%20structure%20comparison.pdf">Herbst and Marsden (2011)</a> compared the precision, bias, and reader uncertainty of ages estimated from the <a href="https://en.wikipedia.org/wiki/Fish_scale">scales</a>, dorsal fin rays, and <a href="https://en.wikipedia.org/wiki/Otolith">otoliths</a> of 151 <a href="https://en.wikipedia.org/wiki/Lake_whitefish">Lake Whitefish</a> (<em>Coregonus clupeaformis</em>) captured from <a href="https://en.wikipedia.org/wiki/Lake_Champlain">Lake Champlain</a> in 2009. The inital age estimates from two readers and a consensus age between the two readers from each of the three structures (variables are the structure name with a “1” or “2” appended to denote the reader or “C” for the consensus age) are in <strong>WhitefishLC.csv</strong> (<a href="https://github.com/droglenc/FSA/blob/master/data-raw/WhitefishLC.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSA/master/data-raw/WhitefishLC.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/WhitefishLC.html">meta</a>).</p>
+<ol style="list-style-type: decimal">
 <li>Use tabular, graphical, and statistical methods to describe any apparent bias in age estimates from otoliths between the two readers.</li>
 <li>Describe precision in age estimates between the two readers for otoliths.</li>
 <li>Describe any apparent bias between the <em>consensus</em> age estimates from otoliths and scales.</li>
@@ -15,9 +200,11 @@ author: Derek H. Ogle
 <p>This excericise may be continued <a href="AgeComp_LCLWhitefish_B.html">here</a> or <a href="AgeComp_LCLWhitefish_C.html">here</a>.</p>
 <hr />
 <p style="font-size: 0.75em; color: c6c6c6;">
-from Derek H. Ogle , created 01-Oct-15, updated 08-Nov-15, <a href="mailto:fishr@derekogle.com?subject=AgeComp_LCLWhitefish_A exercise">Comments/Suggestions</a>.
+from Derek H. Ogle , created 25-Apr-18, updated 17-Feb-19, <a href="mailto:fishr@derekogle.com?subject=AgeComp_LCLWhitefish_A exercise">Comments/Suggestions</a>.
 </p>
 <style type="text/css">ol ol { list-style-type: lower-alpha; }</style>
+
+
 
 
 </div>
@@ -25,9 +212,13 @@ from Derek H. Ogle , created 01-Oct-15, updated 08-Nov-15, <a href="mailto:fishr
 <script>
 
 // add bootstrap table styles to pandoc tables
-$(document).ready(function () {
+function bootstrapStylePandocTables() {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
 });
+
 
 </script>
 
@@ -36,7 +227,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
