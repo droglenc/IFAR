@@ -29,8 +29,7 @@ navbar-links:
 # --- Footer options --- #
 author:
   name: Derek H. Ogle
-  email: "fishr@derekogle.com"
-  facebook: fishr00
+  email: "DerekOgle51@gmail.com"
   github: droglenc
   twitter: fishR_ogle
 
@@ -39,7 +38,7 @@ footer-links-active:
   email: true
   github: true
   twitter: true
-  facebook: true
+  facebook: false
   rss: false
   linkedin: false
   stackoverflow: false
