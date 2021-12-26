@@ -6,18 +6,20 @@ author: Derek H. Ogle
 ---
 
 
-<p>The following is a summary of the capture histories for a hypothetical collection of 100 fish. Use these results to find <span class="math">\(n_{i}\)</span>, <span class="math">\(m_{i}\)</span>, <span class="math">\(R_{i}\)</span>, and <span class="math">\(M_{i}\)</span> for each sample to be used in the Schnabel multiple census method [Hint: Find <span class="math">\(n_{i}\)</span> and <span class="math">\(m_{i}\)</span> and then <span class="math">\(R_{i}\)</span> and <span class="math">\(M_{i}\)</span>.]</p>
-<pre><code>## 00001; 00010; 00011; 00100; 00101; 00110; 00111; 01000; 01001; 01010; 
-##     11     12      5     14      5      2      1     15      2      2 
-## 01011; 01100; 01101; 01110; 10000; 10001; 10010; 10100; 10110; 11000; 
-##      1      2      1      1      4      4      7      6      1      1 
-## 11010; 11011; 11111; 
-##      1      1      1</code></pre>
+<p>The following is a summary of the capture histories for a hypothetical collection of 100 fish. Use these results to find <span class="math inline">\(n_{i}\)</span>, <span class="math inline">\(m_{i}\)</span>, <span class="math inline">\(R_{i}\)</span>, and <span class="math inline">\(M_{i}\)</span> for each sample to be used in the Schnabel multiple census method [Hint: Find <span class="math inline">\(n_{i}\)</span> and <span class="math inline">\(m_{i}\)</span> and then <span class="math inline">\(R_{i}\)</span> and <span class="math inline">\(M_{i}\)</span>.]</p>
+<pre><code>## 00001; 00010; 00011; 00100; 00101; 00110; 00111; 01000; 01001; 
+##     11     12      5     14      5      2      1     15      2 
+## 01010; 01011; 01100; 01101; 01110; 10000; 10001; 10010; 10100; 
+##      2      1      2      1      1      4      4      7      6 
+## 10110; 11000; 11010; 11011; 11111; 
+##      1      1      1      1      1</code></pre>
 <hr />
 <p style="font-size: 0.75em; color: c6c6c6;">
-from Derek H. Ogle , created 27-Sep-15, updated 01-Oct-15, <a href="mailto:fishr@derekogle.com?subject=MarkRecap_HypotheticalCapHist exercise">Comments/Suggestions</a>.
+from Derek H. Ogle , created 08-Mar-19, updated 26-Dec-21, <a href="mailto:fishr@derekogle.com?subject=MarkRecap_HypotheticalCapHist exercise">Comments/Suggestions</a>.
 </p>
 <style type="text/css">ol ol { list-style-type: lower-alpha; }</style>
+
+
 
 
 </div>
@@ -25,18 +27,39 @@ from Derek H. Ogle , created 27-Sep-15, updated 01-Oct-15, <a href="mailto:fishr
 <script>
 
 // add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
 $(document).ready(function () {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  bootstrapStylePandocTables();
 });
 
+
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

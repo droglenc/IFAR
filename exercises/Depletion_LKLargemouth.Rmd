@@ -9,14 +9,9 @@ output:
     self_contained: no
 ---
 ```{r echo=FALSE, eval=FALSE}
-# Renders an appropriate HTML file for the webpage
-setwd("C:/aaaWork/Web/GitHub/IFAR/exercises")
 source("../rhelpers/IFARhelpers.R")
-fnm <- "Depletion_LKLargemouth"
-modHTML(fnm)
 ```
 
-<img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/Lake-Guntersville.jpg" width="250px" />
 [Maceina *et al.* (1995)](https://www.researchgate.net/profile/Michael_Maceina/publication/233240780_Estimating_Harvestable_Largemouth_Bass_Abundance_in_a_Reservoir_with_an_Electrofishing_Catch_Depletion_Technique/links/54f3431a0cf24eb8794c2aae.pdf) examined the population of harvestable [Largemouth Bass](https://en.wikipedia.org/wiki/Largemouth_bass) (*Micropterus salmoides*) in Connor Cove of [Lake Guntersville](https://en.wikipedia.org/wiki/Guntersville_Lake), Alabama (a 28,000 ha impoundment of the Tennessee River) in March, 1992.  Their objective was to estimate the abundance of harvestable bass through the depletion of catches due to electrofishing.  In their study, they electrofished for 15 minutes at each of four depth strata.  The total number of bass captured and removed from the population in the full hour of electrofishing at the four depths was recorded.  Thus, a total of one hour of electrofishing constituted one unit of effort.  Six one-hour periods were used to deplete the population of bass in one Connor Cove.  The number of bass caught in each successive sampling period was 23, 12, 13, 14, 9, and 7.  Use these data to answer the following questions.
 
 1. Enter the catch and effort data into separate R vectors.  Calculate a vector from these vectors that represents the CPE in each sampling period.  Carefully interpret the meaning of the first value in the CPE vector.
@@ -27,5 +22,5 @@ modHTML(fnm)
 
 ---
 ```{r echo=FALSE, results="asis"}
-exercise_footer(fnm)
+exercise_footer("Depletion_LKLargemouth")
 ```

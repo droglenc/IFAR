@@ -12,7 +12,6 @@ output:
 source("../rhelpers/IFARhelpers.R")
 ```
 
-<img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/rock-bass-4.jpg" width="250px" />
 [Wolfert (1980)](https://pubs.er.usgs.gov/publication/1000461) measured the total length (TL) of 1288 [Rock Bass](https://en.wikipedia.org/wiki/Rock_bass) (*Ambloplites rupestris*) from Eastern [Lake Ontario](https://en.wikipedia.org/wiki/Lake_Ontario) in the late 1970s.  In addition, [scales](https://en.wikipedia.org/wiki/Fish_scale) were removed for age estimation from as many as 10 specimens from each 10 mm length interval.  All data are recorded in `r addDataLinks("RockBassLO2")`. [*Note that the filename contains an "oh" not a "zero."*].
 
 1. Separate the observed data into age- and length-samples.  Construct an **observed** age-length key.  [This step would have been accomplished in [this exercise](LORockBass_ALK_A.html).]

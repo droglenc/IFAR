@@ -6,16 +6,18 @@ author: Derek H. Ogle
 ---
 
 
-<p><img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/tan-riffleshell.jpg" width="250px" /> <a href="http://scholar.lib.vt.edu/theses/available/etd-121499-145732/unrestricted/etd.pdf">Rogers (1999)</a> studied the endangered freshwater mussel <a href="http://ecos.fws.gov/speciesProfile/profile/speciesProfile.action?spcode=F010">Tan Riffleshell</a> (<em>Epioblasma florentina walkeri</em>) in Indian Creek, Virginia. Part of the study included a detailed analysis of the population dynamics of mussels in a 100 m stretch of stream. In this stream, mussels were captured by teams of snorkelers on six occasions (June 1996; August 1996; June 1997; October 1998; May 1999; and June 1999). Mussels were tagged by attaching a numbered tag to the left valve of the mussel. The number of mussels captured, the number of marked mussels observed, and the number of tagged mussels returned to the population were recorded for each sample time. These data are in <code>Riffleshell</code> in the <code>FSAdata</code> package. Use this information to answer the following questions.</p>
+<p><a href="http://scholar.lib.vt.edu/theses/available/etd-121499-145732/unrestricted/etd.pdf">Rogers (1999)</a> studied the endangered freshwater mussel <a href="http://ecos.fws.gov/speciesProfile/profile/speciesProfile.action?spcode=F010">Tan Riffleshell</a> (<em>Epioblasma florentina walkeri</em>) in Indian Creek, Virginia. Part of the study included a detailed analysis of the population dynamics of mussels in a 100 m stretch of stream. In this stream, mussels were captured by teams of snorkelers on six occasions (June 1996; August 1996; June 1997; October 1998; May 1999; and June 1999). Mussels were tagged by attaching a numbered tag to the left valve of the mussel. The number of mussels captured, the number of marked mussels observed, and the number of tagged mussels returned to the population were recorded for each sample time. These data are in <code>Riffleshell</code> in the <code>FSAdata</code> package. Use this information to answer the following questions.</p>
 <ol>
 <li>Estimate the number, with 95% confidence interval, of Tan Riffleshell mussels in the population at the beginning of the study. Carefully interpret the result.</li>
 <li>Comment on the validity of the assumptions for the model you used to estimate the size of the population.</li>
 </ol>
 <hr />
 <p style="font-size: 0.75em; color: c6c6c6;">
-from Derek H. Ogle , created 01-Oct-15, updated 02-Oct-15, <a href="mailto:fishr@derekogle.com?subject=MarkRecap_TanRiffleshell exercise">Comments/Suggestions</a>.
+from Derek H. Ogle , created 08-Mar-19, updated 26-Dec-21, <a href="mailto:fishr@derekogle.com?subject=MarkRecap_TanRiffleshell exercise">Comments/Suggestions</a>.
 </p>
 <style type="text/css">ol ol { list-style-type: lower-alpha; }</style>
+
+
 
 
 </div>
@@ -23,18 +25,39 @@ from Derek H. Ogle , created 01-Oct-15, updated 02-Oct-15, <a href="mailto:fishr
 <script>
 
 // add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
 $(document).ready(function () {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  bootstrapStylePandocTables();
 });
 
+
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

@@ -6,7 +6,7 @@ author: Derek H. Ogle
 ---
 
 
-<p><img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/yellow-perch-4.jpg" width="250px" /> Researchers for the <a href="https://lter.limnology.wisc.edu/">North Temperate Lakes Long-Term Ecological Research</a> program have collected fish from a number of lakes in Wisconsin since 1981. The total lengths and weights of <a href="https://en.wikipedia.org/wiki/Yellow_perch">Yellow Perch</a> (<em>Perca flavescens</em>) captured from <a href="https://lter.limnology.wisc.edu/researchsite/trout-lake">Trout Lake</a> from 1981-2006 are recorded in <strong>YPerchTL.csv</strong> (<a href="https://github.com/droglenc/FSAdata/blob/master/data-raw/YPerchTL.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/YPerchTL.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/YPerchTL.html">meta</a>). Use these data to answer the following questions. [<em>Note that these data came from <a href="https://lter.limnology.wisc.edu/dataset/north-temperate-lakes-lter-fish-lengths-and-weights-1981-current">this website</a>. See the site for more information about the sampling protocol that produced these data.</em>]</p>
+<p>Researchers for the <a href="https://lter.limnology.wisc.edu/">North Temperate Lakes Long-Term Ecological Research</a> program have collected fish from a number of lakes in Wisconsin since 1981. The total lengths and weights of <a href="https://en.wikipedia.org/wiki/Yellow_perch">Yellow Perch</a> (<em>Perca flavescens</em>) captured from <a href="https://lter.limnology.wisc.edu/researchsite/trout-lake">Trout Lake</a> from 1981-2006 are recorded in <strong>YPerchTL.csv</strong> (<a href="https://github.com/droglenc/FSAdata/blob/master/data-raw/YPerchTL.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/YPerchTL.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/YPerchTL.html">meta</a>). Use these data to answer the following questions. [<em>Note that these data came from <a href="https://lter.limnology.wisc.edu/dataset/north-temperate-lakes-lter-fish-lengths-and-weights-1981-current">this website</a>. See the site for more information about the sampling protocol that produced these data.</em>]</p>
 <p>Load these data, isolate Yellow Perch captured with only fyke nets in 2005, and answer the following questions.</p>
 <ol>
 <li>Complete <a href="YPTroutLake_Plotting.html">this Plotting exercise</a>.
@@ -27,9 +27,11 @@ author: Derek H. Ogle
 <p>Continue with these data for <a href="YPTroutLake_WL_B.html">weight-length comparisons</a>.</p>
 <hr />
 <p style="font-size: 0.75em; color: c6c6c6;">
-from Derek H. Ogle , created 09-Nov-15, updated 09-Nov-15, <a href="mailto:fishr@derekogle.com?subject=YPTroutLake_WL_A exercise">Comments/Suggestions</a>.
+from Derek H. Ogle , created 08-Mar-19, updated 26-Dec-21, <a href="mailto:fishr@derekogle.com?subject=YPTroutLake_WL_A exercise">Comments/Suggestions</a>.
 </p>
 <style type="text/css">ol ol { list-style-type: lower-alpha; }</style>
+
+
 
 
 </div>
@@ -37,18 +39,39 @@ from Derek H. Ogle , created 09-Nov-15, updated 09-Nov-15, <a href="mailto:fishr
 <script>
 
 // add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
 $(document).ready(function () {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  bootstrapStylePandocTables();
 });
 
+
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

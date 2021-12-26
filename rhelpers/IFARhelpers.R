@@ -23,16 +23,17 @@ modHTML <- function(f,need2render=TRUE) {
   tmp <- list.files(pattern="\\.md")
   if (any(grepl(f,tmp))) file.remove(tmp[which(grepl(f,tmp))])
   # Delete files in directories in f_files that are not needed on the webpage
-  unlink(paste0(getwd(),"/",f,"_files","/bootstrap-3.3.1"),recursive=TRUE)
-  unlink(paste0(getwd(),"/",f,"_files","/jquery-1.11.0"),recursive=TRUE)
-  unlink(paste0(getwd(),"/",f,"_files","/highlight"),recursive=TRUE)
+  unlink(paste0(getwd(),"/",f,"_files","/bootstrap-3.3.5"),recursive=TRUE)
+  unlink(paste0(getwd(),"/",f,"_files","/jquery-3.6.0"),recursive=TRUE)
+  unlink(paste0(getwd(),"/",f,"_files","/highlight*"),recursive=TRUE)
+  unlink(paste0(getwd(),"/",f,"_files","/navigation-1.1"),recursive=TRUE)
   # Read in HTML and RMarkdown files
   h <- readLines(paste0(f,".html"))
   r <- readLines(paste0(f,".Rmd"))
-  # Remove everything before the line after the last mention of
+  # Remove everything before two lines after the second mention of
   # Derek H. Ogle in the HTML file
-  tmp <- which(grepl("<em>Derek H. Ogle</em>",h))
-  h <- h[-(1:(tmp[length(tmp)]+1))]
+  tmp <- which(grepl("Derek H. Ogle",h))
+  h <- h[-(1:(tmp[2]+2))]
   # Get the layout, title, subtitle, author, and css from RMD file
   tmp <- c(which(grepl("layout:",r)),which(grepl("title:",r)),which(grepl("author:",r)),which(grepl("css:",r)))
   r <- r[tmp]

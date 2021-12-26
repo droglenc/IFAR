@@ -8,10 +8,9 @@ output:
     fig_width: 5
     self_contained: no
 ---
-```{r echo=FALSE, eval=FALSE}
-# Renders an appropriate HTML file for the webpage
-setwd("C:/aaaWork/Web/GitHub/IFAR/exercises"); source("../rhelpers/IFARhelpers.R")
-fnm <-"MarkRecap_HypotheticalCapHist"; modHTML(fnm)
+
+```{r echo=FALSE}
+source("../rhelpers/IFARhelpers.R")
 ```
 
 The following is a summary of the capture histories for a hypothetical collection of 100 fish.  Use these results to find $n_{i}$, $m_{i}$, $R_{i}$, and $M_{i}$ for each sample to be used in the Schnabel multiple census method [Hint: Find $n_{i}$ and $m_{i}$ and then $R_{i}$ and $M_{i}$.]
@@ -28,5 +27,5 @@ tmp
 
 ---
 ```{r echo=FALSE, results="asis"}
-exercise_footer(fnm)
+exercise_footer("MarkRecap_HypotheticalCapHist")
 ```

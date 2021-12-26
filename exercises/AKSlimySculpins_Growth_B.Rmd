@@ -13,7 +13,6 @@ source("../rhelpers/IFARhelpers.R")
 modHTML("AKSlimySculpins_Growth_B",need2render=FALSE)
 ```
 
-<img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/ToolikLake.jpg" width="250px" />
 The total length (mm) and otolith age of [Slimy Sculpin](https://en.wikipedia.org/wiki/Slimy_sculpin) (*Cottus cognatus*) captured in the [Arctic Long-Term Ecological Research](http://ecosystems.mbl.edu/ARC/) area were recorded in `r addDataLinks("SculpinALTER")`.
 
 Use these data, and results from [this exercise](AKSlimySculpins_Growth_A.html), to answer the following questions.

@@ -12,7 +12,6 @@ output:
 source("../rhelpers/IFARhelpers.R")
 ```
 
-<img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/inch-bass.jpg" width="250px" />
 [Inch Lake](http://dnr.wi.gov/lakes/lakepages/LakeDetail.aspx?wbic=2764300&page=facts) is a 12.5 ha inland lake in northern Wisconsin that has been managed as catch-and-release for all species since 2006.  Researchers at [Northland College](http://www.northland.edu/) have monitored fish populations in Inch Lake since 2007.  The total lengths (inches) and weights (g) for subsamples of several species of fish collected from Inch Lake in May of 2007 and 2008 are recorded in `r addDataLinks("InchLake2")`.
 
 Load these data, isolate [Largemouth Bass](https://en.wikipedia.org/wiki/Largemouth_bass), and answer the following questions.  [Note that this is a continuation of [this exercise](Inch_WLLargemouthBass_A.html).]

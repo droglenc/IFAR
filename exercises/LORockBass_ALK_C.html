@@ -6,7 +6,7 @@ author: Derek H. Ogle
 ---
 
 
-<p><img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/rock-bass-4.jpg" width="250px" /> <a href="https://pubs.er.usgs.gov/publication/1000461">Wolfert (1980)</a> measured the total length (TL) of 1288 <a href="https://en.wikipedia.org/wiki/Rock_bass">Rock Bass</a> (<em>Ambloplites rupestris</em>) from Eastern <a href="https://en.wikipedia.org/wiki/Lake_Ontario">Lake Ontario</a> in the late 1970s. In addition, <a href="https://en.wikipedia.org/wiki/Fish_scale">scales</a> were removed for age estimation from as many as 10 specimens from each 10 mm length interval. All data are recorded in <strong>RockBassLO2.csv</strong> (<a href="https://github.com/droglenc/FSAdata/blob/master/data-raw/RockBassLO2.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/RockBassLO2.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/RockBassLO2.html">meta</a>). [<em>Note that the filename contains an “oh” not a “zero.”</em>].</p>
+<p><a href="https://pubs.er.usgs.gov/publication/1000461">Wolfert (1980)</a> measured the total length (TL) of 1288 <a href="https://en.wikipedia.org/wiki/Rock_bass">Rock Bass</a> (<em>Ambloplites rupestris</em>) from Eastern <a href="https://en.wikipedia.org/wiki/Lake_Ontario">Lake Ontario</a> in the late 1970s. In addition, <a href="https://en.wikipedia.org/wiki/Fish_scale">scales</a> were removed for age estimation from as many as 10 specimens from each 10 mm length interval. All data are recorded in <strong>RockBassLO2.csv</strong> (<a href="https://github.com/droglenc/FSAdata/blob/master/data-raw/RockBassLO2.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/RockBassLO2.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/RockBassLO2.html">meta</a>). [<em>Note that the filename contains an “oh” not a “zero.”</em>].</p>
 <ol>
 <li>Separate the observed data into age- and length-samples. Construct an <strong>observed</strong> age-length key. [This step would have been accomplished in <a href="LORockBass_ALK_A.html">this exercise</a>.]</li>
 <li>Use the “classical” method to estimate the age distribution (with standard errors) for all sampled fish.
@@ -26,9 +26,11 @@ author: Derek H. Ogle
 <p>These data are also used in <a href="LORockBass_Growth_A.html">this growth exercise</a>.</p>
 <hr />
 <p style="font-size: 0.75em; color: c6c6c6;">
-from Derek H. Ogle , created 08-Nov-15, updated 08-Nov-15, <a href="mailto:fishr@derekogle.com?subject=LORockBass_ALK_C exercise">Comments/Suggestions</a>.
+from Derek H. Ogle , created 08-Mar-19, updated 26-Dec-21, <a href="mailto:fishr@derekogle.com?subject=LORockBass_ALK_C exercise">Comments/Suggestions</a>.
 </p>
 <style type="text/css">ol ol { list-style-type: lower-alpha; }</style>
+
+
 
 
 </div>
@@ -36,18 +38,39 @@ from Derek H. Ogle , created 08-Nov-15, updated 08-Nov-15, <a href="mailto:fishr
 <script>
 
 // add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
 $(document).ready(function () {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  bootstrapStylePandocTables();
 });
 
+
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

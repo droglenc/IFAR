@@ -8,13 +8,11 @@ output:
     fig_width: 5
     self_contained: no
 ---
-```{r echo=FALSE, eval=FALSE}
-# Renders an appropriate HTML file for the webpage
-setwd("C:/aaaWork/Web/GitHub/IFAR/exercises"); source("../rhelpers/IFARhelpers.R")
-fnm <-"Recruitment_ELWalleye_A"; modHTML(fnm)
+
+```{r echo=FALSE}
+source("../rhelpers/IFARhelpers.R")
 ```
 
-<img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/walleye-spawning.jpg" width="250px" />
 [Hansen *et al.*](http://www.tandfonline.com/doi/abs/10.1577/1548-8675%281998%29018%3C0764%3AFAROWI%3E2.0.CO%3B2?journalCode=ujfm20) (1998) modeled recruitment variation of age-0 [Walleye](https://en.wikipedia.org/wiki/Walleye) (*Sander vitreus*) in [Escanaba Lake](http://dnr.wi.gov/lakes/lakepages/LakeDetail.aspx?wbic=2339900&page=facts) (Wisconsin) to determine factors regulating their abundance.  Specifically, they examined the abundance of age-5 and older Walleye (spawning population), variation in May water temperatures, and abundance of 152.4 mm total length and longer [Yellow Perch](https://en.wikipedia.org/wiki/Yellow_perch) (*Perca flavescens*) on the abundance of age-0 Walleye.  These data are available in [this CSV file](data/WalleyeEL.csv) (these data are also available in `WalleyeEL` from `FSAdata`).
 
 Load these data into R to answer the following questions.
@@ -32,5 +30,5 @@ Load these data into R to answer the following questions.
 
 ---
 ```{r echo=FALSE, results="asis"}
-exercise_footer(fnm)
+exercise_footer("Recruitment_ELWalleye_A")
 ```

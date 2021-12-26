@@ -12,7 +12,6 @@ output:
 source("../rhelpers/IFARhelpers.R")
 ```
 
-<img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/striped-bass-3.jpg" width="250px" />
 Researchers at the [Center for Quantitative Fisheries Ecology at Old Dominion University](http://www.odu.edu/sci/research/cqfe/research/ageing-lab) in collaboration with the [Virginia Marine Resources Commission](http://www.mrc.virginia.gov/) annually collect [Striped Bass](https://en.wikipedia.org/wiki/Striped_bass) (*Morone saxatilis*) from Virginia waters of the Atlantic Ocean for age assessments.  The total lengths of 1201 Stiped Bass collected in 2003 and the ages estimated from [otoliths](https://en.wikipedia.org/wiki/Otolith) for as many as 10 fish per 1 inch length interval are recorded in `r addDataLinks("StripedBass3")`
 
 1. Separate the observed data into age- and length-samples.  Construct an **observed** age-length key.  [This step would have been accomplished in [this exercise](StripedBass_ALK_A.html).]

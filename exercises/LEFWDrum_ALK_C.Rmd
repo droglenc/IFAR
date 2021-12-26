@@ -12,7 +12,6 @@ output:
 source("../rhelpers/IFARhelpers.R")
 ```
 
-<img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/drum-2.jpg" width="250px" />
 [Bur (1984)](http://www.sciencedirect.com/science/article/pii/S0380133084718065) examined the population dynamics of [Freshwater Drum](https://en.wikipedia.org/wiki/Freshwater_drum) (*Aplodinotus grunniens*) in  [Lake Erie](https://en.wikipedia.org/wiki/Lake_Erie) in the late 1970s.  In one part of his study, he measured the total length (TL) of all 1577 drum sampled and extracted [scales](https://en.wikipedia.org/wiki/Fish_scale) for age estimation from a proportionate sample from each 10 mm length interval.  The length and age data are recorded in `r addDataLinks("FWDrumLE2")`.
 
 1. Separate the observed data into age- and length-samples.  Construct an **observed** age-length key.  [This step would have been accomplished in [this exercise](LEFWrum_ALK_A.html).]

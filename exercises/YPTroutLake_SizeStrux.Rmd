@@ -10,10 +10,8 @@ output:
 ---
 ```{r echo=FALSE}
 source("../rhelpers/IFARhelpers.R")
-modHTML("YPTroutLake_SizeStrux",need2render=FALSE)
 ```
 
-<img style="float: right; margin: 0px 0px 10px 10px; border-radius:10px;" src="imgs/yellow-perch-3.jpg" width="250px" />
 Researchers for the [North Temperate Lakes Long-Term Ecological Research](https://lter.limnology.wisc.edu/) program have collected fish from a number of lakes in Wisconsin since 1981.  The total lengths and weights of [Yellow Perch](https://en.wikipedia.org/wiki/Yellow_perch) (*Perca flavescens*) captured from [Trout Lake](https://lter.limnology.wisc.edu/researchsite/trout-lake) from 1981-2006 are recorded in `r addDataLinks("YPerchTL")`.  Use these data to answer the following questions.  [*Note that these data came from [this website](https://lter.limnology.wisc.edu/dataset/north-temperate-lakes-lter-fish-lengths-and-weights-1981-current).  See the site for more information about the sampling protocol that produced these data.*]
 
 Complete [this Data Manipulation exercise](YPTroutLake_DataManip.html) to create the required data.frames used in the following questions.
