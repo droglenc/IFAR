@@ -17,13 +17,12 @@ avatar: "/img/IFARLogo.jpg"
 
 # List of links in the navigation bar
 navbar-links:
-  Purchase: "book/#how-to-purchase"
   Contents: "book"
   Supplements: "supplements"
   Exercises: "exercises"
   Scripts: "scripts"
 #  Errata: "errata"
-  Reviews: "reviews"
+#  Reviews: "reviews"
   Author: "author"
 
 # --- Footer options --- #
