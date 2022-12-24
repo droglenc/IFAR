@@ -24,8 +24,8 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
     * Lake Erie Freshwater Drum -- [A](LEFWDrum_ALK_A.html) / [B](LEFWDrum_ALK_B.html) / [C](LEFWDrum_ALK_C.html)
     * Atlantic Ocean Striped Bass -- [A](StripedBass_ALK_A.html) / [B](StripedBass_ALK_B.html) / [C](StripedBass_ALK_C.html)
 1. **Size Structure**
-    * [Saginaw Bay Yellow Perch](SizeStrux_SaginawYP.html)
-    * [Trout Lake Yellow Perch](https://fishr-core-team.github.io/fishR/teaching/posts/2022-12-19_SizeStrux_YPerchSB1/)
+    * [Saginaw Bay Yellow Perch](https://fishr-core-team.github.io/fishR/teaching/posts/2022-12-19_SizeStrux_YPerchSB1/)
+    * [Trout Lake Yellow Perch](YPTroutLake_SizeStrux.html)
 1. **Weight-Length Relationships**
     * Inch Lake Bluegill -- [A](Inch_WLBluegill_A.html) / [B](Inch_WLBluegill_B.html)
     * Inch Lake Largemouth Bass - [A](Inch_WLLargemouthBass_A.html) / [B](Inch_WLLargemouthBass_B.html)
