@@ -18,14 +18,14 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
     * [Trout Lake Yellow Perch](YPTroutLake_Plotting.html)
 1. **Age Comparisons**
     * Lake Champlain Lake Whitefish -- [A](AgeComp_LCLWhitefish_A.html) / [B](AgeComp_LCLWhitefish_B.html) / [C](AgeComp_LCLWhitefish_C.html)
-    * [Pymatuning Sanctuary Walleye](AgeComp_PSWalleye.html)
+    * [Pymatuning Sanctuary Walleye](https://fishr-core-team.github.io/fishR/teaching/posts/2022-12-19_AgeComp_WalleyePS/)
 1. **Age-Length Keys**
     * Lake Ontario Rock Bass -- [A](LORockBass_ALK_A.html) / [B](LORockBass_ALK_B.html) / [C](LORockBass_ALK_C.html)
     * Lake Erie Freshwater Drum -- [A](LEFWDrum_ALK_A.html) / [B](LEFWDrum_ALK_B.html) / [C](LEFWDrum_ALK_C.html)
     * Atlantic Ocean Striped Bass -- [A](StripedBass_ALK_A.html) / [B](StripedBass_ALK_B.html) / [C](StripedBass_ALK_C.html)
 1. **Size Structure**
     * [Saginaw Bay Yellow Perch](SizeStrux_SaginawYP.html)
-    * [Trout Lake Yellow Perch](YPTroutLake_SizeStrux.html)
+    * [Trout Lake Yellow Perch](https://fishr-core-team.github.io/fishR/teaching/posts/2022-12-19_SizeStrux_YPerchSB1/)
 1. **Weight-Length Relationships**
     * Inch Lake Bluegill -- [A](Inch_WLBluegill_A.html) / [B](Inch_WLBluegill_B.html)
     * Inch Lake Largemouth Bass - [A](Inch_WLLargemouthBass_A.html) / [B](Inch_WLLargemouthBass_B.html)
@@ -33,16 +33,16 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
 1. **Condition**
     * [Inch Lake Bluegill](Inch_ConditionBluegill.html)
 1. **Abundance from Capture-Recapture Data**
-    * [Ugly River Brown Trout](MarkRecap_URBrownTrout.html)
-    * [Upper Niagara Springs Pond Rainbow Trout](MarkRecap_UNSPRainbowTrout.html)
-    * [Indian Creek Tan Riffleshell](MarkRecap_TanRiffleshell.html)
-    * [Wisconsin YOY Walleye](MarkRecap_WIYOYWalleye.html)
+    * [Ugly River Brown Trout](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_MR_URBrownTrout/)
+    * [Upper Niagara Springs Pond Rainbow Trout](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_MR_UNSPRainbowTrout/)
+    * [Indian Creek Tan Riffleshell](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_MR_TanRiffleshell/)
+    * [Wisconsin YOY Walleye](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_MR_WIYOYWalleye/)
     * [Hypothetical Capture Histories](MarkRecap_HypotheticalCapHist.html)
 1. **Abundance from Depletion Data**
-    * [Lake Guntersville Largemouth Bass](Depletion_LKLargemouth.html)
+    * [Lake Guntersville Largemouth Bass](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_Depletion_LGLargemouth/)
 1. **Mortality Rates**
-    * [Keewenaw Bay Lake Trout](Mortality_LSKBLakeTrout.html)
-    * [Stannard Rock Lake Trout](Mortality_LSSRLakeTrout.html)
+    * [Keewenaw Bay Lake Trout](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_Mortality_LSKBLakeTrout/)
+    * [Stannard Rock Lake Trout](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_Mortality_LSSRLakeTrout/)
 1. **Individual Growth**
     * Alaskan Slimy Sculpin -- [A](AKSlimySculpins_Growth_A.html) / [B](AKSlimySculpins_Growth_B.html)
     * Lake Ontario Rock Bass -- [A](LORockBass_Growth_A.html) / [B](LORockBass_Growth_B.html)
