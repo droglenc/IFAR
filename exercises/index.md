@@ -11,10 +11,10 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
 
 1. **(Very Brief) Introduction to R Basics**
 1. **Loading Data and Basic Manipulations**
-    * [Inch Lake](Inch_DataManip.html)
+    * [Inch Lake](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_Wrangling_Inch/)
     * [Trout Lake Yellow Perch](YPTroutLake_DataManip.html)
 1. **Plotting Fundamentals**
-    * [Inch Lake](Inch_Plotting.html)
+    * [Inch Lake](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_Graphing_Inch/)
     * [Trout Lake Yellow Perch](YPTroutLake_Plotting.html)
 1. **Age Comparisons**
     * Lake Champlain Lake Whitefish -- [A](AgeComp_LCLWhitefish_A.html) / [B](AgeComp_LCLWhitefish_B.html) / [C](AgeComp_LCLWhitefish_C.html)
@@ -25,9 +25,9 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
     * Atlantic Ocean Striped Bass -- [A](StripedBass_ALK_A.html) / [B](StripedBass_ALK_B.html) / [C](StripedBass_ALK_C.html)
 1. **Size Structure**
     * [Saginaw Bay Yellow Perch](https://fishr-core-team.github.io/fishR/teaching/posts/2022-12-19_SizeStrux_YPerchSB1/)
-    * [Trout Lake Yellow Perch](YPTroutLake_SizeStrux.html)
+    * [Trout Lake Yellow Perch](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_SizeStruxYPerchTL/)
 1. **Weight-Length Relationships**
-    * Inch Lake Bluegill -- [A](Inch_WLBluegill_A.html) / [B](Inch_WLBluegill_B.html)
+    * Inch Lake Bluegill -- [https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_WLBluegill_Inch/)
     * Inch Lake Largemouth Bass - [A](Inch_WLLargemouthBass_A.html) / [B](Inch_WLLargemouthBass_B.html)
     * Trout Lake Yellow Perch -- [A](YPTroutLake_WL_A.html) / [B](YPTroutLake_WL_A.html)
 1. **Condition**
