@@ -27,11 +27,11 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
     * [Saginaw Bay Yellow Perch](https://fishr-core-team.github.io/fishR/teaching/posts/2022-12-19_SizeStrux_YPerchSB1/)
     * [Trout Lake Yellow Perch](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_SizeStruxYPerchTL/)
 1. **Weight-Length Relationships**
-    * Inch Lake Bluegill -- [https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_WLBluegill_Inch/)
-    * Inch Lake Largemouth Bass - [A](Inch_WLLargemouthBass_A.html) / [B](Inch_WLLargemouthBass_B.html)
+    * [Inch Lake Bluegill]([https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_WLBluegill_Inch/)
+    * [Inch Lake Largemouth Bass](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_WLLMB_Inch/)
     * Trout Lake Yellow Perch -- [A](YPTroutLake_WL_A.html) / [B](YPTroutLake_WL_A.html)
 1. **Condition**
-    * [Inch Lake Bluegill](Inch_ConditionBluegill.html)
+    * [Inch Lake Bluegill](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_Condition_BGInch/)
 1. **Abundance from Capture-Recapture Data**
     * [Ugly River Brown Trout](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_MR_URBrownTrout/)
     * [Upper Niagara Springs Pond Rainbow Trout](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_MR_UNSPRainbowTrout/)
