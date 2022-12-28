@@ -29,7 +29,7 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
 1. **Weight-Length Relationships**
     * [Inch Lake Bluegill]([https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_WLBluegill_Inch/)
     * [Inch Lake Largemouth Bass](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_WLLMB_Inch/)
-    * Trout Lake Yellow Perch -- [A](YPTroutLake_WL_A.html) / [B](YPTroutLake_WL_A.html)
+    * [Trout Lake Yellow Perch](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_WL_YPerchTL/)
 1. **Condition**
     * [Inch Lake Bluegill](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_Condition_BGInch/)
 1. **Abundance from Capture-Recapture Data**
