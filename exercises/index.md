@@ -17,7 +17,7 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
     * [Inch Lake](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_Graphing_Inch/)
     * [Trout Lake Yellow Perch](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_Graphing_YPerchTL/)
 1. **Age Comparisons**
-    * Lake Champlain Lake Whitefish -- [A](AgeComp_LCLWhitefish_A.html) / [B](AgeComp_LCLWhitefish_B.html) / [C](AgeComp_LCLWhitefish_C.html)
+    * [Lake Champlain Lake Whitefish](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_AgeComparisons_LCWhitefish/)
     * [Pymatuning Sanctuary Walleye](https://fishr-core-team.github.io/fishR/teaching/posts/2022-12-19_AgeComp_WalleyePS/)
 1. **Age-Length Keys**
     * Lake Ontario Rock Bass -- [A](LORockBass_ALK_A.html) / [B](LORockBass_ALK_B.html) / [C](LORockBass_ALK_C.html)
