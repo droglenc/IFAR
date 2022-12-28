@@ -12,10 +12,10 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
 1. **(Very Brief) Introduction to R Basics**
 1. **Loading Data and Basic Manipulations**
     * [Inch Lake](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_Wrangling_Inch/)
-    * [Trout Lake Yellow Perch](YPTroutLake_DataManip.html)
+    * [Trout Lake Yellow Perch](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_Wrangling_YPerchTL/)
 1. **Plotting Fundamentals**
     * [Inch Lake](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_Graphing_Inch/)
-    * [Trout Lake Yellow Perch](YPTroutLake_Plotting.html)
+    * [Trout Lake Yellow Perch](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_Graphing_YPerchTL/)
 1. **Age Comparisons**
     * Lake Champlain Lake Whitefish -- [A](AgeComp_LCLWhitefish_A.html) / [B](AgeComp_LCLWhitefish_B.html) / [C](AgeComp_LCLWhitefish_C.html)
     * [Pymatuning Sanctuary Walleye](https://fishr-core-team.github.io/fishR/teaching/posts/2022-12-19_AgeComp_WalleyePS/)
