@@ -21,13 +21,13 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
     * [Pymatuning Sanctuary Walleye](https://fishr-core-team.github.io/fishR/teaching/posts/2022-12-19_AgeComp_WalleyePS/)
 1. **Age-Length Keys**
     * [Lake Ontario Rock Bass](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_ALK_RockBassLO/)
-    * Lake Erie Freshwater Drum -- [A](LEFWDrum_ALK_A.html) / [B](LEFWDrum_ALK_B.html) / [C](LEFWDrum_ALK_C.html)
-    * Atlantic Ocean Striped Bass -- [A](StripedBass_ALK_A.html) / [B](StripedBass_ALK_B.html) / [C](StripedBass_ALK_C.html)
+    * [Lake Erie Freshwater Drum](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_ALK_FWDrumLE2/)
+    * [Atlantic Ocean Striped Bass](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_ALK_StripedBass/)
 1. **Size Structure**
     * [Saginaw Bay Yellow Perch](https://fishr-core-team.github.io/fishR/teaching/posts/2022-12-19_SizeStrux_YPerchSB1/)
     * [Trout Lake Yellow Perch](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_SizeStruxYPerchTL/)
 1. **Weight-Length Relationships**
-    * [Inch Lake Bluegill]([https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_WLBluegill_Inch/)
+    * [Inch Lake Bluegill](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_WLBluegill_Inch/)
     * [Inch Lake Largemouth Bass](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_WLLMB_Inch/)
     * [Trout Lake Yellow Perch](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_WL_YPerchTL/)
 1. **Condition**
