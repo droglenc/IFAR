@@ -48,4 +48,4 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
     * [Lake Ontario Rock Bass](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_Growth_RockBassLO/)
     * [European Perch](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_Growth_EuroPerch/)
 1. **Recruitment**
-    * [Escanaba Lake Walleye](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8/Recruitment_WalleyeEL)
+    * [Escanaba Lake Walleye](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_Recruitment_WalleyeEL)
