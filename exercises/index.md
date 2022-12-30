@@ -20,7 +20,7 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
     * [Lake Champlain Lake Whitefish](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_AgeComparisons_LCWhitefish/)
     * [Pymatuning Sanctuary Walleye](https://fishr-core-team.github.io/fishR/teaching/posts/2022-12-19_AgeComp_WalleyePS/)
 1. **Age-Length Keys**
-    * Lake Ontario Rock Bass -- [A](LORockBass_ALK_A.html) / [B](LORockBass_ALK_B.html) / [C](LORockBass_ALK_C.html)
+    * [Lake Ontario Rock Bass](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_ALK_RockBassLO/)
     * Lake Erie Freshwater Drum -- [A](LEFWDrum_ALK_A.html) / [B](LEFWDrum_ALK_B.html) / [C](LEFWDrum_ALK_C.html)
     * Atlantic Ocean Striped Bass -- [A](StripedBass_ALK_A.html) / [B](StripedBass_ALK_B.html) / [C](StripedBass_ALK_C.html)
 1. **Size Structure**
@@ -45,7 +45,7 @@ Exercises for each chapter are listed below.  Please send me ideas for new exerc
     * [Stannard Rock Lake Trout](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_Mortality_LSSRLakeTrout/)
 1. **Individual Growth**
     * Alaskan Slimy Sculpin -- [A](AKSlimySculpins_Growth_A.html) / [B](AKSlimySculpins_Growth_B.html)
-    * Lake Ontario Rock Bass -- [A](LORockBass_Growth_A.html) / [B](LORockBass_Growth_B.html)
+    * [Lake Ontario Rock Bass](https://fishr-core-team.github.io/fishR/teaching/posts/2019-3-8_Growth_RockBassLO/)
     * European Perch -- [A](EuroPerch_Growth_A.html) / [B](EuroPerch_Growth_B.html)
 1. **Recruitment**
     * Escanaba Lake Walleye -- [A](Recruitment_ELWalleye_A.html) / [B](Recruitment_ELWalleye_B.html)
