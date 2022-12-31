@@ -1,31 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://fishr-core-team.github.io/fishR/index.html</loc>
-    <lastmod>2022-12-30T23:08:42.364Z</lastmod>
-  </url>
-  <url>
-    <loc>https://droglenc.github.io/IFAR/index.html</loc>
-    <lastmod>2022-12-31T21:18:58.912Z</lastmod>
-  </url>
-  <url>
     <loc>https://droglenc.github.io/IFAR/dedication.html</loc>
-    <lastmod>2022-12-31T16:30:20.906Z</lastmod>
+    <lastmod>2022-12-31T22:21:05.609Z</lastmod>
   </url>
   <url>
     <loc>https://droglenc.github.io/IFAR/errata.html</loc>
-    <lastmod>2022-12-31T22:11:52.703Z</lastmod>
+    <lastmod>2022-12-31T22:21:07.010Z</lastmod>
+  </url>
+  <url>
+    <loc>https://droglenc.github.io/IFAR/index.html</loc>
+    <lastmod>2022-12-31T22:21:08.449Z</lastmod>
   </url>
   <url>
     <loc>https://droglenc.github.io/IFAR/supplements/backcalculation.html</loc>
-    <lastmod>2022-12-31T20:14:16.634Z</lastmod>
+    <lastmod>2022-12-31T22:21:12.638Z</lastmod>
   </url>
   <url>
     <loc>https://droglenc.github.io/IFAR/supplements/commonAxisLabels.html</loc>
-    <lastmod>2022-12-31T20:46:47.423Z</lastmod>
+    <lastmod>2022-12-31T22:21:15.450Z</lastmod>
   </url>
   <url>
     <loc>https://droglenc.github.io/IFAR/supplements/complexGridLayouts.html</loc>
-    <lastmod>2022-12-31T21:19:53.252Z</lastmod>
+    <lastmod>2022-12-31T22:21:18.397Z</lastmod>
   </url>
 </urlset>

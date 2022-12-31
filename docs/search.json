@@ -1,33 +1,5 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "IFAR",
-    "section": "",
-    "text": "Introductory Fisheries Analyses with R by Derek H. Ogle provides detailed instructions on how to perform basic fisheries stock assessment analyses in the R environment. The analyses covered are typical analyses for many working fisheries scientists and, thus, also occur in most upper-level undergraduate and graduate level fisheries science, analysis, or management courses. The book begins with three foundational chapters that help the reader become familiar with R within the context of basic fisheries analyses and examples. The remaining chapters build upon these foundational skills with analytical techniques specific to fisheries stock assessments. A preview is available from Google Books.\nThe book is dedicated to my three professional mentors."
-  },
-  {
-    "objectID": "index.html#brief-description",
-    "href": "index.html#brief-description",
-    "title": "IFAR",
-    "section": "Brief Description",
-    "text": "Brief Description\nIntroductory Fisheries Analyses with R by Derek H. Ogle provides detailed instructions on how to perform basic fisheries stock assessment analyses in the R environment. The analyses covered are typical analyses for many working fisheries scientists and, thus, also occur in most upper-level undergraduate and graduate level fisheries science, analysis, or management courses. The book begins with three foundational chapters (R basics, data manipulation, and plotting) that help the reader become familiar with R within the context of basic fisheries analyses and examples. The remaining chapters build upon these foundational skills with analytical techniques specific to fisheries stock assessments. A preview is available from Google Books.\nThe book is dedicated to my three professional mentors."
-  },
-  {
-    "objectID": "index.html#table-of-contents",
-    "href": "index.html#table-of-contents",
-    "title": "IFAR",
-    "section": "Table of Contents",
-    "text": "Table of Contents\n\n(Very Brief) Introduction to R Basics\n\nThe bare fundamentals of R that are required for the remainder of the book.\nR Script\n\nLoading Data and Basic Manipulations\n\nLoad data into R from external files and perform typical manipulations including filtering, sorting, aggregating, joining, and converting between wide- and long-formats.\nR Script and Data: BGHRfish.csv, BGHRsample.csv, inchAge.csv, inchBio.csv, inchBio07.csv, inchBio08.csv, inchGear.csv\nSupplements: Backcalculation of Previous Length\nExercises\n\nPlotting Fundamentals\n\nThe bare fundamentals for constructing basic plots using base R.\nR Script || Data:\nSupplements || Exercises\n\nAge Comparisons\n\nCompare two or more estimates of age for the same fish with precision and bias metrics and plots.\nR Script || Data:\nSupplements || Exercises\n\nAge-Length Keys\n\nAssign ages to unaged fish from their length and an age-length-key.\nR Script || Data:\nSupplements || Exercises\n\nSize Structure\n\nAssess size structure through length frequencies and the proportional size distribution (PSD) metric.\nR Script || Data:\nSupplements || Exercises\n\nWeight-Length Relationships\n\nIntroduction to simple linear regression through examination of weight-length relationships.\nR Script || Data:\nSupplements || Exercises\n\nCondition\n\nCompute condition metrics from observed length and weights. Introduction to one-way ANOVA.\nR Script || Data:\nSupplements || Exercises\n\nAbundance from Capture-Recapture Data\n\nEstimate abundance from capture-recapture data for closed (single and multiple recapture events) and open populations.\nR Script || Data:\nSupplements || Exercises\n\nAbundance from Depletion Data\n\nEstimate abundance from removal or depletion samplings (Leslie, DeLury, k-pass).\nR Script || Data:\nSupplements || Exercises\n\nMortality Rates\n\nEstimate total mortality rates from catch curve and capture-recapture data. Estimate fishing and natural mortality with empirical models.\nR Script || Data:\nSupplements || Exercises\n\nIndividual Growth\n\nEstimate parameters for the von Bertalanffy growth function and compare growth parameters among populations.\nR Script || Data:\nSupplements || Exercises\n\nRecruitment\n\nEstimate parameters for the Beverton-Holt and Ricker stock-recruitment models, compute spawning potential ratios, and estimate year-class strengths from catch data.\nR Script || Data:\nSupplements || Exercises"
-  },
-  {
-    "objectID": "index.html#errata",
-    "href": "index.html#errata",
-    "title": "IFAR",
-    "section": "Errata",
-    "text": "Errata\nAn errata and post-production notes are maintained here."
-  },
-  {
     "objectID": "dedication.html",
     "href": "dedication.html",
     "title": "Dedication",
@@ -49,11 +21,25 @@
     "text": "Post-Production Changes\n\nThroughout – I have removed filterD() from FSA. Please see this fishR post for how to accomplish the same effect using functions from dplyr.\nSection 2.4 – The maintainers of tidyr suggest using pivot_longer() instead of gather() and pivot_wider() instead of spread(), though gather() and spread() still work as shown in the book.\nSection 4.2 – I have dramatically changed the age-bias plot that is produced by plot() with an object saved from ageBias(). This change is described in the documentation and examples for ageBias(). The plots shown in the book can largely still be produced with plotAB() (see its documentation here). Also see this fishR post for a description of constructing an age-bias plot using ggplot2.\nSection 4.4 – I have changed the information that is returned from agePrecision(). All of the information shown in the book is still provided; however, other information (e.g., average standard deviation and mean absolute deviation) are now also returned. The output is documented in the documentation for agePrecision().\nSections 7.3.3, 8.3.2.1, 12.3.6, and 13.2.2 – residPlot() has been removed from the FSA package. Other methods for constructing residuals plots are discussed in this fishR post.\nSections 12.3.1 and 13.1 – The dynamic plots described for finding starting values for a von Bertalanffy growth function and the stock-recruitment functions (i.e., nonlinear regressions) have been removed from vbStarts() and srStarts(), because of the difficulty of maintaining a package that requires the tcltk package. These functionalities are now in the FSAsims package, but it can also largely be replicated with the fixed= arguments to vbStarts() and srStarts(). Use of fixed= in srStarts() is demonstrated in this blog post."
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "IFAR",
+    "section": "",
+    "text": "Introductory Fisheries Analyses with R by Derek H. Ogle provides detailed instructions on how to perform basic fisheries stock assessment analyses in the R environment. The analyses covered are typical analyses for many working fisheries scientists and, thus, also occur in most upper-level undergraduate and graduate level fisheries science, analysis, or management courses. The book begins with three foundational chapters that help the reader become familiar with R within the context of basic fisheries analyses and examples. The remaining chapters build upon these foundational skills with analytical techniques specific to fisheries stock assessments. A preview is available from Google Books.\nThe book is dedicated to my three professional mentors."
+  },
+  {
     "objectID": "index.html#table-of-contents-with-resources",
     "href": "index.html#table-of-contents-with-resources",
     "title": "IFAR",
     "section": "Table of Contents (with Resources)",
     "text": "Table of Contents (with Resources)\n\n(Very Brief) Introduction to R Basics\n\nThe bare fundamentals of R that are required for the remainder of the book.\nR Script\n\nLoading Data and Basic Manipulations\n\nLoad data into R from external files and perform typical manipulations including filtering, sorting, aggregating, joining, and converting between wide- and long-formats.\nR Script and Data: BGHRfish.csv, BGHRsample.csv, inchAge.csv, inchBio.csv, inchBio07.csv, inchBio08.csv, inchGear.csv\nSupplements: Backcalculation of Previous Length\nExercises\n\nPlotting Fundamentals\n\nThe bare fundamentals for constructing basic plots using base R.\nR Script and Data:\nSupplements: Common Axis Labels on a Grid of Subplots, Complex Grid Layouts\nExercises\n\nAge Comparisons\n\nCompare two or more estimates of age for the same fish with precision and bias metrics and plots.\nR Script and Data: ShadCR.csv\nExercises\n\nAge-Length Keys\n\nAssign ages to unaged fish from their length and an age-length-key.\nR Script and Data: CreekChub.csv, SiscowetMI2004.csv\nExercises\n\nSize Structure\n\nAssess size structure through length frequencies and the proportional size distribution (PSD) metric.\nR Script and Data: InchLake1113.csv\nExercises\n\nWeight-Length Relationships\n\nIntroduction to simple linear regression through examination of weight-length relationships.\nR Script and Data: RuffeSLRH.csv\nSupplements: DVR with More than Two Groups\nExercises\n\nCondition\n\nCompute condition metrics from observed length and weights. Introduction to one-way ANOVA.\nR Script and Data: RuffeSLRH.csv\nExercises\n\nAbundance from Capture-Recapture Data\n\nEstimate abundance from capture-recapture data for closed (single and multiple recapture events) and open populations.\nR Script and Data: CutthroatAL.csv, Zehfussetal_1985_mod.INP\nExercises\n\nAbundance from Depletion Data\n\nEstimate abundance from removal or depletion samplings (Leslie, DeLury, k-pass).\nR Script\nExercises\n\nMortality Rates\n\nEstimate total mortality rates from catch curve and capture-recapture data. Estimate fishing and natural mortality with empirical models.\nR Script and Data: CCatfishNB.csv, CutthroatAL.csv\nExercises\n\nIndividual Growth\n\nEstimate parameters for the von Bertalanffy growth function and compare growth parameters among populations.\nR Script and Data: BlackDrum2001.csv\nSupplements: Fitting Other VBGF Parameterizations, Fitting Other Growth Functions, Additional Nonlinear Regression Algorithms\nExercises\n\nRecruitment\n\nEstimate parameters for the Beverton-Holt and Ricker stock-recruitment models, compute spawning potential ratios, and estimate year-class strengths from catch data.\nR Script and Data: PSalmonAK.csv, SturgeonGB.csv, WalleyeWad.csv, WalleyeWyrlng.csv\nSupplements: Maturity Schedules\nExercises"
+  },
+  {
+    "objectID": "index.html#errata",
+    "href": "index.html#errata",
+    "title": "IFAR",
+    "section": "Errata",
+    "text": "Errata\nAn errata and post-production notes are maintained here."
   },
   {
     "objectID": "supplements/backcalculation.html",
@@ -96,20 +82,6 @@
     "title": "Common Axis Labels on a Grid of Subplots",
     "section": "",
     "text": "Several methods for modifying base graphics were shown in Ogle (2016), including simple layouts (side-by-side, one-over-the-other) of multiple plots. Creating common x- and y-axis labels for a grid of plots is described in this supplement. More complex layouts (e.g., plot in first row spans two columns or unequal sized plots) are described in this supplement.\nA single function is used from dplyr in this supplement; thus, :: is used instead of loading the entire package.\nThe BullTroutRML2 data from FSAdata used in Ogle (2016) are also used here.\n\ndata(BullTroutRML2,package=\"FSAdata\")\n\n\nCommon Axis Labels on a Grid of Subplots\nA common need is to plot multiple graphics in a grid-like format with one axis label that serves as the label for each graph. This can be accomplished with arguments to par(), but the regions of a plot must be understood first.\nEach plot consists of three regions – the plot area, the figure area, and the outer margin area (Figure 1). The plot area is where the points or bars will be graphed. The area between the plot area and the figure area is where the axis ticks, labels, and title will appear. The area outside of the figure area is the outer margin area and is generally used to provide extra space around the graphic or to place text.\n\n\n\n\n\nFigure 1: Schematic plot that illustrates the plotting area (inside the blue box), the figure area (inside the red box), and the outer margin area (between the dark gray and red boxes).\n\n\n\n\nIn most instances (and the default), the width of the outer margin area is 0 on all sides of the figure area such that no outer margin area exists. The size of the outer margin area is set with oma= in par(), which takes a vector of four values to serve as widths of the four sides of the outer margin area, beginning with the bottom and moving counter-clockwise. The default is par(oma=c(0,0,0,0)). For example, margins that are two “lines” wide on the top and bottom and one “line” wide on the left and right may be set with par(oma=c(2,1,2,1)).\nCommon axis labels for multiple graphs can be placed in the outer margin area. In the example below, a 2-by-2 grid is created with mfrow() (as described in Ogle (2016)) and the bottom and left outer margin areas are increased to be two “lines” wide to allow for common x- and y-axis labels.\n\npar(mfrow=c(2,2),oma=c(2,2,0,0))\n\nThe four subplot areas are then populated with scatterplots (note that the x- and y-axis labels are set to empty strings to suppress labeling the axes)\n\nxlmts <- c(-0.5,14.5)\nylmts <- c(0,700)\nBTH1 <- BullTroutRML2 |> dplyr::filter(lake==\"Harrison\",era==\"1977-80\")\nplot(fl~age,data=BTH1,main=\"Harrison, 1977-80\",\n     xlab=\"\",ylab=\"\",pch=19,xlim=xlmts,ylim=ylmts)\nBTO1 <- BullTroutRML2 |> dplyr::filter(lake==\"Osprey\",era==\"1977-80\")\nplot(fl~age,data=BTO1,main=\"Osprey, 1977-80\",\n     xlab=\"\",ylab=\"\",pch=19,xlim=xlmts,ylim=ylmts)\nBTH2 <- BullTroutRML2 |> dplyr::filter(lake==\"Harrison\",era==\"1997-01\")\nplot(fl~age,data=BTH2,main=\"Harrison, 1997-01\",\n     xlab=\"\",ylab=\"\",pch=19,xlim=xlmts,ylim=ylmts)\nBTO2 <- BullTroutRML2 |> dplyr::filter(lake==\"Osprey\",era==\"1997-01\")\nplot(fl~age,data=BTO2,main=\"Osprey, 1997-01\",\n     xlab=\"\",ylab=\"\",pch=19,xlim=xlmts,ylim=ylmts)\n\nThe common x- and y-axis labels are then placed in the outer margin areas with mtext(). In this capacity, mtext() requires the text to be written as the first argument, a number in side= that indicates the margin on which to print the text,1 a number in line= that indicates the line on which to print the text (defaults to 0), and outer=TRUE to force the text into the outer margin area. Further note that las=0 is used for the y-axis label to force the text to be parallel to the y-axis. This is only needed because las=1 was set globally for producing this supplement.1 The side= argument in mtext() uses the same numbering scheme as other functions – 1=bottom, 2=left, 3=top, 4=right.\n\nmtext(\"Age (years)\",side=1,line=0,outer=TRUE,cex=1.3)\nmtext(\"Fork Length (mm)\",side=2,line=0,outer=TRUE,cex=1.3,las=0)\n\nThe combined code above creates the plot shown in Figure 2.\n\n\n\n\n\nFigure 2: Grid of plots that uses the outer margin area to provide common axis labels.\n\n\n\n\n\n\n\n\n\n\nReferences\n\nOgle, D. H. 2016. Introductory Fisheries Analyses with R. CRC Press, Boca Raton, FL."
-  },
-  {
-    "objectID": "supplements/commonAxisLabels.html#packages",
-    "href": "supplements/commonAxisLabels.html#packages",
-    "title": "Common Axis Labels on a Grid of Subplots",
-    "section": "Packages",
-    "text": "Packages\nA single function is used from dplyr in this supplement; thus, :: is used instead of loading the entire package."
-  },
-  {
-    "objectID": "supplements/commonAxisLabels.html#data",
-    "href": "supplements/commonAxisLabels.html#data",
-    "title": "Common Axis Labels on a Grid of Subplots",
-    "section": "Data",
-    "text": "Data\nThe BullTroutRML2 data from FSAdata used in Ogle (2016) are also used here.\n\ndata(BullTroutRML2,package=\"FSAdata\")"
   },
   {
     "objectID": "supplements/complexGridLayouts.html",
