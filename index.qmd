@@ -1,0 +1,75 @@
+---
+---
+
+<img style="float: right; margin: 5px 5px 15px 20px; padding-left: 20px" src="../img/IFARCover_large.JPG" height="300px" />
+*Introductory Fisheries Analyses with R* by [Derek H. Ogle](https://derekogle.com/) provides detailed instructions on how to perform basic fisheries stock assessment analyses in the R environment. The analyses covered are typical analyses for many working fisheries scientists and, thus, also occur in most upper-level undergraduate and graduate level fisheries science, analysis, or management courses. The book begins with three foundational chapters that help the reader become familiar with R within the context of basic fisheries analyses and examples. The remaining chapters build upon these foundational skills with analytical techniques specific to fisheries stock assessments. A preview is available from [Google Books](https://books.google.com/books?id=KTo0CwAAQBAJ&printsec=frontcover#v=onepage&q&f=false).
+
+The book is [dedicated to my three professional mentors.](dedication.qmd)
+
+&nbsp;
+
+## Table of Contents (with Resources)
+
+1. **(Very Brief) Introduction to R Basics**
+    * *The bare fundamentals of R that are required for the remainder of the book.*
+    * [R Script](scripts/RBasics.R)
+1. **Loading Data and Basic Manipulations**
+    * *Load data into R from external files and perform typical manipulations including filtering, sorting, aggregating, joining, and converting between wide- and long-formats.*
+    * [R Script](scripts/DataManip.R) and Data: [BGHRfish.csv](scripts/BGHRfish.csv), [BGHRsample.csv](scripts/BGHRsample.csv), [inchAge.csv](scripts/inchAge.csv), [inchBio.csv](scripts/inchBio.csv), [inchBio07.csv](scripts/inchBio07.csv), [inchBio08.csv](scripts/inchBio08.csv), [inchGear.csv](scripts/inchGear.csv)
+    * Supplements: [Backcalculation of Previous Length](supplements/backcalculation.html)
+    * [Exercises](https://fishr-core-team.github.io/fishR/teaching/#category=%20Data%20Wrangling)
+1. **Plotting Fundamentals**
+    * *The bare fundamentals for constructing basic plots using base R.*
+    * [R Script](scripts/Plotting.R) and Data: 
+    * Supplements: [Common Axis Labels on a Grid of Subplots](supplements/commonAxisLabels.html), [Complex Grid Layouts](supplements/complexGridLayouts.html)
+    * [Exercises](https://fishr-core-team.github.io/fishR/teaching/#category=%20Graphing)
+1. **Age Comparisons**
+    * *Compare two or more estimates of age for the same fish with precision and bias metrics and plots.*
+    * [R Script](scripts/AgeComparisons.R) and Data: [ShadCR.csv](scripts/ShadCR.csv)
+    * [Exercises](https://fishr-core-team.github.io/fishR/teaching/#category=%20Age%20Comparisons)
+1. **Age-Length Keys**
+    * *Assign ages to unaged fish from their length and an age-length-key.*
+    * [R Script](scripts/AgeLengthKey.R) and Data: [CreekChub.csv](scripts/CreekChub.csv), [SiscowetMI2004.csv](scripts/SiscowetMI2004.csv)
+    * [Exercises](https://fishr-core-team.github.io/fishR/teaching/#category=%20Age-Length%20Key)
+1. **Size Structure**
+    * *Assess size structure through length frequencies and the proportional size distribution (PSD) metric.*
+    * [R Script](scripts/SizeStructure.R) and Data: [InchLake1113.csv](scripts/InchLake1113.csv)
+    * [Exercises](https://fishr-core-team.github.io/fishR/teaching/#category=%20Size%20Structure)
+1. **Weight-Length Relationships**
+    * *Introduction to simple linear regression through examination of weight-length relationships.*
+    * [R Script](scripts/WeightLength.R) and Data: [RuffeSLRH.csv](scripts/RuffeSLRH.csv)
+    * Supplements: [DVR with More than Two Groups](supplements/weightlength/index.html)
+    * [Exercises](https://fishr-core-team.github.io/fishR/teaching/#category=%20Weight-Length)
+1. **Condition**
+    * *Compute condition metrics from observed length and weights. Introduction to one-way ANOVA.*
+    * [R Script](scripts/Condition.R) and Data: [RuffeSLRH.csv](scripts/RuffeSLRH.csv)
+    * [Exercises](https://fishr-core-team.github.io/fishR/teaching/#category=%20Condition)
+1. **Abundance from Capture-Recapture Data**
+    * *Estimate abundance from capture-recapture data for closed (single and multiple recapture events) and open populations.*
+    * [R Script](scripts/AbundanceCR.R) and Data: [CutthroatAL.csv](scripts/CutthroatAL.csv), [Zehfussetal_1985_mod.INP](scripts/Zehfussetal_1985_mod.INP)
+    * [Exercises](https://fishr-core-team.github.io/fishR/teaching/#category=%20Mark-Recapture)
+1. **Abundance from Depletion Data**
+    * *Estimate abundance from removal or depletion samplings (Leslie, DeLury, k-pass).*
+    * [R Script](scripts/AbundanceD.R)
+    * [Exercises](https://fishr-core-team.github.io/fishR/teaching/#category=%20Depletion/Removal)
+1. **Mortality Rates**
+    * *Estimate total mortality rates from catch curve and capture-recapture data. Estimate fishing and natural mortality with empirical models.*
+    * [R Script](scripts/Mortality.R) and Data: [CCatfishNB.csv](scripts/CCatfishNB.csv), [CutthroatAL.csv](scripts/CutthroatAL.csv)
+    * [Exercises](https://fishr-core-team.github.io/fishR/teaching/#category=%20Mortality)
+1. **Individual Growth**
+    * *Estimate parameters for the von Bertalanffy growth function and compare growth parameters among populations.*
+    * [R Script](scripts/Growth.R) and Data: [BlackDrum2001.csv](scripts/BlackDrum2001.csv)
+    * Supplements: [Fitting Other VBGF Parameterizations](supplements/growth/OtherVBGFParams.html), [Fitting Other Growth Functions](supplements/growth/OtherGrowthFuns.html), [Additional Nonlinear Regression Algorithms](supplements/growth/OtherNLAlgorithms.html)
+    * [Exercises](https://fishr-core-team.github.io/fishR/teaching/#category=%20Growth)
+1. **Recruitment**
+    * *Estimate parameters for the Beverton-Holt and Ricker stock-recruitment models, compute spawning potential ratios, and estimate year-class strengths from catch data.*
+    * [R Script](scripts/Recruitment.R) and Data: [PSalmonAK.csv](scripts/PSalmonAK.csv), [SturgeonGB.csv](scripts/SturgeonGB.csv), [WalleyeWad.csv](scripts/WalleyeWad.csv), [WalleyeWyrlng.csv](scripts/WalleyeWyrlng.csv)
+    * Supplements: [Maturity Schedules](supplements/maturity/index.html)
+    * [Exercises](https://fishr-core-team.github.io/fishR/teaching/#category=%20Stock-Recruitment)
+
+&nbsp;
+
+## Errata
+
+An errata and post-production notes are [maintained here](errata.html).
+

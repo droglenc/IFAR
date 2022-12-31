@@ -1,0 +1,143 @@
+---
+title: "Complex Grid Layouts"
+author: "Derek H. Ogle"
+output: html_document
+---
+
+Several methods for modifying base graphics were shown in @ogleIntroductoryFisheriesAnalyses2016, including simple layouts (side-by-side, one-over-the-other) of multiple plots. More complex layouts (e.g., plot in first row spans two columns or unequal sized plots) are described in this supplement. Creating common x- and y-axis labels for a grid of plots is [described in this supplement](commonAxisLabels.html).
+
+A single function is used from `dplyr` in this supplement; thus, `::` is used instead of loading the entire package. The `FSA` package is loaded here to provide access to the modified `hist()`.
+
+```{r}
+library(FSA)
+```
+
+The `BullTroutRML2` and `BloaterLH` data from `FSAdata` used in @ogleIntroductoryFisheriesAnalyses2016 are also used here.
+
+```{r}
+data(BullTroutRML2,package="FSAdata")
+data(BloaterLH,package="FSAdata")
+```
+
+# Complex Grid Layouts with `layout()`
+The `layout()` function allows for more complicated organizations of plots. The only required argument to `layout()` is a matrix that specifies the positions, as a grid, for a series of plots. The numbers in the matrix describe which sequential plot will appear in that position. For example, the following code constructs a 2x2 grid for four plots where the first plot will appear in the lower-right corner and the last (fourth) plot will appear in the upper-left corner.
+
+```{r}
+#| label: Layout1pre
+( m <- matrix(4:1,nrow=2,byrow=TRUE) )
+layout(m)
+```
+
+The `layout.show()` function is used to show the layout grid. Its only argument is the number of positions to show. The example below illustrates the layout created above.
+
+```{r echo=-c(1:2)}
+#| label: fig-Layout1
+#| fig-cap: Illustration of 2x2 layout grid for graphics.
+#| results: hide
+<<Layout1pre>>
+layout.show(4)
+```
+
+The 2x2 grid in @fig-Layout1 is not that interesting because that layout is just as easily constructed with `mfrow=` in `par()` (as shown in the **IFAR** book). Layouts, however, can also be constructed that are not "grids."  For example, the entire first row may be one plot with a second row of two plots. This layout grid is constructed by including a "1" in the first two positions of the layout matrix (@fig-Layout2).
+
+```{r}
+#| label: Layout2pre
+( m <- matrix(c(1,1,2,3),nrow=2,byrow=TRUE) )
+layout(m)
+```
+
+```{r echo=-c(1:2)}
+#| label: fig-Layout2
+#| fig-cap: Illustration of layout grid for graphics with one plot in the first row and two in the second row.
+#| results: hide
+<<Layout2pre>>
+layout.show(3)
+```
+
+The following code fills this layout grid to produce @fig-Layout3.
+
+```{r echo=-c(1:2)}
+#| label: fig-Layout3
+#| fig-cap: Illustration of a plot with one subplot in the first row and two in the second row.
+#| fig-width: 8
+#| fig-height: 8
+#| results: hide
+<<Layout2pre>>
+par(mar=c(3.05,3.05,0.65,0.65),mgp=c(1.9,0.3,0),tcl=-0.2,las=1,
+    cex.lab=0.95,cex.axis=0.9)
+plot(age3~eggs,data=BloaterLH,pch=19,xlab="Millions of Eggs",
+     ylab="Relative Abundance of Age-3 Fish")
+hist(~eggs,data=BloaterLH,xlab="Millions of Eggs")
+hist(~age3,data=BloaterLH,xlab="Age-3 Relative Abundance")
+```
+
+&nbsp;
+
+The size of the plots in the layout may be controlled with `height=` and `width=`. These arguments accept vectors that represent the **relative** heights and widths of the rows and columns in the layout grid, respectively. For example, `height=c(3,1)` sets the height of the first row to be three times larger than the height of the second row. Including the `respect=TRUE` argument will assure that "unit distances" in the horizontal and vertical directions are treated the same. An example layout with different cell sizes is constructed below and shown in @fig-Layout4. Also note in this example, that a zero in a cell means that that cell will not receive a plot.
+
+```{r}
+#| label: Layout4pre
+( m <- matrix(c(2,0,1,3),nrow=2,byrow=TRUE) )
+layout(m,height=c(1,4),width=c(4,1),respect=TRUE)
+```
+
+```{r echo=-c(1:2)}
+#| label: fig-Layout4
+#| fig-cap: Illustration of layout grid for plots with differing row heights and column widths.
+#| results: hide
+<<Layout4pre>>
+layout.show(3)
+```
+
+@fig-Layout5 is an example that fills the layout shown in @fig-Layout4.
+
+```{r echo=-c(1:2)}
+#| label: fig-Layout5
+#| fig-cap: Illustration of layout grid with differing heights and widths such that a scatterplot appears in the 'middle' with corresponding boxplots on the 'sides.'
+#| results: hide
+<<Layout4pre>>
+par(mar=c(4,4,0,0))
+plot(age3~eggs,data=BloaterLH,xlim=c(0,2.4),ylim=c(0,240),pch=19,
+     ylab="Relative Abundance of Age-3 Fish",
+     xlab="Millions of Eggs")
+par(mar=c(0,4,0,0))
+boxplot(BloaterLH$eggs,axes=FALSE,ylim=c(0,2.4),horizontal=TRUE)
+par(mar=c(4,0,0,0))
+boxplot(BloaterLH$age3,axes=FALSE,ylim=c(0,240))
+```
+
+&nbsp;
+
+Finally, `layout()` may be used to make quite complex grids, as illustrated with the code below that produced @fig-Layout6. Note that `plot.new()` creates a new blank plot in which the subsequent `text()` commands will place text (in this case marginal labels).
+
+```{r}
+#| label: fig-Layout6
+#| fig-cap: Illustration of layout grid with differing heights and widths such that labels can be placed on the sides.
+#| fig-height: 8
+#| fig-width: 8
+BTH1 <- BullTroutRML2 |> dplyr::filter(lake=="Harrison",era=="1977-80")
+BTO1 <- BullTroutRML2 |> dplyr::filter(lake=="Osprey",era=="1977-80")
+BTH2 <- BullTroutRML2 |> dplyr::filter(lake=="Harrison",era=="1997-01")
+BTO2 <- BullTroutRML2 |> dplyr::filter(lake=="Osprey",era=="1997-01")
+
+( m <- matrix(c(0,1,2,3,5,6,4,7,8),nrow=3,byrow=TRUE) )
+layout(m,height=c(1,8,8),width=c(1,8,8),respect=TRUE)
+
+par(mar=c(0,0,0,0))
+plot.new(); text(0.5,0.5,"Harrison",cex=1.5)
+plot.new(); text(0.5,0.5,"Osprey",cex=1.5)
+plot.new(); text(0.5,0.5,"Era = 1977-1980",cex=1.5,srt=90)
+plot.new(); text(0.5,0.5,"Era = 1997-2001",cex=1.5,srt=90)
+
+par(mar=c(3.05,3.05,0.65,0.65),mgp=c(1.7,0.5,0))
+xlmt <- c(-0.5,14.5)
+ylmt <- c(0,700)
+plot(fl~age,data=BTH1,xlab="",ylab="Fork Length",
+     pch=19,xlim=xlmt,ylim=ylmt)
+plot(fl~age,data=BTO1,xlab="",ylab="",
+     pch=19,xlim=xlmt,ylim=ylmt)
+plot(fl~age,data=BTH2,xlab="Age",ylab="Fork Length",
+     pch=19,xlim=xlmt,ylim=ylmt)
+plot(fl~age,data=BTO2,xlab="Age",ylab="",
+     pch=19,xlim=xlmt,ylim=ylmt)
+```

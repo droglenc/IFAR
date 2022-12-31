@@ -1,0 +1,133 @@
+---
+layout: page
+title: Individual Growth
+subtitle: Other Nonlinear Model Fitting Algorithms
+author: Derek H. Ogle
+css: "/css/codebox.css"
+---
+
+
+<p>The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the function were illustrated in Chapter 12 of the <a href="http://derekogle.com/IFAR/"><em>Introductory Fisheries Analyses with R</em></a> (IFAR) book. The <code>nls()</code> function demonstrated in the <strong>IFAR</strong> book uses the Gauss-Newton algorithm by default. However, there are many other algorithms for fitting nonlinear functions. Two of the several algorithms coded in R are demonstrated in this supplement. Other supplements demonstrate how to <a href="OtherVBGFParams.html">fit other parameterizations of the VBGF</a> and <a href="OtherGrowthFuns.html">other growth functions</a>.</p>
+<p> </p>
+<div id="required-packages-for-this-supplement" class="section level3">
+<h3>Required Packages for this Supplement</h3>
+<p>Functions used in this supplement require the packages shown below.</p>
+<pre class="r"><code>&gt; library(FSA)
+&gt; library(dplyr)
+&gt; library(nlstools)
+&gt; library(minpack.lm)</code></pre>
+</div>
+<div id="data-used-in-this-supplement" class="section level3">
+<h3>Data Used in this Supplement</h3>
+<p>The male Black Drum data (<a href="https://github.com/droglenc/FSAdata/blob/master/data-raw/BlackDrum2001.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/BlackDrum2001.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/BlackDrum2001.html">meta-data</a>) used in the <strong>IFAR</strong> book will also be used in this supplement.</p>
+<pre class="r"><code>&gt; bdmf &lt;- read.csv(&quot;BlackDrum2001.csv&quot;) %&gt;%
+    select(-c(spname,day,weight)) %&gt;%
+    filterD(sex %in% c(&quot;male&quot;,&quot;female&quot;),otoage&lt;50)
+&gt; bdm &lt;- filterD(bdmf,sex==&quot;male&quot;)
+&gt; headtail(bdm)</code></pre>
+<pre><code>   year agid month     tl  sex otoage
+1  2001    1     4  787.5 male      6
+2  2001    2     5  700.0 male      5
+3  2001    8     5 1140.0 male     23
+72 2001  122     5 1175.0 male     39
+73 2001  125     6  590.0 male      4
+74 2001  127     6  530.0 male      3</code></pre>
+<p> </p>
+</div>
+<div id="levenberg-marquardt-algorithm" class="section level2">
+<h2>Levenberg-Marquardt Algorithm</h2>
+<p>The Levenberg-Marquardt (L-M) algorithm is a powerful and common method that switches between two other algorithms depending on when those algorithms perform most optimally <span class="citation">(Motulsky and Ransnas 1987)</span>. Most practically, the L-M algorithm appears to be quite robust to “poor” starting values.</p>
+<p>The L-M algorithm is implemented in <code>nlsLM()</code> from <code>minpack.lm</code> <span class="citation">(Elzhov et al. 2013)</span> and uses the same main arguments as <code>nls()</code>. For example, the “Typical” VBGF is fit (and parameter estimates, likelihood profile confidence intervals, and predictions are extracted) to the male Black Drum data below using the L-M algorithm.</p>
+<pre class="r"><code>&gt; vbTyp &lt;- vbFuns()
+&gt; svTyp &lt;- list(Linf=1193,K=0.13,t0=-2.0)
+&gt; fitLM &lt;- nlsLM(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp)
+&gt; bootLM &lt;- nlsBoot(fitLM)
+&gt; cbind(Ests=coef(fitLM),confint(bootLM))</code></pre>
+<pre><code>             Ests      95% LCI      95% UCI
+Linf 1196.7193456 1179.8720413 1214.7444331
+K       0.1418266    0.1241443    0.1622749
+t0     -1.5943403   -2.5034835   -0.8176289</code></pre>
+<pre class="r"><code>&gt; predict(bootLM,vbTyp,t=3)</code></pre>
+<pre><code>prediction    95% LCI    95% UCI 
+  572.8113   535.0526   606.2789 </code></pre>
+<p> </p>
+</div>
+<div id="algorithms-that-allow-parameter-constraints" class="section level2">
+<h2>Algorithms that Allow Parameter Constraints</h2>
+<p>In some instances, the user may want to constrain the model fitting algorithms to only consider parameter values within a certain range. For example, the user may want to constrain the <span class="math">\(L_{\infty}\)</span> and <span class="math">\(K\)</span> parameters of the “Typical” VBGF to be positive. Parameter constraints may substantively effect the results of the model fitting. Thus, they should be used rarely and, when used, set liberally.</p>
+<p>Parameter constraints can be used with at least two algorithms in R. In either case, the lower and upper bounds for each parameter are entered into separate named <strong>vectors</strong> in the same order as the list used for starting values. Infinite bounds are the default ,but may be specifically defined for some parameters with <code>Inf</code> and <code>-Inf</code> (where <code>Inf</code> represents infinity). For example, vectors that define constraints for the parameters in the “Typical” VBGF are defined below, with <span class="math">\(L_\infty\)</span> and <span class="math">\(K\)</span> constrained to be positive values and <span class="math">\(t_{0}\)</span> left unconstrained.</p>
+<pre class="r"><code>&gt; clwr &lt;- c(Linf=1,  K=0.0001,t0=-Inf)
+&gt; cupr &lt;- c(Linf=Inf,K=Inf,   t0=Inf)</code></pre>
+<p>These constraints may be provided to <code>lower=</code> and <code>upper=</code>, respectively, of <code>nlsLM()</code>. In this instance, these bounds had no noticeable effect until bootstapping, where there were fewer instances of lack of convergence.</p>
+<pre class="r"><code>&gt; fitLM1 &lt;- nlsLM(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp,lower=clwr,upper=cupr)
+&gt; bootLM1 &lt;- nlsBoot(fitLM1)
+&gt; cbind(Ests=coef(fitLM1),confint(bootLM1))</code></pre>
+<pre><code>             Ests      95% LCI      95% UCI
+Linf 1196.7193456 1177.7663812 1214.8739079
+K       0.1418266    0.1225476    0.1633342
+t0     -1.5943403   -2.6332131   -0.7804033</code></pre>
+<p>Parameter constraints may be used similarly with <code>nls()</code>, but the optimization algorithm must be changed to “Port” with <code>algorithm=&quot;port&quot;</code>.</p>
+<pre class="r"><code>&gt; fitP &lt;- nls(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp,
+              algorithm=&quot;port&quot;,lower=clwr,upper=cupr)
+&gt; bootP &lt;- nlsBoot(fitP)
+&gt; cbind(Ests=coef(fitP),confint(bootP))</code></pre>
+<pre><code>             Ests     95% LCI      95% UCI
+Linf 1196.7188609 1177.616313 1215.1724867
+K       0.1418273    0.123604    0.1633974
+t0     -1.5943118   -2.578606   -0.8138321</code></pre>
+<p> </p>
+</div>
+<div id="other-algorithms" class="section level2">
+<h2>Other Algorithms</h2>
+<p>Still other algorithms are found in <code>nlxb()</code> from <code>nlmrt</code> <span class="citation">(Nash 2014)</span> and <code>nls2()</code> from <code>nls2</code> <span class="citation">(Grothendieck 2013)</span>.</p>
+<p> </p>
+<hr />
+</div>
+<div id="reproducibility-information" class="section level2">
+<h2>Reproducibility Information</h2>
+<ul>
+<li><strong>Compiled Date:</strong> Fri Nov 06 2015</li>
+<li><strong>Compiled Time:</strong> 10:04:38 AM</li>
+<li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
+<li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
+<li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>
+<li><strong>Required Packages:</strong> FSA, dplyr, nlstools, minpack.lm, captioner, knitr and their dependencies (assertthat, car, DBI, digest, evaluate, formatR, gdata, gplots, graphics, grDevices, highr, Hmisc, lazyeval, magrittr, markdown, methods, plotrix, plyr, R6, Rcpp, sciplot, stats, stringr, tools, utils, yaml)</li>
+<li><strong>Other Packages:</strong> captioner_2.2.3, dplyr_0.4.3, extrafont_0.17, FSA_0.8.4, knitr_1.11, minpack.lm_1.1-9, nlstools_1.0-2</li>
+<li><strong>Loaded-Only Packages:</strong> assertthat_0.1, DBI_0.3.1, digest_0.6.8, evaluate_0.8, extrafontdb_1.0, formatR_1.2.1, gdata_2.17.0, gtools_3.5.0, htmltools_0.2.6, lazyeval_0.1.10, magrittr_1.5, parallel_3.2.2, plyr_1.8.3, R6_2.1.1, Rcpp_0.12.1, rmarkdown_0.8.1, Rttf2pt1_1.3.3, stringi_1.0-1, stringr_1.0.0, tools_3.2.2, yaml_2.1.13</li>
+<li><strong>Links:</strong> <a href="OtherNLAlgorithms.R">Script</a> / <a href="OtherNLAlgorithms.Rmd">RMarkdown</a></li>
+</ul>
+<hr />
+<p> </p>
+<div class="references">
+<h2>References</h2>
+<p>Elzhov, T. V., K. M. Mullen, A.-N. Spiess, and B. M. Bolker. 2013. minpack.lm: R interface to the Levenberg-Marquardt nonlinear least-squares algorithm found in MINPACK, plus support for bounds.</p>
+<p>Grothendieck, G. 2013. nls2: Non-linear regression with brute force.</p>
+<p>Motulsky, H. J., and L. A. Ransnas. 1987. Fitting curves to data using nonlinear regression: A practical and nonmathematical review. The Federation of American Societies for Experimental Biology Journal 1:365–374.</p>
+<p>Nash, J. C. 2014. nlmrt: Functions for nonlinear least squares solutions.</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

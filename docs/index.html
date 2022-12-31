@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>IFAR</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<link href=".//img/IFARCover_small.jpg" rel="icon" type="image/jpeg">
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="css/styles.css">
+<meta property="og:title" content="">
+<meta property="og:description" content="Introductory Fisheries Analyses with R by Derek H. Ogle provides detailed instructions on how to perform basic fisheries stock assessment analyses in the R environment.">
+<meta property="og:site-name" content="IFAR">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Introductory Fisheries Analyses with R by Derek H. Ogle</span>
+    </a>
+  </div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#table-of-contents-with-resources" id="toc-table-of-contents-with-resources" class="nav-link active" data-scroll-target="#table-of-contents-with-resources">Table of Contents (with Resources)</a></li>
+  <li><a href="#errata" id="toc-errata" class="nav-link" data-scroll-target="#errata">Errata</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<p><img style="float: right; margin: 5px 5px 15px 20px; padding-left: 20px" src="../img/IFARCover_large.JPG" height="300px"> <em>Introductory Fisheries Analyses with R</em> by <a href="https://derekogle.com/">Derek H. Ogle</a> provides detailed instructions on how to perform basic fisheries stock assessment analyses in the R environment. The analyses covered are typical analyses for many working fisheries scientists and, thus, also occur in most upper-level undergraduate and graduate level fisheries science, analysis, or management courses. The book begins with three foundational chapters that help the reader become familiar with R within the context of basic fisheries analyses and examples. The remaining chapters build upon these foundational skills with analytical techniques specific to fisheries stock assessments. A preview is available from <a href="https://books.google.com/books?id=KTo0CwAAQBAJ&amp;printsec=frontcover#v=onepage&amp;q&amp;f=false">Google Books</a>.</p>
+<p>The book is <a href="./dedication.html">dedicated to my three professional mentors.</a></p>
+<p>&nbsp;</p>
+<section id="table-of-contents-with-resources" class="level2">
+<h2 class="anchored" data-anchor-id="table-of-contents-with-resources">Table of Contents (with Resources)</h2>
+<ol type="1">
+<li><strong>(Very Brief) Introduction to R Basics</strong>
+<ul>
+<li><em>The bare fundamentals of R that are required for the remainder of the book.</em></li>
+<li><a href="scripts/RBasics.R">R Script</a></li>
+</ul></li>
+<li><strong>Loading Data and Basic Manipulations</strong>
+<ul>
+<li><em>Load data into R from external files and perform typical manipulations including filtering, sorting, aggregating, joining, and converting between wide- and long-formats.</em></li>
+<li><a href="scripts/DataManip.R">R Script</a> and Data: <a href="scripts/BGHRfish.csv">BGHRfish.csv</a>, <a href="scripts/BGHRsample.csv">BGHRsample.csv</a>, <a href="scripts/inchAge.csv">inchAge.csv</a>, <a href="scripts/inchBio.csv">inchBio.csv</a>, <a href="scripts/inchBio07.csv">inchBio07.csv</a>, <a href="scripts/inchBio08.csv">inchBio08.csv</a>, <a href="scripts/inchGear.csv">inchGear.csv</a></li>
+<li>Supplements: <a href="supplements/backcalculation.html">Backcalculation of Previous Length</a></li>
+<li><a href="https://fishr-core-team.github.io/fishR/teaching/#category=%20Data%20Wrangling">Exercises</a></li>
+</ul></li>
+<li><strong>Plotting Fundamentals</strong>
+<ul>
+<li><em>The bare fundamentals for constructing basic plots using base R.</em></li>
+<li><a href="scripts/Plotting.R">R Script</a> and Data:</li>
+<li>Supplements: <a href="supplements/commonAxisLabels.html">Common Axis Labels on a Grid of Subplots</a>, <a href="supplements/complexGridLayouts.html">Complex Grid Layouts</a></li>
+<li><a href="https://fishr-core-team.github.io/fishR/teaching/#category=%20Graphing">Exercises</a></li>
+</ul></li>
+<li><strong>Age Comparisons</strong>
+<ul>
+<li><em>Compare two or more estimates of age for the same fish with precision and bias metrics and plots.</em></li>
+<li><a href="scripts/AgeComparisons.R">R Script</a> and Data: <a href="scripts/ShadCR.csv">ShadCR.csv</a></li>
+<li><a href="https://fishr-core-team.github.io/fishR/teaching/#category=%20Age%20Comparisons">Exercises</a></li>
+</ul></li>
+<li><strong>Age-Length Keys</strong>
+<ul>
+<li><em>Assign ages to unaged fish from their length and an age-length-key.</em></li>
+<li><a href="scripts/AgeLengthKey.R">R Script</a> and Data: <a href="scripts/CreekChub.csv">CreekChub.csv</a>, <a href="scripts/SiscowetMI2004.csv">SiscowetMI2004.csv</a></li>
+<li><a href="https://fishr-core-team.github.io/fishR/teaching/#category=%20Age-Length%20Key">Exercises</a></li>
+</ul></li>
+<li><strong>Size Structure</strong>
+<ul>
+<li><em>Assess size structure through length frequencies and the proportional size distribution (PSD) metric.</em></li>
+<li><a href="scripts/SizeStructure.R">R Script</a> and Data: <a href="scripts/InchLake1113.csv">InchLake1113.csv</a></li>
+<li><a href="https://fishr-core-team.github.io/fishR/teaching/#category=%20Size%20Structure">Exercises</a></li>
+</ul></li>
+<li><strong>Weight-Length Relationships</strong>
+<ul>
+<li><em>Introduction to simple linear regression through examination of weight-length relationships.</em></li>
+<li><a href="scripts/WeightLength.R">R Script</a> and Data: <a href="scripts/RuffeSLRH.csv">RuffeSLRH.csv</a></li>
+<li>Supplements: <a href="supplements/weightlength/index.html">DVR with More than Two Groups</a></li>
+<li><a href="https://fishr-core-team.github.io/fishR/teaching/#category=%20Weight-Length">Exercises</a></li>
+</ul></li>
+<li><strong>Condition</strong>
+<ul>
+<li><em>Compute condition metrics from observed length and weights. Introduction to one-way ANOVA.</em></li>
+<li><a href="scripts/Condition.R">R Script</a> and Data: <a href="scripts/RuffeSLRH.csv">RuffeSLRH.csv</a></li>
+<li><a href="https://fishr-core-team.github.io/fishR/teaching/#category=%20Condition">Exercises</a></li>
+</ul></li>
+<li><strong>Abundance from Capture-Recapture Data</strong>
+<ul>
+<li><em>Estimate abundance from capture-recapture data for closed (single and multiple recapture events) and open populations.</em></li>
+<li><a href="scripts/AbundanceCR.R">R Script</a> and Data: <a href="scripts/CutthroatAL.csv">CutthroatAL.csv</a>, <a href="scripts/Zehfussetal_1985_mod.INP">Zehfussetal_1985_mod.INP</a></li>
+<li><a href="https://fishr-core-team.github.io/fishR/teaching/#category=%20Mark-Recapture">Exercises</a></li>
+</ul></li>
+<li><strong>Abundance from Depletion Data</strong>
+<ul>
+<li><em>Estimate abundance from removal or depletion samplings (Leslie, DeLury, k-pass).</em></li>
+<li><a href="scripts/AbundanceD.R">R Script</a></li>
+<li><a href="https://fishr-core-team.github.io/fishR/teaching/#category=%20Depletion/Removal">Exercises</a></li>
+</ul></li>
+<li><strong>Mortality Rates</strong>
+<ul>
+<li><em>Estimate total mortality rates from catch curve and capture-recapture data. Estimate fishing and natural mortality with empirical models.</em></li>
+<li><a href="scripts/Mortality.R">R Script</a> and Data: <a href="scripts/CCatfishNB.csv">CCatfishNB.csv</a>, <a href="scripts/CutthroatAL.csv">CutthroatAL.csv</a></li>
+<li><a href="https://fishr-core-team.github.io/fishR/teaching/#category=%20Mortality">Exercises</a></li>
+</ul></li>
+<li><strong>Individual Growth</strong>
+<ul>
+<li><em>Estimate parameters for the von Bertalanffy growth function and compare growth parameters among populations.</em></li>
+<li><a href="scripts/Growth.R">R Script</a> and Data: <a href="scripts/BlackDrum2001.csv">BlackDrum2001.csv</a></li>
+<li>Supplements: <a href="supplements/growth/OtherVBGFParams.html">Fitting Other VBGF Parameterizations</a>, <a href="supplements/growth/OtherGrowthFuns.html">Fitting Other Growth Functions</a>, <a href="supplements/growth/OtherNLAlgorithms.html">Additional Nonlinear Regression Algorithms</a></li>
+<li><a href="https://fishr-core-team.github.io/fishR/teaching/#category=%20Growth">Exercises</a></li>
+</ul></li>
+<li><strong>Recruitment</strong>
+<ul>
+<li><em>Estimate parameters for the Beverton-Holt and Ricker stock-recruitment models, compute spawning potential ratios, and estimate year-class strengths from catch data.</em></li>
+<li><a href="scripts/Recruitment.R">R Script</a> and Data: <a href="scripts/PSalmonAK.csv">PSalmonAK.csv</a>, <a href="scripts/SturgeonGB.csv">SturgeonGB.csv</a>, <a href="scripts/WalleyeWad.csv">WalleyeWad.csv</a>, <a href="scripts/WalleyeWyrlng.csv">WalleyeWyrlng.csv</a></li>
+<li>Supplements: <a href="supplements/maturity/index.html">Maturity Schedules</a></li>
+<li><a href="https://fishr-core-team.github.io/fishR/teaching/#category=%20Stock-Recruitment">Exercises</a></li>
+</ul></li>
+</ol>
+<p>&nbsp;</p>
+</section>
+<section id="errata" class="level2">
+<h2 class="anchored" data-anchor-id="errata">Errata</h2>
+<p>An errata and post-production notes are <a href="errata.html">maintained here</a>.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp(/https:\/\/droglenc\.github\.io\/IFAR\//);
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,0 +1,39 @@
+# options apply to all posts in this folder
+
+# freeze computational output
+freeze: true
+
+# set the citation use
+google-scholar: true
+
+# set bibliograhy and style
+csl: ../helpers/american-fisheries-society.csl
+bibliography: ../helpers/IFARSupplement.bib
+
+# have footnotes and figure captions appear in the margin
+reference-location: margin
+cap-location: margin
+
+# set some default knitr options
+execute: 
+  echo: true
+  message: false
+  warning: false
+  
+# set some other default knitr options
+knitr: 
+  opts_chunk:
+    dev: "png"
+    fig.width: 4
+    fig.height: 4
+    fig.align: center
+    comment: "#R| "
+#    class-output: output
+    r.options:
+      show.signif.stars: false
+
+format:
+  html:
+    code-link: false
+    link-external-icon: true
+    link-external-newwindow: true

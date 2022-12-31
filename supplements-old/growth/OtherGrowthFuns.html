@@ -1,0 +1,144 @@
+---
+layout: page
+title: Individual Growth
+subtitle: Other Growth Functions
+author: Derek H. Ogle
+css: "/css/codebox.css"
+---
+
+
+<p>The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the function were illustrated in Chapter 12 of the <a href="http://derekogle.com/IFAR/"><em>Introductory Fisheries Analyses with R</em></a> (IFAR) book. Mean length-at-age has been modeled by functions other than the VBGF. Common other functions are the exponential, logistic, and polynomial <span class="citation">(Ricker 1975)</span>, as well as the specific functions of <span class="citation">Gompertz (1825)</span>, <span class="citation">Richards (1959)</span>, <span class="citation">Schnute (1981)</span>, and <span class="citation">Richards (1959)</span>.</p>
+<p>Several of these functions are used in this supplement to demonstrate how to fit growth functions other than the VBGF. Other supplements demonstrate how to <a href="OtherVBGFParams.html">fit other parameterizations of the VBGF</a> and <a href="OtherNLAlgorithms.html">use alternative nonlinear model fitting algorithms</a>.</p>
+<p> </p>
+<div id="required-packages-for-this-supplement" class="section level3">
+<h3>Required Packages for this Supplement</h3>
+<p>Functions used in this supplement require the packages shown below.</p>
+<pre class="r"><code>&gt; library(FSA)
+&gt; library(dplyr)
+&gt; library(nlstools)
+&gt; library(AICcmodavg)</code></pre>
+</div>
+<div id="data-used-in-this-supplement" class="section level3">
+<h3>Data Used in this Supplement</h3>
+<p>The male Black Drum (<a href="https://github.com/droglenc/FSAdata/blob/master/data-raw/BlackDrum2001.csv">view</a>, <a href="https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/BlackDrum2001.csv">download</a>, <a href="http://derekogle.com/fishR/data/data-html/BlackDrum2001.html">meta-data</a>) data used in the IFAR book will also be used in this supplement.</p>
+<pre class="r"><code>&gt; bdmf &lt;- read.csv(&quot;BlackDrum2001.csv&quot;) %&gt;%
+    select(-c(spname,day,weight)) %&gt;%
+    filterD(sex %in% c(&quot;male&quot;,&quot;female&quot;),otoage&lt;50)
+&gt; bdm &lt;- filterD(bdmf,sex==&quot;male&quot;)
+&gt; headtail(bdm)</code></pre>
+<pre><code>   year agid month     tl  sex otoage
+1  2001    1     4  787.5 male      6
+2  2001    2     5  700.0 male      5
+3  2001    8     5 1140.0 male     23
+72 2001  122     5 1175.0 male     39
+73 2001  125     6  590.0 male      4
+74 2001  127     6  530.0 male      3</code></pre>
+<p> </p>
+</div>
+<div id="fitting-other-growth-functions" class="section level2">
+<h2>Fitting Other Growth Functions</h2>
+<p>The “Schnute” model and several parameterizations of the logistic, Gompertz, and Richards models have been coded in convenience functions in <code>FSA</code>. For example, the default parameterizations of the logistic, Gompertz, and Richards models are defined below.</p>
+<pre class="r"><code>&gt; l1 &lt;- logisticFuns()
+&gt; g1 &lt;- GompertzFuns()
+&gt; r1 &lt;- RichardsFuns()</code></pre>
+<p>Unfortunately, convenience functions for finding starting values for each of these functions do not exist. Starting values may be obtained by iteratively superimposing a curve of the function at chosen values for the parameters onto a scatterplot of the raw data. This process may take considerable trial-and-error to find parameter values that provide a curve in the “neighborhood” of the data. Starting values likely only need to provide a rough fit to the data.</p>
+<p>The code below demonstrates this process for the Richards function created above in <code>r1()</code>. Note that the Richards function has four parameters – <span class="math">\(L_{\infty}\)</span>, <span class="math">\(k\)</span>, <span class="math">\(a\)</span>, and <span class="math">\(b\)</span>. Further note that I had considerable difficult finding starting values that would work with the Richards function for these data.</p>
+<pre class="r"><code>&gt; plot(tl~otoage,data=bdm,pch=19,col=rgb(0,0,0,1/4),
+       xlab=&quot;Otolith Age&quot;,ylab=&quot;Total Length (mm)&quot;)
+&gt; svR1 &lt;- list(Linf=1200,k=0.1,a=1.1,b=0.4)
+&gt; curve(r1(x,unlist(svR1)),from=3,to=42,add=TRUE,lwd=2)</code></pre>
+<p><img src="OtherGrowthFuns_files/figure-html/unnamed-chunk-6-1.png" title="" alt="" width="480" /></p>
+<p>Figure 1: Richards growth function evaluated at potential starting values superimposed on the length-at-age data for male Black Drum.</p>
+<p>A similar process (not shown) was followed for the logistic and Gompertz models.</p>
+<pre class="r"><code>&gt; svG1 &lt;- list(Linf=1250,gi=0.15,ti=2)
+&gt; svL1 &lt;- list(Linf=1250,gninf=0.15,ti=4)</code></pre>
+<p>These models may be fit and summarized as illustrated in the <strong>IFAR</strong> book. The code below is for the Richards function.</p>
+<pre class="r"><code>&gt; fitR1 &lt;- nls(tl~r1(otoage,Linf,k,a,b),data=bdm,start=svR1)
+&gt; bootR1 &lt;- nlsBoot(fitR1)</code></pre>
+<pre><code>Warning in nlsBoot(fitR1): The fit did not converge 97 times during
+bootstrapping</code></pre>
+<pre class="r"><code>&gt; cbind(Ests=coef(fitR1),confint(bootR1))</code></pre>
+<pre><code>             Ests      95% LCI      95% UCI
+Linf 1.216988e+03 1188.7345431 1249.8129807
+k    9.419418e-02    0.0670484    0.1445181
+a    1.155605e+00    0.7394841    1.2185166
+b    3.793338e-01    0.2757284    1.0795204</code></pre>
+<pre class="r"><code>&gt; predict(bootR1,r1,t=3)</code></pre>
+<pre><code>prediction    95% LCI    95% UCI 
+  559.9915   518.7943   599.4339 </code></pre>
+<p>Information criterion may be used to identify which of these models best fits the male Black Drum data. First, the von Bertalanffy (as fit in the <strong>IFAR</strong> book), Gompertz, and logistic functions are fit to the data.</p>
+<pre class="r"><code>&gt; vbTyp &lt;- vbFuns()
+&gt; svTyp &lt;- list(Linf=1193,K=0.13,t0=-2.0)
+&gt; fitTyp &lt;- nls(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp)
+&gt; fitG1 &lt;- nls(tl~g1(otoage,Linf,gi,ti),data=bdm,start=svG1)
+&gt; fitL1 &lt;- nls(tl~l1(otoage,Linf,gninf,ti),data=bdm,start=svL1)</code></pre>
+<p>These objects are then submitted to <code>AICctab</code> to provide a summary table. From this, the Richards models is most supported followed by the VBGF. The logistic and Gompertz models had little support, likely because they force an inflection point in the model which is not apparent in these data.</p>
+<pre class="r"><code>&gt; aictab(list(fitTyp,fitL1,fitG1,fitR1),c(&quot;VBGF&quot;,&quot;logistic&quot;,&quot;Gompertz&quot;,&quot;Richards&quot;))</code></pre>
+<pre><code>
+Model selection based on AICc :
+
+         K   AICc Delta_AICc AICcWt Cum.Wt      LL
+Richards 5 779.60       0.00   0.63   0.63 -384.36
+VBGF     4 780.85       1.25   0.34   0.96 -386.14
+Gompertz 4 785.34       5.74   0.04   1.00 -388.38
+logistic 4 790.33      10.73   0.00   1.00 -390.88</code></pre>
+<p>A plot of the best-fit model for each growth function (Figure 2) shows, however, that there is likely very little difference in predicted values among the four models.</p>
+<pre class="r"><code>&gt; plot(tl~otoage,data=bdm,pch=19,col=rgb(0,0,0,1/4),
+       xlab=&quot;Otolith Age&quot;,ylab=&quot;Total Length (mm)&quot;)
+&gt; curve(vbTyp(x,coef(fitTyp)),from=3,to=42,add=TRUE,lwd=6)
+&gt; curve(r1(x,coef(fitR1)),from=3,to=42,add=TRUE,lwd=4,col=&quot;blue&quot;)
+&gt; curve(g1(x,coef(fitG1)),from=3,to=42,add=TRUE,lwd=2,col=&quot;red&quot;)
+&gt; curve(l1(x,coef(fitL1)),from=3,to=42,add=TRUE,col=&quot;orange&quot;)</code></pre>
+<p><img src="OtherGrowthFuns_files/figure-html/unnamed-chunk-12-1.png" title="" alt="" width="480" /></p>
+<p>Figure 2: Fitted models for the von Bertalanffy (black), Richards (blue), Gompertz (red), and logistic (orange) growth functions fit to the male Black Drum data.</p>
+<p> </p>
+<hr />
+</div>
+<div id="reproducibility-information" class="section level2">
+<h2>Reproducibility Information</h2>
+<ul>
+<li><strong>Compiled Date:</strong> Fri Nov 06 2015</li>
+<li><strong>Compiled Time:</strong> 9:26:01 AM</li>
+<li><strong>R Version:</strong> R version 3.2.2 (2015-08-14)</li>
+<li><strong>System:</strong> Windows, i386-w64-mingw32/i386 (32-bit)</li>
+<li><strong>Base Packages:</strong> base, datasets, graphics, grDevices, methods, stats, utils</li>
+<li><strong>Required Packages:</strong> FSA, dplyr, nlstools, AICcmodavg, captioner, knitr and their dependencies (assertthat, car, DBI, digest, evaluate, formatR, gdata, gplots, graphics, grDevices, highr, Hmisc, lattice, lazyeval, magrittr, markdown, MASS, Matrix, methods, nlme, plotrix, plyr, R6, Rcpp, sciplot, stats, stats4, stringr, tools, unmarked, utils, VGAM, xtable, yaml)</li>
+<li><strong>Other Packages:</strong> AICcmodavg_2.0-3, captioner_2.2.3, dplyr_0.4.3, extrafont_0.17, FSA_0.8.4, knitr_1.11, nlstools_1.0-2</li>
+<li><strong>Loaded-Only Packages:</strong> assertthat_0.1, DBI_0.3.1, digest_0.6.8, evaluate_0.8, extrafontdb_1.0, formatR_1.2.1, gdata_2.17.0, grid_3.2.2, gtools_3.5.0, htmltools_0.2.6, lattice_0.20-33, lazyeval_0.1.10, magrittr_1.5, MASS_7.3-44, Matrix_1.2-2, nlme_3.1-122, parallel_3.2.2, plyr_1.8.3, R6_2.1.1, raster_2.4-20, Rcpp_0.12.1, reshape_0.8.5, rmarkdown_0.8.1, Rttf2pt1_1.3.3, sp_1.2-1, splines_3.2.2, stats4_3.2.2, stringi_1.0-1, stringr_1.0.0, tools_3.2.2, unmarked_0.11-0, VGAM_1.0-0, xtable_1.7-4, yaml_2.1.13</li>
+<li><strong>Links:</strong> <a href="OtherGrowthFuns.R">Script</a> / <a href="OtherGrowthFuns.Rmd">RMarkdown</a></li>
+</ul>
+<hr />
+<p> </p>
+<div class="references">
+<h2>References</h2>
+<p>Gompertz, B. 1825. On the nature of the function expressive of the law of human mortality and on a new mode of determining the value of life contingencies. Philosophical Transactions of the Royal Society of London 115:515–585.</p>
+<p>Richards, F. 1959. A flexible growth function for empirical use. Journal of Experimental Botany 10:290–300.</p>
+<p>Ricker, W. E. 1975. Computation and interpretation of biological statistics of fish populations. Bulletin of the Fisheries Research Board of Canada.</p>
+<p>Schnute, J. 1981. A versatile growth model with statistically stable parameters. Canadian Journal of Fisheries and Aquatic Sciences 38:1128–1140.</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

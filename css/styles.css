@@ -1,0 +1,14 @@
+/* css styles */
+
+/* #### DHO added the following #### */
+
+/* Makes the text on the 404 page a little larger */
+.notfound-text {
+  font-size: 125%;
+  padding-bottom: 50px;
+}
+
+/* Creates a transparent background on dedication carousel caption so text is visible */
+.carousel-caption{
+    background: rgba(0,0,0,0.5);
+}

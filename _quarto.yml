@@ -1,0 +1,33 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "IFAR"
+  favicon: /img/IFARCover_small.jpg
+  site-url: https://droglenc.github.io/IFAR/
+  repo-url: https://droglenc.github.io/IFAR
+  repo-actions: []
+  navbar:
+    title: "Introductory Fisheries Analyses with R by Derek H. Ogle"
+    background: "#2B0828"
+    foreground: white
+  search: false
+  page-footer:
+    background: "#2B0828"
+    foreground: white
+  comments: false
+  open-graph: true
+format:
+  html:
+    theme: litera
+    css: css/styles.css
+    link-external-icon: true
+    link-external-newwindow: true
+    smooth-scroll: true
+    title-block-banner: false
+    toc: true
+highlight-style: github
+date-format: medium
+execute: 
+  freeze: auto

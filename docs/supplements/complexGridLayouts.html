@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Derek H. Ogle">
+
+<title>IFAR - Complex Grid Layouts</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<link href="..//img/IFARCover_small.jpg" rel="icon" type="image/jpeg">
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../css/styles.css">
+<meta property="og:title" content="IFAR - Complex Grid Layouts">
+<meta property="og:description" content="Several methods for modifying base graphics were shown in Ogle (2016), including simple layouts (side-by-side, one-over-the-other) of multiple plots. More complex layouts (e.g.">
+<meta property="og:site-name" content="IFAR">
+<meta name="citation_title" content="Complex Grid Layouts">
+<meta name="citation_author" content="Derek H. Ogle">
+<meta name="citation_fulltext_html_url" content="https://droglenc.github.io/IFAR//supplements/complexGridLayouts.html">
+<meta name="citation_language" content="en">
+<meta name="citation_reference" content="citation_title=Introductory Fisheries Analyses with R;,citation_author=Derek H. Ogle;,citation_publication_date=2016;,citation_cover_date=2016;,citation_year=2016;,citation_fulltext_html_url=http://derekogle.com/IFAR/book/;">
+<meta name="citation_reference" content="citation_title=On the Dynamics of Exploited Fish Populations;,citation_author=R. J. H. Beverton;,citation_author=S. J. Holt;,citation_publication_date=1957;,citation_cover_date=1957;,citation_year=1957;,citation_volume=19;,citation_series_title=Fisheries Investigations (Series 2);">
+<meta name="citation_reference" content="citation_title=Standard intercepts for calculating lengths from scale measurements for some centrarchid and percid fishes;,citation_author=K. D. Carlander;,citation_publication_date=1982;,citation_cover_date=1982;,citation_year=1982;,citation_volume=111;,citation_journal_title=Transactions of the American Fisheries Society;">
+<meta name="citation_reference" content="citation_title=Minpack.lm: R Interface to the Levenberg-Marquardt Nonlinear Least-Squares Algorithm Found in MINPACK, Plus Support for Bounds;,citation_author=Timur V. Elzhov;,citation_author=Katharine M. Mullen;,citation_author=Andrej-Nikolai Spiess;,citation_author=Ben M. Bolker;,citation_publication_date=2013;,citation_cover_date=2013;,citation_year=2013;,citation_fulltext_html_url=http://CRAN.R-project.org/package=minpack.lm;">
+<meta name="citation_reference" content="citation_title=Are growth parameters estimated from tagging and age-length data comparable?;,citation_author=R. I. C. C. Francis;,citation_publication_date=1988;,citation_cover_date=1988;,citation_year=1988;,citation_volume=45;,citation_journal_title=Canadian Journal of Fisheries and Aquatic Sciences;">
+<meta name="citation_reference" content="citation_title=Back-calculation of fish length: A critical review;,citation_author=R. I. C. C. Francis;,citation_publication_date=1990;,citation_cover_date=1990;,citation_year=1990;,citation_volume=36;,citation_journal_title=Journal of Fish Biology;">
+<meta name="citation_reference" content="citation_title=Growth of the spring salmon;,citation_author=C. McL. Fraser;,citation_publication_date=1916;,citation_cover_date=1916;,citation_year=1916;,citation_volume=1915;,citation_journal_title=Transactions of the Pacific Fisheries Society;">
+<meta name="citation_reference" content="citation_title=On the nature of the function expressive of the law of human mortality and on a new mode of determining the value of life contingencies.;,citation_author=B. Gompertz;,citation_publication_date=1825;,citation_cover_date=1825;,citation_year=1825;,citation_volume=115;,citation_journal_title=Philosophical Transactions of the Royal Society of London;">
+<meta name="citation_reference" content="citation_title=Dates and times made easy with lubridate;,citation_author=Garrett Grolemund;,citation_author=Hadley Wickham;,citation_publication_date=2011;,citation_cover_date=2011;,citation_year=2011;,citation_fulltext_html_url=http://www.jstatsoft.org/v40/i03/;,citation_issue=3;,citation_volume=40;,citation_journal_title=Journal of Statistical Software;">
+<meta name="citation_reference" content="citation_title=nls2: Non-Linear Regression with Brute Force;,citation_author=G. Grothendieck;,citation_publication_date=2013;,citation_cover_date=2013;,citation_year=2013;,citation_fulltext_html_url=http://CRAN.R-project.org/package=nls2;">
+<meta name="citation_reference" content="citation_title=On the methods used in the Herring-investigations.;,citation_author=E. Lea;,citation_publication_date=1910;,citation_cover_date=1910;,citation_year=1910;,citation_issue=1;,citation_volume=108;,citation_journal_title=Publ. Circonst. Cons. perm. int. Explor. Mer;">
+<meta name="citation_reference" content="citation_title=A review of the methods of age and growth determination in fishes by means of scales.;,citation_author=R. M. Lee;,citation_publication_date=1920;,citation_cover_date=1920;,citation_year=1920;,citation_issue=(2);,citation_volume=4;,citation_journal_title=Fisheries Investigations, London Series 2;">
+<meta name="citation_reference" content="citation_title=Analysis and comparison of fish growth from small samples of length-at-age data: Detection of sexual dimorphism in Eurasian Perch as an example;,citation_author=W. M. Mooij;,citation_author=J. M. Van Rooij;,citation_author=S. Wijnhoven;,citation_publication_date=1999;,citation_cover_date=1999;,citation_year=1999;,citation_volume=128;,citation_journal_title=Transactions of the American Fisheries Society;">
+<meta name="citation_reference" content="citation_title=Fitting curves to data using nonlinear regression: A practical and nonmathematical review;,citation_abstract=Many types of data are best analyzed by fitting a curve using nonlinear regression, and computer programs that perform these calculations are readily available. Like every scientific technique, however, a nonlinear regression program can produce misleading results when used inappropriately. This article reviews the use of nonlinear regression in a practical and nonmathematical manner to answer the following questions: Why is nonlinear regression superior to linear regression of transformed data? How does nonlinear regression differ from polynomial regression and cubic spline? How do nonlinear regression programs work? What choices must an investigator make before performing nonlinear regression? What do the final results mean? How can two sets of data or two fits to one set of data be compared? What problems can cause the results to be wrong? This review is designed to demystify nonlinear regression so that both its power and its limitations will be appreciated.;,citation_author=H. J. Motulsky;,citation_author=L. A. Ransnas;,citation_publication_date=1987;,citation_cover_date=1987;,citation_year=1987;,citation_fulltext_html_url=http://www.fasebj.org/content/1/5/365.full.pdf+html;,citation_volume=1;,citation_journal_title=The Federation of American Societies for Experimental Biology Journal;">
+<meta name="citation_reference" content="citation_title=Nlmrt: Functions for Nonlinear Least Squares Solutions;,citation_author=John C. Nash;,citation_publication_date=2014;,citation_cover_date=2014;,citation_year=2014;,citation_fulltext_html_url=http://CRAN.R-project.org/package=nlmrt;">
+<meta name="citation_reference" content="citation_title=Ruffe length-weight relationships with a proposed standard weight equation;,citation_author=D. H. Ogle;,citation_author=I. J. Winfield;,citation_publication_date=2009;,citation_cover_date=2009;,citation_year=2009;,citation_fulltext_html_url=http://www.tandfonline.com/doi/abs/10.1577/M08-176.1#.U6ojzvldV8E;,citation_volume=29;,citation_journal_title=North American Journal of Fisheries Management;">
+<meta name="citation_reference" content="citation_title=Methods for Assessing Fish Populations;,citation_author=Kevin L. Pope;,citation_author=Steve E. Lochmann;,citation_author=Michael K. Young;,citation_editor=W. A. Hubert;,citation_editor=M. C. Quist;,citation_publication_date=2010;,citation_cover_date=2010;,citation_year=2010;,citation_inbook_title=Inland Fisheries Management in North America;">
+<meta name="citation_reference" content="citation_title=A flexible growth function for empirical use;,citation_author=F. J. Richards;,citation_publication_date=1959;,citation_cover_date=1959;,citation_year=1959;,citation_volume=10;,citation_journal_title=Journal of Experimental Botany;">
+<meta name="citation_reference" content="citation_title=Computation and Interpretation of Biological Statistics of Fish Populations;,citation_author=W. E. Ricker;,citation_publication_date=1975;,citation_cover_date=1975;,citation_year=1975;,citation_technical_report_institution=Bulletin of the Fisheries Research Board of Canada;,citation_technical_report_number=Bulletin 191;">
+<meta name="citation_reference" content="citation_title=A versatile growth model with statistically stable parameters;,citation_author=J. Schnute;,citation_publication_date=1981;,citation_cover_date=1981;,citation_year=1981;,citation_volume=38;,citation_journal_title=Canadian Journal of Fisheries and Aquatic Sciences;">
+<meta name="citation_reference" content="citation_title=A unified approach to the analysis of fish growth, maturity, and survivorship data;,citation_author=J. T. Schnute;,citation_author=L. J. Richards;,citation_publication_date=1990;,citation_cover_date=1990;,citation_year=1990;,citation_volume=47;,citation_journal_title=Canadian Journal of Fisheries and Aquatic Sciences;">
+<meta name="citation_reference" content="citation_title=The back-calculation of fish growth from otoliths;,citation_author=L. Vigliola;,citation_author=M. G. Meekan;,citation_editor=B. S. Green;,citation_editor=B. D. Mapstone;,citation_editor=G. Carlos;,citation_editor=G. A. Begg;,citation_publication_date=2009;,citation_cover_date=2009;,citation_year=2009;,citation_inbook_title=Tropical Fish Otoliths: Information for Assessment, Management, and Ecology;,citation_series_title=Reviews: Methods and Technologies in Fish Biology and Fisheries;">
+<meta name="citation_reference" content="citation_title=A quantitative theory of organic growth (inquiries on growth laws II);,citation_author=L. Bertalanffy;,citation_publication_date=1938;,citation_cover_date=1938;,citation_year=1938;,citation_volume=10;,citation_journal_title=Human Biology;">
+<meta name="citation_reference" content="citation_title=Using hard-part increment data to estimate age and environmental effects;,citation_author=S. Weisberg;,citation_publication_date=1993;,citation_cover_date=1993;,citation_year=1993;,citation_issue=6;,citation_volume=50;,citation_journal_title=Canadian Journal of Fisheries and Aquatic Sciences;">
+<meta name="citation_reference" content="citation_title=Interpretation of body-scale regression for computing body length of fish.;,citation_author=R. R. Whitney;,citation_author=K. D. Carlander;,citation_publication_date=1956;,citation_cover_date=1956;,citation_year=1956;,citation_volume=20;,citation_journal_title=Journal of Wildlife Management;">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Introductory Fisheries Analyses with R by Derek H. Ogle</span>
+    </a>
+  </div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#complex-grid-layouts-with-layout" id="toc-complex-grid-layouts-with-layout" class="nav-link active" data-scroll-target="#complex-grid-layouts-with-layout">Complex Grid Layouts with <code>layout()</code></a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Complex Grid Layouts</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Derek H. Ogle </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Several methods for modifying base graphics were shown in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>, including simple layouts (side-by-side, one-over-the-other) of multiple plots. More complex layouts (e.g., plot in first row spans two columns or unequal sized plots) are described in this supplement. Creating common x- and y-axis labels for a grid of plots is <a href="commonAxisLabels.html">described in this supplement</a>.</p>
+<p>A single function is used from <code>dplyr</code> in this supplement; thus, <code>::</code> is used instead of loading the entire package. The <code>FSA</code> package is loaded here to provide access to the modified <code>hist()</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FSA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>BullTroutRML2</code> and <code>BloaterLH</code> data from <code>FSAdata</code> used in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span> are also used here.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(BullTroutRML2,<span class="at">package=</span><span class="st">"FSAdata"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(BloaterLH,<span class="at">package=</span><span class="st">"FSAdata"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="complex-grid-layouts-with-layout" class="level1 page-columns page-full">
+<h1>Complex Grid Layouts with <code>layout()</code></h1>
+<p>The <code>layout()</code> function allows for more complicated organizations of plots. The only required argument to <code>layout()</code> is a matrix that specifies the positions, as a grid, for a series of plots. The numbers in the matrix describe which sequential plot will appear in that position. For example, the following code constructs a 2x2 grid for four plots where the first plot will appear in the lower-right corner and the last (fourth) plot will appear in the upper-left corner.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>( m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">1</span>,<span class="at">nrow=</span><span class="dv">2</span>,<span class="at">byrow=</span><span class="cn">TRUE</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#R|       [,1] [,2]
+#R|  [1,]    4    3
+#R|  [2,]    2    1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">layout</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>layout.show()</code> function is used to show the layout grid. Its only argument is the number of positions to show. The example below illustrates the layout created above.</p>
+<div class="cell page-columns page-full" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">layout.show</span>(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display page-columns page-full">
+<div id="fig-Layout1" class="quarto-figure quarto-figure-center anchored page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="complexGridLayouts_files/figure-html/fig-Layout1-1.png" class="img-fluid figure-img" width="384"></p>
+<p></p><figcaption class="figure-caption margin-caption">Figure&nbsp;1: Illustration of 2x2 layout grid for graphics.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The 2x2 grid in <a href="#fig-Layout1">Figure&nbsp;1</a> is not that interesting because that layout is just as easily constructed with <code>mfrow=</code> in <code>par()</code> (as shown in the <strong>IFAR</strong> book). Layouts, however, can also be constructed that are not “grids.” For example, the entire first row may be one plot with a second row of two plots. This layout grid is constructed by including a “1” in the first two positions of the layout matrix (<a href="#fig-Layout2">Figure&nbsp;2</a>).</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>( m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),<span class="at">nrow=</span><span class="dv">2</span>,<span class="at">byrow=</span><span class="cn">TRUE</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#R|       [,1] [,2]
+#R|  [1,]    1    1
+#R|  [2,]    2    3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">layout</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell page-columns page-full" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">layout.show</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display page-columns page-full">
+<div id="fig-Layout2" class="quarto-figure quarto-figure-center anchored page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="complexGridLayouts_files/figure-html/fig-Layout2-1.png" class="img-fluid figure-img" width="384"></p>
+<p></p><figcaption class="figure-caption margin-caption">Figure&nbsp;2: Illustration of layout grid for graphics with one plot in the first row and two in the second row.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The following code fills this layout grid to produce <a href="#fig-Layout3">Figure&nbsp;3</a>.</p>
+<div class="cell page-columns page-full" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">3.05</span>,<span class="fl">3.05</span>,<span class="fl">0.65</span>,<span class="fl">0.65</span>),<span class="at">mgp=</span><span class="fu">c</span>(<span class="fl">1.9</span>,<span class="fl">0.3</span>,<span class="dv">0</span>),<span class="at">tcl=</span><span class="sc">-</span><span class="fl">0.2</span>,<span class="at">las=</span><span class="dv">1</span>,</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">cex.lab=</span><span class="fl">0.95</span>,<span class="at">cex.axis=</span><span class="fl">0.9</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(age3<span class="sc">~</span>eggs,<span class="at">data=</span>BloaterLH,<span class="at">pch=</span><span class="dv">19</span>,<span class="at">xlab=</span><span class="st">"Millions of Eggs"</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">"Relative Abundance of Age-3 Fish"</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="sc">~</span>eggs,<span class="at">data=</span>BloaterLH,<span class="at">xlab=</span><span class="st">"Millions of Eggs"</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="sc">~</span>age3,<span class="at">data=</span>BloaterLH,<span class="at">xlab=</span><span class="st">"Age-3 Relative Abundance"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display page-columns page-full">
+<div id="fig-Layout3" class="quarto-figure quarto-figure-center anchored page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="complexGridLayouts_files/figure-html/fig-Layout3-1.png" class="img-fluid figure-img" width="768"></p>
+<p></p><figcaption class="figure-caption margin-caption">Figure&nbsp;3: Illustration of a plot with one subplot in the first row and two in the second row.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>&nbsp;</p>
+<p>The size of the plots in the layout may be controlled with <code>height=</code> and <code>width=</code>. These arguments accept vectors that represent the <strong>relative</strong> heights and widths of the rows and columns in the layout grid, respectively. For example, <code>height=c(3,1)</code> sets the height of the first row to be three times larger than the height of the second row. Including the <code>respect=TRUE</code> argument will assure that “unit distances” in the horizontal and vertical directions are treated the same. An example layout with different cell sizes is constructed below and shown in <a href="#fig-Layout4">Figure&nbsp;4</a>. Also note in this example, that a zero in a cell means that that cell will not receive a plot.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>( m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">3</span>),<span class="at">nrow=</span><span class="dv">2</span>,<span class="at">byrow=</span><span class="cn">TRUE</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#R|       [,1] [,2]
+#R|  [1,]    2    0
+#R|  [2,]    1    3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">layout</span>(m,<span class="at">height=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>),<span class="at">width=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">1</span>),<span class="at">respect=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell page-columns page-full" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">layout.show</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display page-columns page-full">
+<div id="fig-Layout4" class="quarto-figure quarto-figure-center anchored page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="complexGridLayouts_files/figure-html/fig-Layout4-1.png" class="img-fluid figure-img" width="384"></p>
+<p></p><figcaption class="figure-caption margin-caption">Figure&nbsp;4: Illustration of layout grid for plots with differing row heights and column widths.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-Layout5">Figure&nbsp;5</a> is an example that fills the layout shown in <a href="#fig-Layout4">Figure&nbsp;4</a>.</p>
+<div class="cell page-columns page-full" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(age3<span class="sc">~</span>eggs,<span class="at">data=</span>BloaterLH,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">2.4</span>),<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">240</span>),<span class="at">pch=</span><span class="dv">19</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">"Relative Abundance of Age-3 Fish"</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Millions of Eggs"</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">4</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(BloaterLH<span class="sc">$</span>eggs,<span class="at">axes=</span><span class="cn">FALSE</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">2.4</span>),<span class="at">horizontal=</span><span class="cn">TRUE</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(BloaterLH<span class="sc">$</span>age3,<span class="at">axes=</span><span class="cn">FALSE</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">240</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display page-columns page-full">
+<div id="fig-Layout5" class="quarto-figure quarto-figure-center anchored page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="complexGridLayouts_files/figure-html/fig-Layout5-1.png" class="img-fluid figure-img" width="384"></p>
+<p></p><figcaption class="figure-caption margin-caption">Figure&nbsp;5: Illustration of layout grid with differing heights and widths such that a scatterplot appears in the ‘middle’ with corresponding boxplots on the ‘sides.’</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>&nbsp;</p>
+<p>Finally, <code>layout()</code> may be used to make quite complex grids, as illustrated with the code below that produced <a href="#fig-Layout6">Figure&nbsp;6</a>. Note that <code>plot.new()</code> creates a new blank plot in which the subsequent <code>text()</code> commands will place text (in this case marginal labels).</p>
+<div class="cell page-columns page-full" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>BTH1 <span class="ot">&lt;-</span> BullTroutRML2 <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(lake<span class="sc">==</span><span class="st">"Harrison"</span>,era<span class="sc">==</span><span class="st">"1977-80"</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>BTO1 <span class="ot">&lt;-</span> BullTroutRML2 <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(lake<span class="sc">==</span><span class="st">"Osprey"</span>,era<span class="sc">==</span><span class="st">"1977-80"</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>BTH2 <span class="ot">&lt;-</span> BullTroutRML2 <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(lake<span class="sc">==</span><span class="st">"Harrison"</span>,era<span class="sc">==</span><span class="st">"1997-01"</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>BTO2 <span class="ot">&lt;-</span> BullTroutRML2 <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(lake<span class="sc">==</span><span class="st">"Osprey"</span>,era<span class="sc">==</span><span class="st">"1997-01"</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>( m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">8</span>),<span class="at">nrow=</span><span class="dv">3</span>,<span class="at">byrow=</span><span class="cn">TRUE</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#R|       [,1] [,2] [,3]
+#R|  [1,]    0    1    2
+#R|  [2,]    3    5    6
+#R|  [3,]    4    7    8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">layout</span>(m,<span class="at">height=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">8</span>,<span class="dv">8</span>),<span class="at">width=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">8</span>,<span class="dv">8</span>),<span class="at">respect=</span><span class="cn">TRUE</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.new</span>(); <span class="fu">text</span>(<span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="st">"Harrison"</span>,<span class="at">cex=</span><span class="fl">1.5</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.new</span>(); <span class="fu">text</span>(<span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="st">"Osprey"</span>,<span class="at">cex=</span><span class="fl">1.5</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.new</span>(); <span class="fu">text</span>(<span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="st">"Era = 1977-1980"</span>,<span class="at">cex=</span><span class="fl">1.5</span>,<span class="at">srt=</span><span class="dv">90</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.new</span>(); <span class="fu">text</span>(<span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="st">"Era = 1997-2001"</span>,<span class="at">cex=</span><span class="fl">1.5</span>,<span class="at">srt=</span><span class="dv">90</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="fl">3.05</span>,<span class="fl">3.05</span>,<span class="fl">0.65</span>,<span class="fl">0.65</span>),<span class="at">mgp=</span><span class="fu">c</span>(<span class="fl">1.7</span>,<span class="fl">0.5</span>,<span class="dv">0</span>))</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>xlmt <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.5</span>,<span class="fl">14.5</span>)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>ylmt <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">700</span>)</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fl<span class="sc">~</span>age,<span class="at">data=</span>BTH1,<span class="at">xlab=</span><span class="st">""</span>,<span class="at">ylab=</span><span class="st">"Fork Length"</span>,</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">19</span>,<span class="at">xlim=</span>xlmt,<span class="at">ylim=</span>ylmt)</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fl<span class="sc">~</span>age,<span class="at">data=</span>BTO1,<span class="at">xlab=</span><span class="st">""</span>,<span class="at">ylab=</span><span class="st">""</span>,</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">19</span>,<span class="at">xlim=</span>xlmt,<span class="at">ylim=</span>ylmt)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fl<span class="sc">~</span>age,<span class="at">data=</span>BTH2,<span class="at">xlab=</span><span class="st">"Age"</span>,<span class="at">ylab=</span><span class="st">"Fork Length"</span>,</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">19</span>,<span class="at">xlim=</span>xlmt,<span class="at">ylim=</span>ylmt)</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fl<span class="sc">~</span>age,<span class="at">data=</span>BTO2,<span class="at">xlab=</span><span class="st">"Age"</span>,<span class="at">ylab=</span><span class="st">""</span>,</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">19</span>,<span class="at">xlim=</span>xlmt,<span class="at">ylim=</span>ylmt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display page-columns page-full">
+<div id="fig-Layout6" class="quarto-figure quarto-figure-center anchored page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="complexGridLayouts_files/figure-html/fig-Layout6-1.png" class="img-fluid figure-img" width="768"></p>
+<p></p><figcaption class="figure-caption margin-caption">Figure&nbsp;6: Illustration of layout grid with differing heights and widths such that labels can be placed on the sides.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-ogleIntroductoryFisheriesAnalyses2016" class="csl-entry" role="doc-biblioentry">
+Ogle, D. H. 2016. <a href="http://derekogle.com/IFAR/book/">Introductory <span>Fisheries</span> <span>Analyses</span> with <span>R</span></a>. CRC Press, Boca Raton, FL.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp(/https:\/\/droglenc\.github\.io\/IFAR\//);
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

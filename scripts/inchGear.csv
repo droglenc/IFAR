@@ -1,0 +1,104 @@
+netID,netType,year,month,day,temp,unitsOfEffort
+1,angling,2007,May,13,,5.5
+2,angling,2007,May,13,,8.25
+3,angling,2007,May,14,,0.5
+4,fyke,2007,May,14,63,1
+5,fyke,2007,May,14,64,1
+6,fyke,2007,May,14,64,1
+7,fyke,2007,May,14,64,1
+8,fyke,2007,May,14,62,1
+9,fyke,2007,May,14,64,1
+10,fyke,2007,May,14,64,1
+11,fyke,2007,May,14,65,1
+12,seine,2007,May,14,,1
+13,seine,2007,May,14,,1
+14,seine,2007,May,14,,1
+15,fyke,2007,May,15,,1
+16,fyke,2007,May,15,63,1
+17,fyke,2007,May,15,63,1
+18,fyke,2007,May,15,63,1
+19,fyke,2007,May,15,64,1
+20,fyke,2007,May,15,62,1
+21,fyke,2007,May,15,62,1
+22,fyke,2007,May,15,63,1
+23,fyke,2007,May,16,60,1
+25,fyke,2007,May,16,61,1
+26,fyke,2007,May,16,61,1
+27,fyke,2007,May,16,60,1
+28,fyke,2007,May,16,61,1
+29,angling,2007,May,17,,6
+30,angling,2007,May,17,,8.125
+31,angling,2007,May,24,,0.5
+32,seine,2007,May,24,,1
+33,seine,2007,May,24,,1
+34,seine,2007,May,24,,1
+35,angling,2007,May,25,64,5.25
+36,angling,2007,May,26,,11.375
+37,angling,2007,May,28,,10
+39,seine,2007,May,29,,1
+40,seine,2007,May,29,67,1
+41,seine,2007,May,29,,1
+42,seine,2007,May,29,,1
+43,seine,2007,May,29,67,1
+44,seine,2007,May,29,,1
+45,seine,2007,May,29,,1
+46,seine,2007,May,29,,1
+101,fyke,2008,May,5,46,1
+102,fyke,2008,May,5,47,1
+103,fyke,2008,May,5,48,1
+104,fyke,2008,May,5,47,1
+105,fyke,2008,May,5,46,1
+106,fyke,2008,May,5,48,1
+107,fyke,2008,May,5,,1
+108,fyke,2008,May,5,47,1
+109,angling,2008,May,22,60,7.5
+110,angling,2008,May,23,58,5
+111,fyke,2008,May,6,49,1
+112,fyke,2008,May,6,,1
+113,fyke,2008,May,6,53,1
+114,fyke,2008,May,6,53,1
+115,fyke,2008,May,6,47,1
+116,fyke,2008,May,6,,1
+117,fyke,2008,May,6,50,1
+119,fyke,2008,May,7,55,1
+120,fyke,2008,May,7,58,1
+121,fyke,2008,May,7,51,1
+122,fyke,2008,May,7,52,1
+124,fyke,2008,May,7,51,1
+125,fyke,2008,May,7,52,1
+127,fyke,2008,May,7,53,1
+129,angling,2008,May,26,62,4
+130,angling,2008,May,27,60,5.25
+131,angling,2008,June,6,62,4
+151,minnow trap,2008,May,5,,1
+152,minnow trap,2008,May,5,,1
+153,minnow trap,2008,May,5,,1
+154,minnow trap,2008,May,5,49,1
+155,minnow trap,2008,May,5,,1
+161,minnow trap,2008,May,6,,1
+162,minnow trap,2008,May,6,,1
+163,minnow trap,2008,May,6,,1
+164,minnow trap,2008,May,6,,1
+165,minnow trap,2008,May,6,,1
+201,seine,2008,May,5,49,1
+202,seine,2008,May,5,50,1
+203,seine,2008,May,5,52,1
+204,seine,2008,May,5,53,1
+205,seine,2008,May,5,50,1
+206,seine,2008,May,5,,1
+207,seine,2008,May,7,51,1
+208,seine,2008,May,7,,1
+209,seine,2008,May,7,,1
+210,seine,2008,May,7,,1
+211,seine,2008,May,7,,1
+212,seine,2008,May,7,,1
+213,seine,2008,May,7,,1
+214,seine,2008,May,7,,1
+215,seine,2008,May,7,,1
+217,seine,2008,May,7,,1
+218,seine,2008,May,7,,1
+219,seine,2008,May,7,,1
+220,seine,2008,May,7,,1
+221,seine,2008,May,7,,1
+222,seine,2008,May,7,,1
+223,seine,2008,May,7,,1

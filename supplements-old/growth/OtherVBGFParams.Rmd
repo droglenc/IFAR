@@ -1,0 +1,163 @@
+---
+layout: page
+title: Individual Growth
+subtitle: Other VBGF Parameterizations
+author: Derek H. Ogle
+css: "/css/codebox.css"
+csl: ../american-fisheries-society.csl
+bibliography: ../IFARSupplement.bib
+output: 
+  html_document: 
+    fig_width: 5
+    self_contained: no
+---
+```{r echo=FALSE, eval=FALSE}
+##############################################################
+# == BEGIN -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
+# First line renders an appropriate HTML file for the webpage
+# Second line makes the script file
+# RUN BOTH MANUALLY (following using Knit HTML button)
+setwd("C:/aaaWork/Web/GitHub/IFAR/supplements/growth")
+source("../../rhelpers/IFARhelpers.R")
+modHTML("OtherVBGFParams",need2render=FALSE)
+if (require(FSA)) purl2("OtherVBGFParams.Rmd",topnotes="User must set working directory appropriately.")
+# == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
+##############################################################
+```
+
+The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the function were illustrated in Chapter 12 of the [*Introductory Fisheries Analyses with R*](http://derekogle.com/IFAR/) (IFAR) book.  The VBGF used there is from @BevertonHolt1957 and is called the "Typical" parameterization of the VBGF.  The VBGF can be expressed in alternative forms that are called parameterizations.  The most common parameterizations of the VBGF may be seen with `vbModels()` from `FSA`.
+
+Different parameterizations do not fit the data differently.  In other words, all parameterizations of the VBGF have the same number of parameters and will produce the same predicted values and fitted model plots.  However, different parameterizations have different function parameters that may be of interest to the fisheries scientist for biological reasons or because they have useful statistical properties.  For example, the parameterizations of @vonBertalanffy1938 and @Mooijetal1999 both use $L_{0}$, which is the mean length at time 0 (i.e., at "hatch").  Thus, either of these parameterizations could be used if the $L_{0}$ parameter was of biological interest.  In contrast, the parameters in the parameterizations of @Schnute1981 and @Francis1988 are either largely or wholly based on expected values, which are generally less correlated.  Thus, if one wants to avoid the problems associated with highly correlated parameters (as discussed in the **IFAR** book) and is not interested in the parameters of the other parameterizations, then either of these two parameterizations may be used.
+
+The parametarization of @Francis1988 will be fit in this supplement to illustrate fitting other than the "Typical" parameterization used in Chapter 12 of the **IFAR** book.  Other supplements demonstrate how to  [fit other growth functions](OtherGrowthFuns.html) and [use alternative nonlinear model fitting algorithms](OtherNLAlgorithms.html).
+
+\ 
+
+### Required Packages for this Supplement
+Functions used in this supplement require the packages shown below.
+
+```{r echo=FALSE, results='hide', message=FALSE, warnings=FALSE}
+##############################################################
+# == BEGIN -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
+# 
+# Setup of knitr
+source("../../rhelpers/knitr_setup.R")
+# declare packages used
+rqrd <- c("FSA","dplyr","nlstools","captioner","knitr")
+# setup figure, table, and equation captioning
+library(captioner)
+figcaps <- captioner(prefix="Figure")
+figcaps("","")
+# == END -- NOT SHOWN IN SUPPLEMENT, FOR PRINTING ONLY =====
+##############################################################
+```
+```{r cache=FALSE, results='hide', message=FALSE}
+library(FSA)
+library(dplyr)
+library(nlstools)
+```
+
+### Data Used in this Supplement
+  
+The male Black Drum data ([view](https://github.com/droglenc/FSAdata/blob/master/data-raw/BlackDrum2001.csv), [download](https://raw.githubusercontent.com/droglenc/FSAdata/master/data-raw/BlackDrum2001.csv), [meta-data](http://derekogle.com/fishR/data/data-html/BlackDrum2001.html)) used in the **IFAR** book are also used in this supplement.
+```{r}
+bdmf <- read.csv("BlackDrum2001.csv") %>%
+  select(-c(spname,day,weight)) %>%
+  filterD(sex %in% c("male","female"),otoage<50)
+bdm <- filterD(bdmf,sex=="male")
+headtail(bdm)
+```
+
+\ 
+
+## Fitting Other VBGF Parameterizations
+
+### Original Parameterization
+
+The parameterization originally proposed by @vonBertalanffy1938 is defined as
+
+$$ E[L|t] = L_{\infty} - (L_{\infty}-L_{0})e^{-Kt} $$
+
+where $L_{\infty}$ and $K$ are as defined for the typical parameterization and $L_{0}$ is the mean length at $t=0$.
+
+As demonstrated in the **IFAR** chapter for the "Typical" VBGF, an R function that uses the VBGF to predict length from a given age is needed.  This R function may be created by the user, but for the common parameterizations shown in `vbModels()` it is easier to use `vbFuns()` from `FSA`.  As a reminder, `vbFuns()` requires the name for the parameterization to use in quotes as the first argument.  A brief explanation of the parameters is also returned if `msg=TRUE` is included in `vbFuns()`.
+
+An R function called `vbO()` is created for the "original" parameterization below.  Note with this function that values for the three parameters may be included as a vector in `Ling=`.
+
+```{r}
+( vbO <- vbFuns("Original") )
+```
+
+
+Starting values are obtained with `vbStarts()` as described in the **IFAR** chapter.
+```{r}
+( svO <- vbStarts(tl~otoage,data=bdm,type="Original") )
+```
+
+The VBGF is fit and parameter estimates with likelihood profile confidence intervals are obtained as described in the **IFAR** book.  Bootstrapped confidence intervals and predictions may also be obtained as described in the **IFAR** book.
+```{r}
+nlsO <- nls(tl~vbO(otoage,Linf,L0,K),data=bdm,start=svO)
+cbind(Ests=coef(nlsO),confint(nlsO))
+bootO <- nlsBoot(nlsO)
+cbind(Ests=coef(nlsO),confint(bootO))
+predict(bootO,vbO,t=3)
+```
+
+\ 
+
+### Francis Parameterization
+
+The @Francis1988 parameterization is defined as
+
+$$ E[L|t] = L_{1} + (L_{3}-L_{1})\frac{1-r^{2\frac{t-t_{1}}{t_{3}-t_{1}}}}{1-r^{2}} $$
+
+where 
+
+$$ r=\frac{L_{3}-L_{2}}{L_{2}-L_{1}} $$
+
+The function parameters are $L_{1}$, $L_{2}$, and $L_{3}$, which represent the mean lengths at ages $t_{1}$, $t_{2}$, and $t_{3}$, respectively, where $t_{1}$ and $t_{3}$ are relatively young and old ages chosen by the user and $t_{2}$ is the average of $t_{1}$ and $t_{3}$.
+
+Similar to above, an R function called `vbF()` is created for the "Francis" parameterization below.  Note with this function that values for the three parameters may be included as a vector in `L1=` and that the youngest and oldest ages may be included as a vector in `t1=`.
+
+```{r}
+( vbF <- vbFuns("Francis") )
+```
+
+As stated above, the user must choose values for $t_{1}$ and $t_{3}$.  In this example, I have chosen to use the youngest and oldest ages in the data (as found with `range()`).
+```{r}
+( ages <- range(bdm$otoage) )
+```
+
+Starting values are obtained with `vbStarts()` as described in the **IFAR** chapter and above.  However, with the "Francis" parameterization, the ages that define $t_{1}$ and $t_{3}$ must also be provided in `ages2use=`.
+
+```{r}
+( svF <- vbStarts(tl~otoage,data=bdm,type="Francis",ages2use=ages) )
+```
+
+The VBGF is fit and parameter estimates with likelihood profile confidence intervals are obtained as described in the **IFAR** book, with the exception that the vector that defines the youngest and oldest ages must be supplied to `vbF()`.  Bootstrapped confidence intervals and predictions may also be obtained as described in the **IFAR** book.
+```{r}
+nlsF <- nls(tl~vbF(otoage,L1,L2,L3,t1=ages),data=bdm,start=svF)
+cbind(Ests=coef(nlsF),confint(nlsF))
+bootF <- nlsBoot(nlsF)
+cbind(Ests=coef(nlsF),confint(bootF))
+predict(bootF,vbF,t=3,t1=ages)
+```
+
+Note that the intra-parameter correlations are relatively low for this parameterization.  Additionally, the scale of the parameters in the "Francis" parameterization are usually similar.  Both of these characteristics may aid model convergence.
+```{r}
+summary(nlsF,correlation=TRUE)
+```
+
+\ 
+
+--------------------------------------------------------------
+
+```{r echo=FALSE, results='asis'}
+reproInfo(rqrdPkgs=rqrd,out="markdown",links=c(Script="OtherVBGFParams.R",RMarkdown="OtherVBGFParams.Rmd"))
+```
+
+--------------------------------------------------------------
+
+\ 
+
+## References
