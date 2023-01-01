@@ -8,7 +8,7 @@
 
 <meta name="author" content="Derek H. Ogle">
 
-<title>IFAR - Common Axis Labels on a Grid of Subplots</title>
+<title>IFAR - Other Nonlinear Model Fitting Algorithms</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -134,14 +134,15 @@ div.csl-indent {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../helpers/styles.css">
-<meta property="og:title" content="IFAR - Common Axis Labels on a Grid of Subplots">
-<meta property="og:description" content="Several methods for modifying base graphics were shown in Ogle (2016), including simple layouts (side-by-side, one-over-the-other) of multiple plots.">
+<meta property="og:title" content="IFAR - Other Nonlinear Model Fitting Algorithms">
+<meta property="og:description" content="The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the function were illustrated in Chapter 12 of Ogle (2016).">
 <meta property="og:site-name" content="IFAR">
-<meta name="citation_title" content="Common Axis Labels on a Grid of Subplots">
+<meta name="citation_title" content="Other Nonlinear Model Fitting Algorithms">
 <meta name="citation_author" content="Derek H. Ogle">
-<meta name="citation_fulltext_html_url" content="https://droglenc.github.io/IFAR//commonAxisLabels.html">
+<meta name="citation_fulltext_html_url" content="https://droglenc.github.io/IFAR//otherNLAlgorithms.html">
 <meta name="citation_language" content="en">
 <meta name="citation_reference" content="citation_title=Introductory Fisheries Analyses with R;,citation_author=Derek H. Ogle;,citation_publication_date=2016;,citation_cover_date=2016;,citation_year=2016;,citation_fulltext_html_url=http://derekogle.com/IFAR/;">
 <meta name="citation_reference" content="citation_title=On the Dynamics of Exploited Fish Populations;,citation_author=R. J. H. Beverton;,citation_author=S. J. Holt;,citation_publication_date=1957;,citation_cover_date=1957;,citation_year=1957;,citation_volume=19;,citation_series_title=Fisheries Investigations (Series 2);">
@@ -193,7 +194,15 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#common-axis-labels-on-a-grid-of-subplots" id="toc-common-axis-labels-on-a-grid-of-subplots" class="nav-link active" data-scroll-target="#common-axis-labels-on-a-grid-of-subplots">Common Axis Labels on a Grid of Subplots</a></li>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a>
+  <ul class="collapse">
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  </ul></li>
+  <li><a href="#levenberg-marquardt-algorithm" id="toc-levenberg-marquardt-algorithm" class="nav-link" data-scroll-target="#levenberg-marquardt-algorithm">Levenberg-Marquardt Algorithm</a></li>
+  <li><a href="#using-parameter-constraints" id="toc-using-parameter-constraints" class="nav-link" data-scroll-target="#using-parameter-constraints">Using Parameter Constraints</a></li>
+  <li><a href="#other-algorithms" id="toc-other-algorithms" class="nav-link" data-scroll-target="#other-algorithms">Other Algorithms</a></li>
   </ul>
 </nav>
     </div>
@@ -202,7 +211,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Common Axis Labels on a Grid of Subplots</h1>
+<h1 class="title">Other Nonlinear Model Fitting Algorithms</h1>
 </div>
 
 
@@ -223,64 +232,105 @@ div.csl-indent {
 
 </header>
 
-<p>Several methods for modifying base graphics were shown in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>, including simple layouts (side-by-side, one-over-the-other) of multiple plots. Creating common x- and y-axis labels for a grid of plots is described in this supplement. More complex layouts (e.g., plot in first row spans two columns or unequal sized plots) are <a href="complexLayouts.html">described in this supplement</a>.</p>
-<p>A single function is used from <code>dplyr</code> in this supplement; thus, <code>::</code> is used instead of loading the entire package.</p>
-<p>The <code>BullTroutRML2</code> data from <code>FSAdata</code> used in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span> are also used here.</p>
+<section id="background" class="level1">
+<h1>Background</h1>
+<p>The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the function were illustrated in Chapter 12 of <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>. The <code>nls()</code> function demonstrated in the <strong>IFAR</strong> book uses the Gauss-Newton algorithm by default. However, there are many other algorithms for fitting nonlinear functions. Two of the several algorithms coded in R are demonstrated in this supplement.</p>
+</section>
+<section id="setup" class="level1 page-columns page-full">
+<h1>Setup</h1>
+<section id="packages" class="level2">
+<h2 class="anchored" data-anchor-id="packages">Packages</h2>
+<p>Functions used in this supplement require the following packages.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(BullTroutRML2,<span class="at">package=</span><span class="st">"FSAdata"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FSA)        <span class="co"># for headtail(), vbFuns(), vbStarts()</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)      <span class="co"># for select(), filter()</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nlstools)   <span class="co"># for nlsBoot()</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(minpack.lm) <span class="co"># for nlsLM()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="common-axis-labels-on-a-grid-of-subplots" class="level1 page-columns page-full">
-<h1>Common Axis Labels on a Grid of Subplots</h1>
-<p>A common need is to plot multiple graphics in a grid-like format with one axis label that serves as the label for each graph. This can be accomplished with arguments to <code>par()</code>, but the regions of a plot must be understood first.</p>
-<p>Each plot consists of three regions – the plot area, the figure area, and the outer margin area (<a href="#fig-parEx1">Figure&nbsp;1</a>). The plot area is where the points or bars will be graphed. The area between the plot area and the figure area is where the axis ticks, labels, and title will appear. The area outside of the figure area is the outer margin area and is generally used to provide extra space around the graphic or to place text.</p>
-<div class="cell page-columns page-full" data-layout-align="center">
-<div class="cell-output-display page-columns page-full">
-<div id="fig-parEx1" class="quarto-figure quarto-figure-center anchored page-columns page-full">
-<figure class="figure page-columns page-full">
-<p><img src="commonAxisLabels_files/figure-html/fig-parEx1-1.png" class="img-fluid figure-img" width="384"></p>
-<p></p><figcaption class="figure-caption margin-caption">Figure&nbsp;1: Schematic plot that illustrates the plotting area (inside the blue box), the figure area (inside the red box), and the outer margin area (between the dark gray and red boxes).</figcaption><p></p>
-</figure>
-</div>
-</div>
-</div>
-<p>In most instances (and the default), the width of the outer margin area is 0 on all sides of the figure area such that no outer margin area exists. The size of the outer margin area is set with <code>oma=</code> in <code>par()</code>, which takes a vector of four values to serve as widths of the four sides of the outer margin area, beginning with the bottom and moving counter-clockwise. The default is <code>par(oma=c(0,0,0,0))</code>. For example, margins that are two “lines” wide on the top and bottom and one “line” wide on the left and right may be set with <code>par(oma=c(2,1,2,1))</code>.</p>
-<p>Common axis labels for multiple graphs can be placed in the outer margin area. In the example below, a 2-by-2 grid is created with <code>mfrow()</code> (as described in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>) and the bottom and left outer margin areas are increased to be two “lines” wide to allow for common x- and y-axis labels.</p>
+</section>
+<section id="data" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<div class="page-columns page-full"><p>The male <a href="https://fishr-core-team.github.io/FSAdata/reference/BlackDrum2001.html">Black Drum data</a>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> used in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span> are also used in this supplement. As in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span> a few unneeded variables are removed for simplicity, only males are examined, and a single old fish is removed by including only fish with an otolith age less than 50.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Download data with CSV link on the linked page.</p></li></div></div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>),<span class="at">oma=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>bdm <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://raw.githubusercontent.com/fishR-Core-Team/FSAdata/main/data-raw/BlackDrum2001.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(spname,day,weight)) <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex<span class="sc">==</span><span class="st">"male"</span>,otoage<span class="sc">&lt;</span><span class="dv">50</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">headtail</span>(bdm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="output"><code>#R|     year agid month     tl  sex otoage
+#R|  1  2001    1     4  787.5 male      6
+#R|  2  2001    2     5  700.0 male      5
+#R|  3  2001    8     5 1140.0 male     23
+#R|  72 2001  122     5 1175.0 male     39
+#R|  73 2001  125     6  590.0 male      4
+#R|  74 2001  127     6  530.0 male      3</code></pre>
 </div>
-<p>The four subplot areas are then populated with scatterplots (note that the x- and y-axis labels are set to empty strings to suppress labeling the axes)</p>
+</div>
+<p>&nbsp;</p>
+</section>
+</section>
+<section id="levenberg-marquardt-algorithm" class="level1 page-columns page-full">
+<h1>Levenberg-Marquardt Algorithm</h1>
+<p>The Levenberg-Marquardt (L-M) algorithm is a powerful and common method that switches between two other algorithms depending on when those algorithms perform most optimally <span class="citation" data-cites="motulsky_fitting_1987">(<a href="#ref-motulsky_fitting_1987" role="doc-biblioref">Motulsky and Ransnas 1987</a>)</span>. Most practically, the L-M algorithm appears to be quite robust to “poor” starting values.</p>
+<div class="page-columns page-full"><p>The L-M algorithm is implemented in <code>nlsLM()</code> from <code>minpack.lm</code> <span class="citation" data-cites="elzhov_minpacklm_2013">(<a href="#ref-elzhov_minpacklm_2013" role="doc-biblioref">Elzhov et al. 2013</a>)</span> and uses the same main arguments as <code>nls()</code>. For example, the “Typical” VBGF is fit (and parameter estimates, likelihood profile confidence intervals, and predictions are extracted) to the male Black Drum data below using the L-M algorithm.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;This code is the same as used in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>, except that <code>nlsLM()</code> replaced <code>nls()</code>.</p></li></div></div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>xlmts <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.5</span>,<span class="fl">14.5</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ylmts <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">700</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>BTH1 <span class="ot">&lt;-</span> BullTroutRML2 <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(lake<span class="sc">==</span><span class="st">"Harrison"</span>,era<span class="sc">==</span><span class="st">"1977-80"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fl<span class="sc">~</span>age,<span class="at">data=</span>BTH1,<span class="at">main=</span><span class="st">"Harrison, 1977-80"</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">""</span>,<span class="at">ylab=</span><span class="st">""</span>,<span class="at">pch=</span><span class="dv">19</span>,<span class="at">xlim=</span>xlmts,<span class="at">ylim=</span>ylmts)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>BTO1 <span class="ot">&lt;-</span> BullTroutRML2 <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(lake<span class="sc">==</span><span class="st">"Osprey"</span>,era<span class="sc">==</span><span class="st">"1977-80"</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fl<span class="sc">~</span>age,<span class="at">data=</span>BTO1,<span class="at">main=</span><span class="st">"Osprey, 1977-80"</span>,</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">""</span>,<span class="at">ylab=</span><span class="st">""</span>,<span class="at">pch=</span><span class="dv">19</span>,<span class="at">xlim=</span>xlmts,<span class="at">ylim=</span>ylmts)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>BTH2 <span class="ot">&lt;-</span> BullTroutRML2 <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(lake<span class="sc">==</span><span class="st">"Harrison"</span>,era<span class="sc">==</span><span class="st">"1997-01"</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fl<span class="sc">~</span>age,<span class="at">data=</span>BTH2,<span class="at">main=</span><span class="st">"Harrison, 1997-01"</span>,</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">""</span>,<span class="at">ylab=</span><span class="st">""</span>,<span class="at">pch=</span><span class="dv">19</span>,<span class="at">xlim=</span>xlmts,<span class="at">ylim=</span>ylmts)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>BTO2 <span class="ot">&lt;-</span> BullTroutRML2 <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(lake<span class="sc">==</span><span class="st">"Osprey"</span>,era<span class="sc">==</span><span class="st">"1997-01"</span>)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fl<span class="sc">~</span>age,<span class="at">data=</span>BTO2,<span class="at">main=</span><span class="st">"Osprey, 1997-01"</span>,</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">""</span>,<span class="at">ylab=</span><span class="st">""</span>,<span class="at">pch=</span><span class="dv">19</span>,<span class="at">xlim=</span>xlmts,<span class="at">ylim=</span>ylmts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>vbTyp <span class="ot">&lt;-</span> <span class="fu">vbFuns</span>()</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>svTyp <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">Linf=</span><span class="dv">1193</span>,<span class="at">K=</span><span class="fl">0.13</span>,<span class="at">t0=</span><span class="sc">-</span><span class="fl">2.0</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>fitLM <span class="ot">&lt;-</span> <span class="fu">nlsLM</span>(tl<span class="sc">~</span><span class="fu">vbTyp</span>(otoage,Linf,K,t0),<span class="at">data=</span>bdm,<span class="at">start=</span>svTyp)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>bootLM <span class="ot">&lt;-</span> <span class="fu">nlsBoot</span>(fitLM)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">Ests=</span><span class="fu">coef</span>(fitLM),<span class="fu">confint</span>(bootLM))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="output"><code>#R|               Ests      95% LCI      95% UCI
+#R|  Linf 1196.7193453 1179.2581260 1216.1363799
+#R|  K       0.1418266    0.1230354    0.1623169
+#R|  t0     -1.5943403   -2.6444099   -0.8279532</code></pre>
 </div>
-<div class="page-columns page-full"><p>The common x- and y-axis labels are then placed in the outer margin areas with <code>mtext()</code>. In this capacity, <code>mtext()</code> requires the text to be written as the first argument, a number in <code>side=</code> that indicates the margin on which to print the text,<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> a number in <code>line=</code> that indicates the line on which to print the text (defaults to 0), and <code>outer=TRUE</code> to force the text into the outer margin area. Further note that <code>las=0</code> is used for the y-axis label to force the text to be parallel to the y-axis. This is only needed because <code>las=1</code> was set globally for producing this supplement.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;The <code>side=</code> argument in <code>mtext()</code> uses the same numbering scheme as other functions – 1=bottom, 2=left, 3=top, 4=right.</p></li></div></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(bootLM,vbTyp,<span class="at">t=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="output"><code>#R|       t   Median  95% LCI  95% UCI
+#R|  [1,] 3 572.7486 533.3373 612.2545</code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+</section>
+<section id="using-parameter-constraints" class="level1">
+<h1>Using Parameter Constraints</h1>
+<p>In some instances, the user may want to constrain the model fitting algorithms to only consider parameter values within a certain range. For example, the user may want to constrain the <span class="math inline">\(L_{\infty}\)</span> and <span class="math inline">\(K\)</span> parameters of the “Typical” VBGF to be positive. Parameter constraints may substantively effect the results of the model fitting. Thus, they should be used rarely and, when used, set liberally.</p>
+<p>Parameter constraints can be used with at least two algorithms in R. In either case, the lower and upper bounds for each parameter are entered into separate named <strong>vectors</strong> in the same order as the list used for starting values. Infinite bounds are the default ,but may be specifically defined for some parameters with <code>Inf</code> and <code>-Inf</code> (where <code>Inf</code> represents infinity). For example, vectors that define constraints for the parameters in the “Typical” VBGF are defined below, with <span class="math inline">\(L_\infty\)</span> and <span class="math inline">\(K\)</span> constrained to be positive values and <span class="math inline">\(t_{0}\)</span> left unconstrained.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">"Age (years)"</span>,<span class="at">side=</span><span class="dv">1</span>,<span class="at">line=</span><span class="dv">0</span>,<span class="at">outer=</span><span class="cn">TRUE</span>,<span class="at">cex=</span><span class="fl">1.3</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">"Fork Length (mm)"</span>,<span class="at">side=</span><span class="dv">2</span>,<span class="at">line=</span><span class="dv">0</span>,<span class="at">outer=</span><span class="cn">TRUE</span>,<span class="at">cex=</span><span class="fl">1.3</span>,<span class="at">las=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>clwr <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">Linf=</span><span class="dv">1</span>,  <span class="at">K=</span><span class="fl">0.0001</span>,<span class="at">t0=</span><span class="sc">-</span><span class="cn">Inf</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>cupr <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">Linf=</span><span class="cn">Inf</span>,<span class="at">K=</span><span class="cn">Inf</span>,   <span class="at">t0=</span><span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The combined code above creates the plot shown in <a href="#fig-layoutPar">Figure&nbsp;2</a>.</p>
-<div class="cell page-columns page-full" data-layout-align="center">
-<div class="cell-output-display page-columns page-full">
-<div id="fig-layoutPar" class="quarto-figure quarto-figure-center anchored page-columns page-full">
-<figure class="figure page-columns page-full">
-<p><img src="commonAxisLabels_files/figure-html/fig-layoutPar-1.png" class="img-fluid figure-img" width="768"></p>
-<p></p><figcaption class="figure-caption margin-caption">Figure&nbsp;2: Grid of plots that uses the outer margin area to provide common axis labels.</figcaption><p></p>
-</figure>
+<p>These constraints may be provided to <code>lower=</code> and <code>upper=</code>, respectively, of <code>nlsLM()</code>. In this instance, these bounds had no noticeable effect until bootstapping, where there were fewer instances of lack of convergence.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fitLM1 <span class="ot">&lt;-</span> <span class="fu">nlsLM</span>(tl<span class="sc">~</span><span class="fu">vbTyp</span>(otoage,Linf,K,t0),<span class="at">data=</span>bdm,<span class="at">start=</span>svTyp,<span class="at">lower=</span>clwr,<span class="at">upper=</span>cupr)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>bootLM1 <span class="ot">&lt;-</span> <span class="fu">nlsBoot</span>(fitLM1)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">Ests=</span><span class="fu">coef</span>(fitLM1),<span class="fu">confint</span>(bootLM1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="output"><code>#R|               Ests      95% LCI      95% UCI
+#R|  Linf 1196.7193453 1180.2377069 1215.1228761
+#R|  K       0.1418266    0.1236363    0.1608281
+#R|  t0     -1.5943403   -2.5174654   -0.7634874</code></pre>
 </div>
 </div>
+<p>Parameter constraints may be used similarly with <code>nls()</code>, but the “Port” optimization algorithm must be used with <code>algorithm="port"</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fitP <span class="ot">&lt;-</span> <span class="fu">nls</span>(tl<span class="sc">~</span><span class="fu">vbTyp</span>(otoage,Linf,K,t0),<span class="at">data=</span>bdm,<span class="at">start=</span>svTyp,</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">algorithm=</span><span class="st">"port"</span>,<span class="at">lower=</span>clwr,<span class="at">upper=</span>cupr)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>bootP <span class="ot">&lt;-</span> <span class="fu">nlsBoot</span>(fitP)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">Ests=</span><span class="fu">coef</span>(fitP),<span class="fu">confint</span>(bootP))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="output"><code>#R|               Ests      95% LCI      95% UCI
+#R|  Linf 1196.7188171 1179.3642457 1214.2949853
+#R|  K       0.1418273    0.1242909    0.1610572
+#R|  t0     -1.5943092   -2.5836709   -0.8507852</code></pre>
 </div>
+</div>
+<p>&nbsp;</p>
+</section>
+<section id="other-algorithms" class="level1">
+<h1>Other Algorithms</h1>
+<p>Still other algorithms are found in <code>nlxb()</code> from <code>nlmrt</code> <span class="citation" data-cites="nash_nlmrt_2014">(<a href="#ref-nash_nlmrt_2014" role="doc-biblioref">Nash 2014</a>)</span> and <code>nls2()</code> from <code>nls2</code> <span class="citation" data-cites="grothendieck_nls2_2013">(<a href="#ref-grothendieck_nls2_2013" role="doc-biblioref">Grothendieck 2013</a>)</span>.</p>
 
 
 
@@ -288,6 +338,18 @@ div.csl-indent {
 
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-elzhov_minpacklm_2013" class="csl-entry" role="doc-biblioentry">
+Elzhov, T. V., K. M. Mullen, A.-N. Spiess, and B. M. Bolker. 2013. <a href="http://CRAN.R-project.org/package=minpack.lm">Minpack.lm: <span>R</span> <span>Interface</span> to the <span>Levenberg</span>-<span>Marquardt</span> <span>Nonlinear</span> <span>Least</span>-<span>Squares</span> <span>Algorithm</span> <span>Found</span> in <span>MINPACK</span>, <span>Plus</span> <span>Support</span> for <span>Bounds</span></a>.
+</div>
+<div id="ref-grothendieck_nls2_2013" class="csl-entry" role="doc-biblioentry">
+Grothendieck, G. 2013. <a href="http://CRAN.R-project.org/package=nls2">nls2: <span>Non</span>-<span>Linear</span> <span>Regression</span> with <span>Brute</span> <span>Force</span></a>.
+</div>
+<div id="ref-motulsky_fitting_1987" class="csl-entry" role="doc-biblioentry">
+Motulsky, H. J., and L. A. Ransnas. 1987. <a href="http://www.fasebj.org/content/1/5/365.full.pdf+html">Fitting curves to data using nonlinear regression: <span>A</span> practical and nonmathematical review</a>. The Federation of American Societies for Experimental Biology Journal 1:365–374.
+</div>
+<div id="ref-nash_nlmrt_2014" class="csl-entry" role="doc-biblioentry">
+Nash, J. C. 2014. <a href="http://CRAN.R-project.org/package=nlmrt">Nlmrt: <span>Functions</span> for <span>Nonlinear</span> <span>Least</span> <span>Squares</span> <span>Solutions</span></a>.
+</div>
 <div id="ref-ogleIntroductoryFisheriesAnalyses2016" class="csl-entry" role="doc-biblioentry">
 Ogle, D. H. 2016. <a href="http://derekogle.com/IFAR/">Introductory <span>Fisheries</span> <span>Analyses</span> with <span>R</span></a>. CRC Press, Boca Raton, FL.
 </div>

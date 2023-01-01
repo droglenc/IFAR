@@ -59,7 +59,7 @@ The book is [dedicated to my three professional mentors.](dedication.qmd)
 1. **Individual Growth**
     * *Estimate parameters for the von Bertalanffy growth function and compare growth parameters among populations.*
     * [R Script](scripts/Growth.R) and Data: [BlackDrum2001.csv](scripts/BlackDrum2001.csv)
-    * Supplements: [Fitting Other VBGF Parameterizations](supplements/growth/OtherVBGFParams.html), [Fitting Other Growth Functions](supplements/growth/OtherGrowthFuns.html), [Additional Nonlinear Regression Algorithms](supplements/growth/OtherNLAlgorithms.html)
+    * Supplements: [Other VBGF Parameterizations](supplements/otherVBGFParams.html), [Other Growth Functions](supplements/otherGrowthFuns.html), [Other Nonlinear Regression Algorithms](supplements/otherNLAlgorithms.html)
     * [Exercises](https://fishr-core-team.github.io/fishR/teaching/#category=%20Growth)
 1. **Recruitment**
     * *Estimate parameters for the Beverton-Holt and Ricker stock-recruitment models, compute spawning potential ratios, and estimate year-class strengths from catch data.*

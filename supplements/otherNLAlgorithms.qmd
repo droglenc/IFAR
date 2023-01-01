@@ -1,0 +1,81 @@
+---
+title: "Other Nonlinear Model Fitting Algorithms"
+author: "Derek H. Ogle"
+output: html_document
+---
+
+# Background
+
+The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the function were illustrated in Chapter 12 of @ogleIntroductoryFisheriesAnalyses2016. The `nls()` function demonstrated in the **IFAR** book uses the Gauss-Newton algorithm by default. However, there are many other algorithms for fitting nonlinear functions. Two of the several algorithms coded in R are demonstrated in this supplement.
+
+# Setup
+## Packages
+Functions used in this supplement require the following packages.
+
+```{r}
+#| results: hide
+library(FSA)        # for headtail(), vbFuns(), vbStarts()
+library(dplyr)      # for select(), filter()
+library(nlstools)   # for nlsBoot()
+library(minpack.lm) # for nlsLM()
+```
+
+## Data
+The male [Black Drum data](https://fishr-core-team.github.io/FSAdata/reference/BlackDrum2001.html).^[Download data with CSV link on the linked page.] used in @ogleIntroductoryFisheriesAnalyses2016 are also used in this supplement. As in @ogleIntroductoryFisheriesAnalyses2016 a few unneeded variables are removed for simplicity, only males are examined, and a single old fish is removed by including only fish with an otolith age less than 50.
+
+```{r}
+bdm <- read.csv("https://raw.githubusercontent.com/fishR-Core-Team/FSAdata/main/data-raw/BlackDrum2001.csv") |>
+  select(-c(spname,day,weight)) |>
+  filter(sex=="male",otoage<50)
+headtail(bdm)
+```
+
+&nbsp;
+
+# Levenberg-Marquardt Algorithm
+The Levenberg-Marquardt (L-M) algorithm is a powerful and common method that switches between two other algorithms depending on when those algorithms perform most optimally [@motulsky_fitting_1987]. Most practically, the L-M algorithm appears to be quite robust to "poor" starting values.
+
+The L-M algorithm is implemented in `nlsLM()` from `minpack.lm` [@elzhov_minpacklm_2013] and uses the same main arguments as `nls()`. For example, the "Typical" VBGF is fit (and parameter estimates, likelihood profile confidence intervals, and predictions are extracted) to the male Black Drum data below using the L-M algorithm.^[This code is the same as used in @ogleIntroductoryFisheriesAnalyses2016, except that `nlsLM()` replaced `nls()`.]
+
+```{r}
+vbTyp <- vbFuns()
+svTyp <- list(Linf=1193,K=0.13,t0=-2.0)
+fitLM <- nlsLM(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp)
+bootLM <- nlsBoot(fitLM)
+cbind(Ests=coef(fitLM),confint(bootLM))
+predict(bootLM,vbTyp,t=3)
+```
+
+&nbsp;
+
+# Using Parameter Constraints
+In some instances, the user may want to constrain the model fitting algorithms to only consider parameter values within a certain range. For example, the user may want to constrain the $L_{\infty}$ and $K$ parameters of the "Typical" VBGF to be positive. Parameter constraints may substantively effect the results of the model fitting. Thus, they should be used rarely and, when used, set liberally.
+
+Parameter constraints can be used with at least two algorithms in R. In either case, the lower and upper bounds for each parameter are entered into separate named **vectors** in the same order as the list used for starting values. Infinite bounds are the default ,but may be specifically defined for some parameters with `Inf` and `-Inf` (where `Inf` represents infinity). For example, vectors that define constraints for the parameters in the "Typical" VBGF are defined below, with $L_\infty$ and $K$ constrained to be positive values and $t_{0}$ left unconstrained.
+
+```{r}
+clwr <- c(Linf=1,  K=0.0001,t0=-Inf)
+cupr <- c(Linf=Inf,K=Inf,   t0=Inf)
+```
+
+These constraints may be provided to `lower=` and `upper=`, respectively, of `nlsLM()`. In this instance, these bounds had no noticeable effect until bootstapping, where there were fewer instances of lack of convergence.
+
+```{r}
+fitLM1 <- nlsLM(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp,lower=clwr,upper=cupr)
+bootLM1 <- nlsBoot(fitLM1)
+cbind(Ests=coef(fitLM1),confint(bootLM1))
+```
+
+Parameter constraints may be used similarly with `nls()`, but the "Port" optimization algorithm must be used with `algorithm="port"`.
+
+```{r}
+fitP <- nls(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp,
+            algorithm="port",lower=clwr,upper=cupr)
+bootP <- nlsBoot(fitP)
+cbind(Ests=coef(fitP),confint(bootP))
+```
+
+&nbsp;
+
+# Other Algorithms
+Still other algorithms are found in `nlxb()` from `nlmrt` [@nash_nlmrt_2014] and `nls2()` from `nls2` [@grothendieck_nls2_2013].

@@ -1,0 +1,118 @@
+---
+title: "Other VBGF Parameterizations"
+author: "Derek H. Ogle"
+output: html_document
+---
+
+# Background
+
+The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the function were illustrated in Chapter 12 of @ogleIntroductoryFisheriesAnalyses2016. The VBGF used there is from @beverton_dynamics_1957 and is called the "Typical" parameterization of the VBGF. The VBGF can be expressed in alternative forms that are called parameterizations.
+
+Different parameterizations do not fit the data differently. In other words, all parameterizations of the VBGF have the same number of parameters and will produce the same predicted values and fitted model plots. However, different parameterizations have different function parameters that may be of interest to the fisheries scientist for biological reasons or because they have useful statistical properties. For example, the parameterizations of @von_bertalanffy_quantitative_1938 and @mooij_analysis_1999 both use $L_{0}$, which is the mean length at time 0 (i.e., at "hatch"). Thus, either of these parameterizations could be used if the $L_{0}$ parameter was of biological interest. In contrast, the parameters in the parameterizations of @schnute_versatile_1981 and @francis_are_1988 are either largely or wholly based on expected values, which are generally less correlated. Thus, if one wants to avoid the problems associated with highly correlated parameters (as discussed @ogleIntroductoryFisheriesAnalyses2016) and is not interested in the parameters of the other parameterizations, then either of these two parameterizations may be used.
+
+The parametarizations of @von_bertalanffy_quantitative_1938 and @francis_are_1988 are fit in this supplement to illustrate fitting other than the "Typical" parameterization used in Chapter 12 of @ogleIntroductoryFisheriesAnalyses2016. Other supplements demonstrate how to [fit growth functions other than the VBGF](otherGrowthFuns.html) and [use alternative nonlinear model fitting algorithms](otherNLAlgorithms.html).
+
+# Setup
+## Packages
+Functions used in this supplement require the following packages.
+
+```{r}
+#| results: hide
+library(FSA)      # for headtail(), vbFuns(), vbStarts()
+library(dplyr)    # for select(), filter()
+library(nlstools) # for nlsBoot()
+```
+
+
+## Data
+The male [Black Drum data](https://fishr-core-team.github.io/FSAdata/reference/BlackDrum2001.html).^[Download data with CSV link on the linked page.] used in @ogleIntroductoryFisheriesAnalyses2016 are also used in this supplement. As in @ogleIntroductoryFisheriesAnalyses2016 a few unneeded variables are removed for simplicity, only males are examined, and a single old fish is removed by including only fish with an otolith age less than 50.
+
+```{r}
+bdm <- read.csv("https://raw.githubusercontent.com/fishR-Core-Team/FSAdata/main/data-raw/BlackDrum2001.csv") |>
+  select(-c(spname,day,weight)) |>
+  filter(sex=="male",otoage<50)
+headtail(bdm)
+```
+
+&nbsp;
+
+# Original Parameterization
+
+The parameterization originally proposed by @von_bertalanffy_quantitative_1938 is defined as
+
+$$ E[L|t] = L_{\infty} - (L_{\infty}-L_{0})e^{-Kt} $$
+
+where $L_{\infty}$ and $K$ are as defined for the typical parameterization and $L_{0}$ is the mean length at $t=0$.
+
+As demonstrated in @ogleIntroductoryFisheriesAnalyses2016 for the "Typical" VBGF, an R function that uses the VBGF to predict length from a given age is needed. This R function may be created by the user, but for many common parameterizations it is easier to use `vbFuns()` from `FSA`. As a reminder, `vbFuns()` requires the name for the parameterization to use in quotes as the first argument. A brief explanation of the parameters is also returned if `msg=TRUE` is included.
+
+An R function called `vbO()` is created for the "original" parameterization below. Note with this function that values for the three parameters may be included as a vector in `Linf=`.
+
+```{r}
+( vbO <- vbFuns("Original") )
+```
+
+Starting values are obtained with `vbStarts()` as described in @ogleIntroductoryFisheriesAnalyses2016, but using `type="Original"` for this parameterization.
+
+```{r}
+( svO <- vbStarts(tl~otoage,data=bdm,type="Original") )
+```
+
+The VBGF is fit and parameter estimates with likelihood profile confidence intervals and bootstrapped confidence intervals and predictions may also be obtained as described in @ogleIntroductoryFisheriesAnalyses2016.
+
+```{r}
+nlsO <- nls(tl~vbO(otoage,Linf,K,L0),data=bdm,start=svO)
+cbind(Ests=coef(nlsO),confint(nlsO))
+bootO <- nlsBoot(nlsO)
+cbind(Ests=coef(nlsO),confint(bootO))
+predict(bootO,vbO,t=3)
+```
+
+&nbsp;
+
+# Francis Parameterization
+
+The @francis_are_1988 parameterization is defined as
+
+$$ E[L|t] = L_{1} + (L_{3}-L_{1})\frac{1-r^{2\frac{t-t_{1}}{t_{3}-t_{1}}}}{1-r^{2}} $$
+
+where 
+
+$$ r=\frac{L_{3}-L_{2}}{L_{2}-L_{1}} $$
+
+The function parameters are $L_{1}$, $L_{2}$, and $L_{3}$, which represent the mean lengths at ages $t_{1}$, $t_{2}$, and $t_{3}$, respectively, where $t_{1}$ and $t_{3}$ are relatively young and old ages chosen by the user and $t_{2}$ is the average of $t_{1}$ and $t_{3}$.
+
+Similar to above, an R function called `vbF()` is created for the "Francis" parameterization below. Note with this function that values for the three parameters may be included as a vector in `L1=` and that the youngest and oldest ages may be included as a vector in `t1=`.
+
+```{r}
+( vbF <- vbFuns("Francis") )
+```
+
+As stated above, the user must choose values for $t_{1}$ and $t_{3}$. In this example, I have chosen to use the youngest and oldest ages in the data (as found with `range()`).
+
+```{r}
+( ages <- range(bdm$otoage) )
+```
+
+Starting values are obtained with `vbStarts()` as described above. However, with the "Francis" parameterization, the ages that define $t_{1}$ and $t_{3}$ must also be provided in `ages2use=`.
+
+```{r}
+( svF <- vbStarts(tl~otoage,data=bdm,type="Francis",ages2use=ages) )
+```
+
+The VBGF is fit and parameter estimates with likelihood profile confidence intervals and bootstrapped confidence intervals and predictions are obtained as described in @ogleIntroductoryFisheriesAnalyses2016, with the exception that the vector that defines the youngest and oldest ages must be supplied to `vbF()`.
+
+```{r}
+nlsF <- nls(tl~vbF(otoage,L1,L2,L3,t1=ages),data=bdm,start=svF)
+cbind(Ests=coef(nlsF),confint(nlsF))
+bootF <- nlsBoot(nlsF)
+cbind(Ests=coef(nlsF),confint(bootF))
+predict(bootF,vbF,t=3,t1=ages[1],t3=ages[2])
+```
+
+Note that the intra-parameter correlations are relatively low for this parameterization. Additionally, the scale of the parameters in the "Francis" parameterization are usually similar. Both of these characteristics may aid model convergence.
+
+```{r}
+summary(nlsF,correlation=TRUE)$correlation
+```
+

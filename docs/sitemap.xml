@@ -2,26 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://droglenc.github.io/IFAR/dedication.html</loc>
-    <lastmod>2022-12-31T22:21:05.609Z</lastmod>
+    <lastmod>2023-01-01T17:53:58.072Z</lastmod>
   </url>
   <url>
     <loc>https://droglenc.github.io/IFAR/errata.html</loc>
-    <lastmod>2022-12-31T22:21:07.010Z</lastmod>
+    <lastmod>2023-01-01T17:53:59.491Z</lastmod>
   </url>
   <url>
     <loc>https://droglenc.github.io/IFAR/index.html</loc>
-    <lastmod>2022-12-31T22:21:08.449Z</lastmod>
+    <lastmod>2023-01-01T17:54:00.955Z</lastmod>
   </url>
   <url>
     <loc>https://droglenc.github.io/IFAR/supplements/backcalculation.html</loc>
-    <lastmod>2022-12-31T22:21:12.638Z</lastmod>
+    <lastmod>2023-01-01T17:54:05.335Z</lastmod>
   </url>
   <url>
     <loc>https://droglenc.github.io/IFAR/supplements/commonAxisLabels.html</loc>
-    <lastmod>2022-12-31T22:21:15.450Z</lastmod>
+    <lastmod>2023-01-01T17:54:08.300Z</lastmod>
   </url>
   <url>
     <loc>https://droglenc.github.io/IFAR/supplements/complexGridLayouts.html</loc>
-    <lastmod>2022-12-31T22:21:18.397Z</lastmod>
+    <lastmod>2023-01-01T17:54:11.421Z</lastmod>
+  </url>
+  <url>
+    <loc>https://droglenc.github.io/IFAR/supplements/otherGrowthFuns.html</loc>
+    <lastmod>2023-01-01T17:54:14.554Z</lastmod>
+  </url>
+  <url>
+    <loc>https://droglenc.github.io/IFAR/supplements/otherNLAlgorithms.html</loc>
+    <lastmod>2023-01-01T17:54:17.614Z</lastmod>
+  </url>
+  <url>
+    <loc>https://droglenc.github.io/IFAR/supplements/otherVBGFParams.html</loc>
+    <lastmod>2023-01-01T17:54:20.724Z</lastmod>
   </url>
 </urlset>

@@ -28,7 +28,7 @@ knitr:
     fig.height: 4
     fig.align: center
     comment: "#R| "
-#    class-output: output
+    class-output: output
     r.options:
       show.signif.stars: false
 

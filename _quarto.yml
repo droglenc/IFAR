@@ -20,8 +20,8 @@ website:
   open-graph: true
 format:
   html:
-    theme: litera
-    css: css/styles.css
+    theme: [litera, helpers/custom.scss]
+    css: helpers/styles.css
     link-external-icon: true
     link-external-newwindow: true
     smooth-scroll: true
