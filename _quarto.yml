@@ -12,6 +12,7 @@ website:
     title: "Introductory Fisheries Analyses with R by Derek H. Ogle"
     background: "#2B0828"
     foreground: white
+    pinned: true
   search: false
   page-footer:
     background: "#2B0828"
