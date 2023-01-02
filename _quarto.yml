@@ -5,8 +5,8 @@ project:
 website:
   title: "IFAR"
   favicon: /img/IFARCover_small.jpg
-  site-url: https://droglenc.github.io/IFAR/
-  repo-url: https://droglenc.github.io/IFAR
+  site-url: https://derekogle.com/IFAR/
+  repo-url: https://github.com/droglenc/IFAR
   repo-actions: []
   navbar:
     title: "Introductory Fisheries Analyses with R by Derek H. Ogle"
