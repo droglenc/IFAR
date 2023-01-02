@@ -1,7 +1,7 @@
 ---
 ---
 
-<img style="float: right; margin: 5px 5px 15px 20px; padding-left: 20px" src="img/IFARCover_large.JPG" height="300px" />
+<img style="float: right; margin: 5px 5px 15px 20px; padding-left: 20px; height: auto; width: auto; max-height: 300px" src="img/IFARCover_large.JPG" />
 *Introductory Fisheries Analyses with R* by [Derek H. Ogle](https://derekogle.com/) provides detailed instructions on how to perform basic fisheries stock assessment analyses in the R environment. The analyses covered are typical analyses for many working fisheries scientists and, thus, also occur in most upper-level undergraduate and graduate level fisheries science, analysis, or management courses. The book begins with three foundational chapters that help the reader become familiar with R within the context of basic fisheries analyses and examples. The remaining chapters build upon these foundational skills with analytical techniques specific to fisheries stock assessments. A preview is available from [Google Books](https://books.google.com/books?id=KTo0CwAAQBAJ&printsec=frontcover#v=onepage&q&f=false).
 
 The book is [dedicated to my three professional mentors.](dedication.qmd)
