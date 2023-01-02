@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Derek H. Ogle">
+
+<title>IFAR - Weight-Length Relationship for 3+ Groups</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<link href="..//img/IFARCover_small.jpg" rel="icon" type="image/jpeg">
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../helpers/styles.css">
+<meta property="og:title" content="IFAR - Weight-Length Relationship for 3+ Groups">
+<meta property="og:description" content="Dummy variable regression (DVR) was introduced in Chapter 7 of Ogle (2016) in the context of determining if the slope and y-intercept parameters of weight-length relationship regressions differed…">
+<meta property="og:site-name" content="IFAR">
+<meta name="citation_title" content="Weight-Length Relationship for 3+ Groups">
+<meta name="citation_author" content="Derek H. Ogle">
+<meta name="citation_fulltext_html_url" content="https://droglenc.github.io/IFAR//weightLengthDVR.html">
+<meta name="citation_language" content="en">
+<meta name="citation_reference" content="citation_title=Introductory Fisheries Analyses with R;,citation_author=Derek H. Ogle;,citation_publication_date=2016;,citation_cover_date=2016;,citation_year=2016;,citation_fulltext_html_url=http://derekogle.com/IFAR/;">
+<meta name="citation_reference" content="citation_title=On the Dynamics of Exploited Fish Populations;,citation_author=R. J. H. Beverton;,citation_author=S. J. Holt;,citation_publication_date=1957;,citation_cover_date=1957;,citation_year=1957;,citation_volume=19;,citation_series_title=Fisheries Investigations (Series 2);">
+<meta name="citation_reference" content="citation_title=Standard intercepts for calculating lengths from scale measurements for some centrarchid and percid fishes;,citation_author=K. D. Carlander;,citation_publication_date=1982;,citation_cover_date=1982;,citation_year=1982;,citation_volume=111;,citation_journal_title=Transactions of the American Fisheries Society;">
+<meta name="citation_reference" content="citation_title=Minpack.lm: R Interface to the Levenberg-Marquardt Nonlinear Least-Squares Algorithm Found in MINPACK, Plus Support for Bounds;,citation_author=Timur V. Elzhov;,citation_author=Katharine M. Mullen;,citation_author=Andrej-Nikolai Spiess;,citation_author=Ben M. Bolker;,citation_publication_date=2013;,citation_cover_date=2013;,citation_year=2013;,citation_fulltext_html_url=http://CRAN.R-project.org/package=minpack.lm;">
+<meta name="citation_reference" content="citation_title=Are growth parameters estimated from tagging and age-length data comparable?;,citation_author=R. I. C. C. Francis;,citation_publication_date=1988;,citation_cover_date=1988;,citation_year=1988;,citation_volume=45;,citation_journal_title=Canadian Journal of Fisheries and Aquatic Sciences;">
+<meta name="citation_reference" content="citation_title=Back-calculation of fish length: A critical review;,citation_author=R. I. C. C. Francis;,citation_publication_date=1990;,citation_cover_date=1990;,citation_year=1990;,citation_volume=36;,citation_journal_title=Journal of Fish Biology;">
+<meta name="citation_reference" content="citation_title=Growth of the spring salmon;,citation_author=C. McL. Fraser;,citation_publication_date=1916;,citation_cover_date=1916;,citation_year=1916;,citation_volume=1915;,citation_journal_title=Transactions of the Pacific Fisheries Society;">
+<meta name="citation_reference" content="citation_title=On the nature of the function expressive of the law of human mortality and on a new mode of determining the value of life contingencies.;,citation_author=B. Gompertz;,citation_publication_date=1825;,citation_cover_date=1825;,citation_year=1825;,citation_volume=115;,citation_journal_title=Philosophical Transactions of the Royal Society of London;">
+<meta name="citation_reference" content="citation_title=Dates and times made easy with lubridate;,citation_author=Garrett Grolemund;,citation_author=Hadley Wickham;,citation_publication_date=2011;,citation_cover_date=2011;,citation_year=2011;,citation_fulltext_html_url=http://www.jstatsoft.org/v40/i03/;,citation_issue=3;,citation_volume=40;,citation_journal_title=Journal of Statistical Software;">
+<meta name="citation_reference" content="citation_title=nls2: Non-Linear Regression with Brute Force;,citation_author=G. Grothendieck;,citation_publication_date=2013;,citation_cover_date=2013;,citation_year=2013;,citation_fulltext_html_url=http://CRAN.R-project.org/package=nls2;">
+<meta name="citation_reference" content="citation_title=On the methods used in the Herring-investigations.;,citation_author=E. Lea;,citation_publication_date=1910;,citation_cover_date=1910;,citation_year=1910;,citation_issue=1;,citation_volume=108;,citation_journal_title=Publ. Circonst. Cons. perm. int. Explor. Mer;">
+<meta name="citation_reference" content="citation_title=A review of the methods of age and growth determination in fishes by means of scales.;,citation_author=R. M. Lee;,citation_publication_date=1920;,citation_cover_date=1920;,citation_year=1920;,citation_issue=(2);,citation_volume=4;,citation_journal_title=Fisheries Investigations, London Series 2;">
+<meta name="citation_reference" content="citation_title=Analysis and comparison of fish growth from small samples of length-at-age data: Detection of sexual dimorphism in Eurasian Perch as an example;,citation_author=W. M. Mooij;,citation_author=J. M. Van Rooij;,citation_author=S. Wijnhoven;,citation_publication_date=1999;,citation_cover_date=1999;,citation_year=1999;,citation_volume=128;,citation_journal_title=Transactions of the American Fisheries Society;">
+<meta name="citation_reference" content="citation_title=Fitting curves to data using nonlinear regression: A practical and nonmathematical review;,citation_abstract=Many types of data are best analyzed by fitting a curve using nonlinear regression, and computer programs that perform these calculations are readily available. Like every scientific technique, however, a nonlinear regression program can produce misleading results when used inappropriately. This article reviews the use of nonlinear regression in a practical and nonmathematical manner to answer the following questions: Why is nonlinear regression superior to linear regression of transformed data? How does nonlinear regression differ from polynomial regression and cubic spline? How do nonlinear regression programs work? What choices must an investigator make before performing nonlinear regression? What do the final results mean? How can two sets of data or two fits to one set of data be compared? What problems can cause the results to be wrong? This review is designed to demystify nonlinear regression so that both its power and its limitations will be appreciated.;,citation_author=H. J. Motulsky;,citation_author=L. A. Ransnas;,citation_publication_date=1987;,citation_cover_date=1987;,citation_year=1987;,citation_fulltext_html_url=http://www.fasebj.org/content/1/5/365.full.pdf+html;,citation_volume=1;,citation_journal_title=The Federation of American Societies for Experimental Biology Journal;">
+<meta name="citation_reference" content="citation_title=Nlmrt: Functions for Nonlinear Least Squares Solutions;,citation_author=John C. Nash;,citation_publication_date=2014;,citation_cover_date=2014;,citation_year=2014;,citation_fulltext_html_url=http://CRAN.R-project.org/package=nlmrt;">
+<meta name="citation_reference" content="citation_title=Ruffe length-weight relationships with a proposed standard weight equation;,citation_author=D. H. Ogle;,citation_author=I. J. Winfield;,citation_publication_date=2009;,citation_cover_date=2009;,citation_year=2009;,citation_fulltext_html_url=http://www.tandfonline.com/doi/abs/10.1577/M08-176.1#.U6ojzvldV8E;,citation_volume=29;,citation_journal_title=North American Journal of Fisheries Management;">
+<meta name="citation_reference" content="citation_title=Methods for Assessing Fish Populations;,citation_author=Kevin L. Pope;,citation_author=Steve E. Lochmann;,citation_author=Michael K. Young;,citation_editor=W. A. Hubert;,citation_editor=M. C. Quist;,citation_publication_date=2010;,citation_cover_date=2010;,citation_year=2010;,citation_inbook_title=Inland Fisheries Management in North America;">
+<meta name="citation_reference" content="citation_title=A flexible growth function for empirical use;,citation_author=F. J. Richards;,citation_publication_date=1959;,citation_cover_date=1959;,citation_year=1959;,citation_volume=10;,citation_journal_title=Journal of Experimental Botany;">
+<meta name="citation_reference" content="citation_title=Computation and Interpretation of Biological Statistics of Fish Populations;,citation_author=W. E. Ricker;,citation_publication_date=1975;,citation_cover_date=1975;,citation_year=1975;,citation_technical_report_institution=Bulletin of the Fisheries Research Board of Canada;,citation_technical_report_number=Bulletin 191;">
+<meta name="citation_reference" content="citation_title=A versatile growth model with statistically stable parameters;,citation_author=J. Schnute;,citation_publication_date=1981;,citation_cover_date=1981;,citation_year=1981;,citation_volume=38;,citation_journal_title=Canadian Journal of Fisheries and Aquatic Sciences;">
+<meta name="citation_reference" content="citation_title=A unified approach to the analysis of fish growth, maturity, and survivorship data;,citation_author=J. T. Schnute;,citation_author=L. J. Richards;,citation_publication_date=1990;,citation_cover_date=1990;,citation_year=1990;,citation_volume=47;,citation_journal_title=Canadian Journal of Fisheries and Aquatic Sciences;">
+<meta name="citation_reference" content="citation_title=The back-calculation of fish growth from otoliths;,citation_author=L. Vigliola;,citation_author=M. G. Meekan;,citation_editor=B. S. Green;,citation_editor=B. D. Mapstone;,citation_editor=G. Carlos;,citation_editor=G. A. Begg;,citation_publication_date=2009;,citation_cover_date=2009;,citation_year=2009;,citation_inbook_title=Tropical Fish Otoliths: Information for Assessment, Management, and Ecology;,citation_series_title=Reviews: Methods and Technologies in Fish Biology and Fisheries;">
+<meta name="citation_reference" content="citation_title=A quantitative theory of organic growth (inquiries on growth laws II);,citation_author=L. Bertalanffy;,citation_publication_date=1938;,citation_cover_date=1938;,citation_year=1938;,citation_volume=10;,citation_journal_title=Human Biology;">
+<meta name="citation_reference" content="citation_title=Using hard-part increment data to estimate age and environmental effects;,citation_author=S. Weisberg;,citation_publication_date=1993;,citation_cover_date=1993;,citation_year=1993;,citation_issue=6;,citation_volume=50;,citation_journal_title=Canadian Journal of Fisheries and Aquatic Sciences;">
+<meta name="citation_reference" content="citation_title=Interpretation of body-scale regression for computing body length of fish.;,citation_author=R. R. Whitney;,citation_author=K. D. Carlander;,citation_publication_date=1956;,citation_cover_date=1956;,citation_year=1956;,citation_volume=20;,citation_journal_title=Journal of Wildlife Management;">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Introductory Fisheries Analyses with R by Derek H. Ogle</span>
+    </a>
+  </div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a>
+  <ul class="collapse">
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  </ul></li>
+  <li><a href="#full-model" id="toc-full-model" class="nav-link" data-scroll-target="#full-model">Full Model</a></li>
+  <li><a href="#specific-differences-among-slopes" id="toc-specific-differences-among-slopes" class="nav-link" data-scroll-target="#specific-differences-among-slopes">Specific Differences Among Slopes</a></li>
+  <li><a href="#a-summary-plot" id="toc-a-summary-plot" class="nav-link" data-scroll-target="#a-summary-plot">A Summary Plot</a></li>
+  <li><a href="#specific-differences-among-intercepts" id="toc-specific-differences-among-intercepts" class="nav-link" data-scroll-target="#specific-differences-among-intercepts">Specific Differences Among Intercepts</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Weight-Length Relationship for 3+ Groups</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Derek H. Ogle </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Dummy variable regression (DVR) was introduced in Chapter 7 of <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span> in the context of determining if the slope and y-intercept parameters of weight-length relationship regressions differed between fish captured in two different years. That analysis may be extended to more than two groups, though more dummy variables are required and special methods are needed to determine which pairs of groups (if any) differ. This supplement demonstrates how to extend the DVR to more than two groups.</p>
+<section id="setup" class="level1">
+<h1>Setup</h1>
+<section id="packages" class="level2">
+<h2 class="anchored" data-anchor-id="packages">Packages</h2>
+<p>Functions used in this supplement require the following packages. Also note that one function from <code>lubridate</code> and two functions from <code>car</code> are used below with <code>::</code> so that the whole packages do not need to be loaded.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FSA)      <span class="co"># for headtail(), hist(), col2rgbt()</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)    <span class="co"># for select(), mutate(), filter()</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)  <span class="co"># for emtrends(), emmeans()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-layout-align="center">
+
+</div>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>Weights (g) and total lengths (mm) from Ruffe (<em>Gymnocephalus cernuus</em>) captured in the St.&nbsp;Louis River Harbor (Minnesota and Wisconsin) were used in Chapter 7 of <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span> and will also be used in this supplement. These data are from <span class="citation" data-cites="ogle_ruffe_2009">Ogle and Winfield (<a href="#ref-ogle_ruffe_2009" role="doc-biblioref">2009</a>)</span> and are in <a href="../scripts/RuffeSLRH.csv"><code>RuffeSLRH.csv</code></a>). To eliminate within-season variability, only Ruffe captured in July are used here. Additionally, a factored version of <code>year</code> was created, the common logarithms of weight and length were created, and the <code>fishID</code>, <code>month</code>, and <code>day</code> variables were removed to save space in the output.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ruf <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../scripts/RuffeSLRH.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(month<span class="sc">==</span><span class="dv">7</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fYear=</span><span class="fu">factor</span>(year),<span class="at">logW=</span><span class="fu">log10</span>(wt),<span class="at">logL=</span><span class="fu">log10</span>(tl)) <span class="sc">|&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>fishID,<span class="sc">-</span>month,<span class="sc">-</span>day)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">headtail</span>(ruf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="output"><code>#R|       year  tl   wt fYear      logW     logL
+#R|  1    1988  78  6.0  1988 0.7781513 1.892095
+#R|  2    1988  81  7.0  1988 0.8450980 1.908485
+#R|  3    1988  82  7.0  1988 0.8450980 1.913814
+#R|  1936 2004 137 28.0  2004 1.4471580 2.136721
+#R|  1937 2004 143 31.4  2004 1.4969296 2.155336
+#R|  1938 2004 174 82.4  2004 1.9159272 2.240549</code></pre>
+</div>
+</div>
+<p>For the first example below, only fish from 1990, 1995, and 2000 were examined. In the second example below, fish from 1992 to 1995 were examined.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ruf1 <span class="ot">&lt;-</span> ruf <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1990</span>,<span class="dv">1995</span>,<span class="dv">2000</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">droplevels</span>()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>ruf2 <span class="ot">&lt;-</span> ruf <span class="sc">|&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="dv">1992</span><span class="sc">:</span><span class="dv">1995</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">droplevels</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="full-model" class="level1 page-columns page-full">
+<h1>Full Model</h1>
+<p>The number of dummy variables required to represent <span class="math inline">\(k\)</span> groups is <span class="math inline">\(k-1\)</span>. Thus, in Chapter 7 of <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>, only one dummy variable was required to represent the two groups. In this example, three groups (the years) are being examined and, thus, two dummy variables are needed. For example, <code>lm()</code> will ultimately treat the “1990” group as the reference group and create two dummy variables as follows</p>
+<p><span class="math display">\[  fYear1995 = \left\{\begin{array}{l}
+    1 \text{, if captured in 1995 }\\
+    0 \text{, if NOT captured in 1995 }
+    \end{array}  \right. \]</span></p>
+<p><span class="math display">\[  fYear2000 = \left\{\begin{array}{l}
+    1 \text{, if captured in 2000 }\\
+    0 \text{, if NOT captured in 2000 }
+    \end{array}  \right. \]</span></p>
+<p>These dummy variables are each combined with the <span class="math inline">\(log_{10}(L)\)</span> covariate to construct the following ultimate full model</p>
+<p><span id="eq-FullModel"><span class="math display">\[ \begin{split}
+    log_{10}(W_{i}) &amp;= log_{10}(\alpha) + \beta log_{10}(L_{i}) \\
+                    &amp;\mspace{16mu}+ \delta_{1} fYear1995 + \delta_{2} fYear2000 \\
+                    &amp;\mspace{16mu}+ \gamma_{1} fYear1995*log_{10}(L_{i})+ \gamma_{2} fYear2000*log_{10}(L_{i}) + \epsilon_{i}
+\end{split}  \tag{1}\]</span></span></p>
+<p>Substitution of appropriate values for the dummy variables into <a href="#eq-FullModel">Equation&nbsp;1</a> shows how <a href="#eq-FullModel">Equation&nbsp;1</a> simultaneously represents the weight-length relationship regressions for all three years as shown below.</p>
+
+<table>
+<tbody><tr>
+<th width="75px" align="center">
+Year
+</th>
+<th width="100px" align="center">
+fYear1995
+</th>
+<th width="100px" align="center">
+fYear2000
+</th>
+<th width="200px">
+Submodel (<span class="math inline">\(log_{10}(W_{i})=\)</span>)
+</th>
+</tr>
+<tr>
+<td align="center">
+1990
+</td>
+<td align="center">
+0
+</td>
+<td align="center">
+0
+</td>
+<td>
+<span class="math inline">\(log_{10}(\alpha) + \beta log_{10}(L_{i})\)</span>
+</td>
+</tr>
+<tr>
+<td align="center">
+1995
+</td>
+<td align="center">
+1
+</td>
+<td align="center">
+0
+</td>
+<td>
+<span class="math inline">\((log_{10}(\alpha) + \delta_{1}) + (\beta + \gamma_{1})*log_{10}(L_{i})\)</span>
+</td>
+</tr>
+<tr>
+<td align="center">
+2000
+</td>
+<td align="center">
+0
+</td>
+<td align="center">
+1
+</td>
+<td>
+<span class="math inline">\((log_{10}(\alpha) + \delta_{2}) + (\beta + \gamma_{2})*log_{10}(L_{i})\)</span>
+</td>
+</tr>
+
+</tbody></table>
+<p>From these submodels, it is apparent that <span class="math inline">\(\alpha\)</span> is the y-intercept for the reference (e.g., 1990) group, <span class="math inline">\(\beta\)</span> is the slope for the reference group, <span class="math inline">\(\delta_{i}\)</span> is the difference in y-intercepts between the <span class="math inline">\(i\)</span>th and reference groups, and <span class="math inline">\(\gamma_{i}\)</span> is the difference in slopes between the <span class="math inline">\(i\)</span>th and reference groups. By extension, the interaction variables measure differences in slopes and the dummy variables measure differences in y-intercepts.</p>
+<p>The model in <a href="#eq-FullModel">Equation&nbsp;1</a> is fit with <code>lm()</code> using a formula of the form <code>y~x*factor</code> exactly as described in Chapter 7 of <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span> (again noting that <code>lm()</code> will create the appropriate dummy and interaction variables).</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(logW<span class="sc">~</span>logL<span class="sc">*</span>fYear,<span class="at">data=</span>ruf1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The linearity and homoscedasticity assumptions and normality assumption (<a href="#fig-FullResidPlot">Figure&nbsp;1</a>) are largely met with this model.</p>
+<div class="cell page-columns page-full" data-layout-align="center" data-par1="true">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">resid</span>(fit1)<span class="sc">~</span><span class="fu">fitted</span>(fit1),<span class="at">xlab=</span><span class="st">"Fitted Values"</span>,<span class="at">ylab=</span><span class="st">"Residuals"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="sc">~</span><span class="fu">resid</span>(fit1),<span class="at">xlab=</span><span class="st">"Residuals"</span>,<span class="at">breaks=</span><span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display page-columns page-full">
+<div id="fig-FullResidPlot" class="quarto-figure quarto-figure-center anchored page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="weightLengthDVR_files/figure-html/fig-FullResidPlot-1.png" class="img-fluid figure-img" width="768"></p>
+<p></p><figcaption class="figure-caption margin-caption">Figure&nbsp;1: Modified residual plot (Left) and histogram of residuals (Right) from fitting a dummy variable regression to the log-transformed weights and lengths of Ruffe captured in 1990, 1995, and 2000.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>An ANOVA table is constructed (using <code>Anova()</code> from <code>car</code>) and interpreted (sequentially starting at the bottom of the table) as described in Chapter 7 of <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(fit1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="output"><code>#R|  Anova Table (Type II tests)
+#R|  
+#R|  Response: logW
+#R|             Sum Sq  Df   F value    Pr(&gt;F)    
+#R|  logL       43.529   1 22278.435 &lt; 2.2e-16 ***
+#R|  fYear       0.451   2   115.429 &lt; 2.2e-16 ***
+#R|  logL:fYear  0.052   2    13.395 2.159e-06 ***
+#R|  Residuals   0.971 497                        
+#R|  ---
+#R|  Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>From these results it is apparent that the interaction term is a significant predictor in the model. In relation to <a href="#eq-FullModel">Equation&nbsp;1</a> this suggests that at least one of <span class="math inline">\(\gamma_{1}\)</span> or <span class="math inline">\(\gamma_{2}\)</span> is significantly different than zero, which implies that the slope of the relationship for fish captured in 1995, 2000, or both differs significantly from the slope for fish captured in 1990. Additionally, it is possible that the slopes for fish captured in 1995 and 2000 also differ, but this cannot be assessed with this model.</p>
+<p>The ANOVA table for the fit of the full model is useful for determining if there is some difference in the regression model parameters among groups, but it cannot specifically identify where those differences occur. Specific differences are identified in the next section.</p>
+<p>&nbsp;</p>
+</section>
+<section id="specific-differences-among-slopes" class="level1">
+<h1>Specific Differences Among Slopes</h1>
+<p>The use of <code>emtrends()</code> from <code>emmeans</code> is described in <a href="https://fishr-core-team.github.io/fishR/blog/posts/2021-5-11_compSlopes-replacement/">this fishR post</a>. Results for pairwise comparisons of slopes are obtained with <code>emtrends()</code> using the fitted <code>lm()</code> object as the first argument, a <code>specs=</code> argument with <code>pairwise~</code> followed by the name of the factor variable from the <code>lm()</code> model (<code>fYear</code> in this case), and <code>var=</code> followed by the name of the covariate from the <code>lm()</code> model (<code>logL</code> in this case), which must be in quotes. The results should be assigned to an object so that specific results can be extracted.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>cs <span class="ot">&lt;-</span> <span class="fu">emtrends</span>(fit1,<span class="at">specs=</span>pairwise<span class="sc">~</span>fYear,<span class="at">var=</span><span class="st">"logL"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The object saved from <code>emtrends()</code> is then given as the first argument to <code>summary()</code>, which also requires <code>infer=TRUE</code> if you would like p-values to be calculated.^[<code>emtrends()</code> does not compute p-values by default.`</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>css <span class="ot">&lt;-</span> <span class="fu">summary</span>(cs,<span class="at">infer=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>$contrasts</code> component in this saved object contains the results for comparing all pairs of slopes. Each paired comparison is a row with the groups compared under <code>contrasts</code>, the difference in sample slopes under <code>diff</code>, the standard error of the difference in sample slopes under <code>SE</code>, the degrees-of-freedom under <code>df</code>, a 95% confidence interval for the difference in slopes under <code>lower.CL</code> and <code>upper.CL</code>, and the t test statistic and p-value adjusted for multiple comparisons for testing a difference in slopes under <code>t.ratio</code> and <code>p.value</code>, respectively.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>css<span class="sc">$</span>contrasts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="output"><code>#R|   contrast              estimate     SE  df lower.CL upper.CL t.ratio p.value
+#R|   fYear1990 - fYear1995   0.1719 0.0502 497   0.0539    0.290   3.424  0.0019
+#R|   fYear1990 - fYear2000   0.2285 0.0452 497   0.1222    0.335   5.052  &lt;.0001
+#R|   fYear1995 - fYear2000   0.0567 0.0487 497  -0.0579    0.171   1.163  0.4759
+#R|  
+#R|  Confidence level used: 0.95 
+#R|  Conf-level adjustment: tukey method for comparing a family of 3 estimates 
+#R|  P value adjustment: tukey method for comparing a family of 3 estimates</code></pre>
+</div>
+</div>
+<p>These results show that the slope for 1990 is significantly greater than the slopes for 1995 and 2000, and that the slopes for 1995 and 2000 do not differ significantly.</p>
+<p>The <code>$emtrends</code> component contains results for each slope with the groups under the name of the factor variable (<code>fYear</code> in this example), the sample slopes under <code>xxx.trend</code> (where xxx is replaced with the name of the covariate variable, <code>logW</code> in this example), standard errors of the sample slopes under <code>SE</code>, degrees-of-freedom under <code>df</code>, 95% confidence intervals for the slope under <code>lower.CL</code> and <code>upper.CL</code>, and t test statistics and p-values adjusted for multiple comparisons for testing that the slope is not equal to zero under <code>t.ratio</code> and <code>p.adj</code>, respectively.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>css<span class="sc">$</span>emtrends</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="output"><code>#R|   fYear logL.trend     SE  df lower.CL upper.CL t.ratio p.value
+#R|   1990        3.03 0.0331 497     2.96     3.09  91.366  &lt;.0001
+#R|   1995        2.85 0.0377 497     2.78     2.93  75.629  &lt;.0001
+#R|   2000        2.80 0.0308 497     2.74     2.86  90.762  &lt;.0001
+#R|  
+#R|  Confidence level used: 0.95</code></pre>
+</div>
+</div>
+<p>In this case, this output is primarily for completeness, as these hypothesis are not generally of interest with weight-length relationship regressions.</p>
+</section>
+<section id="a-summary-plot" class="level1 page-columns page-full">
+<h1>A Summary Plot</h1>
+<p>A plot that shows the transformed weight-length data with best-fit lines for each year superimposed (<a href="#fig-FitPlotSlopes">Figure&nbsp;2</a>) is constructed with the code below. This code follows that found in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span> with the exception that <code>col2rgbt()</code> from <code>FSA</code> is used to add transparency to each color in a vector of colors.</p>
+<div class="cell page-columns page-full" data-layout-align="center" data-par1="true">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Base plot</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>clrs1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"black"</span>,<span class="st">"red"</span>,<span class="st">"blue"</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>clrs2 <span class="ot">&lt;-</span> <span class="fu">col2rgbt</span>(clrs1,<span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(logW<span class="sc">~</span>logL,<span class="at">data=</span>ruf1,<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span>clrs2[fYear],</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"log(Total Length)"</span>,<span class="at">ylab=</span><span class="st">"log(Weight)"</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Fitted lines</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>( cfs <span class="ot">&lt;-</span> <span class="fu">coef</span>(fit1) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="output"><code>#R|     (Intercept)           logL      fYear1995      fYear2000 logL:fYear1995 
+#R|      -4.9144676      3.0251636      0.2817809      0.3942964     -0.1718633 
+#R|  logL:fYear2000 
+#R|      -0.2285159</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>minx <span class="ot">&lt;-</span> <span class="fu">min</span>(ruf1<span class="sc">$</span>logL)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>maxx <span class="ot">&lt;-</span> <span class="fu">max</span>(ruf1<span class="sc">$</span>logL)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(cfs[<span class="dv">1</span>]<span class="sc">+</span>cfs[<span class="dv">2</span>]<span class="sc">*</span>x,<span class="at">from=</span>minx,<span class="at">to=</span>maxx,<span class="at">col=</span>clrs1[<span class="dv">1</span>],<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>((cfs[<span class="dv">1</span>]<span class="sc">+</span>cfs[<span class="dv">3</span>])<span class="sc">+</span>(cfs[<span class="dv">2</span>]<span class="sc">+</span>cfs[<span class="dv">5</span>])<span class="sc">*</span>x,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">from=</span>minx,<span class="at">to=</span>maxx,<span class="at">col=</span>clrs1[<span class="dv">2</span>],<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>((cfs[<span class="dv">1</span>]<span class="sc">+</span>cfs[<span class="dv">4</span>])<span class="sc">+</span>(cfs[<span class="dv">2</span>]<span class="sc">+</span>cfs[<span class="dv">6</span>])<span class="sc">*</span>x,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">from=</span>minx,<span class="at">to=</span>maxx,<span class="at">col=</span>clrs1[<span class="dv">3</span>],<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Add legend</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,<span class="fu">levels</span>(ruf1<span class="sc">$</span>fYear),<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span>clrs1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display page-columns page-full">
+<div id="fig-FitPlotSlopes" class="quarto-figure quarto-figure-center anchored page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="weightLengthDVR_files/figure-html/fig-FitPlotSlopes-1.png" class="img-fluid figure-img" width="384"></p>
+<p></p><figcaption class="figure-caption margin-caption">Figure&nbsp;2: Log-transformed weight versus log-transformed length of Ruffe separated by capture year for years 1990, 1995, and 2000.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="specific-differences-among-intercepts" class="level1 page-columns page-full">
+<h1>Specific Differences Among Intercepts</h1>
+<p>When a difference in slopes exists, as in the previous example, it generally does not make sense to compare intercepts. However, if the slopes do not differ, then testing for differences in intercepts becomes important because, with parallel lines (i.e., same slopes), a difference in intercepts implies that the mean value of the response variable differs at <em>every</em> value of the explanatory variable.</p>
+<div class="page-columns page-full"><p>The example below fits a DVR of the weight-length relationship regressions for the years from 1992 to 1995.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> In this example, the interaction term is not a significant predictor which indicates that none of the slopes differ. However, the term related to the factor variable is significant, which implies that at least one of the <span class="math inline">\(\delta_{i}\)</span> is different from zero. Thus, the y-intercept for at least of 1993, 1994, or 1995 differs from the y-intercept for 1992 (the reference level).</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Note the change in data frames from the previous section.</p></li></div></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(logW<span class="sc">~</span>logL<span class="sc">*</span>fYear,<span class="at">data=</span>ruf2)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(fit2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="output"><code>#R|  Anova Table (Type II tests)
+#R|  
+#R|  Response: logW
+#R|             Sum Sq  Df    F value Pr(&gt;F)    
+#R|  logL       75.798   1 45594.0523 &lt;2e-16 ***
+#R|  fYear       0.326   3    65.4373 &lt;2e-16 ***
+#R|  logL:fYear  0.008   3     1.6373 0.1793    
+#R|  Residuals   1.235 743                      
+#R|  ---
+#R|  Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>Before comparing each pair of intercepts, a model without the interaction term, which was not significant, is fit.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fit2_noint <span class="ot">&lt;-</span> <span class="fu">lm</span>(logW<span class="sc">~</span>logL<span class="sc">+</span>fYear,<span class="at">data=</span>ruf2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The use of <code>emmeans()</code> from <code>emmeans</code> is described in <a href="https://fishr-core-team.github.io/fishR/blog/posts/2021-5-12_compIntercepts-replacement/">this fishR post</a>. Results for the comparison of all intercepts is obtained with <code>emmeans()</code> using the fitted <code>lm()</code> object (without the interaction term) as the first argument and a <code>specs=</code> argument with <code>pairwise~</code> followed by the name of the factor variable from the <code>lm()</code> model (<code>fYear</code> in this case).</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ci <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(fit2_noint,<span class="at">specs=</span>pairwise<span class="sc">~</span>fYear)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The object saved from <code>emmeans()</code> is then given as the first argument to <code>summary()</code>, which also requires <code>infer=TRUE</code> if you would like p-values to be calculated.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>cis <span class="ot">&lt;-</span> <span class="fu">summary</span>(ci,<span class="at">infer=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>$contrasts</code> component in this saved object contains the results for comparing all pairs of predicted means at the overall mean of the covariate. Each paired comparison is a row with the groups compared under <code>contrast</code>, the difference in predicted means under <code>estimate</code>, the standard error of the difference in predicted means under <code>SE</code>, the degrees-of-freedom under <code>df</code>, a 95% confidence interval for the difference in predicted means under <code>lower.CL</code> and <code>upper.CL</code>, and the t test statistic and p-value adjusted for multiple comparisons for testing a difference in predicted means under <code>t.ratio</code> and <code>p.value</code>, respectively.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>cis<span class="sc">$</span>contrasts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="output"><code>#R|   contrast              estimate      SE  df lower.CL upper.CL t.ratio p.value
+#R|   fYear1992 - fYear1993 0.056085 0.00444 746  0.04466   0.0675  12.638  &lt;.0001
+#R|   fYear1992 - fYear1994 0.060984 0.00519 746  0.04761   0.0744  11.741  &lt;.0001
+#R|   fYear1992 - fYear1995 0.061607 0.00516 746  0.04833   0.0749  11.947  &lt;.0001
+#R|   fYear1993 - fYear1994 0.004900 0.00405 746 -0.00553   0.0153   1.210  0.6207
+#R|   fYear1993 - fYear1995 0.005522 0.00407 746 -0.00495   0.0160   1.358  0.5262
+#R|   fYear1994 - fYear1995 0.000622 0.00481 746 -0.01176   0.0130   0.129  0.9992
+#R|  
+#R|  Confidence level used: 0.95 
+#R|  Conf-level adjustment: tukey method for comparing a family of 4 estimates 
+#R|  P value adjustment: tukey method for comparing a family of 4 estimates</code></pre>
+</div>
+</div>
+<p>These results show that the y-intercept for 1992 is significantly greater than the y-intercepts for all other years, which did not differ significantly.</p>
+<p>The <code>$emmeans</code> component contains results for predicted means for each group with the groups under the name of the factor variable (<code>fYear</code> in this example), the predicted means under <code>emmean</code>, standard errors of the predicted means under <code>SE</code>, degrees-of-freedom under <code>df</code>, 95% confidence intervals for the predicted mean under <code>lower.CL</code> and <code>upper.CL</code>, and t test statistics and p-values adjusted for multiple comparisons for testing that the predicted mean is not equal to zero under <code>t.ratio</code> and <code>p.adj</code>, respectively.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>cis<span class="sc">$</span>emmeans</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="output"><code>#R|   fYear emmean       SE  df lower.CL upper.CL t.ratio p.value
+#R|   1992   1.172 0.003831 746    1.164    1.179 305.932  &lt;.0001
+#R|   1993   1.116 0.002209 746    1.112    1.120 505.130  &lt;.0001
+#R|   1994   1.111 0.003403 746    1.104    1.118 326.423  &lt;.0001
+#R|   1995   1.110 0.003417 746    1.104    1.117 324.965  &lt;.0001
+#R|  
+#R|  Confidence level used: 0.95</code></pre>
+</div>
+</div>
+<p>These results show, for example, the mean <span class="math inline">\(log_{10}(W)\)</span> for when <span class="math inline">\(log_{10}(L)\)</span>=2.012621 for fish captured in 1992 is 1.171924.</p>
+<div class="cell page-columns page-full" data-layout-align="center" data-par1="true">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Base plot</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>clrs1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"black"</span>,<span class="st">"red"</span>,<span class="st">"blue"</span>,<span class="st">"green"</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>clrs2 <span class="ot">&lt;-</span> <span class="fu">col2rgbt</span>(clrs1,<span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(logW<span class="sc">~</span>logL,<span class="at">data=</span>ruf2,<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span>clrs2[fYear],</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"log(Total Length)"</span>,<span class="at">ylab=</span><span class="st">"log(Weight)"</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Fitted lines</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>( cfs <span class="ot">&lt;-</span> <span class="fu">coef</span>(fit2) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="output"><code>#R|     (Intercept)           logL      fYear1993      fYear1994      fYear1995 
+#R|    -4.553035394    2.846025564   -0.197272960   -0.189460113   -0.079651305 
+#R|  logL:fYear1993 logL:fYear1994 logL:fYear1995 
+#R|     0.068720265    0.062584797    0.007274738</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>minx <span class="ot">&lt;-</span> <span class="fu">min</span>(ruf2<span class="sc">$</span>logL)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>maxx <span class="ot">&lt;-</span> <span class="fu">max</span>(ruf2<span class="sc">$</span>logL)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(cfs[<span class="dv">1</span>]<span class="sc">+</span>cfs[<span class="dv">2</span>]<span class="sc">*</span>x,<span class="at">from=</span>minx,<span class="at">to=</span>maxx,<span class="at">col=</span>clrs1[<span class="dv">1</span>],<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>((cfs[<span class="dv">1</span>]<span class="sc">+</span>cfs[<span class="dv">3</span>])<span class="sc">+</span>(cfs[<span class="dv">2</span>]<span class="sc">+</span>cfs[<span class="dv">6</span>])<span class="sc">*</span>x,<span class="at">from=</span>minx,<span class="at">to=</span>maxx,<span class="at">col=</span>clrs1[<span class="dv">2</span>],<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>((cfs[<span class="dv">1</span>]<span class="sc">+</span>cfs[<span class="dv">4</span>])<span class="sc">+</span>(cfs[<span class="dv">2</span>]<span class="sc">+</span>cfs[<span class="dv">7</span>])<span class="sc">*</span>x,<span class="at">from=</span>minx,<span class="at">to=</span>maxx,<span class="at">col=</span>clrs1[<span class="dv">3</span>],<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>((cfs[<span class="dv">1</span>]<span class="sc">+</span>cfs[<span class="dv">5</span>])<span class="sc">+</span>(cfs[<span class="dv">2</span>]<span class="sc">+</span>cfs[<span class="dv">8</span>])<span class="sc">*</span>x,<span class="at">from=</span>minx,<span class="at">to=</span>maxx,<span class="at">col=</span>clrs1[<span class="dv">4</span>],<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Add legend</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,<span class="fu">levels</span>(ruf2<span class="sc">$</span>fYear),<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span>clrs1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display page-columns page-full">
+<div id="fig-FitPlotIntercepts" class="quarto-figure quarto-figure-center anchored page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="weightLengthDVR_files/figure-html/fig-FitPlotIntercepts-1.png" class="img-fluid figure-img" width="384"></p>
+<p></p><figcaption class="figure-caption margin-caption">Figure&nbsp;3: Log-transformed weight versus log-transformed length of Ruffe separated by capture year for years 1992-1995.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-ogleIntroductoryFisheriesAnalyses2016" class="csl-entry" role="doc-biblioentry">
+Ogle, D. H. 2016. <a href="http://derekogle.com/IFAR/">Introductory <span>Fisheries</span> <span>Analyses</span> with <span>R</span></a>. CRC Press, Boca Raton, FL.
+</div>
+<div id="ref-ogle_ruffe_2009" class="csl-entry" role="doc-biblioentry">
+Ogle, D. H., and I. J. Winfield. 2009. <a href="http://www.tandfonline.com/doi/abs/10.1577/M08-176.1#.U6ojzvldV8E">Ruffe length-weight relationships with a proposed standard weight equation</a>. North American Journal of Fisheries Management 29:850–858.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp(/https:\/\/droglenc\.github\.io\/IFAR\//);
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

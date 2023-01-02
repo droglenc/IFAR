@@ -38,6 +38,7 @@ The Levenberg-Marquardt (L-M) algorithm is a powerful and common method that swi
 The L-M algorithm is implemented in `nlsLM()` from `minpack.lm` [@elzhov_minpacklm_2013] and uses the same main arguments as `nls()`. For example, the "Typical" VBGF is fit (and parameter estimates, likelihood profile confidence intervals, and predictions are extracted) to the male Black Drum data below using the L-M algorithm.^[This code is the same as used in @ogleIntroductoryFisheriesAnalyses2016, except that `nlsLM()` replaced `nls()`.]
 
 ```{r}
+#| cache: true
 vbTyp <- vbFuns()
 svTyp <- list(Linf=1193,K=0.13,t0=-2.0)
 fitLM <- nlsLM(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp)
@@ -61,6 +62,7 @@ cupr <- c(Linf=Inf,K=Inf,   t0=Inf)
 These constraints may be provided to `lower=` and `upper=`, respectively, of `nlsLM()`. In this instance, these bounds had no noticeable effect until bootstapping, where there were fewer instances of lack of convergence.
 
 ```{r}
+#| cache: true
 fitLM1 <- nlsLM(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp,lower=clwr,upper=cupr)
 bootLM1 <- nlsBoot(fitLM1)
 cbind(Ests=coef(fitLM1),confint(bootLM1))

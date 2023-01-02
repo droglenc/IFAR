@@ -61,6 +61,7 @@ Starting values are obtained with `vbStarts()` as described in @ogleIntroductory
 The VBGF is fit and parameter estimates with likelihood profile confidence intervals and bootstrapped confidence intervals and predictions may also be obtained as described in @ogleIntroductoryFisheriesAnalyses2016.
 
 ```{r}
+#| cache: true
 nlsO <- nls(tl~vbO(otoage,Linf,K,L0),data=bdm,start=svO)
 cbind(Ests=coef(nlsO),confint(nlsO))
 bootO <- nlsBoot(nlsO)
@@ -103,6 +104,7 @@ Starting values are obtained with `vbStarts()` as described above. However, with
 The VBGF is fit and parameter estimates with likelihood profile confidence intervals and bootstrapped confidence intervals and predictions are obtained as described in @ogleIntroductoryFisheriesAnalyses2016, with the exception that the vector that defines the youngest and oldest ages must be supplied to `vbF()`.
 
 ```{r}
+#| cache: true
 nlsF <- nls(tl~vbF(otoage,L1,L2,L3,t1=ages),data=bdm,start=svF)
 cbind(Ests=coef(nlsF),confint(nlsF))
 bootF <- nlsBoot(nlsF)

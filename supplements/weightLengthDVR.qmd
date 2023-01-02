@@ -1,0 +1,240 @@
+---
+title: "Weight-Length Relationship for 3+ Groups"
+author: "Derek H. Ogle"
+output: html_document
+---
+
+Dummy variable regression (DVR) was introduced in Chapter 7 of @ogleIntroductoryFisheriesAnalyses2016 in the context of determining if the slope and y-intercept parameters of weight-length relationship regressions differed between fish captured in two different years. That analysis may be extended to more than two groups, though more dummy variables are required and special methods are needed to determine which pairs of groups (if any) differ. This supplement demonstrates how to extend the DVR to more than two groups.
+
+# Setup
+## Packages
+Functions used in this supplement require the following packages. Also note that one function from `lubridate` and two functions from `car` are used below with `::` so that the whole packages do not need to be loaded.
+
+```{r}
+#| results: hide
+library(FSA)      # for headtail(), hist(), col2rgbt()
+library(dplyr)    # for select(), mutate(), filter()
+library(emmeans)  # for emtrends(), emmeans()
+```
+
+```{r}
+#| echo: false
+knitr::knit_hooks$set(
+  par1 = function(before, options, envir) {
+    if (before && options$fig.show != "none") {
+      par(mar=c(3.05,3.05,0.65,0.65),
+          mgp=c(1.9,0.3,0),
+          tcl=-0.2,
+          las=1,
+          cex.lab=0.95,
+          cex.axis=0.9)
+      if (is.list(options$par))
+        do.call(par, options$par)
+    }
+  }
+)
+```
+
+## Data
+Weights (g) and total lengths (mm) from Ruffe (*Gymnocephalus cernuus*) captured in the St. Louis River Harbor (Minnesota and Wisconsin) were used in Chapter 7 of @ogleIntroductoryFisheriesAnalyses2016 and will also be used in this supplement. These data are from @ogle_ruffe_2009 and are in [`RuffeSLRH.csv`](../scripts/RuffeSLRH.csv)). To eliminate within-season variability, only Ruffe captured in July are used here. Additionally, a factored version of `year` was created, the common logarithms of weight and length were created, and the `fishID`, `month`, and `day` variables were removed to save space in the output.
+
+```{r}
+ruf <- read.csv("../scripts/RuffeSLRH.csv") |>
+  filter(month==7) |>
+  mutate(fYear=factor(year),logW=log10(wt),logL=log10(tl)) |>
+  select(-fishID,-month,-day)
+headtail(ruf)
+```
+
+For the first example below, only fish from 1990, 1995, and 2000 were examined. In the second example below, fish from 1992 to 1995 were examined.
+
+```{r}
+ruf1 <- ruf |>
+  filter(year %in% c(1990,1995,2000)) |>
+  droplevels()
+ruf2 <- ruf |>
+  filter(year %in% 1992:1995) |>
+  droplevels()
+```
+
+# Full Model
+The number of dummy variables required to represent $k$ groups is $k-1$. Thus, in Chapter 7 of @ogleIntroductoryFisheriesAnalyses2016, only one dummy variable was required to represent the two groups. In this example, three groups (the years) are being examined and, thus, two dummy variables are needed. For example, `lm()` will ultimately treat the "1990" group as the reference group and create two dummy variables as follows
+
+$$  fYear1995 = \left\{\begin{array}{l}
+    1 \text{, if captured in 1995 }\\
+    0 \text{, if NOT captured in 1995 }
+    \end{array}  \right. $$
+
+$$  fYear2000 = \left\{\begin{array}{l}
+    1 \text{, if captured in 2000 }\\
+    0 \text{, if NOT captured in 2000 }
+    \end{array}  \right. $$
+
+These dummy variables are each combined with the $log_{10}(L)$ covariate to construct the following ultimate full model
+
+$$ \begin{split}
+    log_{10}(W_{i}) &= log_{10}(\alpha) + \beta log_{10}(L_{i}) \\
+                    &\mspace{16mu}+ \delta_{1} fYear1995 + \delta_{2} fYear2000 \\
+                    &\mspace{16mu}+ \gamma_{1} fYear1995*log_{10}(L_{i})+ \gamma_{2} fYear2000*log_{10}(L_{i}) + \epsilon_{i}
+\end{split} $$ {#eq-FullModel}
+
+Substitution of appropriate values for the dummy variables into @eq-FullModel shows how @eq-FullModel simultaneously represents the weight-length relationship regressions for all three years as shown below.
+
+<table>
+<tr><th width="75px" align="center">Year</th><th width="100px" align="center">fYear1995</th><th width="100px" align="center">fYear2000</th><th width="200px">Submodel ($log_{10}(W_{i})=$)</th></tr>
+<tr><td align="center">1990</td><td align="center">0</td><td align="center">0</td><td>$log_{10}(\alpha) + \beta log_{10}(L_{i})$</td></tr>
+<tr><td align="center">1995</td><td align="center">1</td><td align="center">0</td><td>$(log_{10}(\alpha) + \delta_{1}) + (\beta + \gamma_{1})*log_{10}(L_{i})$</td></tr>
+<tr><td align="center">2000</td><td align="center">0</td><td align="center">1</td><td>$(log_{10}(\alpha) + \delta_{2}) + (\beta + \gamma_{2})*log_{10}(L_{i})$</td></tr>
+</table>
+
+From these submodels, it is apparent that $\alpha$ is the y-intercept for the reference (e.g., 1990) group, $\beta$ is the slope for the reference group, $\delta_{i}$ is the difference in y-intercepts between the $i$th and reference groups, and $\gamma_{i}$ is the difference in slopes between the $i$th and reference groups. By extension, the interaction variables measure differences in slopes and the dummy variables measure differences in y-intercepts.
+
+The model in @eq-FullModel is fit with `lm()` using a formula of the form `y~x*factor` exactly as described in Chapter 7 of @ogleIntroductoryFisheriesAnalyses2016 (again noting that `lm()` will create the appropriate dummy and interaction variables).
+
+```{r}
+fit1 <- lm(logW~logL*fYear,data=ruf1)
+```
+
+The linearity and homoscedasticity assumptions and normality assumption (@fig-FullResidPlot) are largely met with this model.
+
+```{r}
+#| label: fig-FullResidPlot
+#| fig-cap: Modified residual plot (Left) and histogram of residuals (Right) from fitting a dummy variable regression to the log-transformed weights and lengths of Ruffe captured in 1990, 1995, and 2000.
+#| fig.width: 8
+#| fig.height: 4
+#| par1: true
+par(mfrow=c(1,2))
+plot(resid(fit1)~fitted(fit1),xlab="Fitted Values",ylab="Residuals")
+hist(~resid(fit1),xlab="Residuals",breaks=12)
+```
+
+An ANOVA table is constructed (using `Anova()` from `car`) and interpreted (sequentially starting at the bottom of the table) as described in Chapter 7 of @ogleIntroductoryFisheriesAnalyses2016.
+
+```{r}
+car::Anova(fit1)
+```
+
+From these results it is apparent that the interaction term is a significant predictor in the model. In relation to @eq-FullModel this suggests that at least one of $\gamma_{1}$ or $\gamma_{2}$ is significantly different than zero, which implies that the slope of the relationship for fish captured in 1995, 2000, or both differs significantly from the slope for fish captured in 1990. Additionally, it is possible that the slopes for fish captured in 1995 and 2000 also differ, but this cannot be assessed with this model.
+
+The ANOVA table for the fit of the full model is useful for determining if there is some difference in the regression model parameters among groups, but it cannot specifically identify where those differences occur. Specific differences are identified in the next section.
+
+&nbsp;
+
+# Specific Differences Among Slopes
+The use of `emtrends()` from `emmeans` is described in [this fishR post](https://fishr-core-team.github.io/fishR/blog/posts/2021-5-11_compSlopes-replacement/). Results for pairwise comparisons of slopes are obtained with `emtrends()` using the fitted `lm()` object as the first argument, a `specs=` argument with `pairwise~` followed by the name of the factor variable from the `lm()` model (`fYear` in this case), and `var=` followed by the name of the covariate from the `lm()` model (`logL` in this case), which must be in quotes. The results should be assigned to an object so that specific results can be extracted.
+
+```{r}
+cs <- emtrends(fit1,specs=pairwise~fYear,var="logL")
+```
+
+The object saved from `emtrends()` is then given as the first argument to `summary()`, which also requires `infer=TRUE` if you would like p-values to be calculated.^[`emtrends()` does not compute p-values by default.`
+
+```{r}
+css <- summary(cs,infer=TRUE)
+```
+
+The `$contrasts` component in this saved object contains the results for comparing all pairs of slopes. Each paired comparison is a row with the groups compared under `contrasts`, the difference in sample slopes under `diff`, the standard error of the difference in sample slopes under `SE`, the degrees-of-freedom under `df`, a 95% confidence interval for the difference in slopes under `lower.CL` and `upper.CL`, and the t test statistic and p-value adjusted for multiple comparisons for testing a difference in slopes under `t.ratio` and `p.value`, respectively.
+
+```{r}
+css$contrasts
+```
+
+These results show that the slope for 1990 is significantly greater than the slopes for 1995 and 2000, and that the slopes for 1995 and 2000 do not differ significantly.
+
+The `$emtrends` component contains results for each slope with the groups under the name of the factor variable (`fYear` in this example), the sample slopes under `xxx.trend` (where xxx is replaced with the name of the covariate variable, `logW` in this example), standard errors of the sample slopes under `SE`, degrees-of-freedom under `df`, 95% confidence intervals for the slope under `lower.CL` and `upper.CL`, and t test statistics and p-values adjusted for multiple comparisons for testing that the slope is not equal to zero under `t.ratio` and `p.adj`, respectively.
+
+```{r}
+css$emtrends
+```
+
+In this case, this output is primarily for completeness, as these hypothesis are not generally of interest with weight-length relationship regressions.
+
+# A Summary Plot
+A plot that shows the transformed weight-length data with best-fit lines for each year superimposed (@fig-FitPlotSlopes) is constructed with the code below. This code follows that found in @ogleIntroductoryFisheriesAnalyses2016 with the exception that `col2rgbt()` from `FSA` is used to add transparency to each color in a vector of colors.
+
+```{r}
+#| label: fig-FitPlotSlopes
+#| fig-cap: Log-transformed weight versus log-transformed length of Ruffe separated by capture year for years 1990, 1995, and 2000.
+#| par1: true
+## Base plot
+clrs1 <- c("black","red","blue")
+clrs2 <- col2rgbt(clrs1,1/4)
+plot(logW~logL,data=ruf1,pch=19,col=clrs2[fYear],
+     xlab="log(Total Length)",ylab="log(Weight)")
+## Fitted lines
+( cfs <- coef(fit1) )
+minx <- min(ruf1$logL)
+maxx <- max(ruf1$logL)
+curve(cfs[1]+cfs[2]*x,from=minx,to=maxx,col=clrs1[1],lwd=2,add=TRUE)
+curve((cfs[1]+cfs[3])+(cfs[2]+cfs[5])*x,
+      from=minx,to=maxx,col=clrs1[2],lwd=2,add=TRUE)
+curve((cfs[1]+cfs[4])+(cfs[2]+cfs[6])*x,
+      from=minx,to=maxx,col=clrs1[3],lwd=2,add=TRUE)
+## Add legend
+legend("topleft",levels(ruf1$fYear),pch=19,col=clrs1)
+```
+
+# Specific Differences Among Intercepts
+When a difference in slopes exists, as in the previous example, it generally does not make sense to compare intercepts. However, if the slopes do not differ, then testing for differences in intercepts becomes important because, with parallel lines (i.e., same slopes), a difference in intercepts implies that the mean value of the response variable differs at *every* value of the explanatory variable.
+
+The example below fits a DVR of the weight-length relationship regressions for the years from 1992 to 1995.^[Note the change in data frames from the previous section.] In this example, the interaction term is not a significant predictor which indicates that none of the slopes differ. However, the term related to the factor variable is significant, which implies that at least one of the $\delta_{i}$ is different from zero. Thus, the y-intercept for at least of 1993, 1994, or 1995 differs from the y-intercept for 1992 (the reference level).
+
+```{r}
+fit2 <- lm(logW~logL*fYear,data=ruf2)
+car::Anova(fit2)
+```
+
+Before comparing each pair of intercepts, a model without the interaction term, which was not significant, is fit.
+
+```{r}
+fit2_noint <- lm(logW~logL+fYear,data=ruf2)
+```
+
+The use of `emmeans()` from `emmeans` is described in [this fishR post](https://fishr-core-team.github.io/fishR/blog/posts/2021-5-12_compIntercepts-replacement/). Results for the comparison of all intercepts is obtained with `emmeans()` using the fitted `lm()` object (without the interaction term) as the first argument and a `specs=` argument with `pairwise~` followed by the name of the factor variable from the `lm()` model (`fYear` in this case).
+
+```{r}
+ci <- emmeans(fit2_noint,specs=pairwise~fYear)
+```
+
+The object saved from `emmeans()` is then given as the first argument to `summary()`, which also requires `infer=TRUE` if you would like p-values to be calculated.
+
+```{r}
+cis <- summary(ci,infer=TRUE)
+```
+
+The `$contrasts` component in this saved object contains the results for comparing all pairs of predicted means at the overall mean of the covariate. Each paired comparison is a row with the groups compared under `contrast`, the difference in predicted means under `estimate`, the standard error of the difference in predicted means under `SE`, the degrees-of-freedom under `df`, a 95% confidence interval for the difference in predicted means under `lower.CL` and `upper.CL`, and the t test statistic and p-value adjusted for multiple comparisons for testing a difference in predicted means under `t.ratio` and `p.value`, respectively.
+
+```{r}
+cis$contrasts
+```
+
+These results show that the y-intercept for 1992 is significantly greater than the y-intercepts for all other years, which did not differ significantly.
+
+The `$emmeans` component contains results for predicted means for each group with the groups under the name of the factor variable (`fYear` in this example), the predicted means under `emmean`, standard errors of the predicted means under `SE`, degrees-of-freedom under `df`, 95% confidence intervals for the predicted mean under `lower.CL` and `upper.CL`, and t test statistics and p-values adjusted for multiple comparisons for testing that the predicted mean is not equal to zero under `t.ratio` and `p.adj`, respectively.
+
+```{r}
+cis$emmeans
+```
+
+These results show, for example, the mean $log_{10}(W)$ for when $log_{10}(L)$=`r formatC(mean(ruf2$logL),format="f",digits=6)` for fish captured in 1992 is `r formatC(cis$emmeans[1,"emmean"],format="f",digits=6)`.
+
+```{r}
+#| label: fig-FitPlotIntercepts
+#| fig-cap: Log-transformed weight versus log-transformed length of Ruffe separated by capture year for years 1992-1995.
+#| par1: true
+## Base plot
+clrs1 <- c("black","red","blue","green")
+clrs2 <- col2rgbt(clrs1,1/4)
+plot(logW~logL,data=ruf2,pch=19,col=clrs2[fYear],
+     xlab="log(Total Length)",ylab="log(Weight)")
+## Fitted lines
+( cfs <- coef(fit2) )
+minx <- min(ruf2$logL)
+maxx <- max(ruf2$logL)
+curve(cfs[1]+cfs[2]*x,from=minx,to=maxx,col=clrs1[1],lwd=2,add=TRUE)
+curve((cfs[1]+cfs[3])+(cfs[2]+cfs[6])*x,from=minx,to=maxx,col=clrs1[2],lwd=2,add=TRUE)
+curve((cfs[1]+cfs[4])+(cfs[2]+cfs[7])*x,from=minx,to=maxx,col=clrs1[3],lwd=2,add=TRUE)
+curve((cfs[1]+cfs[5])+(cfs[2]+cfs[8])*x,from=minx,to=maxx,col=clrs1[4],lwd=2,add=TRUE)
+## Add legend
+legend("topleft",levels(ruf2$fYear),pch=19,col=clrs1)
+```

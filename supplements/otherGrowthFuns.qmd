@@ -95,6 +95,7 @@ svL1 <- list(Linf=1250,gninf=0.15,ti=4)
 These models may be fit and summarized as illustrated in @ogleIntroductoryFisheriesAnalyses2016. The code below is for the Richards function.
 
 ```{r}
+#| cache: true
 fitR1 <- nls(tl~r1(otoage,Linf,k,a,b),data=bdm,start=svR1)
 bootR1 <- nlsBoot(fitR1)
 cbind(Ests=coef(fitR1),confint(bootR1))
