@@ -16,6 +16,14 @@ website:
   page-footer:
     background: "#2B0828"
     foreground: white
+    left: "Copyright 2019, Derek H. Ogle"
+    right:
+      - icon: github
+        href: https://github.com/droglenc/IFAR
+        aria-label: GitHub
+      - icon: twitter
+        href: https://twitter.com/fishR_ogle
+        aria-label: Twitter
   comments: false
   open-graph: true
 format:

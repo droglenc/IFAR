@@ -138,7 +138,7 @@ div.csl-indent {
 
 <link rel="stylesheet" href="../helpers/styles.css">
 <meta property="og:title" content="IFAR - Weight-Length Relationship for 3+ Groups">
-<meta property="og:description" content="Dummy variable regression (DVR) was introduced in Chapter 7 of Ogle (2016) in the context of determining if the slope and y-intercept parameters of weight-length relationship regressions differed…">
+<meta property="og:description" content="">
 <meta property="og:site-name" content="IFAR">
 <meta name="citation_title" content="Weight-Length Relationship for 3+ Groups">
 <meta name="citation_author" content="Derek H. Ogle">
@@ -232,6 +232,7 @@ div.csl-indent {
 
 </header>
 
+<p>&nbsp;</p>
 <p>Dummy variable regression (DVR) was introduced in Chapter 7 of <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span> in the context of determining if the slope and y-intercept parameters of weight-length relationship regressions differed between fish captured in two different years. That analysis may be extended to more than two groups, though more dummy variables are required and special methods are needed to determine which pairs of groups (if any) differ. This supplement demonstrates how to extend the DVR to more than two groups.</p>
 <section id="setup" class="level1">
 <h1>Setup</h1>
@@ -249,7 +250,7 @@ div.csl-indent {
 </section>
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
-<p>Weights (g) and total lengths (mm) from Ruffe (<em>Gymnocephalus cernuus</em>) captured in the St.&nbsp;Louis River Harbor (Minnesota and Wisconsin) were used in Chapter 7 of <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span> and will also be used in this supplement. These data are from <span class="citation" data-cites="ogle_ruffe_2009">Ogle and Winfield (<a href="#ref-ogle_ruffe_2009" role="doc-biblioref">2009</a>)</span> and are in <a href="../scripts/RuffeSLRH.csv"><code>RuffeSLRH.csv</code></a>). To eliminate within-season variability, only Ruffe captured in July are used here. Additionally, a factored version of <code>year</code> was created, the common logarithms of weight and length were created, and the <code>fishID</code>, <code>month</code>, and <code>day</code> variables were removed to save space in the output.</p>
+<p>Weights (g) and total lengths (mm) from Ruffe (<em>Gymnocephalus cernuus</em>) captured in the St.&nbsp;Louis River Harbor (Minnesota and Wisconsin) were used in Chapter 7 of <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span> and will also be used in this supplement. These data are from <span class="citation" data-cites="ogle_ruffe_2009">Ogle and Winfield (<a href="#ref-ogle_ruffe_2009" role="doc-biblioref">2009</a>)</span> and are in <a href="../scripts/RuffeSLRH.csv"><code>RuffeSLRH.csv</code></a>. To eliminate within-season variability, only Ruffe captured in July are used here. Additionally, a factored version of <code>year</code> was created, the common logarithms of weight and length were created, and the <code>fishID</code>, <code>month</code>, and <code>day</code> variables were removed to save space in the output.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ruf <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../scripts/RuffeSLRH.csv"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(month<span class="sc">==</span><span class="dv">7</span>) <span class="sc">|&gt;</span></span>
@@ -390,21 +391,21 @@ Submodel (<span class="math inline">\(log_{10}(W_{i})=\)</span>)
 #R|  Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<p>From these results it is apparent that the interaction term is a significant predictor in the model. In relation to <a href="#eq-FullModel">Equation&nbsp;1</a> this suggests that at least one of <span class="math inline">\(\gamma_{1}\)</span> or <span class="math inline">\(\gamma_{2}\)</span> is significantly different than zero, which implies that the slope of the relationship for fish captured in 1995, 2000, or both differs significantly from the slope for fish captured in 1990. Additionally, it is possible that the slopes for fish captured in 1995 and 2000 also differ, but this cannot be assessed with this model.</p>
+<p>From these results it is apparent that the interaction term is a significant predictor in the model. In relation to <a href="#eq-FullModel">Equation&nbsp;1</a> this suggests that at least one of <span class="math inline">\(\gamma_{1}\)</span> or <span class="math inline">\(\gamma_{2}\)</span> is significantly different than zero, which implies that the slope of the relationship for fish captured in 1995, 2000, or both differs significantly from the slope for fish captured in 1990. Additionally, it is possible that the slopes for fish captured in 1995 and 2000 also differ, but this cannot be assessed from this output.</p>
 <p>The ANOVA table for the fit of the full model is useful for determining if there is some difference in the regression model parameters among groups, but it cannot specifically identify where those differences occur. Specific differences are identified in the next section.</p>
 <p>&nbsp;</p>
 </section>
-<section id="specific-differences-among-slopes" class="level1">
+<section id="specific-differences-among-slopes" class="level1 page-columns page-full">
 <h1>Specific Differences Among Slopes</h1>
 <p>The use of <code>emtrends()</code> from <code>emmeans</code> is described in <a href="https://fishr-core-team.github.io/fishR/blog/posts/2021-5-11_compSlopes-replacement/">this fishR post</a>. Results for pairwise comparisons of slopes are obtained with <code>emtrends()</code> using the fitted <code>lm()</code> object as the first argument, a <code>specs=</code> argument with <code>pairwise~</code> followed by the name of the factor variable from the <code>lm()</code> model (<code>fYear</code> in this case), and <code>var=</code> followed by the name of the covariate from the <code>lm()</code> model (<code>logL</code> in this case), which must be in quotes. The results should be assigned to an object so that specific results can be extracted.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>cs <span class="ot">&lt;-</span> <span class="fu">emtrends</span>(fit1,<span class="at">specs=</span>pairwise<span class="sc">~</span>fYear,<span class="at">var=</span><span class="st">"logL"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The object saved from <code>emtrends()</code> is then given as the first argument to <code>summary()</code>, which also requires <code>infer=TRUE</code> if you would like p-values to be calculated.^[<code>emtrends()</code> does not compute p-values by default.`</p>
+<div class="page-columns page-full"><p>The object saved from <code>emtrends()</code> is then given as the first argument to <code>summary()</code>, which also requires <code>infer=TRUE</code> if you would like p-values to be calculated.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;<code>emtrends()</code> does not compute p-values by default.</p></li></div></div>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>css <span class="ot">&lt;-</span> <span class="fu">summary</span>(cs,<span class="at">infer=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The <code>$contrasts</code> component in this saved object contains the results for comparing all pairs of slopes. Each paired comparison is a row with the groups compared under <code>contrasts</code>, the difference in sample slopes under <code>diff</code>, the standard error of the difference in sample slopes under <code>SE</code>, the degrees-of-freedom under <code>df</code>, a 95% confidence interval for the difference in slopes under <code>lower.CL</code> and <code>upper.CL</code>, and the t test statistic and p-value adjusted for multiple comparisons for testing a difference in slopes under <code>t.ratio</code> and <code>p.value</code>, respectively.</p>
+<p>The <code>$contrasts</code> component in this saved object contains the results for comparing all pairs of slopes. Each paired comparison is a row with the groups compared under <code>contrast</code>, the difference in sample slopes under <code>estimate</code>, the standard error of the difference in sample slopes under <code>SE</code>, the degrees-of-freedom under <code>df</code>, a 95% confidence interval for the difference in slopes under <code>lower.CL</code> and <code>upper.CL</code>, and the t test statistic and p-value adjusted for multiple comparisons for testing a difference in slopes under <code>t.ratio</code> and <code>p.value</code>, respectively.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>css<span class="sc">$</span>contrasts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -438,9 +439,9 @@ Submodel (<span class="math inline">\(log_{10}(W_{i})=\)</span>)
 <p>A plot that shows the transformed weight-length data with best-fit lines for each year superimposed (<a href="#fig-FitPlotSlopes">Figure&nbsp;2</a>) is constructed with the code below. This code follows that found in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span> with the exception that <code>col2rgbt()</code> from <code>FSA</code> is used to add transparency to each color in a vector of colors.</p>
 <div class="cell page-columns page-full" data-layout-align="center" data-par1="true">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Base plot</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>clrs1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"black"</span>,<span class="st">"red"</span>,<span class="st">"blue"</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>clrs2 <span class="ot">&lt;-</span> <span class="fu">col2rgbt</span>(clrs1,<span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(logW<span class="sc">~</span>logL,<span class="at">data=</span>ruf1,<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span>clrs2[fYear],</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>clr1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"black"</span>,<span class="st">"red"</span>,<span class="st">"blue"</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>clr2 <span class="ot">&lt;-</span> <span class="fu">col2rgbt</span>(clr1,<span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(logW<span class="sc">~</span>logL,<span class="at">data=</span>ruf1,<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span>clr2[fYear],</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"log(Total Length)"</span>,<span class="at">ylab=</span><span class="st">"log(Weight)"</span>)</span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Fitted lines</span></span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>( cfs <span class="ot">&lt;-</span> <span class="fu">coef</span>(fit1) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -450,15 +451,15 @@ Submodel (<span class="math inline">\(log_{10}(W_{i})=\)</span>)
 #R|  logL:fYear2000 
 #R|      -0.2285159</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>minx <span class="ot">&lt;-</span> <span class="fu">min</span>(ruf1<span class="sc">$</span>logL)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>maxx <span class="ot">&lt;-</span> <span class="fu">max</span>(ruf1<span class="sc">$</span>logL)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(cfs[<span class="dv">1</span>]<span class="sc">+</span>cfs[<span class="dv">2</span>]<span class="sc">*</span>x,<span class="at">from=</span>minx,<span class="at">to=</span>maxx,<span class="at">col=</span>clrs1[<span class="dv">1</span>],<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>mnx <span class="ot">&lt;-</span> <span class="fu">min</span>(ruf1<span class="sc">$</span>logL)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>mxx <span class="ot">&lt;-</span> <span class="fu">max</span>(ruf1<span class="sc">$</span>logL)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(cfs[<span class="dv">1</span>]<span class="sc">+</span>cfs[<span class="dv">2</span>]<span class="sc">*</span>x,<span class="at">from=</span>mnx,<span class="at">to=</span>mxx,<span class="at">col=</span>clr1[<span class="dv">1</span>],<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>((cfs[<span class="dv">1</span>]<span class="sc">+</span>cfs[<span class="dv">3</span>])<span class="sc">+</span>(cfs[<span class="dv">2</span>]<span class="sc">+</span>cfs[<span class="dv">5</span>])<span class="sc">*</span>x,</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">from=</span>minx,<span class="at">to=</span>maxx,<span class="at">col=</span>clrs1[<span class="dv">2</span>],<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">from=</span>mnx,<span class="at">to=</span>mxx,<span class="at">col=</span>clr1[<span class="dv">2</span>],<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>((cfs[<span class="dv">1</span>]<span class="sc">+</span>cfs[<span class="dv">4</span>])<span class="sc">+</span>(cfs[<span class="dv">2</span>]<span class="sc">+</span>cfs[<span class="dv">6</span>])<span class="sc">*</span>x,</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">from=</span>minx,<span class="at">to=</span>maxx,<span class="at">col=</span>clrs1[<span class="dv">3</span>],<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">from=</span>mnx,<span class="at">to=</span>mxx,<span class="at">col=</span>clr1[<span class="dv">3</span>],<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Add legend</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,<span class="fu">levels</span>(ruf1<span class="sc">$</span>fYear),<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span>clrs1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,<span class="fu">levels</span>(ruf1<span class="sc">$</span>fYear),<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span>clr1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display page-columns page-full">
 <div id="fig-FitPlotSlopes" class="quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="figure page-columns page-full">
@@ -472,7 +473,7 @@ Submodel (<span class="math inline">\(log_{10}(W_{i})=\)</span>)
 <section id="specific-differences-among-intercepts" class="level1 page-columns page-full">
 <h1>Specific Differences Among Intercepts</h1>
 <p>When a difference in slopes exists, as in the previous example, it generally does not make sense to compare intercepts. However, if the slopes do not differ, then testing for differences in intercepts becomes important because, with parallel lines (i.e., same slopes), a difference in intercepts implies that the mean value of the response variable differs at <em>every</em> value of the explanatory variable.</p>
-<div class="page-columns page-full"><p>The example below fits a DVR of the weight-length relationship regressions for the years from 1992 to 1995.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> In this example, the interaction term is not a significant predictor which indicates that none of the slopes differ. However, the term related to the factor variable is significant, which implies that at least one of the <span class="math inline">\(\delta_{i}\)</span> is different from zero. Thus, the y-intercept for at least of 1993, 1994, or 1995 differs from the y-intercept for 1992 (the reference level).</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Note the change in data frames from the previous section.</p></li></div></div>
+<div class="page-columns page-full"><p>The example below fits a DVR of the weight-length relationship regressions for the years from 1992 to 1995.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> In this example, the interaction term is not a significant predictor which indicates that none of the slopes differ. However, the term related to the factor variable is significant, which implies that at least one of the <span class="math inline">\(\delta_{i}\)</span> is different from zero. Thus, the y-intercept for at least of 1993, 1994, or 1995 differs from the y-intercept for 1992 (the reference level).</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Note the change in data frames from the previous section.</p></li></div></div>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(logW<span class="sc">~</span>logL<span class="sc">*</span>fYear,<span class="at">data=</span>ruf2)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(fit2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -519,7 +520,7 @@ Submodel (<span class="math inline">\(log_{10}(W_{i})=\)</span>)
 </div>
 </div>
 <p>These results show that the y-intercept for 1992 is significantly greater than the y-intercepts for all other years, which did not differ significantly.</p>
-<p>The <code>$emmeans</code> component contains results for predicted means for each group with the groups under the name of the factor variable (<code>fYear</code> in this example), the predicted means under <code>emmean</code>, standard errors of the predicted means under <code>SE</code>, degrees-of-freedom under <code>df</code>, 95% confidence intervals for the predicted mean under <code>lower.CL</code> and <code>upper.CL</code>, and t test statistics and p-values adjusted for multiple comparisons for testing that the predicted mean is not equal to zero under <code>t.ratio</code> and <code>p.adj</code>, respectively.</p>
+<div class="page-columns page-full"><p>The <code>$emmeans</code> component contains results for predicted means for each group with the groups under the name of the factor variable (<code>fYear</code> in this example),<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> the predicted means under <code>emmean</code>, standard errors of the predicted means under <code>SE</code>, degrees-of-freedom under <code>df</code>, 95% confidence intervals for the predicted mean under <code>lower.CL</code> and <code>upper.CL</code>, and t test statistics and p-values adjusted for multiple comparisons for testing that the predicted mean is not equal to zero under <code>t.ratio</code> and <code>p.adj</code>, respectively.</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;By default these are the predicted mean of the response variable at the mean of the explanatory variable.</p></li></div></div>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>cis<span class="sc">$</span>emmeans</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -532,29 +533,21 @@ Submodel (<span class="math inline">\(log_{10}(W_{i})=\)</span>)
 #R|  Confidence level used: 0.95</code></pre>
 </div>
 </div>
-<p>These results show, for example, the mean <span class="math inline">\(log_{10}(W)\)</span> for when <span class="math inline">\(log_{10}(L)\)</span>=2.012621 for fish captured in 1992 is 1.171924.</p>
+<p>These results show, for example, the mean <span class="math inline">\(log_{10}(W)\)</span> for when <span class="math inline">\(log_{10}(L)\)</span>=2.013 for fish captured in 1992 is 1.172.</p>
 <div class="cell page-columns page-full" data-layout-align="center" data-par1="true">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Base plot</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>clrs1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"black"</span>,<span class="st">"red"</span>,<span class="st">"blue"</span>,<span class="st">"green"</span>)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>clrs2 <span class="ot">&lt;-</span> <span class="fu">col2rgbt</span>(clrs1,<span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>)</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(logW<span class="sc">~</span>logL,<span class="at">data=</span>ruf2,<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span>clrs2[fYear],</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"log(Total Length)"</span>,<span class="at">ylab=</span><span class="st">"log(Weight)"</span>)</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Fitted lines</span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>( cfs <span class="ot">&lt;-</span> <span class="fu">coef</span>(fit2) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre class="output"><code>#R|     (Intercept)           logL      fYear1993      fYear1994      fYear1995 
-#R|    -4.553035394    2.846025564   -0.197272960   -0.189460113   -0.079651305 
-#R|  logL:fYear1993 logL:fYear1994 logL:fYear1995 
-#R|     0.068720265    0.062584797    0.007274738</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>minx <span class="ot">&lt;-</span> <span class="fu">min</span>(ruf2<span class="sc">$</span>logL)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>maxx <span class="ot">&lt;-</span> <span class="fu">max</span>(ruf2<span class="sc">$</span>logL)</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(cfs[<span class="dv">1</span>]<span class="sc">+</span>cfs[<span class="dv">2</span>]<span class="sc">*</span>x,<span class="at">from=</span>minx,<span class="at">to=</span>maxx,<span class="at">col=</span>clrs1[<span class="dv">1</span>],<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>((cfs[<span class="dv">1</span>]<span class="sc">+</span>cfs[<span class="dv">3</span>])<span class="sc">+</span>(cfs[<span class="dv">2</span>]<span class="sc">+</span>cfs[<span class="dv">6</span>])<span class="sc">*</span>x,<span class="at">from=</span>minx,<span class="at">to=</span>maxx,<span class="at">col=</span>clrs1[<span class="dv">2</span>],<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>((cfs[<span class="dv">1</span>]<span class="sc">+</span>cfs[<span class="dv">4</span>])<span class="sc">+</span>(cfs[<span class="dv">2</span>]<span class="sc">+</span>cfs[<span class="dv">7</span>])<span class="sc">*</span>x,<span class="at">from=</span>minx,<span class="at">to=</span>maxx,<span class="at">col=</span>clrs1[<span class="dv">3</span>],<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>((cfs[<span class="dv">1</span>]<span class="sc">+</span>cfs[<span class="dv">5</span>])<span class="sc">+</span>(cfs[<span class="dv">2</span>]<span class="sc">+</span>cfs[<span class="dv">8</span>])<span class="sc">*</span>x,<span class="at">from=</span>minx,<span class="at">to=</span>maxx,<span class="at">col=</span>clrs1[<span class="dv">4</span>],<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Add legend</span></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,<span class="fu">levels</span>(ruf2<span class="sc">$</span>fYear),<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span>clrs1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>clr1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"black"</span>,<span class="st">"red"</span>,<span class="st">"blue"</span>,<span class="st">"green"</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>clr2 <span class="ot">&lt;-</span> <span class="fu">col2rgbt</span>(clr1,<span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(logW<span class="sc">~</span>logL,<span class="at">data=</span>ruf2,<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span>clr2[fYear],</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"log(Total Length)"</span>,<span class="at">ylab=</span><span class="st">"log(Weight)"</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>cfs <span class="ot">&lt;-</span> <span class="fu">coef</span>(fit2)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>mnx <span class="ot">&lt;-</span> <span class="fu">min</span>(ruf2<span class="sc">$</span>logL)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>mxx <span class="ot">&lt;-</span> <span class="fu">max</span>(ruf2<span class="sc">$</span>logL)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(cfs[<span class="dv">1</span>]<span class="sc">+</span>cfs[<span class="dv">2</span>]<span class="sc">*</span>x,<span class="at">from=</span>mnx,<span class="at">to=</span>mxx,<span class="at">col=</span>clr1[<span class="dv">1</span>],<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>((cfs[<span class="dv">1</span>]<span class="sc">+</span>cfs[<span class="dv">3</span>])<span class="sc">+</span>(cfs[<span class="dv">2</span>]<span class="sc">+</span>cfs[<span class="dv">6</span>])<span class="sc">*</span>x,<span class="at">from=</span>mnx,<span class="at">to=</span>mxx,<span class="at">col=</span>clr1[<span class="dv">2</span>],<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>((cfs[<span class="dv">1</span>]<span class="sc">+</span>cfs[<span class="dv">4</span>])<span class="sc">+</span>(cfs[<span class="dv">2</span>]<span class="sc">+</span>cfs[<span class="dv">7</span>])<span class="sc">*</span>x,<span class="at">from=</span>mnx,<span class="at">to=</span>mxx,<span class="at">col=</span>clr1[<span class="dv">3</span>],<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>((cfs[<span class="dv">1</span>]<span class="sc">+</span>cfs[<span class="dv">5</span>])<span class="sc">+</span>(cfs[<span class="dv">2</span>]<span class="sc">+</span>cfs[<span class="dv">8</span>])<span class="sc">*</span>x,<span class="at">from=</span>mnx,<span class="at">to=</span>mxx,<span class="at">col=</span>clr1[<span class="dv">4</span>],<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Add legend</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,<span class="fu">levels</span>(ruf2<span class="sc">$</span>fYear),<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span>clr1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display page-columns page-full">
 <div id="fig-FitPlotIntercepts" class="quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="figure page-columns page-full">
@@ -728,6 +721,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Copyright 2019, Derek H. Ogle</div>   
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/droglenc/IFAR">
+      <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/fishR_ogle">
+      <i class="bi bi-twitter" role="img" aria-label="Twitter">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
 
 
 

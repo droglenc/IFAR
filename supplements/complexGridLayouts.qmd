@@ -4,6 +4,8 @@ author: "Derek H. Ogle"
 output: html_document
 ---
 
+&nbsp;
+
 Several methods for modifying base graphics were shown in @ogleIntroductoryFisheriesAnalyses2016, including simple layouts (side-by-side, one-over-the-other) of multiple plots. More complex layouts (e.g., plot in first row spans two columns or unequal sized plots) are described in this supplement. Creating common x- and y-axis labels for a grid of plots is [described in this supplement](commonAxisLabels.html).
 
 A single function is used from `dplyr` in this supplement; thus, `::` is used instead of loading the entire package. The `FSA` package is loaded here to provide access to the modified `hist()`.
@@ -19,8 +21,8 @@ data(BullTroutRML2,package="FSAdata")
 data(BloaterLH,package="FSAdata")
 ```
 
-# Complex Grid Layouts with `layout()`
-The `layout()` function allows for more complicated organizations of plots. The only required argument to `layout()` is a matrix that specifies the positions, as a grid, for a series of plots. The numbers in the matrix describe which sequential plot will appear in that position. For example, the following code constructs a 2x2 grid for four plots where the first plot will appear in the lower-right corner and the last (fourth) plot will appear in the upper-left corner.
+# Introducing `layout()`
+`layout()` allows for more complicated organizations of plots. The only required argument to `layout()` is a matrix that specifies the positions, as a grid, for a series of plots. The numbers in the matrix describe which sequential plot will appear in that position. For example, the following code constructs a 2x2 grid for four plots where the first plot will appear in the lower-right corner and the last (fourth) plot will appear in the upper-left corner.
 
 ```{r}
 #| label: Layout1pre
@@ -28,7 +30,7 @@ The `layout()` function allows for more complicated organizations of plots. The 
 layout(m)
 ```
 
-The `layout.show()` function is used to show the layout grid. Its only argument is the number of positions to show. The example below illustrates the layout created above.
+`layout.show()` is used to show the layout grid. Its only argument is the number of positions to show. The example below illustrates the layout created above.
 
 ```{r echo=-c(1:2)}
 #| label: fig-Layout1
@@ -38,7 +40,10 @@ The `layout.show()` function is used to show the layout grid. Its only argument 
 layout.show(4)
 ```
 
-The 2x2 grid in @fig-Layout1 is not that interesting because that layout is just as easily constructed with `mfrow=` in `par()` (as shown in the **IFAR** book). Layouts, however, can also be constructed that are not "grids."  For example, the entire first row may be one plot with a second row of two plots. This layout grid is constructed by including a "1" in the first two positions of the layout matrix (@fig-Layout2).
+&nbsp;
+
+# More Interesting Layouts
+The 2x2 grid in @fig-Layout1 is not that interesting because that layout is just as easily constructed with `mfrow=` in `par()` (as shown in @ogleIntroductoryFisheriesAnalyses2016). Layouts, however, can also be constructed that are not "grids."  For example, the entire first row may be one plot with a second row of two plots. This layout grid is constructed by including a "1" in the first two positions of the layout matrix (@fig-Layout2).
 
 ```{r}
 #| label: Layout2pre
@@ -108,6 +113,7 @@ boxplot(BloaterLH$age3,axes=FALSE,ylim=c(0,240))
 
 &nbsp;
 
+# Final Example
 Finally, `layout()` may be used to make quite complex grids, as illustrated with the code below that produced @fig-Layout6. Note that `plot.new()` creates a new blank plot in which the subsequent `text()` commands will place text (in this case marginal labels).
 
 ```{r}

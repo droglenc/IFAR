@@ -138,7 +138,7 @@ div.csl-indent {
 
 <link rel="stylesheet" href="../helpers/styles.css">
 <meta property="og:title" content="IFAR - Other VBGF Parameterizations">
-<meta property="og:description" content="The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the function were illustrated in Chapter 12 of Ogle (2016).">
+<meta property="og:description" content="">
 <meta property="og:site-name" content="IFAR">
 <meta name="citation_title" content="Other VBGF Parameterizations">
 <meta name="citation_author" content="Derek H. Ogle">
@@ -194,8 +194,7 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
-  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a>
+  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a>
   <ul class="collapse">
   <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
@@ -231,12 +230,10 @@ div.csl-indent {
 
 </header>
 
-<section id="background" class="level1">
-<h1>Background</h1>
-<p>The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the function were illustrated in Chapter 12 of <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>. The VBGF used there is from <span class="citation" data-cites="beverton_dynamics_1957">Beverton and Holt (<a href="#ref-beverton_dynamics_1957" role="doc-biblioref">1957</a>)</span> and is called the “Typical” parameterization of the VBGF. The VBGF can be expressed in alternative forms that are called parameterizations.</p>
-<p>Different parameterizations do not fit the data differently. In other words, all parameterizations of the VBGF have the same number of parameters and will produce the same predicted values and fitted model plots. However, different parameterizations have different function parameters that may be of interest to the fisheries scientist for biological reasons or because they have useful statistical properties. For example, the parameterizations of <span class="citation" data-cites="von_bertalanffy_quantitative_1938">von Bertalanffy (<a href="#ref-von_bertalanffy_quantitative_1938" role="doc-biblioref">1938</a>)</span> and <span class="citation" data-cites="mooij_analysis_1999">Mooij et al. (<a href="#ref-mooij_analysis_1999" role="doc-biblioref">1999</a>)</span> both use <span class="math inline">\(L_{0}\)</span>, which is the mean length at time 0 (i.e., at “hatch”). Thus, either of these parameterizations could be used if the <span class="math inline">\(L_{0}\)</span> parameter was of biological interest. In contrast, the parameters in the parameterizations of <span class="citation" data-cites="schnute_versatile_1981">Schnute (<a href="#ref-schnute_versatile_1981" role="doc-biblioref">1981</a>)</span> and <span class="citation" data-cites="francis_are_1988">Francis (<a href="#ref-francis_are_1988" role="doc-biblioref">1988</a>)</span> are either largely or wholly based on expected values, which are generally less correlated. Thus, if one wants to avoid the problems associated with highly correlated parameters (as discussed <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>) and is not interested in the parameters of the other parameterizations, then either of these two parameterizations may be used.</p>
-<p>The parametarizations of <span class="citation" data-cites="von_bertalanffy_quantitative_1938">von Bertalanffy (<a href="#ref-von_bertalanffy_quantitative_1938" role="doc-biblioref">1938</a>)</span> and <span class="citation" data-cites="francis_are_1988">Francis (<a href="#ref-francis_are_1988" role="doc-biblioref">1988</a>)</span> are fit in this supplement to illustrate fitting other than the “Typical” parameterization used in Chapter 12 of <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>. Other supplements demonstrate how to <a href="otherGrowthFuns.html">fit growth functions other than the VBGF</a> and <a href="otherNLAlgorithms.html">use alternative nonlinear model fitting algorithms</a>.</p>
-</section>
+<p>&nbsp;</p>
+<p>The von Bertalanffy Growth Function (VBGF) used in Chapter 12 of <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span> is from <span class="citation" data-cites="beverton_dynamics_1957">Beverton and Holt (<a href="#ref-beverton_dynamics_1957" role="doc-biblioref">1957</a>)</span> and is called the “Typical” parameterization of the VBGF. The VBGF can be expressed in alternative forms that are called parameterizations.</p>
+<p>Different parameterizations do not fit the data differently. In other words, all parameterizations of the VBGF have the same number of parameters and will produce the same predicted values and fitted model plots. However, different parameterizations have different parameters that may be of interest to the fisheries scientist for biological reasons or because they have useful statistical properties. For example, the parameterizations of <span class="citation" data-cites="von_bertalanffy_quantitative_1938">von Bertalanffy (<a href="#ref-von_bertalanffy_quantitative_1938" role="doc-biblioref">1938</a>)</span> and <span class="citation" data-cites="mooij_analysis_1999">Mooij et al. (<a href="#ref-mooij_analysis_1999" role="doc-biblioref">1999</a>)</span> both use <span class="math inline">\(L_{0}\)</span>, which is the mean length at time 0 (i.e., at “hatch”). Thus, either of these parameterizations could be used if the <span class="math inline">\(L_{0}\)</span> parameter was of biological interest. In contrast, the parameters in the parameterizations of <span class="citation" data-cites="schnute_versatile_1981">Schnute (<a href="#ref-schnute_versatile_1981" role="doc-biblioref">1981</a>)</span> and <span class="citation" data-cites="francis_are_1988">Francis (<a href="#ref-francis_are_1988" role="doc-biblioref">1988</a>)</span> are either largely or wholly based on expected values, which are generally less correlated. Thus, if one wants to avoid the problems associated with highly correlated parameters (as discussed in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>) and is not interested in the parameters of the other parameterizations, then either of these two parameterizations may be used.</p>
+<p>The parametarizations of <span class="citation" data-cites="von_bertalanffy_quantitative_1938">von Bertalanffy (<a href="#ref-von_bertalanffy_quantitative_1938" role="doc-biblioref">1938</a>)</span> and <span class="citation" data-cites="francis_are_1988">Francis (<a href="#ref-francis_are_1988" role="doc-biblioref">1988</a>)</span> are fit in this supplement to illustrate fitting other than the “Typical” parameterization used in Chapter 12 of <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>. Fitting growth functions other than the VBGF is demonstrated <a href="otherGrowthFuns.html">here</a>.</p>
 <section id="setup" class="level1 page-columns page-full">
 <h1>Setup</h1>
 <section id="packages" class="level2">
@@ -269,12 +266,12 @@ div.csl-indent {
 <p>&nbsp;</p>
 </section>
 </section>
-<section id="original-parameterization" class="level1">
+<section id="original-parameterization" class="level1 page-columns page-full">
 <h1>Original Parameterization</h1>
 <p>The parameterization originally proposed by <span class="citation" data-cites="von_bertalanffy_quantitative_1938">von Bertalanffy (<a href="#ref-von_bertalanffy_quantitative_1938" role="doc-biblioref">1938</a>)</span> is defined as</p>
 <p><span class="math display">\[ E[L|t] = L_{\infty} - (L_{\infty}-L_{0})e^{-Kt} \]</span></p>
 <p>where <span class="math inline">\(L_{\infty}\)</span> and <span class="math inline">\(K\)</span> are as defined for the typical parameterization and <span class="math inline">\(L_{0}\)</span> is the mean length at <span class="math inline">\(t=0\)</span>.</p>
-<p>As demonstrated in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span> for the “Typical” VBGF, an R function that uses the VBGF to predict length from a given age is needed. This R function may be created by the user, but for many common parameterizations it is easier to use <code>vbFuns()</code> from <code>FSA</code>. As a reminder, <code>vbFuns()</code> requires the name for the parameterization to use in quotes as the first argument. A brief explanation of the parameters is also returned if <code>msg=TRUE</code> is included.</p>
+<div class="page-columns page-full"><p>As demonstrated in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span> for the “Typical” VBGF, an R function that uses the VBGF to predict length from a given age is needed. This R function may be created by the user, but for many common parameterizations it is easier to use <code>vbFuns()</code> from <code>FSA</code>. As a reminder, <code>vbFuns()</code> requires the name for the parameterization to use in quotes as the first argument.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;A brief explanation of the parameters is also returned if <code>msg=TRUE</code> is included.</p></li></div></div>
 <p>An R function called <code>vbO()</code> is created for the “original” parameterization below. Note with this function that values for the three parameters may be included as a vector in <code>Linf=</code>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>( vbO <span class="ot">&lt;-</span> <span class="fu">vbFuns</span>(<span class="st">"Original"</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -285,8 +282,8 @@ div.csl-indent {
 #R|                           Linf &lt;- Linf[[1]] }
 #R|    Linf-(Linf-L0)*exp(-K*t)
 #R|    }
-#R|  &lt;bytecode: 0x0000026c3365bae0&gt;
-#R|  &lt;environment: 0x0000026c337af080&gt;</code></pre>
+#R|  &lt;bytecode: 0x000001f9063746d8&gt;
+#R|  &lt;environment: 0x000001f9064c29f0&gt;</code></pre>
 </div>
 </div>
 <p>Starting values are obtained with <code>vbStarts()</code> as described in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>, but using <code>type="Original"</code> for this parameterization.</p>
@@ -304,7 +301,7 @@ div.csl-indent {
 </div>
 </div>
 <p>The VBGF is fit and parameter estimates with likelihood profile confidence intervals and bootstrapped confidence intervals and predictions may also be obtained as described in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="center" data-hash="otherVBGFParams_cache/html/unnamed-chunk-5_94bcae9b22c06f2a668ddebb5fd715a7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nlsO <span class="ot">&lt;-</span> <span class="fu">nls</span>(tl<span class="sc">~</span><span class="fu">vbO</span>(otoage,Linf,K,L0),<span class="at">data=</span>bdm,<span class="at">start=</span>svO)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">Ests=</span><span class="fu">coef</span>(nlsO),<span class="fu">confint</span>(nlsO))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -317,14 +314,14 @@ div.csl-indent {
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">Ests=</span><span class="fu">coef</span>(nlsO),<span class="fu">confint</span>(bootO))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre class="output"><code>#R|               Ests      95% LCI      95% UCI
-#R|  Linf 1196.7192084 1179.9560525 1216.6527225
-#R|  K       0.1418268    0.1232548    0.1622298
-#R|  L0    242.1881977  146.0019083  329.6652049</code></pre>
+#R|  Linf 1196.7192084 1178.5421670 1215.8891738
+#R|  K       0.1418268    0.1223639    0.1627932
+#R|  L0    242.1881977  145.0522382  334.5605528</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(bootO,vbO,<span class="at">t=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre class="output"><code>#R|       t   Median  95% LCI  95% UCI
-#R|  [1,] 3 572.9078 535.9331 610.8426</code></pre>
+<pre class="output"><code>#R|       t   Median  95% LCI 95% UCI
+#R|  [1,] 3 573.2464 537.8995 612.112</code></pre>
 </div>
 </div>
 <p>&nbsp;</p>
@@ -346,8 +343,8 @@ div.csl-indent {
 #R|    r &lt;- (L3-L2)/(L2-L1)
 #R|    L1+(L3-L1)*((1-r^(2*((t-t1)/(t3-t1))))/(1-r^2))
 #R|    }
-#R|  &lt;bytecode: 0x0000026c33687b00&gt;
-#R|  &lt;environment: 0x0000026c2fc78bf8&gt;</code></pre>
+#R|  &lt;bytecode: 0x000001f90639c710&gt;
+#R|  &lt;environment: 0x000001f9052cacc0&gt;</code></pre>
 </div>
 </div>
 <p>As stated above, the user must choose values for <span class="math inline">\(t_{1}\)</span> and <span class="math inline">\(t_{3}\)</span>. In this example, I have chosen to use the youngest and oldest ages in the data (as found with <code>range()</code>).</p>
@@ -357,7 +354,7 @@ div.csl-indent {
 <pre class="output"><code>#R|  [1]  3 42</code></pre>
 </div>
 </div>
-<p>Starting values are obtained with <code>vbStarts()</code> as described above. However, with the “Francis” parameterization, the ages that define <span class="math inline">\(t_{1}\)</span> and <span class="math inline">\(t_{3}\)</span> must also be provided in <code>ages2use=</code>.</p>
+<p>Starting values are obtained with <code>vbStarts()</code> as described above, but with <code>type="Francis"</code>. Additionally, with the “Francis” parameterization, the ages that define <span class="math inline">\(t_{1}\)</span> and <span class="math inline">\(t_{3}\)</span> must also be provided in <code>ages2use=</code>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>( svF <span class="ot">&lt;-</span> <span class="fu">vbStarts</span>(tl<span class="sc">~</span>otoage,<span class="at">data=</span>bdm,<span class="at">type=</span><span class="st">"Francis"</span>,<span class="at">ages2use=</span>ages) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -372,7 +369,7 @@ div.csl-indent {
 </div>
 </div>
 <p>The VBGF is fit and parameter estimates with likelihood profile confidence intervals and bootstrapped confidence intervals and predictions are obtained as described in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>, with the exception that the vector that defines the youngest and oldest ages must be supplied to <code>vbF()</code>.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="center" data-hash="otherVBGFParams_cache/html/unnamed-chunk-9_c4d2a375d8dd69c35fa24246ed080230">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>nlsF <span class="ot">&lt;-</span> <span class="fu">nls</span>(tl<span class="sc">~</span><span class="fu">vbF</span>(otoage,L1,L2,L3,<span class="at">t1=</span>ages),<span class="at">data=</span>bdm,<span class="at">start=</span>svF)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">Ests=</span><span class="fu">coef</span>(nlsF),<span class="fu">confint</span>(nlsF))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -385,14 +382,14 @@ div.csl-indent {
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">Ests=</span><span class="fu">coef</span>(nlsF),<span class="fu">confint</span>(bootF))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre class="output"><code>#R|         Ests   95% LCI   95% UCI
-#R|  L1  572.975  534.1278  611.8745
-#R|  L2 1157.463 1145.6807 1169.2928
-#R|  L3 1194.248 1177.3211 1212.0431</code></pre>
+#R|  L1  572.975  537.1674  609.8586
+#R|  L2 1157.463 1146.1576 1169.1746
+#R|  L3 1194.248 1178.7829 1211.8380</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(bootF,vbF,<span class="at">t=</span><span class="dv">3</span>,<span class="at">t1=</span>ages[<span class="dv">1</span>],<span class="at">t3=</span>ages[<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre class="output"><code>#R|       t   Median  95% LCI  95% UCI
-#R|  [1,] 3 572.3921 534.1278 611.8745</code></pre>
+#R|  [1,] 3 574.7108 537.1674 609.8586</code></pre>
 </div>
 </div>
 <p>Note that the intra-parameter correlations are relatively low for this parameterization. Additionally, the scale of the parameters in the “Francis” parameterization are usually similar. Both of these characteristics may aid model convergence.</p>
@@ -581,6 +578,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Copyright 2019, Derek H. Ogle</div>   
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/droglenc/IFAR">
+      <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/fishR_ogle">
+      <i class="bi bi-twitter" role="img" aria-label="Twitter">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
 
 
 

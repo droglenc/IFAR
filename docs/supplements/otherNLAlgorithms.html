@@ -138,7 +138,7 @@ div.csl-indent {
 
 <link rel="stylesheet" href="../helpers/styles.css">
 <meta property="og:title" content="IFAR - Other Nonlinear Model Fitting Algorithms">
-<meta property="og:description" content="The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the function were illustrated in Chapter 12 of Ogle (2016).">
+<meta property="og:description" content="">
 <meta property="og:site-name" content="IFAR">
 <meta name="citation_title" content="Other Nonlinear Model Fitting Algorithms">
 <meta name="citation_author" content="Derek H. Ogle">
@@ -194,8 +194,7 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
-  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a>
+  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a>
   <ul class="collapse">
   <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
@@ -232,10 +231,8 @@ div.csl-indent {
 
 </header>
 
-<section id="background" class="level1">
-<h1>Background</h1>
-<p>The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the function were illustrated in Chapter 12 of <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>. The <code>nls()</code> function demonstrated in the <strong>IFAR</strong> book uses the Gauss-Newton algorithm by default. However, there are many other algorithms for fitting nonlinear functions. Two of the several algorithms coded in R are demonstrated in this supplement.</p>
-</section>
+<p>&nbsp;</p>
+<p>The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the function were illustrated in Chapter 12 of <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>. The <code>nls()</code> function demonstrated in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span> uses the Gauss-Newton algorithm by default. However, there are many other algorithms for fitting nonlinear functions. Two of the several algorithms coded in R are demonstrated in this supplement.</p>
 <section id="setup" class="level1 page-columns page-full">
 <h1>Setup</h1>
 <section id="packages" class="level2">
@@ -250,7 +247,7 @@ div.csl-indent {
 </section>
 <section id="data" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
-<div class="page-columns page-full"><p>The male <a href="https://fishr-core-team.github.io/FSAdata/reference/BlackDrum2001.html">Black Drum data</a>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> used in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span> are also used in this supplement. As in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span> a few unneeded variables are removed for simplicity, only males are examined, and a single old fish is removed by including only fish with an otolith age less than 50.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Download data with CSV link on the linked page.</p></li></div></div>
+<div class="page-columns page-full"><p>The male <a href="https://fishr-core-team.github.io/FSAdata/reference/BlackDrum2001.html">Black Drum data</a>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> used in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span> are also used in this supplement. As in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span> a few unneeded variables are removed for simplicity, only males are examined, and a single old fish is removed by retaining only fish with an otolith age less than 50.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Download data with CSV link on the linked page.</p></li></div></div>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>bdm <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://raw.githubusercontent.com/fishR-Core-Team/FSAdata/main/data-raw/BlackDrum2001.csv"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(spname,day,weight)) <span class="sc">|&gt;</span></span>
@@ -272,8 +269,8 @@ div.csl-indent {
 <section id="levenberg-marquardt-algorithm" class="level1 page-columns page-full">
 <h1>Levenberg-Marquardt Algorithm</h1>
 <p>The Levenberg-Marquardt (L-M) algorithm is a powerful and common method that switches between two other algorithms depending on when those algorithms perform most optimally <span class="citation" data-cites="motulsky_fitting_1987">(<a href="#ref-motulsky_fitting_1987" role="doc-biblioref">Motulsky and Ransnas 1987</a>)</span>. Most practically, the L-M algorithm appears to be quite robust to “poor” starting values.</p>
-<div class="page-columns page-full"><p>The L-M algorithm is implemented in <code>nlsLM()</code> from <code>minpack.lm</code> <span class="citation" data-cites="elzhov_minpacklm_2013">(<a href="#ref-elzhov_minpacklm_2013" role="doc-biblioref">Elzhov et al. 2013</a>)</span> and uses the same main arguments as <code>nls()</code>. For example, the “Typical” VBGF is fit (and parameter estimates, likelihood profile confidence intervals, and predictions are extracted) to the male Black Drum data below using the L-M algorithm.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;This code is the same as used in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>, except that <code>nlsLM()</code> replaced <code>nls()</code>.</p></li></div></div>
-<div class="cell" data-layout-align="center">
+<div class="page-columns page-full"><p>The L-M algorithm is implemented in <code>nlsLM()</code> from <code>minpack.lm</code> <span class="citation" data-cites="elzhov_minpacklm_2013">(<a href="#ref-elzhov_minpacklm_2013" role="doc-biblioref">Elzhov et al. 2013</a>)</span> and uses the same main arguments as <code>nls()</code>. For example, the “Typical” VBGF is fit (and parameter estimates, bootstrapped confidence intervals, and predictions are extracted) to the male Black Drum data below using the L-M algorithm.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;This code is the same as used in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>, except that <code>nlsLM()</code> replaced <code>nls()</code>.</p></li></div></div>
+<div class="cell" data-layout-align="center" data-hash="otherNLAlgorithms_cache/html/unnamed-chunk-3_724cbed1c20335a300a4a4c04fb9992d">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>vbTyp <span class="ot">&lt;-</span> <span class="fu">vbFuns</span>()</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>svTyp <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">Linf=</span><span class="dv">1193</span>,<span class="at">K=</span><span class="fl">0.13</span>,<span class="at">t0=</span><span class="sc">-</span><span class="fl">2.0</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>fitLM <span class="ot">&lt;-</span> <span class="fu">nlsLM</span>(tl<span class="sc">~</span><span class="fu">vbTyp</span>(otoage,Linf,K,t0),<span class="at">data=</span>bdm,<span class="at">start=</span>svTyp)</span>
@@ -281,36 +278,50 @@ div.csl-indent {
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">Ests=</span><span class="fu">coef</span>(fitLM),<span class="fu">confint</span>(bootLM))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre class="output"><code>#R|               Ests      95% LCI      95% UCI
-#R|  Linf 1196.7193453 1179.2581260 1216.1363799
-#R|  K       0.1418266    0.1230354    0.1623169
-#R|  t0     -1.5943403   -2.6444099   -0.8279532</code></pre>
+#R|  Linf 1196.7193453 1180.7583403 1215.3277659
+#R|  K       0.1418266    0.1245746    0.1614129
+#R|  t0     -1.5943403   -2.4861941   -0.8246865</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(bootLM,vbTyp,<span class="at">t=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre class="output"><code>#R|       t   Median  95% LCI  95% UCI
-#R|  [1,] 3 572.7486 533.3373 612.2545</code></pre>
+#R|  [1,] 3 573.6826 534.7676 608.3075</code></pre>
 </div>
 </div>
 <p>&nbsp;</p>
 </section>
 <section id="using-parameter-constraints" class="level1">
 <h1>Using Parameter Constraints</h1>
-<p>In some instances, the user may want to constrain the model fitting algorithms to only consider parameter values within a certain range. For example, the user may want to constrain the <span class="math inline">\(L_{\infty}\)</span> and <span class="math inline">\(K\)</span> parameters of the “Typical” VBGF to be positive. Parameter constraints may substantively effect the results of the model fitting. Thus, they should be used rarely and, when used, set liberally.</p>
+<p>In some instances, the user may want to constrain the model fitting algorithms to only consider parameter values within a certain range. For example, the user may want to constrain the <span class="math inline">\(L_{\infty}\)</span> and <span class="math inline">\(K\)</span> parameters of the “Typical” VBGF to be positive.</p>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Parameter constraints may substantively effect the results of the model fitting. Thus, they should be used rarely and, when used, set liberally.</p>
+</div>
+</div>
 <p>Parameter constraints can be used with at least two algorithms in R. In either case, the lower and upper bounds for each parameter are entered into separate named <strong>vectors</strong> in the same order as the list used for starting values. Infinite bounds are the default ,but may be specifically defined for some parameters with <code>Inf</code> and <code>-Inf</code> (where <code>Inf</code> represents infinity). For example, vectors that define constraints for the parameters in the “Typical” VBGF are defined below, with <span class="math inline">\(L_\infty\)</span> and <span class="math inline">\(K\)</span> constrained to be positive values and <span class="math inline">\(t_{0}\)</span> left unconstrained.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>clwr <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">Linf=</span><span class="dv">1</span>,  <span class="at">K=</span><span class="fl">0.0001</span>,<span class="at">t0=</span><span class="sc">-</span><span class="cn">Inf</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>cupr <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">Linf=</span><span class="cn">Inf</span>,<span class="at">K=</span><span class="cn">Inf</span>,   <span class="at">t0=</span><span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>These constraints may be provided to <code>lower=</code> and <code>upper=</code>, respectively, of <code>nlsLM()</code>. In this instance, these bounds had no noticeable effect until bootstapping, where there were fewer instances of lack of convergence.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fitLM1 <span class="ot">&lt;-</span> <span class="fu">nlsLM</span>(tl<span class="sc">~</span><span class="fu">vbTyp</span>(otoage,Linf,K,t0),<span class="at">data=</span>bdm,<span class="at">start=</span>svTyp,<span class="at">lower=</span>clwr,<span class="at">upper=</span>cupr)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>bootLM1 <span class="ot">&lt;-</span> <span class="fu">nlsBoot</span>(fitLM1)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">Ests=</span><span class="fu">coef</span>(fitLM1),<span class="fu">confint</span>(bootLM1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="otherNLAlgorithms_cache/html/unnamed-chunk-5_cfebed35ae9862a03f9566242f788bae">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fitLM1 <span class="ot">&lt;-</span> <span class="fu">nlsLM</span>(tl<span class="sc">~</span><span class="fu">vbTyp</span>(otoage,Linf,K,t0),<span class="at">data=</span>bdm,<span class="at">start=</span>svTyp,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">lower=</span>clwr,<span class="at">upper=</span>cupr)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>bootLM1 <span class="ot">&lt;-</span> <span class="fu">nlsBoot</span>(fitLM1)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">Ests=</span><span class="fu">coef</span>(fitLM1),<span class="fu">confint</span>(bootLM1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre class="output"><code>#R|               Ests      95% LCI      95% UCI
-#R|  Linf 1196.7193453 1180.2377069 1215.1228761
-#R|  K       0.1418266    0.1236363    0.1608281
-#R|  t0     -1.5943403   -2.5174654   -0.7634874</code></pre>
+#R|  Linf 1196.7193453 1180.4433085 1214.9203900
+#R|  K       0.1418266    0.1228016    0.1619365
+#R|  t0     -1.5943403   -2.5765079   -0.8162231</code></pre>
 </div>
 </div>
 <p>Parameter constraints may be used similarly with <code>nls()</code>, but the “Port” optimization algorithm must be used with <code>algorithm="port"</code>.</p>
@@ -321,9 +332,9 @@ div.csl-indent {
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">Ests=</span><span class="fu">coef</span>(fitP),<span class="fu">confint</span>(bootP))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre class="output"><code>#R|               Ests      95% LCI      95% UCI
-#R|  Linf 1196.7188171 1179.3642457 1214.2949853
-#R|  K       0.1418273    0.1242909    0.1610572
-#R|  t0     -1.5943092   -2.5836709   -0.8507852</code></pre>
+#R|  Linf 1196.7188171 1178.3021069 1216.2244935
+#R|  K       0.1418273    0.1230324    0.1629955
+#R|  t0     -1.5943092   -2.5654540   -0.7327735</code></pre>
 </div>
 </div>
 <p>&nbsp;</p>
@@ -504,6 +515,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Copyright 2019, Derek H. Ogle</div>   
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/droglenc/IFAR">
+      <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/fishR_ogle">
+      <i class="bi bi-twitter" role="img" aria-label="Twitter">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
 
 
 

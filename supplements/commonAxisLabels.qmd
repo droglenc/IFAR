@@ -4,7 +4,9 @@ author: "Derek H. Ogle"
 output: html_document
 ---
 
-Several methods for modifying base graphics were shown in @ogleIntroductoryFisheriesAnalyses2016, including simple layouts (side-by-side, one-over-the-other) of multiple plots. Creating common x- and y-axis labels for a grid of plots is described in this supplement. More complex layouts (e.g., plot in first row spans two columns or unequal sized plots) are [described in this supplement](complexLayouts.html).
+&nbsp;
+
+Several methods for modifying base graphics were shown in @ogleIntroductoryFisheriesAnalyses2016, including simple layouts (side-by-side, one-over-the-other) of multiple plots. Creating common x- and y-axis labels for a grid of plots is described in this supplement. More complex layouts (e.g., plot in first row spans two columns or unequal sized plots) are [described in this supplement](complexGridLayouts.html).
 
 A single function is used from `dplyr` in this supplement; thus, `::` is used instead of loading the entire package.
 

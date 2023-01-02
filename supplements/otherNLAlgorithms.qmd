@@ -4,9 +4,9 @@ author: "Derek H. Ogle"
 output: html_document
 ---
 
-# Background
+&nbsp;
 
-The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the function were illustrated in Chapter 12 of @ogleIntroductoryFisheriesAnalyses2016. The `nls()` function demonstrated in the **IFAR** book uses the Gauss-Newton algorithm by default. However, there are many other algorithms for fitting nonlinear functions. Two of the several algorithms coded in R are demonstrated in this supplement.
+The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the function were illustrated in Chapter 12 of @ogleIntroductoryFisheriesAnalyses2016. The `nls()` function demonstrated in @ogleIntroductoryFisheriesAnalyses2016 uses the Gauss-Newton algorithm by default. However, there are many other algorithms for fitting nonlinear functions. Two of the several algorithms coded in R are demonstrated in this supplement.
 
 # Setup
 ## Packages
@@ -21,7 +21,7 @@ library(minpack.lm) # for nlsLM()
 ```
 
 ## Data
-The male [Black Drum data](https://fishr-core-team.github.io/FSAdata/reference/BlackDrum2001.html).^[Download data with CSV link on the linked page.] used in @ogleIntroductoryFisheriesAnalyses2016 are also used in this supplement. As in @ogleIntroductoryFisheriesAnalyses2016 a few unneeded variables are removed for simplicity, only males are examined, and a single old fish is removed by including only fish with an otolith age less than 50.
+The male [Black Drum data](https://fishr-core-team.github.io/FSAdata/reference/BlackDrum2001.html).^[Download data with CSV link on the linked page.] used in @ogleIntroductoryFisheriesAnalyses2016 are also used in this supplement. As in @ogleIntroductoryFisheriesAnalyses2016 a few unneeded variables are removed for simplicity, only males are examined, and a single old fish is removed by retaining only fish with an otolith age less than 50.
 
 ```{r}
 bdm <- read.csv("https://raw.githubusercontent.com/fishR-Core-Team/FSAdata/main/data-raw/BlackDrum2001.csv") |>
@@ -35,7 +35,7 @@ headtail(bdm)
 # Levenberg-Marquardt Algorithm
 The Levenberg-Marquardt (L-M) algorithm is a powerful and common method that switches between two other algorithms depending on when those algorithms perform most optimally [@motulsky_fitting_1987]. Most practically, the L-M algorithm appears to be quite robust to "poor" starting values.
 
-The L-M algorithm is implemented in `nlsLM()` from `minpack.lm` [@elzhov_minpacklm_2013] and uses the same main arguments as `nls()`. For example, the "Typical" VBGF is fit (and parameter estimates, likelihood profile confidence intervals, and predictions are extracted) to the male Black Drum data below using the L-M algorithm.^[This code is the same as used in @ogleIntroductoryFisheriesAnalyses2016, except that `nlsLM()` replaced `nls()`.]
+The L-M algorithm is implemented in `nlsLM()` from `minpack.lm` [@elzhov_minpacklm_2013] and uses the same main arguments as `nls()`. For example, the "Typical" VBGF is fit (and parameter estimates, bootstrapped confidence intervals, and predictions are extracted) to the male Black Drum data below using the L-M algorithm.^[This code is the same as used in @ogleIntroductoryFisheriesAnalyses2016, except that `nlsLM()` replaced `nls()`.]
 
 ```{r}
 #| cache: true
@@ -50,7 +50,11 @@ predict(bootLM,vbTyp,t=3)
 &nbsp;
 
 # Using Parameter Constraints
-In some instances, the user may want to constrain the model fitting algorithms to only consider parameter values within a certain range. For example, the user may want to constrain the $L_{\infty}$ and $K$ parameters of the "Typical" VBGF to be positive. Parameter constraints may substantively effect the results of the model fitting. Thus, they should be used rarely and, when used, set liberally.
+In some instances, the user may want to constrain the model fitting algorithms to only consider parameter values within a certain range. For example, the user may want to constrain the $L_{\infty}$ and $K$ parameters of the "Typical" VBGF to be positive.
+
+:::{.callout-warning}
+Parameter constraints may substantively effect the results of the model fitting. Thus, they should be used rarely and, when used, set liberally.
+:::
 
 Parameter constraints can be used with at least two algorithms in R. In either case, the lower and upper bounds for each parameter are entered into separate named **vectors** in the same order as the list used for starting values. Infinite bounds are the default ,but may be specifically defined for some parameters with `Inf` and `-Inf` (where `Inf` represents infinity). For example, vectors that define constraints for the parameters in the "Typical" VBGF are defined below, with $L_\infty$ and $K$ constrained to be positive values and $t_{0}$ left unconstrained.
 
@@ -63,7 +67,8 @@ These constraints may be provided to `lower=` and `upper=`, respectively, of `nl
 
 ```{r}
 #| cache: true
-fitLM1 <- nlsLM(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp,lower=clwr,upper=cupr)
+fitLM1 <- nlsLM(tl~vbTyp(otoage,Linf,K,t0),data=bdm,start=svTyp,
+                lower=clwr,upper=cupr)
 bootLM1 <- nlsBoot(fitLM1)
 cbind(Ests=coef(fitLM1),confint(bootLM1))
 ```

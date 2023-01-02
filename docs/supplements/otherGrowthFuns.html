@@ -138,7 +138,7 @@ div.csl-indent {
 
 <link rel="stylesheet" href="../helpers/styles.css">
 <meta property="og:title" content="IFAR - Other Growth Functions">
-<meta property="og:description" content="The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the function were illustrated in Chapter 12 of Ogle (2016).">
+<meta property="og:description" content="">
 <meta property="og:site-name" content="IFAR">
 <meta name="citation_title" content="Other Growth Functions">
 <meta name="citation_author" content="Derek H. Ogle">
@@ -194,13 +194,13 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
-  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a>
+  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a>
   <ul class="collapse">
   <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
   </ul></li>
-  <li><a href="#fitting-other-growth-functions" id="toc-fitting-other-growth-functions" class="nav-link" data-scroll-target="#fitting-other-growth-functions">Fitting Other Growth Functions</a></li>
+  <li><a href="#fitting-richards-function" id="toc-fitting-richards-function" class="nav-link" data-scroll-target="#fitting-richards-function">Fitting Richards Function</a></li>
+  <li><a href="#comparing-growth-function-fits" id="toc-comparing-growth-function-fits" class="nav-link" data-scroll-target="#comparing-growth-function-fits">Comparing Growth Function Fits</a></li>
   </ul>
 </nav>
     </div>
@@ -230,21 +230,19 @@ div.csl-indent {
 
 </header>
 
-<section id="background" class="level1">
-<h1>Background</h1>
-<p>The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the function were illustrated in Chapter 12 of <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>. Mean length-at-age has been modeled by functions other than the VBGF. Common other functions are the exponential, logistic, and polynomial <span class="citation" data-cites="ricker_computation_1975">(<a href="#ref-ricker_computation_1975" role="doc-biblioref">Ricker 1975</a>)</span>, as well as the specific functions of <span class="citation" data-cites="gompertz_nature_1825">Gompertz (<a href="#ref-gompertz_nature_1825" role="doc-biblioref">1825</a>)</span>, <span class="citation" data-cites="richards_flexible_1959">Richards (<a href="#ref-richards_flexible_1959" role="doc-biblioref">1959</a>)</span>, and <span class="citation" data-cites="schnute_versatile_1981">Schnute (<a href="#ref-schnute_versatile_1981" role="doc-biblioref">1981</a>)</span>.</p>
-<p>Several of these functions are used in this supplement to demonstrate how to fit growth functions other than the VBGF. Other supplements demonstrate how to <a href="otherVBGFParams.html">fit other parameterizations of the VBGF</a> and <a href="otherNLAlgorithms.html">use alternative nonlinear model fitting algorithms</a>.</p>
-</section>
+<p>&nbsp;</p>
+<p>Mean length-at-age has been modeled by functions other than the von Bertalanffy Growth Function (VBGF) that was introduced in Chapter 12 of <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>. Other common functions are the exponential, logistic, and polynomial <span class="citation" data-cites="ricker_computation_1975">(<a href="#ref-ricker_computation_1975" role="doc-biblioref">Ricker 1975</a>)</span>, as well as the specific functions of <span class="citation" data-cites="gompertz_nature_1825">Gompertz (<a href="#ref-gompertz_nature_1825" role="doc-biblioref">1825</a>)</span>, <span class="citation" data-cites="richards_flexible_1959">Richards (<a href="#ref-richards_flexible_1959" role="doc-biblioref">1959</a>)</span>, and <span class="citation" data-cites="schnute_versatile_1981">Schnute (<a href="#ref-schnute_versatile_1981" role="doc-biblioref">1981</a>)</span>. Several of these functions are used in this supplement to demonstrate how to fit growth functions other than the VBGF.</p>
 <section id="setup" class="level1 page-columns page-full">
 <h1>Setup</h1>
 <section id="packages" class="level2">
 <h2 class="anchored" data-anchor-id="packages">Packages</h2>
-<p>Functions used in this supplement require the following packages. Also note that one function from <code>AICcmodavg</code> is used below with <code>::</code> so that the whole package does not have to be loaded.</p>
+<p>Functions used in this supplement require the following packages.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FSA)        <span class="co"># for headtail(), vbFuns(), vbStarts()</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)      <span class="co"># for select(), filter()</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nlstools)   <span class="co"># for nlsBoot()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FSA)      <span class="co"># for vbFuns(), logisticFuns(), GompertzFuns(), RichardsFuns()</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)    <span class="co"># for select(), filter()</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nlstools) <span class="co"># for nlsBoot()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Also note that one function from <code>AICcmodavg</code> is used below with <code>::</code> so that the whole package does not have to be loaded.</p>
 <div class="cell" data-layout-align="center">
 
 </div>
@@ -270,16 +268,15 @@ div.csl-indent {
 <p>&nbsp;</p>
 </section>
 </section>
-<section id="fitting-other-growth-functions" class="level1 page-columns page-full">
-<h1>Fitting Other Growth Functions</h1>
+<section id="fitting-richards-function" class="level1 page-columns page-full">
+<h1>Fitting Richards Function</h1>
 <p>The “Schnute” model and several parameterizations of the logistic, Gompertz, and Richards models have been coded in convenience functions in <code>FSA</code>. For example, the default parameterizations of the logistic, Gompertz, and Richards models are defined below.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>l1 <span class="ot">&lt;-</span> <span class="fu">logisticFuns</span>()</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">GompertzFuns</span>()</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>r1 <span class="ot">&lt;-</span> <span class="fu">RichardsFuns</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Unfortunately, convenience functions for finding starting values for each of these functions do not exist. Starting values may be obtained by iteratively superimposing a curve of the function at chosen values for the parameters onto a scatterplot of the raw data. This process may take considerable trial-and-error to find parameter values that provide a curve in the “neighborhood” of the data. Starting values likely only need to provide a rough fit to the data.</p>
-<p>The code below demonstrates this process for the Richards function created above in <code>r1()</code>. Note that the Richards function has four parameters – <span class="math inline">\(L_{\infty}\)</span>, <span class="math inline">\(k\)</span>, <span class="math inline">\(a\)</span>, and <span class="math inline">\(b\)</span>. Further note that I had considerable difficulty finding starting values that would work with the Richards function for these data.</p>
+<div class="page-columns page-full"><p>Unfortunately, convenience functions for finding starting values for each of these functions do not exist. Starting values may be obtained by iteratively superimposing a curve of the function at chosen values for the parameters onto a scatterplot of the raw data. This process may take considerable trial-and-error to find parameter values that provide a curve in the “neighborhood” of the data.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> The code below demonstrates this process for the Richards function created above in <code>r1()</code>.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Starting values likely only need to provide a rough fit to the data, though I had considerable difficulty finding starting values for the Richards function with these data.</p></li><li id="fn3"><p><sup>3</sup>&nbsp;Note that the Richards function has four parameters – <span class="math inline">\(L_{\infty}\)</span>, <span class="math inline">\(k\)</span>, <span class="math inline">\(a\)</span>, and <span class="math inline">\(b\)</span>.</p></li></div></div>
 <div class="cell page-columns page-full" data-layout-align="center" data-par1="true">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tl<span class="sc">~</span>otoage,<span class="at">data=</span>bdm,<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>),</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Otolith Age"</span>,<span class="at">ylab=</span><span class="st">"Total Length (mm)"</span>)</span>
@@ -294,44 +291,50 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p>A similar process (not shown) was followed for the logistic and Gompertz models.</p>
+<p>These models may be fit and summarized as illustrated in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span> and demonstrated below for the Richards function.</p>
+<div class="cell" data-layout-align="center" data-hash="otherGrowthFuns_cache/html/unnamed-chunk-6_3ad266416a68c17b891b2a47a3b268c1">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fitR1 <span class="ot">&lt;-</span> <span class="fu">nls</span>(tl<span class="sc">~</span><span class="fu">r1</span>(otoage,Linf,k,a,b),<span class="at">data=</span>bdm,<span class="at">start=</span>svR1)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>bootR1 <span class="ot">&lt;-</span> <span class="fu">nlsBoot</span>(fitR1)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">Ests=</span><span class="fu">coef</span>(fitR1),<span class="fu">confint</span>(bootR1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="output"><code>#R|               Ests      95% LCI      95% UCI
+#R|  Linf 1.216988e+03 1.190032e+03 1248.8624847
+#R|  k    9.419416e-02 6.593375e-02    0.1451012
+#R|  a    1.155605e+00 7.244091e-01    1.2161057
+#R|  b    3.793336e-01 2.731837e-01    1.1202240</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(bootR1,r1,<span class="at">t=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="output"><code>#R|       t   Median  95% LCI  95% UCI
+#R|  [1,] 3 560.8867 523.3757 604.3954</code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+</section>
+<section id="comparing-growth-function-fits" class="level1 page-columns page-full">
+<h1>Comparing Growth Function Fits</h1>
+<div class="page-columns page-full"><p>Information criterion may be used to identify which of these models best fits the male Black Drum data. To demonstrate this, the von Bertalanffy (as fit in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>), Gompertz, and logistic functions are fit to the data first.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;Starting values for the VBGF came from <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>, those for the Gompertz and logistic followed (but is not shown) a process similar to that used for the Richards function.</p></li></div></div>
 <div class="cell" data-layout-align="center">
 
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>svG1 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">Linf=</span><span class="dv">1250</span>,<span class="at">gi=</span><span class="fl">0.15</span>,<span class="at">ti=</span><span class="dv">2</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>svL1 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">Linf=</span><span class="dv">1250</span>,<span class="at">gninf=</span><span class="fl">0.15</span>,<span class="at">ti=</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>These models may be fit and summarized as illustrated in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>. The code below is for the Richards function.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fitR1 <span class="ot">&lt;-</span> <span class="fu">nls</span>(tl<span class="sc">~</span><span class="fu">r1</span>(otoage,Linf,k,a,b),<span class="at">data=</span>bdm,<span class="at">start=</span>svR1)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>bootR1 <span class="ot">&lt;-</span> <span class="fu">nlsBoot</span>(fitR1)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">Ests=</span><span class="fu">coef</span>(fitR1),<span class="fu">confint</span>(bootR1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre class="output"><code>#R|               Ests      95% LCI      95% UCI
-#R|  Linf 1.216988e+03 1.189452e+03 1251.3431020
-#R|  k    9.419416e-02 6.600642e-02    0.1458299
-#R|  a    1.155605e+00 6.847494e-01    1.2214515
-#R|  b    3.793336e-01 2.720696e-01    1.1993613</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(bootR1,r1,<span class="at">t=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre class="output"><code>#R|       t   Median  95% LCI  95% UCI
-#R|  [1,] 3 560.5765 518.8378 600.7988</code></pre>
-</div>
-</div>
-<p>Information criterion may be used to identify which of these models best fits the male Black Drum data. First, the von Bertalanffy (as fit in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>), Gompertz, and logistic functions are fit to the data.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>vbTyp <span class="ot">&lt;-</span> <span class="fu">vbFuns</span>()</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>svTyp <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">Linf=</span><span class="dv">1193</span>,<span class="at">K=</span><span class="fl">0.13</span>,<span class="at">t0=</span><span class="sc">-</span><span class="fl">2.0</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>fitTyp <span class="ot">&lt;-</span> <span class="fu">nls</span>(tl<span class="sc">~</span><span class="fu">vbTyp</span>(otoage,Linf,K,t0),<span class="at">data=</span>bdm,<span class="at">start=</span>svTyp)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>fitG1 <span class="ot">&lt;-</span> <span class="fu">nls</span>(tl<span class="sc">~</span><span class="fu">g1</span>(otoage,Linf,gi,ti),<span class="at">data=</span>bdm,<span class="at">start=</span>svG1)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>fitL1 <span class="ot">&lt;-</span> <span class="fu">nls</span>(tl<span class="sc">~</span><span class="fu">l1</span>(otoage,Linf,gninf,ti),<span class="at">data=</span>bdm,<span class="at">start=</span>svL1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Typical VB</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>vbTyp <span class="ot">&lt;-</span> <span class="fu">vbFuns</span>()</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>svTyp <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">Linf=</span><span class="dv">1193</span>,<span class="at">K=</span><span class="fl">0.13</span>,<span class="at">t0=</span><span class="sc">-</span><span class="fl">2.0</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>fitTyp <span class="ot">&lt;-</span> <span class="fu">nls</span>(tl<span class="sc">~</span><span class="fu">vbTyp</span>(otoage,Linf,K,t0),<span class="at">data=</span>bdm,<span class="at">start=</span>svTyp)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Gompertz</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>svG1 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">Linf=</span><span class="dv">1250</span>,<span class="at">gi=</span><span class="fl">0.15</span>,<span class="at">ti=</span><span class="dv">2</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>fitG1 <span class="ot">&lt;-</span> <span class="fu">nls</span>(tl<span class="sc">~</span><span class="fu">g1</span>(otoage,Linf,gi,ti),<span class="at">data=</span>bdm,<span class="at">start=</span>svG1)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>svL1 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">Linf=</span><span class="dv">1250</span>,<span class="at">gninf=</span><span class="fl">0.15</span>,<span class="at">ti=</span><span class="dv">4</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>fitL1 <span class="ot">&lt;-</span> <span class="fu">nls</span>(tl<span class="sc">~</span><span class="fu">l1</span>(otoage,Linf,gninf,ti),<span class="at">data=</span>bdm,<span class="at">start=</span>svL1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>These objects are then submitted to <code>AICctab</code> to provide a summary table. From this, the Richards models is most supported followed by the VBGF. The logistic and Gompertz models had little support, likely because they force an inflection point in the model which is not apparent in these data.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>AICcmodavg<span class="sc">::</span><span class="fu">aictab</span>(<span class="fu">list</span>(fitTyp,fitL1,fitG1,fitR1),</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">c</span>(<span class="st">"VBGF"</span>,<span class="st">"logistic"</span>,<span class="st">"Gompertz"</span>,<span class="st">"Richards"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>AICcmodavg<span class="sc">::</span><span class="fu">aictab</span>(<span class="fu">list</span>(fitTyp,fitL1,fitG1,fitR1),</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">c</span>(<span class="st">"VBGF"</span>,<span class="st">"logistic"</span>,<span class="st">"Gompertz"</span>,<span class="st">"Richards"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre class="output"><code>#R|  
 #R|  Model selection based on AICc:
@@ -345,12 +348,12 @@ div.csl-indent {
 </div>
 <p>A plot of the best-fit model for each growth function (<a href="#fig-OtherGFCompare">Figure&nbsp;2</a>) shows, however, that there is likely very little difference in predicted values among the four models.</p>
 <div class="cell page-columns page-full" data-layout-align="center" data-par1="true">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tl<span class="sc">~</span>otoage,<span class="at">data=</span>bdm,<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>),</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Otolith Age"</span>,<span class="at">ylab=</span><span class="st">"Total Length (mm)"</span>)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">vbTyp</span>(x,<span class="fu">coef</span>(fitTyp)),<span class="at">from=</span><span class="dv">3</span>,<span class="at">to=</span><span class="dv">42</span>,<span class="at">add=</span><span class="cn">TRUE</span>,<span class="at">lwd=</span><span class="dv">6</span>)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">r1</span>(x,<span class="fu">coef</span>(fitR1)),<span class="at">from=</span><span class="dv">3</span>,<span class="at">to=</span><span class="dv">42</span>,<span class="at">add=</span><span class="cn">TRUE</span>,<span class="at">lwd=</span><span class="dv">4</span>,<span class="at">col=</span><span class="st">"blue"</span>)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">g1</span>(x,<span class="fu">coef</span>(fitG1)),<span class="at">from=</span><span class="dv">3</span>,<span class="at">to=</span><span class="dv">42</span>,<span class="at">add=</span><span class="cn">TRUE</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="st">"red"</span>)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">l1</span>(x,<span class="fu">coef</span>(fitL1)),<span class="at">from=</span><span class="dv">3</span>,<span class="at">to=</span><span class="dv">42</span>,<span class="at">add=</span><span class="cn">TRUE</span>,<span class="at">col=</span><span class="st">"orange"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tl<span class="sc">~</span>otoage,<span class="at">data=</span>bdm,<span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>),</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Otolith Age"</span>,<span class="at">ylab=</span><span class="st">"Total Length (mm)"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">vbTyp</span>(x,<span class="fu">coef</span>(fitTyp)),<span class="at">from=</span><span class="dv">3</span>,<span class="at">to=</span><span class="dv">42</span>,<span class="at">add=</span><span class="cn">TRUE</span>,<span class="at">lwd=</span><span class="dv">6</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">r1</span>(x,<span class="fu">coef</span>(fitR1)),<span class="at">from=</span><span class="dv">3</span>,<span class="at">to=</span><span class="dv">42</span>,<span class="at">add=</span><span class="cn">TRUE</span>,<span class="at">lwd=</span><span class="dv">4</span>,<span class="at">col=</span><span class="st">"blue"</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">g1</span>(x,<span class="fu">coef</span>(fitG1)),<span class="at">from=</span><span class="dv">3</span>,<span class="at">to=</span><span class="dv">42</span>,<span class="at">add=</span><span class="cn">TRUE</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="st">"red"</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">l1</span>(x,<span class="fu">coef</span>(fitL1)),<span class="at">from=</span><span class="dv">3</span>,<span class="at">to=</span><span class="dv">42</span>,<span class="at">add=</span><span class="cn">TRUE</span>,<span class="at">col=</span><span class="st">"orange"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display page-columns page-full">
 <div id="fig-OtherGFCompare" class="quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="figure page-columns page-full">
@@ -533,6 +536,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Copyright 2019, Derek H. Ogle</div>   
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/droglenc/IFAR">
+      <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/fishR_ogle">
+      <i class="bi bi-twitter" role="img" aria-label="Twitter">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
 
 
 

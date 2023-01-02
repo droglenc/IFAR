@@ -114,6 +114,7 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Page 207, Equation for <span class="math inline">\(\hat{Z}\)</span></strong> – <span class="math inline">\(N\)</span> should be <span class="math inline">\(n\)</span> in the denominator. Thus, the new equation should be</li>
 </ul>
 <p><span class="math display">\[\hat{Z} = -log(\hat{S}) - \frac{(n-1)(n-2)}{n(T+1)(n+T-1)} \]</span></p>
+<p>&nbsp;</p>
 </section>
 <section id="post-production-changes" class="level2">
 <h2 class="anchored" data-anchor-id="post-production-changes">Post-Production Changes</h2>
@@ -123,7 +124,7 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Section 4.2</strong> – I have dramatically changed the age-bias plot that is produced by <code>plot()</code> with an object saved from <code>ageBias()</code>. This change is described in the <a href="https://fishr-core-team.github.io/FSA/reference/ageBias.html">documentation</a> and <a href="https://fishr-core-team.github.io/FSA/reference/ageBias.html#examples">examples</a> for <code>ageBias()</code>. The plots shown in the book can largely still be produced with <code>plotAB()</code> (see <a href="https://fishr-core-team.github.io/FSA/reference/plotAB.html">its documentation here</a>). Also see <a href="https://fishr-core-team.github.io/fishR/blog/posts/2021-3-15-AgeBiasPlots/">this fishR post</a> for a description of constructing an age-bias plot using <code>ggplot2</code>.</li>
 <li><strong>Section 4.4</strong> – I have changed the information that is returned from <code>agePrecision()</code>. All of the information shown in the book is still provided; however, other information (e.g., average standard deviation and mean absolute deviation) are now also returned. The output is documented <a href="https://fishr-core-team.github.io/FSA/reference/agePrecision.html">in the documentation</a> for <code>agePrecision()</code>.</li>
 <li><strong>Sections 7.3.3, 8.3.2.1, 12.3.6, and 13.2.2</strong> – <code>residPlot()</code> has been removed from the <code>FSA</code> package. Other methods for constructing residuals plots are discussed in <a href="https://fishr-core-team.github.io/fishR/blog/posts/2021-6-1_residPlot-replacement/">this fishR post</a>.</li>
-<li><strong>Sections 12.3.1 and 13.1</strong> – The dynamic plots described for finding starting values for a von Bertalanffy growth function and the stock-recruitment functions (i.e., nonlinear regressions) have been removed from <code>vbStarts()</code> and <code>srStarts()</code>, because of the difficulty of maintaining a package that requires the <code>tcltk</code> package. These functionalities are now in the <code>FSAsims</code> package, but it can also largely be replicated with the <code>fixed=</code> arguments to <code>vbStarts()</code> and <code>srStarts()</code>. Use of <code>fixed=</code> in <code>srStarts()</code> is demonstrated in <a href="https://fishr-core-team.github.io/fishR/blog/posts/2017-12-12_StockRecruit_Graph_Questions/">this blog post</a>.</li>
+<li><strong>Sections 12.3.1 and 13.1</strong> – The dynamic plots described for finding starting values for a von Bertalanffy growth function and the stock-recruitment functions (i.e., nonlinear regressions) have been removed from <code>vbStarts()</code> and <code>srStarts()</code>, because of the difficulty of maintaining a package that requires the <code>tcltk</code> package. These functionalities are now in the <code>FSAsims</code> package, but it can also largely be replicated with the <code>fixed=</code> arguments to <code>vbStarts()</code> and <code>srStarts()</code>. Use of <code>fixed=</code> in <code>srStarts()</code> is demonstrated in <a href="https://fishr-core-team.github.io/fishR/blog/posts/2017-12-12_StockRecruit_Graph_Questions/#dynamic-plot-issue">this blog post</a>.</li>
 </ul>
 
 
@@ -280,6 +281,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Copyright 2019, Derek H. Ogle</div>   
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/droglenc/IFAR">
+      <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/fishR_ogle">
+      <i class="bi bi-twitter" role="img" aria-label="Twitter">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
 
 
 

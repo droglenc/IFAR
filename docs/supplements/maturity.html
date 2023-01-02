@@ -138,7 +138,7 @@ div.csl-indent {
 
 <link rel="stylesheet" href="../helpers/styles.css">
 <meta property="og:title" content="IFAR - Maturity Analyses">
-<meta property="og:description" content="The length-, weight-, or age-at-maturity is important to monitor for fish populations because these metrics are closely tied to reproductive potential and respond to changes in inter- and…">
+<meta property="og:description" content="">
 <meta property="og:site-name" content="IFAR">
 <meta name="citation_title" content="Maturity Analyses">
 <meta name="citation_author" content="Derek H. Ogle">
@@ -243,15 +243,15 @@ div.csl-indent {
 
 </header>
 
+<p>&nbsp;</p>
 <p>The length-, weight-, or age-at-maturity is important to monitor for fish populations because these metrics are closely tied to reproductive potential and respond to changes in inter- and intra-specific densities and resource availability <span class="citation" data-cites="pope_methods_2010">(<a href="#ref-pope_methods_2010" role="doc-biblioref">Pope et al. 2010</a>)</span>. Methods for modeling the relationship between maturity stage and length is demonstrated in this supplement. Results from these modeled relationships are then used to calculate metrics such as length at 50% maturity. These methods extend directly to use with age or weight data.</p>
 <section id="setup" class="level1 page-columns page-full">
 <h1>Setup</h1>
 <section id="packages" class="level2">
 <h2 class="anchored" data-anchor-id="packages">Packages</h2>
-<p>Functions used in this supplement require the following packages. Also note that one function from <code>lubridate</code> and two functions from <code>car</code> are used below with <code>::</code> so that the whole packages do not need to be loaded.</p>
+<p>Functions used in this supplement require the following packages. Also note that few functions from <code>FSA</code>, <code>lubridate</code>, and <code>car</code> are used below with <code>::</code> so that the whole packages do not need to be loaded.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FSA)      <span class="co"># for headtail()</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)    <span class="co"># for select(), mutate(), filter()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)    <span class="co"># for select(), mutate(), filter()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
 
@@ -259,7 +259,7 @@ div.csl-indent {
 </section>
 <section id="data" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
-<div class="page-columns page-full"><p>The total length (<code>length</code>; to the nearest cm), <code>age</code> (years), and <code>maturity</code> (<code>Immature</code> and <code>Mature</code>) state of female Yelloweye Rockfish (<em>Sebastes rubberimus</em>) collected from along the Oregon coast are recorded in <a href="https://fishr-core-team.github.io/FSAdata/reference/YERockFish.html">YERockFish.csv</a>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The <code>stage</code> variable was removed to minimize output below.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Download data with CSV link on the linked page.</p></li></div></div>
+<div class="page-columns page-full"><p>The total length (<code>length</code>; to the nearest cm), <code>age</code> (years), and <code>maturity</code> state (<code>Immature</code> and <code>Mature</code>) of female Yelloweye Rockfish (<em>Sebastes rubberimus</em>) collected from along the Oregon coast are recorded in <a href="https://fishr-core-team.github.io/FSAdata/reference/YERockfish.html">YERockFish.csv</a>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The <code>stage</code> variable was removed to minimize output below.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Download data with CSV link on the linked page.</p></li></div></div>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://raw.githubusercontent.com/fishr-core-team/FSAdata/master/data-raw/YERockfish.csv"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>stage)</span>
@@ -271,7 +271,7 @@ div.csl-indent {
 #R|   $ age     : int  10 6 11 11 13 9 10 8 10 11 ...
 #R|   $ maturity: chr  "Immature" "Immature" "Immature" "Immature" ...</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">headtail</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>FSA<span class="sc">::</span><span class="fu">headtail</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre class="output"><code>#R|           date length age maturity
 #R|  1    9/2/2003     31  10 Immature
@@ -309,13 +309,13 @@ div.csl-indent {
 #R|   $ maturity: Factor w/ 2 levels "Immature","Mature": 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
 </div>
 </div>
-<p>The year of capture may then be extracted from <code>date</code> with <code>year()</code> from <code>lubridate</code>. Note that the month could be extracted with <code>month()</code>, day of the month with <code>mday()</code>, and day of the year (1-366) with <code>yday()</code>. A variable (<code>era</code>) that indicates the era (<code>pre-2002</code> or <code>2002 and after</code>) is then added to the data frame as a factor.</p>
+<div class="page-columns page-full"><p>The year of capture may then be extracted from <code>date</code> with <code>year()</code> from <code>lubridate</code>.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> A variable (<code>era</code>) that indicates the era (<code>pre-2002</code> or <code>2002 and after</code>) is then added to the data frame as a factor.</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;The month could be extracted with <code>month()</code>, day of the month with <code>mday()</code>, and day of the year (1-366) with <code>yday()</code>.</p></li></div></div>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year=</span>lubridate<span class="sc">::</span><span class="fu">year</span>(date),</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">era=</span><span class="fu">ifelse</span>(year<span class="sc">&lt;</span><span class="dv">2002</span>,<span class="st">"pre-2002"</span>,<span class="st">"2002 and after"</span>),</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">era=</span><span class="fu">factor</span>(era,<span class="at">levels=</span><span class="fu">c</span>(<span class="st">"pre-2002"</span>,<span class="st">"2002 and after"</span>)))</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">headtail</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>FSA<span class="sc">::</span><span class="fu">headtail</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre class="output"><code>#R|            date length age maturity year            era
 #R|  1   2003-09-02     31  10 Immature 2003 2002 and after
@@ -338,11 +338,11 @@ div.csl-indent {
 <h1>Maturity Data</h1>
 <p>Raw maturity data generally consists of a maturity statement (either “mature” or “immature”), size (length or weight), age, sex, and other variables as needed (e.g., capture date, capture location) recorded for individual fish. The maturity variable may need to be derived from more specific data about the “stage of maturation” recorded for each fish. Often, maturity will be recorded as a dummy or indicator variable – “0” for immature and “1” for mature – but this is not required for most modern software. Sex is an important variable to record as maturity should be analyzed separately for each sex <span class="citation" data-cites="pope_methods_2010">(<a href="#ref-pope_methods_2010" role="doc-biblioref">Pope et al. 2010</a>)</span>.</p>
 <p>Summarized maturity data consists of the proportion of individuals that are mature within each age or length category. Age categories are generally the recorded ages, whereas recorded lengths are often categorized into bins. Age or length categories should be as narrow as possible but include enough individuals such that the proportion mature in each bin is reliably estimated.</p>
-<p>In this supplement, the total length of the Rockfish was measured to the nearest cm. Length categories that were 2 cm were chosen to summarize the data to provide reasonable sample sizes (<span class="math inline">\(&gt;10\)</span> fish) in the length ranges where the proportion of mature fish is most rapidly changing. These length categories are added to the data.frame with <code>lencat()</code> below (as described in Chapter 2 of <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>).</p>
+<p>In this supplement, the total length of the Rockfish was measured to the nearest cm. Length categories of 2 cm were chosen to summarize the data to provide reasonable sample sizes (<span class="math inline">\(&gt;10\)</span> fish) in the length ranges where the proportion of mature fish is most rapidly changing. These length categories are added to the data frame with <code>lencat()</code> below (as described in Chapter 2 of <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>).</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lcat2=</span><span class="fu">lencat</span>(length,<span class="at">w=</span><span class="dv">2</span>))</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">headtail</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lcat2=</span>FSA<span class="sc">::</span><span class="fu">lencat</span>(length,<span class="at">w=</span><span class="dv">2</span>))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>FSA<span class="sc">::</span><span class="fu">headtail</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre class="output"><code>#R|            date length age maturity year            era lcat2
 #R|  1   2003-09-02     31  10 Immature 2003 2002 and after    30
@@ -401,16 +401,16 @@ div.csl-indent {
 <h1>Modeling with Raw Data</h1>
 <section id="fitting-the-logistic-regression-model" class="level2">
 <h2 class="anchored" data-anchor-id="fitting-the-logistic-regression-model">Fitting the Logistic Regression Model</h2>
-<p>Raw maturity data is generally summarized with a logistic regression. A logistic regression is conducted with a binomial response variable and, generally, a quantitative explanatory variable. The relationship between the probability of “success” (<span class="math inline">\(p\)</span>) and the explanatory variable (length or age) is generally not linear (primarily due to the constraint that the probability is between 0 and 1). This relationship can be linearized by first transforming <span class="math inline">\(p\)</span> to the odds (i.e., <span class="math inline">\(\frac{p}{1-p}\)</span>). The odds related the probability of “successes” to “failures.” For example, an odds of 1 indicates that there is an equal probability of success and failure, whereas an odds of 3 indicates that the probability of success is three times the probability of failure.</p>
+<p>Raw maturity data is generally summarized with a logistic regression. A logistic regression is conducted with a binomial response variable and, generally, a quantitative explanatory variable. The relationship between the probability of “success” (<span class="math inline">\(p\)</span>) and the explanatory variable (length or age) is generally not linear (primarily due to the constraint that the probability is between 0 and 1). This relationship can be linearized by first transforming <span class="math inline">\(p\)</span> to the odds (i.e., <span class="math inline">\(\frac{p}{1-p}\)</span>). The odds relate the probability of “successes” to “failures.” For example, an odds of 1 indicates that there is an equal probability of success and failure, whereas an odds of 3 indicates that the probability of success is three times the probability of failure.</p>
 <p>The transformation to a linear relationship is completed by computing the logarithm of the odds (i.e., <span class="math inline">\(log(\frac{p}{1-p})\)</span>). The complete transformation from <span class="math inline">\(p\)</span> to <span class="math inline">\(log(\frac{p}{1-p})\)</span> is called the <em>logit</em> transformation.</p>
 <p>Thus, the linear model in a logistic regression models the log odds as a function of an explanatory variable, <span class="math inline">\(X\)</span>, with</p>
 <p><span id="eq-LogisticModel"><span class="math display">\[ log\left(\frac{p}{1-p}\right) = \alpha + \beta_{1}X  \tag{1}\]</span></span></p>
 <p>In maturity analyses, the logistic regression is used to model the log odds of being mature as a function of either length or age. It will be shown later in this supplement how the log odds of being mature are back-transformed to the probability of being mature.</p>
-<p>Logistic regressions are fit with <code>glm()</code>, rather than the <code>lm()</code> used in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>. For a logistic regression the first argument to <code>glm()</code> is a formula of the form <code>factor~quant</code> where <code>factor</code> and <code>quant</code> generically represent factor and quantitative variables, respectively. The data.frame that contains <code>factor</code> and <code>quant</code> is given to <code>data=</code>. Finally, <code>glm()</code> is forced to use the logit transformation and fit a logistic regression by including <code>family=binomial</code>. For example, the <code>glm()</code> code below will model the log odds of being mature as a function of the length of the Rockfish.</p>
+<p>Logistic regressions are fit with <code>glm()</code>, rather than the <code>lm()</code> used in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>. For logistic regression the first argument to <code>glm()</code> is a formula of the form <code>factor~quant</code> where <code>factor</code> and <code>quant</code> generically represent factor and quantitative variables, respectively. The data frame that contains <code>factor</code> and <code>quant</code> is given to <code>data=</code>. Finally, <code>glm()</code> is forced to use the logit transformation and fit a logistic regression by including <code>family=binomial</code>. For example, the <code>glm()</code> code below will model the log odds of being mature as a function of Rockfish length.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>glm1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(maturity<span class="sc">~</span>length,<span class="at">data=</span>df,<span class="at">family=</span>binomial)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Parameter estimates are extracted from the <code>glm()</code> object with <code>coef()</code>. Confidence intervals for the parameters of a logistic regression are best estimated with bootstrapping (rather than normal theory). Bootstrapping is performed with <code>bootCase()</code> from <code>car</code> as described in Chapter 12 of <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>.</p>
+<p>Parameter estimates are extracted from the <code>glm()</code> object with <code>coef()</code>. Confidence intervals for the parameters of a logistic regression are best estimated with bootstrapping (rather than normal theory). Bootstrapping is performed with <code>Boot()</code> from <code>car</code> as described in Chapter 12 of <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>.</p>
 <div class="cell" data-layout-align="center" data-hash="maturity_cache/html/unnamed-chunk-11_c75d27ec729c8f37a4e31f8f80e230e9">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>bcL <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">Boot</span>(glm1)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">Ests=</span><span class="fu">coef</span>(glm1),<span class="fu">confint</span>(bcL))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -426,7 +426,7 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="predicted-probability-of-being-mature">Predicted Probability of Being Mature</h2>
 <p>The probability of a fish being mature given the observed value of the explanatory variable (<span class="math inline">\(x\)</span>) can be computed by solving <a href="#eq-LogisticModel">Equation&nbsp;1</a> for <span class="math inline">\(p\)</span>,</p>
 <p><span id="eq-LogisticPredict"><span class="math display">\[ p = \frac{e^{\alpha + \beta_{1}x}}{1+e^{\alpha + \beta_{1}}}  \tag{2}\]</span></span></p>
-<p>This prediction is computed with <code>predict()</code>, which requires the <code>glm()</code> object as the first argument, a data.frame with the values of the explanatory variable for which to make the prediction as the second argument, and <code>type="response"</code> (which forces the prediction of the probability, rather than the log odds, of being mature). For example, the predicted probabilities of being mature for female Yelloweye Rockfish that are 32- and 42-cm total length are computed below.</p>
+<p>This prediction is computed with <code>predict()</code>, which requires the <code>glm()</code> object as the first argument, a data frame with the values of the explanatory variable for which to make the prediction as the second argument, and <code>type="response"</code> (which forces the prediction of the probability, rather than the log odds, of being mature). For example, the predicted probabilities of being mature for female Yelloweye Rockfish that are 32- and 42-cm total length are computed below.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(glm1,<span class="fu">data.frame</span>(<span class="at">length=</span><span class="fu">c</span>(<span class="dv">32</span>,<span class="dv">42</span>)),<span class="at">type=</span><span class="st">"response"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -434,7 +434,7 @@ div.csl-indent {
 #R|  0.0493342 0.8042766</code></pre>
 </div>
 </div>
-<div class="page-columns page-full"><p>Confidence intervals for the predicted probability are formed by computing the prediction for each bootstrap sample and then extracting the values for the upper and lower 2.5% of these predictions. This process is most easily accomplished by forming a function that represents <a href="#eq-LogisticPredict">Equation&nbsp;2</a> and then using <code>apply()</code> to apply that function to each row of the matrix containing the bootstrap samples. This is the same process as described in Chapter 12 of <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>. The code below computes the 95% confidence intervals for the predicted probability of being mature for 32 cm long Yelloweye Rockfish.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;Note here that the results of each bootstrapped sample are in <code>t</code> of the <code>Boot()</code> object (i.e., <code>bcL</code>).</p></li></div></div>
+<div class="page-columns page-full"><p>Confidence intervals for the predicted probability are formed by computing the prediction for each bootstrap sample and then extracting the values for the upper and lower 2.5% of these predictions. This process is most easily accomplished by forming a function that represents <a href="#eq-LogisticPredict">Equation&nbsp;2</a> and then using <code>apply()</code> to apply that function to each row of the matrix containing the bootstrap samples. This is the same process as described in Chapter 12 of <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>. The code below computes the 95% confidence intervals for the predicted probability of being mature for 32 cm long Yelloweye Rockfish.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;Note here that the results of each bootstrapped sample are in <code>t</code> of the <code>Boot()</code> object (i.e., <code>bcL</code>).</p></li></div></div>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>predP <span class="ot">&lt;-</span> <span class="cf">function</span>(cf,x) <span class="fu">exp</span>(cf[<span class="dv">1</span>]<span class="sc">+</span>cf[<span class="dv">2</span>]<span class="sc">*</span>x)<span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span><span class="fu">exp</span>(cf[<span class="dv">1</span>]<span class="sc">+</span>cf[<span class="dv">2</span>]<span class="sc">*</span>x))</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>p32 <span class="ot">&lt;-</span> <span class="fu">apply</span>(bcL<span class="sc">$</span>t,<span class="dv">1</span>,predP,<span class="at">x=</span><span class="dv">32</span>)</span>
@@ -534,14 +534,14 @@ div.csl-indent {
 </section>
 <section id="modeling-with-summarized-data" class="level1 page-columns page-full">
 <h1>Modeling with Summarized Data</h1>
-<p>Sometimes maturity data is presented in summarized format – that is, the proportion of fish for each length that were mature. Such data can be computed from the original data.frame with the code below. Note that there are two “tricks” in this code. First, the <code>maturity</code> factor variable is coerced to be a numeric variable, but 1 is subtracted from this result because values of 1 for immature and 2 for mature are returned by <code>as.numeric()</code> when applied to a factor variable. Second, the mean of this result is the proportion of ones in the data, which is the proportion of mature fish.</p>
+<p>Sometimes maturity data is presented in summarized format – that is, the proportion of fish for each length that were mature. Such data can be computed from the original data frame with the code below. Note that there are two “tricks” in this code. First, the <code>maturity</code> factor variable is coerced to be a numeric variable, but 1 is subtracted from this result because values of 1 for immature and 2 for mature are returned by <code>as.numeric()</code> when applied to a factor variable. Second, the mean of this result is the proportion of ones in the data, which is the proportion of mature fish.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(length) <span class="sc">|&gt;</span></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">pmat=</span><span class="fu">mean</span>(<span class="fu">as.numeric</span>(maturity)<span class="sc">-</span><span class="dv">1</span>),</span>
 <span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">n=</span><span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
 <span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="fu">headtail</span>(df2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>FSA<span class="sc">::</span><span class="fu">headtail</span>(df2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre class="output"><code>#R|     length pmat n
 #R|  1      31    0 1
@@ -553,7 +553,7 @@ div.csl-indent {
 </div>
 </div>
 <p>Also note that this code is only used here to produce data to illustrate how to analyze summarized data. If one has raw data, as in this supplement, then the methods of the previous section should be used, though the technique used here provides identical answers.</p>
-<div class="page-columns page-full"><p>The appropriate logistic regression model is again fit with <code>glm()</code>. However, the left side of the formula is the proportion of “successes” variable and <code>weights=</code> is set equal to the sample size used to compute each proportion. Once the model is fit, the same extractor functions can be used to summarize the results.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;<code>glm()</code> and <code>Boot()</code> will return warnings about non-integer number of successes when used in this way.</p></li></div></div>
+<div class="page-columns page-full"><p>The appropriate logistic regression model is again fit with <code>glm()</code>. However, the left side of the formula is the proportion of “successes” variable and <code>weights=</code> is set equal to the sample size used to compute each proportion. Once the model is fit, the same extractor functions can be used to summarize the results.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;<code>glm()</code> and <code>Boot()</code> will return warnings about non-integer number of successes when used in this way.</p></li></div></div>
 <div class="cell" data-layout-align="center" data-hash="maturity_cache/html/unnamed-chunk-24_53e9e7cb747b0e1ef3d509d982a6ced1">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>glm2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(pmat<span class="sc">~</span>length,<span class="at">data=</span>df2,<span class="at">family=</span>binomial,<span class="at">weights=</span>n)</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>bcL2 <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">Boot</span>(glm2)</span>
@@ -617,7 +617,7 @@ div.csl-indent {
 #R|                -0.3510082</code></pre>
 </div>
 </div>
-<p>Note that the parameter estimates under the <code>(Intercept)</code> and <code>length</code> headings are the intercept and slope, respectively, for the “reference” group in the model. The reference group is the alphabetically first group, unless the levels of the factor variable were changed by the user as was done in this supplement. The order of the levels can be observed with <code>str()</code> or <code>levels()</code>.</p>
+<p>Note that the parameter estimates under the <code>(Intercept)</code> and <code>length</code> headings are the intercept and slope, respectively, for the “reference” group in the model. The reference group is the group associated with the first level in the factor vqriable. The order of the levels can be observed with <code>str()</code> or <code>levels()</code>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(df<span class="sc">$</span>era)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -627,9 +627,9 @@ div.csl-indent {
 <p>Thus, the estimated intercept and slope of the logistic regression for the “pre-2002” era fish are -27.131 and 0.696, respectively.</p>
 <p>The parameter estimates under the <code>era2002 and after</code> and <code>length:era2002 and after</code> are the <strong>differences</strong> in intercept and slope between the two eras. Thus, these values need to be added to the intercept and slope for the “pre-2000” era to estimate the intercept and slope for the “2002 and after” era. Thus, the estimated intercept and slope of the logistic regression for the “2002 and after” era fish are -13.118 and 0.345, respectively.</p>
 <p>The first step in building the hypothesis test for whether <span class="math inline">\(L_{50}\)</span> differs between eras is to construct the bootstrap samples from the <code>glm()</code> object.</p>
-<div class="cell" data-layout-align="center" data-hash="maturity_cache/html/unnamed-chunk-29_555e62b27a5810e207580e01c7e4f2ec">
+<div class="cell" data-layout-align="center" data-hash="maturity_cache/html/unnamed-chunk-29_9d8ee6817fd583dc2bcd70367037e851">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>bcL3 <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">Boot</span>(glm3)  </span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">headtail</span>(bcL3<span class="sc">$</span>t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>FSA<span class="sc">::</span><span class="fu">headtail</span>(bcL3<span class="sc">$</span>t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre class="output"><code>#R|         (Intercept)    length era2002 and after length:era2002 and after
 #R|  [1,]     -18.80167 0.4746840          6.963441               -0.1613036
@@ -645,11 +645,11 @@ div.csl-indent {
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>L50.pre<span class="ot">=</span> <span class="fu">apply</span>(bcL3<span class="sc">$</span>t[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],<span class="dv">1</span>,lrPerc,<span class="at">p=</span><span class="fl">0.5</span>)</span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>L50.post<span class="ot">=</span><span class="fu">apply</span>(bcL3<span class="sc">$</span>t[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]<span class="sc">+</span>bcL3<span class="sc">$</span>t[,<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>],<span class="dv">1</span>,lrPerc,<span class="at">p=</span><span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>If there was no difference in <span class="math inline">\(L_{50}\)</span> between the two eras, then one would expect the means of these two groups to be the same or, equivalently, the mean of the differences in these two value to equal zero. The difference in <span class="math inline">\(L_{50}\)</span> for each bootstrap sample is computed below.</p>
+<p>If there was no difference in <span class="math inline">\(L_{50}\)</span> between the two eras, then one would expect the means of these two groups to be the same or, equivalently, the mean of the differences in these two groups to equal zero. The difference in <span class="math inline">\(L_{50}\)</span> for each bootstrap sample is computed below.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>L50.diff <span class="ot">&lt;-</span> L50.pre<span class="sc">-</span>L50.post</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="page-columns page-full"><p>A two-sided p-value may be computed as two times the smaller of the proportions of samples that are less than or greater than 0.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;This code exploits the fact that R treats a <code>TRUE</code> as a <code>1</code> and a <code>FALSE</code> as a <code>0</code> such that the mean of a vector of <code>TRUE</code>s and <code>FALSE</code>s will return the proportion of <code>TRUE</code>s.</p></li></div></div>
+<div class="page-columns page-full"><p>A two-sided p-value may be computed as two times the smaller of the proportions of samples that are less than or greater than 0.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn6"><p><sup>6</sup>&nbsp;This code exploits the fact that R treats a <code>TRUE</code> as a <code>1</code> and a <code>FALSE</code> as a <code>0</code> such that the mean of a vector of <code>TRUE</code>s and <code>FALSE</code>s will return the proportion of <code>TRUE</code>s.</p></li></div></div>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>( p.L50.diff <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">min</span>(<span class="fu">c</span>(<span class="fu">mean</span>(L50.diff<span class="sc">&gt;</span><span class="dv">0</span>),<span class="fu">mean</span>(L50.diff<span class="sc">&lt;</span><span class="dv">0</span>))) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -872,6 +872,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Copyright 2019, Derek H. Ogle</div>   
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/droglenc/IFAR">
+      <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/fishR_ogle">
+      <i class="bi bi-twitter" role="img" aria-label="Twitter">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
 
 
 

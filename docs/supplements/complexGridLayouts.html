@@ -137,7 +137,7 @@ div.csl-indent {
 
 <link rel="stylesheet" href="../helpers/styles.css">
 <meta property="og:title" content="IFAR - Complex Grid Layouts">
-<meta property="og:description" content="Several methods for modifying base graphics were shown in Ogle (2016), including simple layouts (side-by-side, one-over-the-other) of multiple plots. More complex layouts (e.g.">
+<meta property="og:description" content="">
 <meta property="og:site-name" content="IFAR">
 <meta name="citation_title" content="Complex Grid Layouts">
 <meta name="citation_author" content="Derek H. Ogle">
@@ -193,7 +193,9 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#complex-grid-layouts-with-layout" id="toc-complex-grid-layouts-with-layout" class="nav-link active" data-scroll-target="#complex-grid-layouts-with-layout">Complex Grid Layouts with <code>layout()</code></a></li>
+  <li><a href="#introducing-layout" id="toc-introducing-layout" class="nav-link active" data-scroll-target="#introducing-layout">Introducing <code>layout()</code></a></li>
+  <li><a href="#more-interesting-layouts" id="toc-more-interesting-layouts" class="nav-link" data-scroll-target="#more-interesting-layouts">More Interesting Layouts</a></li>
+  <li><a href="#final-example" id="toc-final-example" class="nav-link" data-scroll-target="#final-example">Final Example</a></li>
   </ul>
 </nav>
     </div>
@@ -223,6 +225,7 @@ div.csl-indent {
 
 </header>
 
+<p>&nbsp;</p>
 <p>Several methods for modifying base graphics were shown in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>, including simple layouts (side-by-side, one-over-the-other) of multiple plots. More complex layouts (e.g., plot in first row spans two columns or unequal sized plots) are described in this supplement. Creating common x- and y-axis labels for a grid of plots is <a href="commonAxisLabels.html">described in this supplement</a>.</p>
 <p>A single function is used from <code>dplyr</code> in this supplement; thus, <code>::</code> is used instead of loading the entire package. The <code>FSA</code> package is loaded here to provide access to the modified <code>hist()</code>.</p>
 <div class="cell" data-layout-align="center">
@@ -233,19 +236,19 @@ div.csl-indent {
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(BullTroutRML2,<span class="at">package=</span><span class="st">"FSAdata"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(BloaterLH,<span class="at">package=</span><span class="st">"FSAdata"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="complex-grid-layouts-with-layout" class="level1 page-columns page-full">
-<h1>Complex Grid Layouts with <code>layout()</code></h1>
-<p>The <code>layout()</code> function allows for more complicated organizations of plots. The only required argument to <code>layout()</code> is a matrix that specifies the positions, as a grid, for a series of plots. The numbers in the matrix describe which sequential plot will appear in that position. For example, the following code constructs a 2x2 grid for four plots where the first plot will appear in the lower-right corner and the last (fourth) plot will appear in the upper-left corner.</p>
+<section id="introducing-layout" class="level1 page-columns page-full">
+<h1>Introducing <code>layout()</code></h1>
+<p><code>layout()</code> allows for more complicated organizations of plots. The only required argument to <code>layout()</code> is a matrix that specifies the positions, as a grid, for a series of plots. The numbers in the matrix describe which sequential plot will appear in that position. For example, the following code constructs a 2x2 grid for four plots where the first plot will appear in the lower-right corner and the last (fourth) plot will appear in the upper-left corner.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>( m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">1</span>,<span class="at">nrow=</span><span class="dv">2</span>,<span class="at">byrow=</span><span class="cn">TRUE</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#R|       [,1] [,2]
+<pre class="output"><code>#R|       [,1] [,2]
 #R|  [1,]    4    3
 #R|  [2,]    2    1</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">layout</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The <code>layout.show()</code> function is used to show the layout grid. Its only argument is the number of positions to show. The example below illustrates the layout created above.</p>
+<p><code>layout.show()</code> is used to show the layout grid. Its only argument is the number of positions to show. The example below illustrates the layout created above.</p>
 <div class="cell page-columns page-full" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">layout.show</span>(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display page-columns page-full">
@@ -257,11 +260,15 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p>The 2x2 grid in <a href="#fig-Layout1">Figure&nbsp;1</a> is not that interesting because that layout is just as easily constructed with <code>mfrow=</code> in <code>par()</code> (as shown in the <strong>IFAR</strong> book). Layouts, however, can also be constructed that are not “grids.” For example, the entire first row may be one plot with a second row of two plots. This layout grid is constructed by including a “1” in the first two positions of the layout matrix (<a href="#fig-Layout2">Figure&nbsp;2</a>).</p>
+<p>&nbsp;</p>
+</section>
+<section id="more-interesting-layouts" class="level1 page-columns page-full">
+<h1>More Interesting Layouts</h1>
+<p>The 2x2 grid in <a href="#fig-Layout1">Figure&nbsp;1</a> is not that interesting because that layout is just as easily constructed with <code>mfrow=</code> in <code>par()</code> (as shown in <span class="citation" data-cites="ogleIntroductoryFisheriesAnalyses2016">Ogle (<a href="#ref-ogleIntroductoryFisheriesAnalyses2016" role="doc-biblioref">2016</a>)</span>). Layouts, however, can also be constructed that are not “grids.” For example, the entire first row may be one plot with a second row of two plots. This layout grid is constructed by including a “1” in the first two positions of the layout matrix (<a href="#fig-Layout2">Figure&nbsp;2</a>).</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>( m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),<span class="at">nrow=</span><span class="dv">2</span>,<span class="at">byrow=</span><span class="cn">TRUE</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#R|       [,1] [,2]
+<pre class="output"><code>#R|       [,1] [,2]
 #R|  [1,]    1    1
 #R|  [2,]    2    3</code></pre>
 </div>
@@ -300,7 +307,7 @@ div.csl-indent {
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>( m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">3</span>),<span class="at">nrow=</span><span class="dv">2</span>,<span class="at">byrow=</span><span class="cn">TRUE</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#R|       [,1] [,2]
+<pre class="output"><code>#R|       [,1] [,2]
 #R|  [1,]    2    0
 #R|  [2,]    1    3</code></pre>
 </div>
@@ -337,6 +344,9 @@ div.csl-indent {
 </div>
 </div>
 <p>&nbsp;</p>
+</section>
+<section id="final-example" class="level1 page-columns page-full">
+<h1>Final Example</h1>
 <p>Finally, <code>layout()</code> may be used to make quite complex grids, as illustrated with the code below that produced <a href="#fig-Layout6">Figure&nbsp;6</a>. Note that <code>plot.new()</code> creates a new blank plot in which the subsequent <code>text()</code> commands will place text (in this case marginal labels).</p>
 <div class="cell page-columns page-full" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>BTH1 <span class="ot">&lt;-</span> BullTroutRML2 <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(lake<span class="sc">==</span><span class="st">"Harrison"</span>,era<span class="sc">==</span><span class="st">"1977-80"</span>)</span>
@@ -346,7 +356,7 @@ div.csl-indent {
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>( m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">8</span>),<span class="at">nrow=</span><span class="dv">3</span>,<span class="at">byrow=</span><span class="cn">TRUE</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#R|       [,1] [,2] [,3]
+<pre class="output"><code>#R|       [,1] [,2] [,3]
 #R|  [1,]    0    1    2
 #R|  [2,]    3    5    6
 #R|  [3,]    4    7    8</code></pre>
@@ -539,6 +549,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Copyright 2019, Derek H. Ogle</div>   
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/droglenc/IFAR">
+      <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/fishR_ogle">
+      <i class="bi bi-twitter" role="img" aria-label="Twitter">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
 
 
 

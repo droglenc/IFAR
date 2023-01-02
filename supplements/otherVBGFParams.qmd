@@ -4,13 +4,13 @@ author: "Derek H. Ogle"
 output: html_document
 ---
 
-# Background
+&nbsp;
 
-The von Bertalanffy Growth Function (VBGF) was introduced and methods for fitting the function were illustrated in Chapter 12 of @ogleIntroductoryFisheriesAnalyses2016. The VBGF used there is from @beverton_dynamics_1957 and is called the "Typical" parameterization of the VBGF. The VBGF can be expressed in alternative forms that are called parameterizations.
+The von Bertalanffy Growth Function (VBGF) used in Chapter 12 of @ogleIntroductoryFisheriesAnalyses2016 is from @beverton_dynamics_1957 and is called the "Typical" parameterization of the VBGF. The VBGF can be expressed in alternative forms that are called parameterizations.
 
-Different parameterizations do not fit the data differently. In other words, all parameterizations of the VBGF have the same number of parameters and will produce the same predicted values and fitted model plots. However, different parameterizations have different function parameters that may be of interest to the fisheries scientist for biological reasons or because they have useful statistical properties. For example, the parameterizations of @von_bertalanffy_quantitative_1938 and @mooij_analysis_1999 both use $L_{0}$, which is the mean length at time 0 (i.e., at "hatch"). Thus, either of these parameterizations could be used if the $L_{0}$ parameter was of biological interest. In contrast, the parameters in the parameterizations of @schnute_versatile_1981 and @francis_are_1988 are either largely or wholly based on expected values, which are generally less correlated. Thus, if one wants to avoid the problems associated with highly correlated parameters (as discussed @ogleIntroductoryFisheriesAnalyses2016) and is not interested in the parameters of the other parameterizations, then either of these two parameterizations may be used.
+Different parameterizations do not fit the data differently. In other words, all parameterizations of the VBGF have the same number of parameters and will produce the same predicted values and fitted model plots. However, different parameterizations have different parameters that may be of interest to the fisheries scientist for biological reasons or because they have useful statistical properties. For example, the parameterizations of @von_bertalanffy_quantitative_1938 and @mooij_analysis_1999 both use $L_{0}$, which is the mean length at time 0 (i.e., at "hatch"). Thus, either of these parameterizations could be used if the $L_{0}$ parameter was of biological interest. In contrast, the parameters in the parameterizations of @schnute_versatile_1981 and @francis_are_1988 are either largely or wholly based on expected values, which are generally less correlated. Thus, if one wants to avoid the problems associated with highly correlated parameters (as discussed in  @ogleIntroductoryFisheriesAnalyses2016) and is not interested in the parameters of the other parameterizations, then either of these two parameterizations may be used.
 
-The parametarizations of @von_bertalanffy_quantitative_1938 and @francis_are_1988 are fit in this supplement to illustrate fitting other than the "Typical" parameterization used in Chapter 12 of @ogleIntroductoryFisheriesAnalyses2016. Other supplements demonstrate how to [fit growth functions other than the VBGF](otherGrowthFuns.html) and [use alternative nonlinear model fitting algorithms](otherNLAlgorithms.html).
+The parametarizations of @von_bertalanffy_quantitative_1938 and @francis_are_1988 are fit in this supplement to illustrate fitting other than the "Typical" parameterization used in Chapter 12 of @ogleIntroductoryFisheriesAnalyses2016. Fitting growth functions other than the VBGF is demonstrated [here](otherGrowthFuns.html).
 
 # Setup
 ## Packages
@@ -44,7 +44,7 @@ $$ E[L|t] = L_{\infty} - (L_{\infty}-L_{0})e^{-Kt} $$
 
 where $L_{\infty}$ and $K$ are as defined for the typical parameterization and $L_{0}$ is the mean length at $t=0$.
 
-As demonstrated in @ogleIntroductoryFisheriesAnalyses2016 for the "Typical" VBGF, an R function that uses the VBGF to predict length from a given age is needed. This R function may be created by the user, but for many common parameterizations it is easier to use `vbFuns()` from `FSA`. As a reminder, `vbFuns()` requires the name for the parameterization to use in quotes as the first argument. A brief explanation of the parameters is also returned if `msg=TRUE` is included.
+As demonstrated in @ogleIntroductoryFisheriesAnalyses2016 for the "Typical" VBGF, an R function that uses the VBGF to predict length from a given age is needed. This R function may be created by the user, but for many common parameterizations it is easier to use `vbFuns()` from `FSA`. As a reminder, `vbFuns()` requires the name for the parameterization to use in quotes as the first argument.^[A brief explanation of the parameters is also returned if `msg=TRUE` is included.]
 
 An R function called `vbO()` is created for the "original" parameterization below. Note with this function that values for the three parameters may be included as a vector in `Linf=`.
 
@@ -95,7 +95,7 @@ As stated above, the user must choose values for $t_{1}$ and $t_{3}$. In this ex
 ( ages <- range(bdm$otoage) )
 ```
 
-Starting values are obtained with `vbStarts()` as described above. However, with the "Francis" parameterization, the ages that define $t_{1}$ and $t_{3}$ must also be provided in `ages2use=`.
+Starting values are obtained with `vbStarts()` as described above, but with `type="Francis"`. Additionally, with the "Francis" parameterization, the ages that define $t_{1}$ and $t_{3}$ must also be provided in `ages2use=`.
 
 ```{r}
 ( svF <- vbStarts(tl~otoage,data=bdm,type="Francis",ages2use=ages) )
